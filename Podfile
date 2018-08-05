@@ -10,4 +10,6 @@ target 'SportsMatching' do
   pod 'Firebase/Database'
   pod 'Firebase/AdMob'
   pod 'SVProgressHUD'
+  pod 'Eureka'
+  pod 'ImageRow', '~> 3.0'
 end
