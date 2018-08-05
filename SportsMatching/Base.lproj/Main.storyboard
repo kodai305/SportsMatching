@@ -39,7 +39,7 @@
         <!--募集ページ-->
         <scene sceneID="U9W-TS-WaT">
             <objects>
-                <viewController title="募集ページ" id="1ff-AD-Ztu" customClass="RecuruiteViewController" customModule="SportsMatching" sceneMemberID="viewController">
+                <viewController title="募集ページ" id="1ff-AD-Ztu" customClass="RecruiteViewController" customModule="SportsMatching" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zeW-Fk-kcd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
