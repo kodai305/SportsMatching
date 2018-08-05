@@ -14,8 +14,8 @@
 		4735B0CC2115DBC9009D1323 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4735B0CB2115DBC9009D1323 /* Assets.xcassets */; };
 		4735B0CF2115DBC9009D1323 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4735B0CD2115DBC9009D1323 /* LaunchScreen.storyboard */; };
 		4735B0D72116C2D9009D1323 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4735B0D62116C2D9009D1323 /* GoogleService-Info.plist */; };
-		4735B0D92116E8E5009D1323 /* RecruiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B0D82116E8E5009D1323 /* RecruiteViewController.swift */; };
 		758EB0FB9270093A83F203D8 /* Pods_SportsMatching.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A32BBEB8E75216E6EACE267 /* Pods_SportsMatching.framework */; };
+		CEA7FBCC211732C10004FF88 /* RecruiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA7FBCB211732C10004FF88 /* RecruiteViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,10 +28,10 @@
 		4735B0CE2115DBC9009D1323 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4735B0D02115DBC9009D1323 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4735B0D62116C2D9009D1323 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		4735B0D82116E8E5009D1323 /* RecruiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecruiteViewController.swift; path = /Users/kodai/Desktop/iOS_project/SportsMatching/SportsMatching/RecruiteViewController.swift; sourceTree = "<absolute>"; };
 		7C7EF586745D6367B67B1C34 /* Pods-SportsMatching.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsMatching.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SportsMatching/Pods-SportsMatching.debug.xcconfig"; sourceTree = "<group>"; };
 		8A32BBEB8E75216E6EACE267 /* Pods_SportsMatching.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SportsMatching.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E3DACCC8E3E7940618BA26B /* Pods-SportsMatching.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsMatching.release.xcconfig"; path = "Pods/Target Support Files/Pods-SportsMatching/Pods-SportsMatching.release.xcconfig"; sourceTree = "<group>"; };
+		CEA7FBCB211732C10004FF88 /* RecruiteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecruiteViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +86,7 @@
 			children = (
 				4735B0C12115DBC6009D1323 /* AppDelegate.swift */,
 				4735B0C32115DBC6009D1323 /* ViewController.swift */,
-				4735B0D82116E8E5009D1323 /* RecruiteViewController.swift */,
+				CEA7FBCB211732C10004FF88 /* RecruiteViewController.swift */,
 				4735B0C52115DBC6009D1323 /* Main.storyboard */,
 				4735B0CB2115DBC9009D1323 /* Assets.xcassets */,
 				4735B0CD2115DBC9009D1323 /* LaunchScreen.storyboard */,
@@ -227,9 +227,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4735B0CA2115DBC6009D1323 /* SportsMatching.xcdatamodeld in Sources */,
+				CEA7FBCC211732C10004FF88 /* RecruiteViewController.swift in Sources */,
 				4735B0C42115DBC6009D1323 /* ViewController.swift in Sources */,
 				4735B0C22115DBC6009D1323 /* AppDelegate.swift in Sources */,
-				4735B0D92116E8E5009D1323 /* RecruiteViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
