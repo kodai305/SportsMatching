@@ -10,5 +10,4 @@ target 'SportsMatching' do
   pod 'Firebase/Database'
   pod 'Firebase/AdMob'
   pod 'SVProgressHUD'
-  pod 'ChameleonFramework/Swift'
 end
