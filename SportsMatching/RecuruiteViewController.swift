@@ -17,7 +17,7 @@ class RecuruiteViewController: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        form +++ Section(header: "必須項目", footer: "すべての項目を入力してくだいさい")
+        form +++ Section(header: "必須項目", footer: "すべての項目を入力してください")
             <<< NameRow("teamName") {
                 $0.title = "チーム名"
                 $0.placeholder = "チーム名/サークル名"
