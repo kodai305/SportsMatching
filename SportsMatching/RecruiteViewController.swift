@@ -9,7 +9,7 @@ import UIKit
 import Eureka
 import ImageRow
 
-class RecuruiteViewController: FormViewController {
+class RecruiteViewController: FormViewController {
 
     // 選択されたイメージ格納用
     var selectedImg = UIImage()
