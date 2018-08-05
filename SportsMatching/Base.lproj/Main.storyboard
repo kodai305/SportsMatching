@@ -23,7 +23,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="募集する"/>
                                 <connections>
-                                    <segue destination="1ff-AD-Ztu" kind="show" id="01K-wk-tXY"/>
+                                    <segue destination="1ff-AD-Ztu" kind="show" id="7cP-7d-YTl"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -46,6 +46,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="VJh-e9-HnC"/>
                     </view>
+                    <navigationItem key="navigationItem" title="募集内容" id="S1j-yQ-nne">
+                        <barButtonItem key="rightBarButtonItem" title="投稿" id="CJ6-6B-Ov7">
+                            <connections>
+                                <action selector="postButton:" destination="1ff-AD-Ztu" id="VEf-Po-R3p"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e3D-mX-3cC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
