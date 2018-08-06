@@ -8,9 +8,11 @@
 import UIKit
 import Eureka
 import ImageRow
+import FirebaseFirestore
 
 class RecruiteViewController: FormViewController {
 
+    
     // 選択されたイメージ格納用
     var selectedImg = UIImage()
     
@@ -70,7 +72,19 @@ class RecruiteViewController: FormViewController {
         // XXX: 投稿ボタンを押した際の処理を実装する
         
         // XXX: 必須項目の入力チェック
-        
+        let db = Firestore.firestore()
+
+        db.collection("users").document("LA").setData([
+            "name": "Los Angeles",
+            "state": "CA",
+            "country": "USA"
+        ]) { err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
         
     }
     
