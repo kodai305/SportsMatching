@@ -16,8 +16,8 @@
 		4735B0D72116C2D9009D1323 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4735B0D62116C2D9009D1323 /* GoogleService-Info.plist */; };
 		4735B0DD211896FB009D1323 /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B0DC211896FB009D1323 /* SearchResultViewController.swift */; };
 		758EB0FB9270093A83F203D8 /* Pods_SportsMatching.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A32BBEB8E75216E6EACE267 /* Pods_SportsMatching.framework */; };
-		CE47E67B2119EDBA006054E5 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE47E67A2119EDBA006054E5 /* CustomCell.swift */; };
 		CEA7FBCC211732C10004FF88 /* RecruiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA7FBCB211732C10004FF88 /* RecruiteViewController.swift */; };
+		CEBB2898211A644E00C7FFFE /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB2897211A644E00C7FFFE /* CustomCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,8 +34,8 @@
 		7C7EF586745D6367B67B1C34 /* Pods-SportsMatching.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsMatching.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SportsMatching/Pods-SportsMatching.debug.xcconfig"; sourceTree = "<group>"; };
 		8A32BBEB8E75216E6EACE267 /* Pods_SportsMatching.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SportsMatching.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E3DACCC8E3E7940618BA26B /* Pods-SportsMatching.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsMatching.release.xcconfig"; path = "Pods/Target Support Files/Pods-SportsMatching/Pods-SportsMatching.release.xcconfig"; sourceTree = "<group>"; };
-		CE47E67A2119EDBA006054E5 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomCell.swift; path = /Users/user/Desktop/SportsM/SportsMatching/SportsMatching/CustomCell.swift; sourceTree = "<absolute>"; };
 		CEA7FBCB211732C10004FF88 /* RecruiteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecruiteViewController.swift; sourceTree = "<group>"; };
+		CEBB2897211A644E00C7FFFE /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,10 +89,10 @@
 			isa = PBXGroup;
 			children = (
 				4735B0C12115DBC6009D1323 /* AppDelegate.swift */,
+				CEBB2897211A644E00C7FFFE /* CustomCell.swift */,
 				4735B0C32115DBC6009D1323 /* ViewController.swift */,
 				CEA7FBCB211732C10004FF88 /* RecruiteViewController.swift */,
 				4735B0DC211896FB009D1323 /* SearchResultViewController.swift */,
-				CE47E67A2119EDBA006054E5 /* CustomCell.swift */,
 				4735B0C52115DBC6009D1323 /* Main.storyboard */,
 				4735B0CB2115DBC9009D1323 /* Assets.xcassets */,
 				4735B0CD2115DBC9009D1323 /* LaunchScreen.storyboard */,
@@ -248,7 +248,7 @@
 				CEA7FBCC211732C10004FF88 /* RecruiteViewController.swift in Sources */,
 				4735B0DD211896FB009D1323 /* SearchResultViewController.swift in Sources */,
 				4735B0C42115DBC6009D1323 /* ViewController.swift in Sources */,
-				CE47E67B2119EDBA006054E5 /* CustomCell.swift in Sources */,
+				CEBB2898211A644E00C7FFFE /* CustomCell.swift in Sources */,
 				4735B0C22115DBC6009D1323 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
