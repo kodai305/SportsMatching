@@ -121,6 +121,7 @@ PODS:
   - nanopb/encode (0.3.8)
   - Protobuf (3.6.1)
   - SVProgressHUD (2.2.5)
+  - XLPagerTabStrip (8.0.1)
 
 DEPENDENCIES:
   - Eureka
@@ -134,6 +135,7 @@ DEPENDENCIES:
   - ImageRow (~> 3.0)
   - JSQMessagesViewController
   - SVProgressHUD
+  - XLPagerTabStrip (~> 8.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -162,6 +164,7 @@ SPEC REPOS:
     - nanopb
     - Protobuf
     - SVProgressHUD
+    - XLPagerTabStrip
 
 SPEC CHECKSUMS:
   BoringSSL: e10f92a27043805c01071fe815a5cd98ae8212e7
@@ -189,7 +192,8 @@ SPEC CHECKSUMS:
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  XLPagerTabStrip: c908b17cbf42fcd2598ee1adfc49bae25444d88a
 
-PODFILE CHECKSUM: b2837cd466208d07de38a169d36f0eded7765107
+PODFILE CHECKSUM: eec180c609c7e65cbc7df1ad819c15adf0a4b9b6
 
 COCOAPODS: 1.5.3

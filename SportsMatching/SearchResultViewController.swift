@@ -84,7 +84,7 @@ class SearchResultViewController: UIViewController,UITableViewDelegate, UITableV
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         if segue.identifier == "toDetailViewController" {
-            let nextView:ResultDetailViewController = segue.destination as! ResultDetailViewController
+            let nextView:SearchResultDetailViewController = segue.destination as! SearchResultDetailViewController
             nextView.selectedImg = selectedImage
             nextView.selectedTxt = selectedText
         }

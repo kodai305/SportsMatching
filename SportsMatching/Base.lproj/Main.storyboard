@@ -32,46 +32,115 @@
             </objects>
             <point key="canvasLocation" x="3268" y="700.29985007496259"/>
         </scene>
-        <!--View Controller-->
+        <!--マイページ-->
         <scene sceneID="7UN-90-qoU">
             <objects>
                 <viewController id="i3S-RI-yy6" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9zx-GB-9BX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="マイページ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ex-pR-i1C">
-                                <rect key="frame" x="84" y="309" width="207" height="49"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="41"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="b9J-l5-zpB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="ohL-JJ-tX5"/>
+                    <navigationItem key="navigationItem" title="マイページ" id="ohL-JJ-tX5"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pxp-1T-StY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3268" y="41.829085457271368"/>
         </scene>
-        <!--View Controller-->
+        <!--履歴-->
         <scene sceneID="lp5-X6-ev6">
             <objects>
-                <viewController id="VpO-Qw-kVs" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Main" id="VpO-Qw-kVs" customClass="MailBoxViewController" customModule="SportsMatching" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1Bi-w5-V5L">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YO2-Vk-G95">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jIh-2u-E7a">
+                                    <size key="itemSize" width="375" height="60"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <scrollView key="backgroundView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" id="p0n-rG-8oI">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </scrollView>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="GWh-nr-ogh">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="BPp-7P-XDc"/>
                     </view>
-                    <navigationItem key="navigationItem" id="WGO-sd-RVu"/>
+                    <navigationItem key="navigationItem" title="履歴" id="WGO-sd-RVu"/>
+                    <connections>
+                        <outlet property="view" destination="p0n-rG-8oI" id="Ay4-Lq-LPL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bHd-X6-hbc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3268" y="2053.223388305847"/>
+        </scene>
+        <!--Mail Box Recruite View Controller-->
+        <scene sceneID="0Zb-a6-s6Y">
+            <objects>
+                <viewController storyboardIdentifier="RecruiteHistory" id="hkq-on-f4M" customClass="MailBoxRecruiteViewController" customModule="SportsMatching" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HVc-CW-tNS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="募集した履歴" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYq-Do-N77">
+                                <rect key="frame" x="135" y="218" width="104" height="160"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="2e5-Y5-1e9"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w6s-Ve-F6u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4080.8000000000002" y="2056.8215892053977"/>
+        </scene>
+        <!--Mail Box Search View Controller-->
+        <scene sceneID="uQT-OU-Tzt">
+            <objects>
+                <viewController storyboardIdentifier="SearchHistory" id="57Z-R9-07r" customClass="MailBoxSearchViewController" customModule="SportsMatching" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="33i-gy-6R0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="応募した履歴" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tsu-cW-2A7">
+                                <rect key="frame" x="135" y="292" width="104" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="W3f-3s-tRn"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JkF-X4-PHb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4698" y="2057"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="zAB-gR-d4m">
@@ -895,7 +964,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="VpO-Qw-kVs" kind="relationship" relationship="rootViewController" id="iqW-e2-p2S"/>
+                        <segue destination="VpO-Qw-kVs" kind="relationship" relationship="rootViewController" id="XmY-rq-kpG"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rGJ-dA-1zt" userLabel="First Responder" sceneMemberID="firstResponder"/>

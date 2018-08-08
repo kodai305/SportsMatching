@@ -15,10 +15,13 @@
 		4735B0CF2115DBC9009D1323 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4735B0CD2115DBC9009D1323 /* LaunchScreen.storyboard */; };
 		4735B0D72116C2D9009D1323 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4735B0D62116C2D9009D1323 /* GoogleService-Info.plist */; };
 		4735B0DD211896FB009D1323 /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B0DC211896FB009D1323 /* SearchResultViewController.swift */; };
+		4735B101211AEF2C009D1323 /* MailBoxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B100211AEF2C009D1323 /* MailBoxViewController.swift */; };
+		4735B103211AF1C4009D1323 /* MailBoxRecruiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B102211AF1C4009D1323 /* MailBoxRecruiteViewController.swift */; };
+		4735B105211AF34A009D1323 /* MailBoxSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B104211AF34A009D1323 /* MailBoxSearchViewController.swift */; };
 		758EB0FB9270093A83F203D8 /* Pods_SportsMatching.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A32BBEB8E75216E6EACE267 /* Pods_SportsMatching.framework */; };
 		CEA7FBCC211732C10004FF88 /* RecruiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA7FBCB211732C10004FF88 /* RecruiteViewController.swift */; };
 		CEBB289A211A9FBD00C7FFFE /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB2899211A9FBD00C7FFFE /* CustomCell.swift */; };
-		CEBB28A0211AC05C00C7FFFE /* ResultDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB289F211AC05C00C7FFFE /* ResultDetailViewController.swift */; };
+		CEBB28A0211AC05C00C7FFFE /* SearchResultDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB289F211AC05C00C7FFFE /* SearchResultDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,12 +35,15 @@
 		4735B0D02115DBC9009D1323 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4735B0D62116C2D9009D1323 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4735B0DC211896FB009D1323 /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
+		4735B100211AEF2C009D1323 /* MailBoxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailBoxViewController.swift; sourceTree = "<group>"; };
+		4735B102211AF1C4009D1323 /* MailBoxRecruiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailBoxRecruiteViewController.swift; sourceTree = "<group>"; };
+		4735B104211AF34A009D1323 /* MailBoxSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailBoxSearchViewController.swift; sourceTree = "<group>"; };
 		7C7EF586745D6367B67B1C34 /* Pods-SportsMatching.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsMatching.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SportsMatching/Pods-SportsMatching.debug.xcconfig"; sourceTree = "<group>"; };
 		8A32BBEB8E75216E6EACE267 /* Pods_SportsMatching.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SportsMatching.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E3DACCC8E3E7940618BA26B /* Pods-SportsMatching.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsMatching.release.xcconfig"; path = "Pods/Target Support Files/Pods-SportsMatching/Pods-SportsMatching.release.xcconfig"; sourceTree = "<group>"; };
 		CEA7FBCB211732C10004FF88 /* RecruiteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecruiteViewController.swift; sourceTree = "<group>"; };
 		CEBB2899211A9FBD00C7FFFE /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
-		CEBB289F211AC05C00C7FFFE /* ResultDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultDetailViewController.swift; sourceTree = "<group>"; };
+		CEBB289F211AC05C00C7FFFE /* SearchResultDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,9 +100,12 @@
 				4735B0C32115DBC6009D1323 /* ViewController.swift */,
 				CEA7FBCB211732C10004FF88 /* RecruiteViewController.swift */,
 				4735B0DC211896FB009D1323 /* SearchResultViewController.swift */,
-				CEBB289F211AC05C00C7FFFE /* ResultDetailViewController.swift */,
+				CEBB289F211AC05C00C7FFFE /* SearchResultDetailViewController.swift */,
 				CEBB2899211A9FBD00C7FFFE /* CustomCell.swift */,
 				4735B0C52115DBC6009D1323 /* Main.storyboard */,
+				4735B100211AEF2C009D1323 /* MailBoxViewController.swift */,
+				4735B102211AF1C4009D1323 /* MailBoxRecruiteViewController.swift */,
+				4735B104211AF34A009D1323 /* MailBoxSearchViewController.swift */,
 				4735B0CB2115DBC9009D1323 /* Assets.xcassets */,
 				4735B0CD2115DBC9009D1323 /* LaunchScreen.storyboard */,
 				4735B0D02115DBC9009D1323 /* Info.plist */,
@@ -210,6 +219,7 @@
 				"${BUILT_PRODUCTS_DIR}/JSQSystemSoundPlayer/JSQSystemSoundPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
@@ -228,6 +238,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQSystemSoundPlayer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
@@ -248,12 +259,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				4735B0CA2115DBC6009D1323 /* SportsMatching.xcdatamodeld in Sources */,
+				4735B101211AEF2C009D1323 /* MailBoxViewController.swift in Sources */,
 				CEA7FBCC211732C10004FF88 /* RecruiteViewController.swift in Sources */,
 				4735B0DD211896FB009D1323 /* SearchResultViewController.swift in Sources */,
+				4735B103211AF1C4009D1323 /* MailBoxRecruiteViewController.swift in Sources */,
+				4735B105211AF34A009D1323 /* MailBoxSearchViewController.swift in Sources */,
 				4735B0C42115DBC6009D1323 /* ViewController.swift in Sources */,
 				CEBB289A211A9FBD00C7FFFE /* CustomCell.swift in Sources */,
 				4735B0C22115DBC6009D1323 /* AppDelegate.swift in Sources */,
-				CEBB28A0211AC05C00C7FFFE /* ResultDetailViewController.swift in Sources */,
+				CEBB28A0211AC05C00C7FFFE /* SearchResultDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
