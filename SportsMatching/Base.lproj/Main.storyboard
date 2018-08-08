@@ -248,10 +248,10 @@
             </objects>
             <point key="canvasLocation" x="4084" y="1380.3598200899551"/>
         </scene>
-        <!--Result Detail View Controller-->
+        <!--Search Result Detail View Controller-->
         <scene sceneID="Wc2-mG-VO1">
             <objects>
-                <viewController id="jWl-L5-TpW" customClass="ResultDetailViewController" customModule="SportsMatching" sceneMemberID="viewController">
+                <viewController id="jWl-L5-TpW" customClass="SearchResultDetailViewController" customModule="SportsMatching" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ob8-Fu-zj7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
