@@ -18,7 +18,7 @@
 		758EB0FB9270093A83F203D8 /* Pods_SportsMatching.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A32BBEB8E75216E6EACE267 /* Pods_SportsMatching.framework */; };
 		CEA7FBCC211732C10004FF88 /* RecruiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA7FBCB211732C10004FF88 /* RecruiteViewController.swift */; };
 		CEBB289A211A9FBD00C7FFFE /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB2899211A9FBD00C7FFFE /* CustomCell.swift */; };
-		CEBB28A0211AC05C00C7FFFE /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB289F211AC05C00C7FFFE /* DetailViewController.swift */; };
+		CEBB28A0211AC05C00C7FFFE /* ResultDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB289F211AC05C00C7FFFE /* ResultDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +37,7 @@
 		9E3DACCC8E3E7940618BA26B /* Pods-SportsMatching.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsMatching.release.xcconfig"; path = "Pods/Target Support Files/Pods-SportsMatching/Pods-SportsMatching.release.xcconfig"; sourceTree = "<group>"; };
 		CEA7FBCB211732C10004FF88 /* RecruiteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecruiteViewController.swift; sourceTree = "<group>"; };
 		CEBB2899211A9FBD00C7FFFE /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
-		CEBB289F211AC05C00C7FFFE /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		CEBB289F211AC05C00C7FFFE /* ResultDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +94,8 @@
 				4735B0C32115DBC6009D1323 /* ViewController.swift */,
 				CEA7FBCB211732C10004FF88 /* RecruiteViewController.swift */,
 				4735B0DC211896FB009D1323 /* SearchResultViewController.swift */,
+				CEBB289F211AC05C00C7FFFE /* ResultDetailViewController.swift */,
 				CEBB2899211A9FBD00C7FFFE /* CustomCell.swift */,
-				CEBB289F211AC05C00C7FFFE /* DetailViewController.swift */,
 				4735B0C52115DBC6009D1323 /* Main.storyboard */,
 				4735B0CB2115DBC9009D1323 /* Assets.xcassets */,
 				4735B0CD2115DBC9009D1323 /* LaunchScreen.storyboard */,
@@ -253,7 +253,7 @@
 				4735B0C42115DBC6009D1323 /* ViewController.swift in Sources */,
 				CEBB289A211A9FBD00C7FFFE /* CustomCell.swift in Sources */,
 				4735B0C22115DBC6009D1323 /* AppDelegate.swift in Sources */,
-				CEBB28A0211AC05C00C7FFFE /* DetailViewController.swift in Sources */,
+				CEBB28A0211AC05C00C7FFFE /* ResultDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

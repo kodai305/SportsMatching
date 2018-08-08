@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class DetailViewController: UIViewController{
+class ResultDetailViewController: UIViewController{
     
     @IBOutlet weak var DetailImage: UIImageView!
     @IBOutlet weak var DetailLabel: UILabel!
