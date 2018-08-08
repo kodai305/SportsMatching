@@ -1,8 +1,9 @@
 //
 //  CustomCell.swift
-//  
+//  SportsMatching
 //
 //  Created by user on 2018/08/08.
+//  Copyright © 2018年 iosearn. All rights reserved.
 //
 
 import UIKit
@@ -11,7 +12,6 @@ class CustomCell: UITableViewCell {
 
     @IBOutlet weak var ImageView: UIImageView!
     @IBOutlet weak var Label: UILabel!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -22,5 +22,5 @@ class CustomCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
 }

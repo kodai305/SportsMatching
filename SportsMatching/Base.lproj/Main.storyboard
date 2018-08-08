@@ -127,7 +127,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CustomCell" rowHeight="145" id="Y8F-u1-bf6" customClass="CustomCell" customModule="SportsMatching">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CustomCell" rowHeight="145" id="Y8F-u1-bf6" customClass="CustomCell" customModule="SportsMatching" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="145"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Y8F-u1-bf6" id="Mgf-IZ-hNp">
@@ -148,8 +148,8 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="ImageView" destination="Bcx-Si-hpy" id="Y2y-tq-moF"/>
-                                            <outlet property="Label" destination="3GT-mZ-szT" id="5UO-Js-ayO"/>
+                                            <outlet property="ImageView" destination="Bcx-Si-hpy" id="PCd-sD-ZZU"/>
+                                            <outlet property="Label" destination="3GT-mZ-szT" id="f4U-XG-bMG"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
