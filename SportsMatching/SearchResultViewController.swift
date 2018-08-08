@@ -13,6 +13,9 @@ class SearchResultViewController: UIViewController,UITableViewDelegate, UITableV
     
     let temp = ["naito", "okada","kenny","riria"]
     
+    var selectedImage:UIImage!
+    var selectedText:String!
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -57,11 +60,34 @@ class SearchResultViewController: UIViewController,UITableViewDelegate, UITableV
                                              for: indexPath) as! CustomCell
         //Cellに画像と文章をセット
         //画像をセルの高さに合わせてリサイズ
-        cell.ImageView.image = UIImage(named: temp[indexPath.row])?.resize(size: CGSize(width: 100000, height: 100))
+        let ResizedImageView = UIImageView(image:UIImage(named: temp[indexPath.row]))
+        let ratio:CGFloat = ResizedImageView.frame.size.height / 100
+        ResizedImageView.frame.size = CGSize(width: ResizedImageView.frame.size.width / ratio, height: ResizedImageView.frame.size.height / ratio)
+        cell.ImageView.addSubview(ResizedImageView)
         cell.Label.text = temp[indexPath.row]
         cell.Label.frame.origin = CGPoint(x: 110, y: 0)
         cell.ImageView.frame.origin = CGPoint(x: 0, y: 0)
         return cell
+    }
+    
+    // Cell が選択された場合
+    func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
+        // [indexPath.row] から画像名を探し、UImage を設定
+        selectedImage = UIImage(named: temp[indexPath.row])
+        selectedText = temp[indexPath.row]
+        if selectedImage != nil {
+            // SubViewController へ遷移するために Segue を呼び出す
+            performSegue(withIdentifier: "toDetailViewController",sender: nil)
+        }
+    }
+    
+    // Segue 準備
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+        if segue.identifier == "toDetailViewController" {
+            let nextView:DetailViewController = segue.destination as! DetailViewController
+            nextView.selectedImg = selectedImage
+            nextView.selectedTxt = selectedText
+        }
     }
     
     
@@ -74,22 +100,4 @@ class SearchResultViewController: UIViewController,UITableViewDelegate, UITableV
      // Pass the selected object to the new view controller.
      }
      */
-    
-}
-
-extension UIImage {
-    func resize(size _size: CGSize) -> UIImage? {
-        let widthRatio = _size.width / size.width
-        let heightRatio = _size.height / size.height
-        let ratio = widthRatio < heightRatio ? widthRatio : heightRatio
-        
-        let resizedSize = CGSize(width: size.width * ratio, height: size.height * ratio)
-        
-        UIGraphicsBeginImageContextWithOptions(resizedSize, false, 0.0)
-        draw(in: CGRect(origin: .zero, size: resizedSize))
-        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return resizedImage
-    }
 }

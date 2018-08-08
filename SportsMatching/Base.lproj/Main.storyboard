@@ -40,6 +40,15 @@
                     <view key="view" contentMode="scaleToFill" id="9zx-GB-9BX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="マイページ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ex-pR-i1C">
+                                <rect key="frame" x="84" y="309" width="207" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="41"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="b9J-l5-zpB"/>
                     </view>
@@ -105,10 +114,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="5OG-dT-Yea"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Search" id="cxN-vU-vIZ"/>
+                    <tabBarItem key="tabBarItem" title="Search" id="CGT-KK-Qzi"/>
                     <navigationItem key="navigationItem" title="検索条件" id="Vr6-st-oau">
                         <barButtonItem key="rightBarButtonItem" title="検索" id="gr8-IZ-Abt"/>
                     </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VFu-Tc-tsn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -158,14 +168,58 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="QeW-WY-yaI"/>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="c6l-e2-jXc"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="Boa-RH-E2x" id="yEi-CM-Rk8"/>
+                        <segue destination="jWl-L5-TpW" kind="presentation" identifier="toDetailViewController" id="Wxq-4o-qFj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gGh-ww-MW6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3144.8000000000002" y="1380.3598200899551"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="Wc2-mG-VO1">
+            <objects>
+                <viewController id="jWl-L5-TpW" customClass="DetailViewController" customModule="SportsMatching" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ob8-Fu-zj7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mbe-Yh-9vw">
+                                <rect key="frame" x="67" y="172" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CbH-BR-XaS">
+                                <rect key="frame" x="67" y="373" width="204" height="88"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pD2-lM-w8e">
+                                <rect key="frame" x="148" y="509" width="51" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="戻る"/>
+                                <connections>
+                                    <action selector="Back:" destination="jWl-L5-TpW" eventType="touchUpInside" id="Sjc-dn-1UH"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="njX-2q-Uvt"/>
+                    </view>
+                    <connections>
+                        <outlet property="DetailImage" destination="mbe-Yh-9vw" id="akd-DN-9sT"/>
+                        <outlet property="DetailLabel" destination="CbH-BR-XaS" id="N7y-rj-ci2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u9Y-1F-Qhb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3944.8000000000002" y="1379.4602698650676"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="9qL-Gc-JNO">
