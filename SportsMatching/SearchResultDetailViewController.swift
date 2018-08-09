@@ -12,9 +12,12 @@ import UIKit
 class SearchResultDetailViewController: UIViewController{
     
     @IBOutlet weak var DetailImage: UIImageView!
-    @IBOutlet weak var DetailLabel: UILabel!
+    @IBOutlet weak var TeamNameLabel: UILabel!
+    @IBOutlet weak var PrefectureLabel: UILabel!
+    //検索結果一覧からデータを受け取る変数
     var selectedImg:UIImage!
-    var selectedTxt:String!
+    var TeamName:String!
+    var PrefectureName:String!
 
     
     @IBAction func Back(_ sender: Any) {
@@ -22,11 +25,13 @@ class SearchResultDetailViewController: UIViewController{
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        //検索結果一覧から受け取ったデータを表示
         DetailImage.frame.size = CGSize(width: 200, height: 200)
         DetailImage.image = selectedImg
         // 画像のアスペクト比を維持しUIImageViewサイズに収まるように表示
         DetailImage.contentMode = UIViewContentMode.scaleAspectFit
-        DetailLabel.text = selectedTxt
+        TeamNameLabel.text = TeamName
+        PrefectureLabel.text = PrefectureName
     }
     
     override func didReceiveMemoryWarning() {

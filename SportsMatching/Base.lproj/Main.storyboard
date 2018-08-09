@@ -250,7 +250,14 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3GT-mZ-szT">
-                                                    <rect key="frame" x="198" y="62" width="177" height="21"/>
+                                                    <rect key="frame" x="198" y="34" width="177" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kei-gT-Hh0">
+                                                    <rect key="frame" x="198" y="85" width="177" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -260,7 +267,8 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="ImageView" destination="Bcx-Si-hpy" id="PCd-sD-ZZU"/>
-                                            <outlet property="Label" destination="3GT-mZ-szT" id="f4U-XG-bMG"/>
+                                            <outlet property="PrefectureNameLabel" destination="kei-gT-Hh0" id="Dv1-J9-WJy"/>
+                                            <outlet property="TeamNameLabel" destination="3GT-mZ-szT" id="iKn-kK-lTB"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -300,13 +308,21 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="swZ-V6-Cv9">
+                                <rect key="frame" x="67" y="469" width="204" height="88"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="njX-2q-Uvt"/>
                     </view>
                     <connections>
                         <outlet property="DetailImage" destination="mbe-Yh-9vw" id="akd-DN-9sT"/>
-                        <outlet property="DetailLabel" destination="CbH-BR-XaS" id="N7y-rj-ci2"/>
+                        <outlet property="PrefectureLabel" destination="swZ-V6-Cv9" id="oDN-TB-U7P"/>
+                        <outlet property="TeamNameLabel" destination="CbH-BR-XaS" id="iMa-xC-Z7l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u9Y-1F-Qhb" userLabel="First Responder" sceneMemberID="firstResponder"/>
