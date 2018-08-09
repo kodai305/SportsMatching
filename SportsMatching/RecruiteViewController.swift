@@ -24,6 +24,10 @@ class RecruiteViewController: FormViewController {
                 $0.title = "チーム名"
                 $0.placeholder = "チーム名/サークル名"
             }
+            <<< TextRow("events") {
+                $0.title = "種目名"
+                $0.placeholder = "プルダウンにしたい"
+            }
             <<< TextRow("prefecture"){
                 $0.title = "都道府県"
                 $0.placeholder = "プルダウンにしたい"
@@ -72,12 +76,17 @@ class RecruiteViewController: FormViewController {
         // XXX: 投稿ボタンを押した際の処理を実装する
         
         // XXX: 必須項目の入力チェック
+        
+        // タグ設定済みの全てのRowの値を取得
+        let values = form.values()
         let db = Firestore.firestore()
+        
+        //チーム名＋都道県名をIDにする（仮）
+        let ID:String = (values["teamName"] as! String) + (values["prefecture"] as! String)
 
-        db.collection("users").document("LA").setData([
-            "name": "Los Angeles",
-            "state": "CA",
-            "country": "USA"
+        db.collection(values["events"] as! String).document(ID).setData([
+            "teamName": values["teamName"] as! String,
+            "prefecture": values["prefecture"] as! String
         ]) { err in
             if let err = err {
                 print("Error writing document: \(err)")

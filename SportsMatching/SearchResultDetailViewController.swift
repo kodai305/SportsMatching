@@ -15,6 +15,7 @@ class SearchResultDetailViewController: UIViewController{
     @IBOutlet weak var DetailLabel: UILabel!
     var selectedImg:UIImage!
     var selectedTxt:String!
+
     
     @IBAction func Back(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)

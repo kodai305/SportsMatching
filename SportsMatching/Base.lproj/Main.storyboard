@@ -198,7 +198,7 @@
         <!--検索条件-->
         <scene sceneID="oGg-hN-EZf">
             <objects>
-                <viewController id="TEA-fM-WQ0" sceneMemberID="viewController">
+                <viewController id="TEA-fM-WQ0" customClass="SearchViewController" customModule="SportsMatching" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iTn-DA-x4L">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -215,7 +215,7 @@
                     <navigationItem key="navigationItem" title="検索条件" id="Vr6-st-oau">
                         <barButtonItem key="rightBarButtonItem" title="検索" id="gr8-IZ-Abt">
                             <connections>
-                                <segue destination="aob-Yu-pnL" kind="show" id="PIo-9f-MSx"/>
+                                <segue destination="aob-Yu-pnL" kind="show" identifier="toResultViewController" id="PIo-9f-MSx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

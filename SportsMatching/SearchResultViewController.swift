@@ -16,6 +16,10 @@ class SearchResultViewController: UIViewController,UITableViewDelegate, UITableV
     var selectedImage:UIImage!
     var selectedText:String!
     
+    //検索フォームから種目名と都道県名を受け取る変数
+    var events:String!
+    var prefecture:String!
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -26,7 +30,7 @@ class SearchResultViewController: UIViewController,UITableViewDelegate, UITableV
         self.tableView.dataSource = self
         
         let db = Firestore.firestore()
-        db.collection("users").getDocuments() { (querySnapshot, err) in
+        db.collection(events).getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
