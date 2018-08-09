@@ -18,6 +18,8 @@
 		4735B101211AEF2C009D1323 /* MailBoxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B100211AEF2C009D1323 /* MailBoxViewController.swift */; };
 		4735B103211AF1C4009D1323 /* MailBoxRecruiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B102211AF1C4009D1323 /* MailBoxRecruiteViewController.swift */; };
 		4735B105211AF34A009D1323 /* MailBoxSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B104211AF34A009D1323 /* MailBoxSearchViewController.swift */; };
+		4735B107211C7B84009D1323 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B106211C7B84009D1323 /* SignUpViewController.swift */; };
+		4735B109211C8526009D1323 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B108211C8526009D1323 /* SignInViewController.swift */; };
 		758EB0FB9270093A83F203D8 /* Pods_SportsMatching.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A32BBEB8E75216E6EACE267 /* Pods_SportsMatching.framework */; };
 		CEA7FBCC211732C10004FF88 /* RecruiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA7FBCB211732C10004FF88 /* RecruiteViewController.swift */; };
 		CEBB289A211A9FBD00C7FFFE /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB2899211A9FBD00C7FFFE /* CustomCell.swift */; };
@@ -39,6 +41,8 @@
 		4735B100211AEF2C009D1323 /* MailBoxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailBoxViewController.swift; sourceTree = "<group>"; };
 		4735B102211AF1C4009D1323 /* MailBoxRecruiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailBoxRecruiteViewController.swift; sourceTree = "<group>"; };
 		4735B104211AF34A009D1323 /* MailBoxSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailBoxSearchViewController.swift; sourceTree = "<group>"; };
+		4735B106211C7B84009D1323 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		4735B108211C8526009D1323 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		7C7EF586745D6367B67B1C34 /* Pods-SportsMatching.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsMatching.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SportsMatching/Pods-SportsMatching.debug.xcconfig"; sourceTree = "<group>"; };
 		8A32BBEB8E75216E6EACE267 /* Pods_SportsMatching.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SportsMatching.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E3DACCC8E3E7940618BA26B /* Pods-SportsMatching.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsMatching.release.xcconfig"; path = "Pods/Target Support Files/Pods-SportsMatching/Pods-SportsMatching.release.xcconfig"; sourceTree = "<group>"; };
@@ -100,6 +104,8 @@
 			children = (
 				4735B0C12115DBC6009D1323 /* AppDelegate.swift */,
 				4735B0C32115DBC6009D1323 /* ViewController.swift */,
+				4735B106211C7B84009D1323 /* SignUpViewController.swift */,
+				4735B108211C8526009D1323 /* SignInViewController.swift */,
 				CEA7FBCB211732C10004FF88 /* RecruiteViewController.swift */,
 				CEDCC4F7211BD3AA001DC758 /* SearchViewController.swift */,
 				4735B0DC211896FB009D1323 /* SearchResultViewController.swift */,
@@ -265,6 +271,8 @@
 				CEDCC4F8211BD3AA001DC758 /* SearchViewController.swift in Sources */,
 				4735B101211AEF2C009D1323 /* MailBoxViewController.swift in Sources */,
 				CEA7FBCC211732C10004FF88 /* RecruiteViewController.swift in Sources */,
+				4735B107211C7B84009D1323 /* SignUpViewController.swift in Sources */,
+				4735B109211C8526009D1323 /* SignInViewController.swift in Sources */,
 				4735B0DD211896FB009D1323 /* SearchResultViewController.swift in Sources */,
 				4735B103211AF1C4009D1323 /* MailBoxRecruiteViewController.swift in Sources */,
 				4735B105211AF34A009D1323 /* MailBoxSearchViewController.swift in Sources */,

@@ -15,8 +15,8 @@ class SearchResultViewController: UIViewController,UITableViewDelegate, UITableV
     var SearchResults:[(prefecture: String, teamName: String)] = []
     
     var selectedImage:UIImage!
-    var TeamName:String!
-    var PrefectureName:String!
+    var TeamName:String = ""
+    var PrefectureName:String = ""
     
     //検索フォームから種目名と都道県名を受け取る変数
     var events:String!

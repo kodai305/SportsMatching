@@ -7,18 +7,28 @@
 //
 
 import UIKit
-import Firebase
 import CoreData
+
+import Firebase
+import FirebaseCore
+import FirebaseAuth
+import SVProgressHUD
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
     var window: UIWindow?
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        
+        if let _ = Auth.auth().currentUser {
+            // ログイン中
+            let storyboard:UIStoryboard =  UIStoryboard(name: "Main",bundle:nil)
+            window?.rootViewController
+                = storyboard.instantiateViewController(withIdentifier: "toMain")
+        }
+        
         return true
     }
 

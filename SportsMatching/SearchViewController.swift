@@ -22,10 +22,12 @@ class SearchViewController: FormViewController {
             <<< NameRow("events") {
                 $0.title = "種目"
                 $0.placeholder = "プルダウン？"
+                $0.value = "" //初期値
             }
             <<< TextRow("prefecture"){
                 $0.title = "都道府県"
                 $0.placeholder = "プルダウンにしたい"
+                $0.value = "" 
         }
 
         // Do any additional setup after loading the view.

@@ -14,4 +14,5 @@ target 'SportsMatching' do
   pod 'Eureka'
   pod 'ImageRow', '~> 3.0'
   pod 'XLPagerTabStrip', '~> 8.0'
+  pod 'SVProgressHUD'
 end
