@@ -64,7 +64,7 @@
                                     <constraint firstAttribute="width" secondItem="YO2-Vk-G95" secondAttribute="height" multiplier="375:554" id="W52-oi-1mp"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jIh-2u-E7a">
-                                    <size key="itemSize" width="360" height="63"/>
+                                    <size key="itemSize" width="360" height="72"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -75,10 +75,10 @@
                                 </scrollView>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="GWh-nr-ogh">
-                                        <rect key="frame" x="7.5" y="0.0" width="360" height="63"/>
+                                        <rect key="frame" x="7.5" y="0.0" width="360" height="72"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="360" height="63"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="360" height="72"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </view>
                                     </collectionViewCell>
@@ -112,6 +112,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hBu-GM-kBL">
+                                <rect key="frame" x="141" y="419" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="高木チャット"/>
+                                <connections>
+                                    <segue destination="XEq-qz-s82" kind="show" id="eXa-fw-BtN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="2e5-Y5-1e9"/>
@@ -120,6 +128,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w6s-Ve-F6u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4080.8000000000002" y="2056.8215892053977"/>
+        </scene>
+        <!--Mail Box Takagi View Controller-->
+        <scene sceneID="JAU-Gf-cha">
+            <objects>
+                <viewController id="XEq-qz-s82" customClass="MailBoxTakagiViewController" customModule="SportsMatching" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xff-K5-9gz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="rxh-3t-lRn"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AZb-bE-1CG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4083" y="2789"/>
+        </scene>
+        <!--Mail Box Matsue View Controller-->
+        <scene sceneID="edd-lY-rJS">
+            <objects>
+                <viewController id="G1q-vX-7N1" customClass="MailBoxMatsueViewController" customModule="SportsMatching" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jpB-oX-ATE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="7fj-mf-xwc"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1ED-fr-jaK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4714" y="2791"/>
         </scene>
         <!--Mail Box Search View Controller-->
         <scene sceneID="uQT-OU-Tzt">
@@ -136,6 +174,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zmd-Cw-LTd">
+                                <rect key="frame" x="141" y="420" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="松江チャット"/>
+                                <connections>
+                                    <segue destination="G1q-vX-7N1" kind="show" id="bFu-Q1-N3l"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="W3f-3s-tRn"/>
