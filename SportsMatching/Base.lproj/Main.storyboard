@@ -165,10 +165,18 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="7fj-mf-xwc"/>
                     </view>
+                    <navigationItem key="navigationItem" id="ZW4-2w-xM8">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="0E2-a0-12b">
+                            <connections>
+                                <segue destination="vjr-su-x7i" kind="unwind" unwindAction="comeHomeWithSegue:" id="edH-iU-SdW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1ED-fr-jaK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="vjr-su-x7i" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4884" y="2791"/>
+            <point key="canvasLocation" x="4838" y="3546"/>
         </scene>
         <!--Mail Box Search View Controller-->
         <scene sceneID="uQT-OU-Tzt">
@@ -190,7 +198,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="松江チャット"/>
                                 <connections>
-                                    <segue destination="G1q-vX-7N1" kind="show" id="bFu-Q1-N3l"/>
+                                    <segue destination="qOR-zr-QpW" kind="presentation" id="HWg-MF-LkE"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1218,9 +1226,25 @@
             </objects>
             <point key="canvasLocation" x="4081" y="2791"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="oK5-rr-rfS">
+            <objects>
+                <navigationController id="qOR-zr-QpW" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eZ2-w9-Udr">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="G1q-vX-7N1" kind="relationship" relationship="rootViewController" id="Q23-7p-eKK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fdC-Wy-rA5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4916" y="2791"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="wwG-UP-1zQ"/>
-        <segue reference="e6q-eW-bI0"/>
+        <segue reference="dYF-6A-Iab"/>
     </inferredMetricsTieBreakers>
 </document>
