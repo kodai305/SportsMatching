@@ -10,6 +10,9 @@ import UIKit
 import XLPagerTabStrip
 
 class MailBoxViewController: ButtonBarPagerTabStripViewController {
+    @IBAction func comeHome (segue: UIStoryboardSegue){
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //バーの色
