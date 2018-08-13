@@ -148,6 +148,11 @@
                                 <segue destination="bxe-2u-Vrg" kind="unwind" unwindAction="comeHomeWithSegue:" id="4wu-aY-ZKq"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="gT0-Rs-za9">
+                            <connections>
+                                <action selector="testButtonPushed:" destination="XEq-qz-s82" id="vcr-hr-VGw"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AZb-bE-1CG" userLabel="First Responder" sceneMemberID="firstResponder"/>
