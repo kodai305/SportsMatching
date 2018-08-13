@@ -8,26 +8,66 @@
 
 import UIKit
 import JSQMessagesViewController
+import FirebaseFirestore
 
 class MailBoxMatsueViewController: JSQMessagesViewController  {
-    var messages: [JSQMessage] = [
-        JSQMessage(senderId: "sushi", displayName: "B", text: "らっしゃい♪"),
-        JSQMessage(senderId: "Dummy",  displayName: "A", text: "大将！つぶ貝!"),
-        JSQMessage(senderId: "sushi", displayName: "B", text: "ないよ！"),
-        JSQMessage(senderId: "Dummy",  displayName: "A", text: "じゃサーモン!"),
-        JSQMessage(senderId: "sushi", displayName: "B", text: "ないよ♪"),
-        JSQMessage(senderId: "Dummy",  displayName: "A", text: "いか!"),
-        JSQMessage(senderId: "sushi", displayName: "B", text: "ないよ♪"),
-        JSQMessage(senderId: "Dummy",  displayName: "A", text: "じゃ帰る！"),
-        JSQMessage(senderId: "sushi", displayName: "B", text: "ちょwww待てってwww\nマグロあるからwww")
-    ]
+    var messages: [JSQMessage] = []
+    
+    let db = Firestore.firestore()
+    //チャット相手のID
+    let partnerId = "test7"
+    //subcollection内のdocument名用の数字
+    var documentNumber:Int = 0
+    //SnapShot内の処理が画面遷移時に起動しない様に管理
+    var SnapFlag = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // 適当につける
+        //firestoreのおまじない（入れないとコンソールで警告）
+        let settings = db.settings
+        settings.areTimestampsInSnapshotsEnabled = true
+        db.settings = settings
+
+        
         senderDisplayName = "A"
-        senderId = "Dummy"
+        //自分のID
+        senderId = "test8"
+        
+        //チャット相手との今までの履歴を取得
+        //ここではdocument名をtest7_test8で固定
+        db.collection("rooms-matsue").document("test7_test8")
+            .collection("messages").getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    //チャット起動時のメッセージ数(相手＋自分)を取得
+                    self.documentNumber = querySnapshot!.documents.map { $0["body"]! }.count
+                }
+        }
+        
+        //チャット相手が送信したメッセージを自動で取得
+        db.collection("rooms-matsue").document("test7_test8")
+            .collection("messages").whereField("user", isEqualTo: partnerId)
+            .addSnapshotListener { querySnapshot, error in
+                guard let documents = querySnapshot?.documents else {
+                    print("Error fetching documents: \(error!)")
+                    return
+                }
+                print("in")
+                if self.SnapFlag != 0{
+                    //相手が送ったメッセージを全て取得
+                    let PartnerMessages = documents.map { $0["body"]! }
+                    print(PartnerMessages)
+                    //最新のメッセージを表示
+                    let message = JSQMessage(senderId: self.partnerId, displayName: "B", text: PartnerMessages[PartnerMessages.count - 1] as! String)
+                    self.messages.append(message!)
+                    self.finishReceivingMessage(animated: true)
+                    self.documentNumber = self.documentNumber + 1
+                }else{
+                    self.SnapFlag = 1
+                }
+        }
     }
     
     //アイテムごとに参照するメッセージデータを返す
@@ -66,11 +106,8 @@ class MailBoxMatsueViewController: JSQMessagesViewController  {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return messages.count
     }
-    
-    
-    // image data for item
+
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
-        
         //senderId == 自分　だった場合表示しない
         let senderId = messages[indexPath.row].senderId
         
@@ -113,34 +150,36 @@ class MailBoxMatsueViewController: JSQMessagesViewController  {
         }
         return 0.0
     }
+    
     //Sendボタンが押された時に呼ばれる
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         
+        //firestoreにメッセージを格納
+        db.collection("rooms-matsue").document("test7_test8")
+            .collection("messages").document("message" + String(documentNumber)).setData([
+                "body":text,
+                "date":"hoge",
+                "name":"hoge",
+                "user": senderId
+        ]) { err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
+        documentNumber = documentNumber + 1
+        
         //キーボードを閉じる
         self.view.endEditing(true)
-        
         //メッセージを追加
         let message = JSQMessage(senderId: senderId, displayName: senderDisplayName, text: text)
         self.messages.append(message!)
-        
         //送信を反映
         self.finishReceivingMessage(animated: true)
-        
         //textFieldをクリアする
         self.inputToolbar.contentView.textView.text = ""
-        
-        //テスト返信を呼ぶ
-        testRecvMessage()
     }
-    
-    //テスト用「マグロならあるよ！」を返す
-    func testRecvMessage() {
-        
-        let message = JSQMessage(senderId: "sushi", displayName: "B", text: "マグロならあるよ！")
-        self.messages.append(message!)
-        self.finishReceivingMessage(animated: true)
-    }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
