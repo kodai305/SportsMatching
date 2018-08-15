@@ -8,20 +8,22 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 import Firebase
+import FirebaseMessaging
 import FirebaseCore
 import FirebaseAuth
 import SVProgressHUD
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
-        
+        // For Authentication
         if let _ = Auth.auth().currentUser {
             // ログイン中
             let storyboard:UIStoryboard =  UIStoryboard(name: "Main",bundle:nil)
@@ -29,9 +31,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 = storyboard.instantiateViewController(withIdentifier: "toMain")
         }
         
+        // For Notification
+        application.registerForRemoteNotifications()
+        Messaging.messaging().delegate = self
+        UNUserNotificationCenter.current().delegate = self
+        
+        // APNs
+        // 通知許可するかをポップアップで出す
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.badge, .sound, .alert], completionHandler: { (granted, error) in
+            if error != nil {
+                return
+            }
+            if granted {
+                debugPrint("通知許可")
+                center.delegate = self
+                application.registerForRemoteNotifications()
+            } else {
+                debugPrint("通知拒否")
+            }
+        })
         return true
     }
-
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -102,4 +124,51 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 }
+
+// MARK: - UNUserNotificationCenterDelegate
+extension AppDelegate {
+    
+    // 通知を受け取った時に(開く前に)呼ばれるメソッド
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        let userInfo = notification.request.content.userInfo
+        // for analytics
+        // Messaging.messaging().appDidReceiveMessage(userInfo)
+
+        if let messageID = userInfo["gcm.message_id"] {
+            print("Message ID: \(messageID)")
+        }
+        
+        completionHandler([.alert])
+    }
+    
+    // 通知を開いた時に呼ばれるメソッド
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
+        
+        if let messageID = userInfo["gcm.message_id"] {
+            print("Message ID: \(messageID)")
+        }
+        
+        completionHandler()
+    }
+}
+
+// MARK: - MessagingDelegate
+extension AppDelegate: MessagingDelegate {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        print("Firebase registration token: \(fcmToken)")
+    }
+    
+    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+        print("Received data message: \(remoteMessage.appData)")
+    }
+}
+
+
+
+
 

@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>389349091370-norddll930h6gil99ojk5oltrmfo1nb0.apps.googleusercontent.com</string>
+	<string>389349091370-v05ht28d2f1il1rdvftu2h050vchke0u.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.389349091370-norddll930h6gil99ojk5oltrmfo1nb0</string>
+	<string>com.googleusercontent.apps.389349091370-v05ht28d2f1il1rdvftu2h050vchke0u</string>
 	<key>API_KEY</key>
 	<string>AIzaSyAcAL9-3fpbhA6BQTHpaSMayYli6Dj14s4</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,7 +17,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>jp.iosearn.SportsMatching</string>
+	<string>jp.iosDeKasegu.SportsMatching</string>
 	<key>PROJECT_ID</key>
 	<string>sportsmatching-565c0</string>
 	<key>STORAGE_BUCKET</key>
@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:389349091370:ios:8e28abd2458996e4</string>
+	<string>1:389349091370:ios:3816e8b5f8334de4</string>
 	<key>DATABASE_URL</key>
 	<string>https://sportsmatching-565c0.firebaseio.com</string>
 </dict>

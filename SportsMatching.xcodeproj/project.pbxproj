@@ -13,7 +13,6 @@
 		4735B0CA2115DBC6009D1323 /* SportsMatching.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4735B0C82115DBC6009D1323 /* SportsMatching.xcdatamodeld */; };
 		4735B0CC2115DBC9009D1323 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4735B0CB2115DBC9009D1323 /* Assets.xcassets */; };
 		4735B0CF2115DBC9009D1323 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4735B0CD2115DBC9009D1323 /* LaunchScreen.storyboard */; };
-		4735B0D72116C2D9009D1323 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4735B0D62116C2D9009D1323 /* GoogleService-Info.plist */; };
 		4735B0DD211896FB009D1323 /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B0DC211896FB009D1323 /* SearchResultViewController.swift */; };
 		4735B101211AEF2C009D1323 /* MailBoxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B100211AEF2C009D1323 /* MailBoxViewController.swift */; };
 		4735B103211AF1C4009D1323 /* MailBoxRecruiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B102211AF1C4009D1323 /* MailBoxRecruiteViewController.swift */; };
@@ -22,6 +21,7 @@
 		4735B109211C8526009D1323 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B108211C8526009D1323 /* SignInViewController.swift */; };
 		4735B10B211DCD63009D1323 /* MailBoxTakagiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B10A211DCD63009D1323 /* MailBoxTakagiViewController.swift */; };
 		4735B10D211DCD75009D1323 /* MailBoxMatsueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B10C211DCD74009D1323 /* MailBoxMatsueViewController.swift */; };
+		4735B11221232984009D1323 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4735B11121232984009D1323 /* GoogleService-Info.plist */; };
 		758EB0FB9270093A83F203D8 /* Pods_SportsMatching.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A32BBEB8E75216E6EACE267 /* Pods_SportsMatching.framework */; };
 		CEA7FBCC211732C10004FF88 /* RecruiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA7FBCB211732C10004FF88 /* RecruiteViewController.swift */; };
 		CEBB289A211A9FBD00C7FFFE /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB2899211A9FBD00C7FFFE /* CustomCell.swift */; };
@@ -38,7 +38,6 @@
 		4735B0CB2115DBC9009D1323 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4735B0CE2115DBC9009D1323 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4735B0D02115DBC9009D1323 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4735B0D62116C2D9009D1323 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4735B0DC211896FB009D1323 /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
 		4735B100211AEF2C009D1323 /* MailBoxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailBoxViewController.swift; sourceTree = "<group>"; };
 		4735B102211AF1C4009D1323 /* MailBoxRecruiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailBoxRecruiteViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +46,8 @@
 		4735B108211C8526009D1323 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		4735B10A211DCD63009D1323 /* MailBoxTakagiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailBoxTakagiViewController.swift; sourceTree = "<group>"; };
 		4735B10C211DCD74009D1323 /* MailBoxMatsueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailBoxMatsueViewController.swift; sourceTree = "<group>"; };
+		4735B10E21231B6D009D1323 /* SportsMatching.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SportsMatching.entitlements; sourceTree = "<group>"; };
+		4735B11121232984009D1323 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7C7EF586745D6367B67B1C34 /* Pods-SportsMatching.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsMatching.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SportsMatching/Pods-SportsMatching.debug.xcconfig"; sourceTree = "<group>"; };
 		8A32BBEB8E75216E6EACE267 /* Pods_SportsMatching.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SportsMatching.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E3DACCC8E3E7940618BA26B /* Pods-SportsMatching.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsMatching.release.xcconfig"; path = "Pods/Target Support Files/Pods-SportsMatching/Pods-SportsMatching.release.xcconfig"; sourceTree = "<group>"; };
@@ -106,6 +107,7 @@
 		4735B0C02115DBC6009D1323 /* SportsMatching */ = {
 			isa = PBXGroup;
 			children = (
+				4735B10E21231B6D009D1323 /* SportsMatching.entitlements */,
 				4735B0C12115DBC6009D1323 /* AppDelegate.swift */,
 				4735B0C32115DBC6009D1323 /* ViewController.swift */,
 				4735B106211C7B84009D1323 /* SignUpViewController.swift */,
@@ -124,7 +126,7 @@
 				4735B0CB2115DBC9009D1323 /* Assets.xcassets */,
 				4735B0CD2115DBC9009D1323 /* LaunchScreen.storyboard */,
 				4735B0D02115DBC9009D1323 /* Info.plist */,
-				4735B0D62116C2D9009D1323 /* GoogleService-Info.plist */,
+				4735B11121232984009D1323 /* GoogleService-Info.plist */,
 				4735B0C82115DBC6009D1323 /* SportsMatching.xcdatamodeld */,
 			);
 			path = SportsMatching;
@@ -164,6 +166,14 @@
 				TargetAttributes = {
 					4735B0BD2115DBC6009D1323 = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -192,7 +202,7 @@
 			files = (
 				4735B0CF2115DBC9009D1323 /* LaunchScreen.storyboard in Resources */,
 				4735B0CC2115DBC9009D1323 /* Assets.xcassets in Resources */,
-				4735B0D72116C2D9009D1323 /* GoogleService-Info.plist in Resources */,
+				4735B11221232984009D1323 /* GoogleService-Info.plist in Resources */,
 				4735B0C72115DBC6009D1323 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -432,6 +442,7 @@
 			baseConfigurationReference = 7C7EF586745D6367B67B1C34 /* Pods-SportsMatching.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SportsMatching/SportsMatching.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DW345V9X47;
 				INFOPLIST_FILE = SportsMatching/Info.plist;
@@ -439,7 +450,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = jp.iosearn.SportsMatching;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.iosDeKasegu.SportsMatching;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -451,6 +462,7 @@
 			baseConfigurationReference = 9E3DACCC8E3E7940618BA26B /* Pods-SportsMatching.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SportsMatching/SportsMatching.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DW345V9X47;
 				INFOPLIST_FILE = SportsMatching/Info.plist;
@@ -458,7 +470,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = jp.iosearn.SportsMatching;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.iosDeKasegu.SportsMatching;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
