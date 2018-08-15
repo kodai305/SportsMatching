@@ -15,7 +15,7 @@ class MailBoxMatsueViewController: JSQMessagesViewController  {
     
     let db = Firestore.firestore()
     //チャット相手のID
-    let partnerId = "test7"
+    let partnerId = "test8"
     //subcollection内のdocument名用の数字
     var documentNumber:Int = 0
     //SnapShot内の処理が画面遷移時に起動しない様に管理
@@ -32,7 +32,7 @@ class MailBoxMatsueViewController: JSQMessagesViewController  {
         
         senderDisplayName = "A"
         //自分のID
-        senderId = "test8"
+        senderId = "test7"
         
         //チャット相手との今までの履歴を取得
         //ここではdocument名をtest7_test8で固定

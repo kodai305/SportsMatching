@@ -23,6 +23,7 @@
 		4735B10D211DCD75009D1323 /* MailBoxMatsueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B10C211DCD74009D1323 /* MailBoxMatsueViewController.swift */; };
 		4735B11221232984009D1323 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4735B11121232984009D1323 /* GoogleService-Info.plist */; };
 		758EB0FB9270093A83F203D8 /* Pods_SportsMatching.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A32BBEB8E75216E6EACE267 /* Pods_SportsMatching.framework */; };
+		CEA5CF952123BAFE00DE1FEE /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA5CF942123BAFE00DE1FEE /* MyPageViewController.swift */; };
 		CEA7FBCC211732C10004FF88 /* RecruiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA7FBCB211732C10004FF88 /* RecruiteViewController.swift */; };
 		CEBB289A211A9FBD00C7FFFE /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB2899211A9FBD00C7FFFE /* CustomCell.swift */; };
 		CEBB28A0211AC05C00C7FFFE /* SearchResultDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB289F211AC05C00C7FFFE /* SearchResultDetailViewController.swift */; };
@@ -51,6 +52,7 @@
 		7C7EF586745D6367B67B1C34 /* Pods-SportsMatching.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsMatching.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SportsMatching/Pods-SportsMatching.debug.xcconfig"; sourceTree = "<group>"; };
 		8A32BBEB8E75216E6EACE267 /* Pods_SportsMatching.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SportsMatching.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E3DACCC8E3E7940618BA26B /* Pods-SportsMatching.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsMatching.release.xcconfig"; path = "Pods/Target Support Files/Pods-SportsMatching/Pods-SportsMatching.release.xcconfig"; sourceTree = "<group>"; };
+		CEA5CF942123BAFE00DE1FEE /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		CEA7FBCB211732C10004FF88 /* RecruiteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecruiteViewController.swift; sourceTree = "<group>"; };
 		CEBB2899211A9FBD00C7FFFE /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		CEBB289F211AC05C00C7FFFE /* SearchResultDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultDetailViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				4735B10E21231B6D009D1323 /* SportsMatching.entitlements */,
 				4735B0C12115DBC6009D1323 /* AppDelegate.swift */,
 				4735B0C32115DBC6009D1323 /* ViewController.swift */,
+				CEA5CF942123BAFE00DE1FEE /* MyPageViewController.swift */,
 				4735B106211C7B84009D1323 /* SignUpViewController.swift */,
 				4735B108211C8526009D1323 /* SignInViewController.swift */,
 				CEA7FBCB211732C10004FF88 /* RecruiteViewController.swift */,
@@ -290,6 +293,7 @@
 				CEA7FBCC211732C10004FF88 /* RecruiteViewController.swift in Sources */,
 				4735B107211C7B84009D1323 /* SignUpViewController.swift in Sources */,
 				4735B109211C8526009D1323 /* SignInViewController.swift in Sources */,
+				CEA5CF952123BAFE00DE1FEE /* MyPageViewController.swift in Sources */,
 				4735B0DD211896FB009D1323 /* SearchResultViewController.swift in Sources */,
 				4735B103211AF1C4009D1323 /* MailBoxRecruiteViewController.swift in Sources */,
 				4735B105211AF34A009D1323 /* MailBoxSearchViewController.swift in Sources */,

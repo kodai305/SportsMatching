@@ -36,7 +36,7 @@
         <!--マイページ-->
         <scene sceneID="7UN-90-qoU">
             <objects>
-                <viewController id="i3S-RI-yy6" sceneMemberID="viewController">
+                <viewController id="i3S-RI-yy6" customClass="MyPageViewController" customModule="SportsMatching" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9zx-GB-9BX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
