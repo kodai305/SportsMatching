@@ -8,6 +8,7 @@
 
 import UIKit
 import XLPagerTabStrip
+import Firebase
 
 class MailBoxViewController: ButtonBarPagerTabStripViewController {
     @IBAction func comeHome (segue: UIStoryboardSegue){
@@ -24,6 +25,7 @@ class MailBoxViewController: ButtonBarPagerTabStripViewController {
         //セレクトバーの色
         settings.style.selectedBarBackgroundColor = UIColor.yellow
         
+
         // Do any additional setup after loading the view.
     }
 

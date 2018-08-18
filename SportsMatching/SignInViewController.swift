@@ -47,7 +47,6 @@ class SignInViewController: UIViewController {
             passTextField.layer.borderColor = UIColor.black.cgColor
             
             SVProgressHUD.show()
-            
             // ログイン
             Auth.auth().signIn(withEmail: email, password: password) { user, error in
                 if let error = error {
@@ -64,6 +63,7 @@ class SignInViewController: UIViewController {
                     }
                 }
             }
+
         }
     }
     

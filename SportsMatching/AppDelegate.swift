@@ -122,6 +122,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
     }
+    
+    
 
 }
 
@@ -161,11 +163,15 @@ extension AppDelegate {
 extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         print("Firebase registration token: \(fcmToken)")
+        // fcmTokenをuser-defaultに保存
+        let defaults = UserDefaults.standard
+        defaults.set(fcmToken ,forKey: "fcmToken")
     }
     
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
         print("Received data message: \(remoteMessage.appData)")
     }
+
 }
 
 
