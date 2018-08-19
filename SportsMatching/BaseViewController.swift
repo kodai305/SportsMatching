@@ -23,7 +23,7 @@ class BaseViewController: UIViewController {
         // When user status is changed, this pocess is executed
         Auth.auth().addStateDidChangeListener { (auth, user) in
             // [START_EXCLUDE]
-            if user != nil{
+            if user != nil {
                 //サインインしている
                 print("user:")
                 print(user?.uid)

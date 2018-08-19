@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Eureka
 import ImageRow
 import FirebaseFirestore
 import SVProgressHUD
