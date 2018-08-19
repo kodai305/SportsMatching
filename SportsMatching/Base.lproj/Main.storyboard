@@ -36,10 +36,20 @@
         <!--マイページ-->
         <scene sceneID="7UN-90-qoU">
             <objects>
-                <viewController id="i3S-RI-yy6" customClass="MyPageViewController" customModule="SportsMatching" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyPage" id="i3S-RI-yy6" customClass="MyPageViewController" customModule="SportsMatching" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9zx-GB-9BX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mlc-9l-RyQ">
+                                <rect key="frame" x="126" y="167" width="123" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="プロフィール作成"/>
+                                <connections>
+                                    <segue destination="RdO-09-FdY" kind="show" id="hCn-Ki-Ili"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="b9J-l5-zpB"/>
                     </view>
@@ -48,6 +58,28 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pxp-1T-StY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3268" y="41.829085457271368"/>
+        </scene>
+        <!--プロフィール登録-->
+        <scene sceneID="so7-Hc-eAK">
+            <objects>
+                <viewController title="プロフィール登録" id="RdO-09-FdY" customClass="CreateProfileViewController" customModule="SportsMatching" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Fof-jq-1Xr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="sXm-IZ-XQB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="プロフィール" id="1er-gR-gO8">
+                        <barButtonItem key="rightBarButtonItem" title="登録" id="T7q-Zi-KMt">
+                            <connections>
+                                <action selector="saveUserProfileButtonPushed:" destination="RdO-09-FdY" id="I5l-pP-riU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eYq-5b-RDs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4081" y="42"/>
         </scene>
         <!--履歴-->
         <scene sceneID="lp5-X6-ev6">
