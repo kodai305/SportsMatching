@@ -9,6 +9,7 @@ import UIKit
 import Eureka
 import ImageRow
 import FirebaseFirestore
+import SVProgressHUD
 
 class RecruiteViewController: FormViewController {
 
@@ -19,16 +20,22 @@ class RecruiteViewController: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        form +++ Section(header: "必須項目", footer: "すべての項目を入力してください")
-            <<< NameRow("teamName") {
+        form +++
+            
+            Section(header: "必須項目", footer: "すべての項目を入力してください")
+            <<< TextRow("TeamName") {
                 $0.title = "チーム名"
                 $0.placeholder = "チーム名/サークル名"
             }
-            <<< TextRow("events") {
-                $0.title = "種目名"
-                $0.placeholder = "プルダウンにしたい"
+            <<< ActionSheetRow<String>("Category") {
+                $0.title = "カテゴリー"
+                $0.selectorTitle = "チームのカテゴリーを選択"
+                $0.options = ["ミニバス", "ジュニア", "社会人"]
+                }
+                .onPresent { from, to in
+                    to.popoverPresentationController?.permittedArrowDirections = .up
             }
-            <<< PushRow<String>("prefecture") {
+            <<< PushRow<String>("Prefecture") {
                 $0.title = "都道府県"
                 $0.options = ["北海道", "青森県", "岩手県", "宮城県", "秋田県",
                               "山形県", "福島県", "茨城県", "栃木県", "群馬県",
@@ -40,7 +47,6 @@ class RecruiteViewController: FormViewController {
                               "徳島県", "香川県", "愛媛県", "高知県", "福岡県",
                               "佐賀県", "長崎県", "熊本県", "大分県", "宮崎県",
                               "鹿児島県", "沖縄県"]
-                $0.value = "都道府県名"
                 $0.selectorTitle = "都道府県名"
                 }.onPresent { from, to in
                     to.dismissOnSelection = false
@@ -58,40 +64,92 @@ class RecruiteViewController: FormViewController {
                         }
                         }
             }
-            <<< TextRow("place"){
+            <<< TextRow("Place"){
                 $0.title = "活動場所"
-                $0.placeholder = "体育館など"
+                $0.placeholder = "体育館名など"
             }
-            <<< TextRow("time"){
-                $0.title = "活動時間"
-                $0.placeholder = "時間、頻度を入力"
+            <<< ActionSheetRow<String>("Gender") {
+                $0.title = "性別"
+                $0.selectorTitle = "募集する性別を選択"
+                $0.options = ["不問", "男性", "女性"]
+                }
+                .onPresent { from, to in
+                    to.popoverPresentationController?.permittedArrowDirections = .up
+            }
+            <<< ActionSheetRow<String>("Timezone") {
+                $0.title = "活動時間帯"
+                $0.selectorTitle = "活動する時間帯を選択"
+                $0.options = ["午前", "午後", "夜"]
+                }
+                .onPresent { from, to in
+                    to.popoverPresentationController?.permittedArrowDirections = .up
         }
-        
-        form +++ Section(header: "任意項目", footer: "応募者が参考にするため、なるべく入力してください")
-            <<< TextRow("recruiteAge") {
-                $0.title = "募集年齢"
-                $0.placeholder = "例：18歳から30歳まで"
-            }
-            <<< TextRow("memberInfo") {
-                $0.title = "メンバー構成"
-                $0.placeholder = "例：20歳男子中心"
-            }
-            <<< TextRow("memberAge"){
-                $0.title = "平均年齢"
-                $0.placeholder = "例：20台後半中心"
-            }
             <<< ImageRow() {
                 $0.title = "活動風景画像"
                 $0.sourceTypes = [.PhotoLibrary, .SavedPhotosAlbum, .Camera]
                 $0.value = UIImage(named: "activeImage")
                 $0.clearAction = .yes(style: .destructive)
                 $0.onChange { [unowned self] row in
-                            self.selectedImg = row.value!
+                    self.selectedImg = row.value!
                 }
+            }
+            
+            form +++ Section(header: "任意項目", footer: "応募者が参考にするため、なるべく入力してください")
+                    
+            <<< MultipleSelectorRow<String>("Position") {
+                $0.title = "募集ポジション"
+                $0.selectorTitle = "募集するポジションを選択"
+                $0.options = ["ガード", "フォワード", "センター", "マネジャー"]
+                }
+                .onPresent { from, to in
+                    to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
+            }
+            <<< MultipleSelectorRow<String>("Level") {
+                $0.title = "競技レベル"
+                $0.selectorTitle = "参加可能な競技レベルを選択"
+                $0.options = ["未経験", "初心者", "上級者"]
+                }
+                .onPresent { from, to in
+                    to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
+            }
+            <<< ActionSheetRow<String>("GenderRatio") {
+                $0.title = "男女比"
+                $0.selectorTitle = "一番近い男女比を選択(男:女)"
+                $0.options = ["1:0", "2:1", "1:1", "1:2", "0:1"]
+                }
+                .onPresent { from, to in
+                    to.popoverPresentationController?.permittedArrowDirections = .up
+            }
+            <<< IntRow("NumMembers"){
+                $0.title = "チームの人数"
+                $0.placeholder = "15"
+            }
+                
+            <<< MultipleSelectorRow<String>("Day") {
+                $0.title = "開催曜日"
+                $0.selectorTitle = "主に開催している曜日を選択"
+                $0.options = ["月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日", "日曜日"]
+                }
+                .onPresent { from, to in
+                    to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
+        }
+            <<< IntRow("Oldest"){
+                $0.title = "最年長(歳)"
+                $0.placeholder = "50"
+            }
+        
+            <<< IntRow("Youngest"){
+                $0.title = "最年少(歳)"
+                $0.placeholder = "15"
+        }
+        
+            <<< IntRow("Fee"){
+                $0.title = "参加費(円)"
+                $0.placeholder = "500"
         }
         
         form +++ Section(header: "募集内容/連絡事項", footer: "不特定多数の方が見るため連絡先の掲載はお控えください")
-            <<< TextAreaRow("freeWrite") {
+            <<< TextAreaRow("Comments") {
                 $0.placeholder = "自由記述"
                 $0.textAreaHeight = .dynamic(initialTextViewHeight: 110)
         }
@@ -100,20 +158,60 @@ class RecruiteViewController: FormViewController {
     }
 
     @IBAction func postButton(_ sender: Any) {
-        // XXX: 投稿ボタンを押した際の処理を実装する
-        
-        // XXX: 必須項目の入力チェック
-        
         // タグ設定済みの全てのRowの値を取得
         let values = form.values()
-        let db = Firestore.firestore()
+        //必須項目が入力済みか確認
+        if values["TeamName"].unsafelyUnwrapped == nil{
+            SVProgressHUD.showError(withStatus: "チーム名を入力して下さい")
+            return
+        }else if values["Category"].unsafelyUnwrapped == nil{
+            SVProgressHUD.showError(withStatus: "カテゴリーを選択して下さい")
+            return
+        }else if values["Prefecture"].unsafelyUnwrapped == nil{
+            SVProgressHUD.showError(withStatus: "都道府県を選択して下さい")
+            return
+        }
+        else if values["Place"].unsafelyUnwrapped == nil{
+            SVProgressHUD.showError(withStatus: "活動場所を入力して下さい")
+            return
+        }
+        else if values["Gender"].unsafelyUnwrapped == nil{
+            SVProgressHUD.showError(withStatus: "性別を選択して下さい")
+            return
+        }
+        else if values["Timezone"].unsafelyUnwrapped == nil{
+            SVProgressHUD.showError(withStatus: "活動時間帯を選択して下さい")
+            return
+        }
         
-        //チーム名＋都道県名をIDにする（仮）
-        let ID:String = (values["teamName"] as! String) + (values["prefecture"] as! String)
-
-        db.collection(values["events"] as! String).document(ID).setData([
-            "teamName": values["teamName"] as! String,
-            "prefecture": values["prefecture"] as! String
+        //時刻を取得(年月日、時分)
+        let f = DateFormatter()
+        f.timeStyle = .long
+        f.dateStyle = .short
+        f.locale = Locale(identifier: "ja_JP")
+        let now = Date()
+        
+        //FireStoreに投稿データを保存
+        //複数選択可能な項目はSetからArrayへの変換を行う
+        let db = Firestore.firestore()
+        db.collection("posts").document().setData([
+            "postedTime"  : f.string(from: now),
+            "updateTime"  : f.string(from: now),
+            "postUser"    : "CegN3uKXIIgj0Bc01t2LHVbiCMT2",  //高木のGmailのUID
+            "teamName"    : values["TeamName"] as! String,
+            "category"    : values["Category"] as! String,
+            "prefecture"  : values["Prefecture"] as! String,
+            "place"       : values["Place"] as! String,
+            "gender"      : values["Gender"] as! String,
+            "timezone"    : values["Timezone"] as! String,  //ここまでは必須項目
+            "position"    : values["Position"].unsafelyUnwrapped == nil ? "" : Array(values["Position"] as! Set<String>),
+            "level"       : values["Level"].unsafelyUnwrapped == nil ? "" : Array(values["Level"] as! Set<String>),
+            "genderRatio" : values["GenderRatio"].unsafelyUnwrapped == nil ? "" : values["GenderRatio"] as! String,
+            "numMembers"  : values["NumMembers"].unsafelyUnwrapped == nil ? "" : values["NumMembers"] as! Int,
+            "day"         : values["Day"].unsafelyUnwrapped == nil ? "" : Array(values["Day"] as! Set<String>),
+            "fee"         : values["Fee"].unsafelyUnwrapped == nil ? "" : values["Fee"] as! Int,
+            "oldest"      : values["Oldest"].unsafelyUnwrapped == nil ? "" : values["Oldest"] as! Int,
+            "youngest"    : values["Youngest"].unsafelyUnwrapped == nil ? "" : values["Youngest"] as! Int
         ]) { err in
             if let err = err {
                 print("Error writing document: \(err)")
@@ -127,6 +225,11 @@ class RecruiteViewController: FormViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    //複数選択するための関数
+    @objc func multipleSelectorDone(_ item:UIBarButtonItem) {
+        _ = navigationController?.popViewController(animated: true)
     }
     
 
