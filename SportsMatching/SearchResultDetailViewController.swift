@@ -8,8 +8,13 @@
 
 import Foundation
 import UIKit
+import FirebaseCore
+import FirebaseFunctions
+import SVProgressHUD
 
 class SearchResultDetailViewController: BaseViewController{
+    // XXX: 募集ID
+    let postID:String = "abcdefjhijklmn"
     
     @IBOutlet weak var DetailImage: UIImageView!
     @IBOutlet weak var TeamNameLabel: UILabel!
@@ -23,6 +28,7 @@ class SearchResultDetailViewController: BaseViewController{
     @IBAction func Back(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //検索結果一覧から受け取ったデータを表示
@@ -32,6 +38,29 @@ class SearchResultDetailViewController: BaseViewController{
         DetailImage.contentMode = UIViewContentMode.scaleAspectFit
         TeamNameLabel.text = TeamName
         PrefectureLabel.text = PrefectureName
+    }
+    
+    // 応募ボタンを押して募集者にメッセージを送る
+    lazy var functions = Functions.functions()
+    @IBAction func entryButtonTapped(_ sender: Any) {
+        // XXX:ポップアップを出して応募メッセージ入力フォーマットを出す？
+
+        // 募集者に通知を送る
+        functions.httpsCallable("sendNotification").call(["postID": postID]) { (result, error) in
+            print(result?.data)
+            print("function is called")
+            if let error = error as NSError? {
+                SVProgressHUD.showError(withStatus: "失敗")
+                if error.domain == FunctionsErrorDomain {
+                    let code = FunctionsErrorCode(rawValue: error.code)
+                    let message = error.localizedDescription
+                    let details = error.userInfo[FunctionsErrorDetailsKey]
+                }
+            } else {
+                SVProgressHUD.showSuccess(withStatus: "成功")
+            }
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {

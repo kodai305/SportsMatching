@@ -25,6 +25,9 @@ PODS:
   - Firebase/Firestore (5.6.0):
     - Firebase/CoreOnly
     - FirebaseFirestore (= 0.13.1)
+  - Firebase/Functions (5.6.0):
+    - Firebase/CoreOnly
+    - FirebaseFunctions (= 2.1.0)
   - Firebase/Messaging (5.6.0):
     - Firebase/CoreOnly
     - FirebaseMessaging (= 3.1.0)
@@ -66,6 +69,9 @@ PODS:
     - leveldb-library (~> 1.18)
     - nanopb (~> 0.3.8)
     - Protobuf (~> 3.1)
+  - FirebaseFunctions (2.1.0):
+    - FirebaseCore (~> 5.0)
+    - GTMSessionFetcher/Core (~> 1.1)
   - FirebaseInstanceID (3.2.1):
     - FirebaseCore (~> 5.1)
     - GoogleUtilities/Environment (~> 5.2)
@@ -145,6 +151,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - Firebase/Firestore
+  - Firebase/Functions
   - Firebase/Messaging
   - Firebase/Storage
   - Google-Mobile-Ads-SDK
@@ -164,6 +171,7 @@ SPEC REPOS:
     - FirebaseCore
     - FirebaseDatabase
     - FirebaseFirestore
+    - FirebaseFunctions
     - FirebaseInstanceID
     - FirebaseMessaging
     - FirebaseStorage
@@ -194,6 +202,7 @@ SPEC CHECKSUMS:
   FirebaseCore: cb9ee75e0894def766167c95a4d5a14b1c138269
   FirebaseDatabase: 27be5ac5bc75e0b17537b2bbfada8258addcc8cd
   FirebaseFirestore: e953e8e02544cc60372f3787d4c30cb47a691aa7
+  FirebaseFunctions: 0cb3bc0bbeac1daf6fea378a1064ff7f484e4c4e
   FirebaseInstanceID: ea5af6920d0a4a29b40459d055bebe4a6c1333c4
   FirebaseMessaging: f67b3719f520ee200da0e20ce577fe2bce0c01d0
   FirebaseStorage: 7ca4bb7b58a25fa647b04f524033fc7cb7eb272b
@@ -214,6 +223,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   XLPagerTabStrip: c908b17cbf42fcd2598ee1adfc49bae25444d88a
 
-PODFILE CHECKSUM: 1d89ceef37f9082e60cd0170056084289c49d59c
+PODFILE CHECKSUM: 53220b6587092864e7b5b5624eeb7f940291c2da
 
 COCOAPODS: 1.5.3

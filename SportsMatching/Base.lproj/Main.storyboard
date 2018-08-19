@@ -514,7 +514,7 @@
             </objects>
             <point key="canvasLocation" x="4084" y="1380.3598200899551"/>
         </scene>
-        <!--Search Result Detail View Controller-->
+        <!--Title-->
         <scene sceneID="Wc2-mG-VO1">
             <objects>
                 <viewController id="jWl-L5-TpW" customClass="SearchResultDetailViewController" customModule="SportsMatching" sceneMemberID="viewController">
@@ -544,6 +544,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="njX-2q-Uvt"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="AQn-KE-b1d">
+                        <barButtonItem key="rightBarButtonItem" title="応募" id="WuB-bH-36L">
+                            <connections>
+                                <action selector="entryButtonTapped:" destination="jWl-L5-TpW" id="15P-nZ-8sU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="DetailImage" destination="mbe-Yh-9vw" id="akd-DN-9sT"/>
                         <outlet property="PrefectureLabel" destination="swZ-V6-Cv9" id="oDN-TB-U7P"/>

@@ -10,6 +10,7 @@ target 'SportsMatching' do
   pod 'Firebase/Database'
   pod 'Firebase/AdMob'
   pod 'Firebase/Firestore'
+  pod 'Firebase/Functions'
   pod 'Firebase/Messaging'
   pod 'Firebase/Storage'
   pod 'SVProgressHUD'
