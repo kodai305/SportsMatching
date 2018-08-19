@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseFirestore
 
-class MyPageViewController: UIViewController {
+class MyPageViewController: BaseViewController {
     
     let db = Firestore.firestore()
     //自分のID
@@ -31,6 +31,7 @@ class MyPageViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         
         //firestoreのおまじない（入れないとコンソールで警告）
         let settings = db.settings

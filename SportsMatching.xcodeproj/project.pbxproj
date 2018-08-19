@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4735B0C22115DBC6009D1323 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B0C12115DBC6009D1323 /* AppDelegate.swift */; };
-		4735B0C42115DBC6009D1323 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B0C32115DBC6009D1323 /* ViewController.swift */; };
+		4735B0C42115DBC6009D1323 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B0C32115DBC6009D1323 /* BaseViewController.swift */; };
 		4735B0C72115DBC6009D1323 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4735B0C52115DBC6009D1323 /* Main.storyboard */; };
 		4735B0CA2115DBC6009D1323 /* SportsMatching.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4735B0C82115DBC6009D1323 /* SportsMatching.xcdatamodeld */; };
 		4735B0CC2115DBC9009D1323 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4735B0CB2115DBC9009D1323 /* Assets.xcassets */; };
@@ -33,7 +33,7 @@
 /* Begin PBXFileReference section */
 		4735B0BE2115DBC6009D1323 /* SportsMatching.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportsMatching.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4735B0C12115DBC6009D1323 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4735B0C32115DBC6009D1323 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4735B0C32115DBC6009D1323 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		4735B0C62115DBC6009D1323 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4735B0C92115DBC6009D1323 /* SportsMatching.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SportsMatching.xcdatamodel; sourceTree = "<group>"; };
 		4735B0CB2115DBC9009D1323 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -111,7 +111,7 @@
 			children = (
 				4735B10E21231B6D009D1323 /* SportsMatching.entitlements */,
 				4735B0C12115DBC6009D1323 /* AppDelegate.swift */,
-				4735B0C32115DBC6009D1323 /* ViewController.swift */,
+				4735B0C32115DBC6009D1323 /* BaseViewController.swift */,
 				CEA5CF942123BAFE00DE1FEE /* MyPageViewController.swift */,
 				4735B106211C7B84009D1323 /* SignUpViewController.swift */,
 				4735B108211C8526009D1323 /* SignInViewController.swift */,
@@ -297,7 +297,7 @@
 				4735B0DD211896FB009D1323 /* SearchResultViewController.swift in Sources */,
 				4735B103211AF1C4009D1323 /* MailBoxRecruiteViewController.swift in Sources */,
 				4735B105211AF34A009D1323 /* MailBoxSearchViewController.swift in Sources */,
-				4735B0C42115DBC6009D1323 /* ViewController.swift in Sources */,
+				4735B0C42115DBC6009D1323 /* BaseViewController.swift in Sources */,
 				CEBB289A211A9FBD00C7FFFE /* CustomCell.swift in Sources */,
 				4735B0C22115DBC6009D1323 /* AppDelegate.swift in Sources */,
 				4735B10B211DCD63009D1323 /* MailBoxTakagiViewController.swift in Sources */,

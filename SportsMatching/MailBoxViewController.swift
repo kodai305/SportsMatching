@@ -28,7 +28,26 @@ class MailBoxViewController: ButtonBarPagerTabStripViewController {
 
         // Do any additional setup after loading the view.
     }
-
+    
+    var handle: AuthStateDidChangeListenerHandle?
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        //        handle = Auth.addStateDidChangeListener()
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            // [START_EXCLUDE]
+            if user != nil{
+                //サインインしている
+                print("user:")
+                print(user?.uid)
+            } else {
+                //サインインしていない
+                print("ログインをしてください")
+            }
+            // [END_EXCLUDE]
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
