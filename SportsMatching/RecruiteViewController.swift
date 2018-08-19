@@ -9,6 +9,7 @@ import UIKit
 import Eureka
 import ImageRow
 import FirebaseFirestore
+import FirebaseStorage
 import SVProgressHUD
 
 class RecruiteViewController: FormViewController {
@@ -30,7 +31,7 @@ class RecruiteViewController: FormViewController {
             <<< ActionSheetRow<String>("Category") {
                 $0.title = "カテゴリー"
                 $0.selectorTitle = "チームのカテゴリーを選択"
-                $0.options = ["ミニバス", "ジュニア", "社会人"]
+                $0.options = ["ミニバス", "ジュニア", "社会人", "クラブチーム"]
                 }
                 .onPresent { from, to in
                     to.popoverPresentationController?.permittedArrowDirections = .up
@@ -68,23 +69,23 @@ class RecruiteViewController: FormViewController {
                 $0.title = "活動場所"
                 $0.placeholder = "体育館名など"
             }
-            <<< ActionSheetRow<String>("Gender") {
-                $0.title = "性別"
+            <<< ActionSheetRow<String>("ApplyGender") {
+                $0.title = "募集性別"
                 $0.selectorTitle = "募集する性別を選択"
                 $0.options = ["不問", "男性", "女性"]
                 }
                 .onPresent { from, to in
                     to.popoverPresentationController?.permittedArrowDirections = .up
             }
-            <<< ActionSheetRow<String>("Timezone") {
+            <<< MultipleSelectorRow<String>("Timezone") {
                 $0.title = "活動時間帯"
-                $0.selectorTitle = "活動する時間帯を選択"
+                $0.selectorTitle = "活動する時間帯を選択(複数選択)"
                 $0.options = ["午前", "午後", "夜"]
                 }
                 .onPresent { from, to in
-                    to.popoverPresentationController?.permittedArrowDirections = .up
-        }
-            <<< ImageRow() {
+                    to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
+            }
+            <<< ImageRow("Image1") {
                 $0.title = "活動風景画像"
                 $0.sourceTypes = [.PhotoLibrary, .SavedPhotosAlbum, .Camera]
                 $0.value = UIImage(named: "activeImage")
@@ -99,14 +100,14 @@ class RecruiteViewController: FormViewController {
             <<< MultipleSelectorRow<String>("Position") {
                 $0.title = "募集ポジション"
                 $0.selectorTitle = "募集するポジションを選択"
-                $0.options = ["ガード", "フォワード", "センター", "マネジャー"]
+                $0.options = ["どこでも","ガード", "フォワード", "センター", "マネジャー"]
                 }
                 .onPresent { from, to in
                     to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
             }
-            <<< MultipleSelectorRow<String>("Level") {
-                $0.title = "競技レベル"
-                $0.selectorTitle = "参加可能な競技レベルを選択"
+            <<< MultipleSelectorRow<String>("ApplyLevel") {
+                $0.title = "参加可能なレベル"
+                $0.selectorTitle = "参加可能なレベルを選択"
                 $0.options = ["未経験", "初心者", "上級者"]
                 }
                 .onPresent { from, to in
@@ -114,8 +115,16 @@ class RecruiteViewController: FormViewController {
             }
             <<< ActionSheetRow<String>("GenderRatio") {
                 $0.title = "男女比"
-                $0.selectorTitle = "一番近い男女比を選択(男:女)"
-                $0.options = ["1:0", "2:1", "1:1", "1:2", "0:1"]
+                $0.selectorTitle = "一番近い男女比を選択"
+                $0.options = ["ミックス", "男性のみ", "女性のみ"]
+                }
+                .onPresent { from, to in
+                    to.popoverPresentationController?.permittedArrowDirections = .up
+            }
+            <<< ActionSheetRow<String>("TeamLevel") {
+                $0.title = "チームのレベル"
+                $0.selectorTitle = "一番近いチームレベルを選択"
+                $0.options = ["未経験", "初心者", "上級者"]
                 }
                 .onPresent { from, to in
                     to.popoverPresentationController?.permittedArrowDirections = .up
@@ -133,16 +142,14 @@ class RecruiteViewController: FormViewController {
                 .onPresent { from, to in
                     to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
         }
-            <<< IntRow("Oldest"){
-                $0.title = "最年長(歳)"
-                $0.placeholder = "50"
-            }
-        
-            <<< IntRow("Youngest"){
-                $0.title = "最年少(歳)"
-                $0.placeholder = "15"
-        }
-        
+            <<< MultipleSelectorRow<String>("MainAge") {
+                $0.title = "メンバーの年代"
+                $0.selectorTitle = "メンバーの主な年代を選択(複数可)"
+                $0.options = ["10代", "20代", "30代", "40代", "50代", "60代以上"]
+                }
+                .onPresent { from, to in
+                    to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
+                }
             <<< IntRow("Fee"){
                 $0.title = "参加費(円)"
                 $0.placeholder = "500"
@@ -175,12 +182,16 @@ class RecruiteViewController: FormViewController {
             SVProgressHUD.showError(withStatus: "活動場所を入力して下さい")
             return
         }
-        else if values["Gender"].unsafelyUnwrapped == nil{
+        else if values["ApplyGender"].unsafelyUnwrapped == nil{
             SVProgressHUD.showError(withStatus: "性別を選択して下さい")
             return
         }
         else if values["Timezone"].unsafelyUnwrapped == nil{
             SVProgressHUD.showError(withStatus: "活動時間帯を選択して下さい")
+            return
+        }
+        else if values["Image1"].unsafelyUnwrapped == nil{
+            SVProgressHUD.showError(withStatus: "活動画像を選択して下さい")
             return
         }
         
@@ -202,22 +213,39 @@ class RecruiteViewController: FormViewController {
             "category"    : values["Category"] as! String,
             "prefecture"  : values["Prefecture"] as! String,
             "place"       : values["Place"] as! String,
-            "gender"      : values["Gender"] as! String,
-            "timezone"    : values["Timezone"] as! String,  //ここまでは必須項目
+            "applyGender" : values["ApplyGender"] as! String,
+            "timezone"    : Array(values["Timezone"] as! Set<String>),  //ここまでは必須項目
             "position"    : values["Position"].unsafelyUnwrapped == nil ? "" : Array(values["Position"] as! Set<String>),
-            "level"       : values["Level"].unsafelyUnwrapped == nil ? "" : Array(values["Level"] as! Set<String>),
+            "applyLevel"  : values["ApplyLevel"].unsafelyUnwrapped == nil ? "" : Array(values["ApplyLevel"] as! Set<String>),
             "genderRatio" : values["GenderRatio"].unsafelyUnwrapped == nil ? "" : values["GenderRatio"] as! String,
+            "teamLevel"   : values["TeamLevel"].unsafelyUnwrapped == nil ? "" : values["TeamLevel"] as! String,
             "numMembers"  : values["NumMembers"].unsafelyUnwrapped == nil ? "" : values["NumMembers"] as! Int,
             "day"         : values["Day"].unsafelyUnwrapped == nil ? "" : Array(values["Day"] as! Set<String>),
             "fee"         : values["Fee"].unsafelyUnwrapped == nil ? "" : values["Fee"] as! Int,
-            "oldest"      : values["Oldest"].unsafelyUnwrapped == nil ? "" : values["Oldest"] as! Int,
-            "youngest"    : values["Youngest"].unsafelyUnwrapped == nil ? "" : values["Youngest"] as! Int
+            "mainAge"      : values["MainAge"].unsafelyUnwrapped == nil ? "" : Array(values["MainAge"] as! Set<String>)
         ]) { err in
             if let err = err {
                 print("Error writing document: \(err)")
             } else {
                 print("Document successfully written!")
             }
+        }
+        
+        //画像セルから画像を取得
+        let UIImgae1 = values["Image1"] as! UIImage
+        let UIImgaeView1 = UIImageView(image: UIImgae1)
+        //Firebase Storageの準備
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        // UIImagePNGRepresentationでUIImageをNSDataに変換して格納
+        if let data = UIImagePNGRepresentation(UIImgaeView1.image! ) {
+            //とりあえずUIDのディレクトリを作成し、その下に画像を保存
+            let reference = storageRef.child("CegN3uKXIIgj0Bc01t2LHVbiCMT2/" + "image1" + ".jpg")
+            reference.putData(data, metadata: nil, completion: { metaData, error in
+                print(metaData as Any)
+                print(error as Any)
+            })
+            SVProgressHUD.showSuccess(withStatus: "投稿成功")
         }
         
     }

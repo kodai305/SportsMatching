@@ -28,6 +28,9 @@ PODS:
   - Firebase/Messaging (5.6.0):
     - Firebase/CoreOnly
     - FirebaseMessaging (= 3.1.0)
+  - Firebase/Storage (5.6.0):
+    - Firebase/CoreOnly
+    - FirebaseStorage (= 3.0.0)
   - FirebaseAnalytics (5.1.1):
     - FirebaseCore (~> 5.1)
     - FirebaseInstanceID (~> 3.2)
@@ -71,6 +74,9 @@ PODS:
     - FirebaseInstanceID (~> 3.0)
     - GoogleUtilities/Reachability (~> 5.2)
     - Protobuf (~> 3.1)
+  - FirebaseStorage (3.0.0):
+    - FirebaseCore (~> 5.0)
+    - GTMSessionFetcher/Core (~> 1.1)
   - Google-Mobile-Ads-SDK (7.31.0)
   - GoogleAppMeasurement (5.1.1):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2.0)
@@ -140,6 +146,7 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Firestore
   - Firebase/Messaging
+  - Firebase/Storage
   - Google-Mobile-Ads-SDK
   - ImageRow (~> 3.0)
   - JSQMessagesViewController
@@ -159,6 +166,7 @@ SPEC REPOS:
     - FirebaseFirestore
     - FirebaseInstanceID
     - FirebaseMessaging
+    - FirebaseStorage
     - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
     - GoogleUtilities
@@ -188,6 +196,7 @@ SPEC CHECKSUMS:
   FirebaseFirestore: e953e8e02544cc60372f3787d4c30cb47a691aa7
   FirebaseInstanceID: ea5af6920d0a4a29b40459d055bebe4a6c1333c4
   FirebaseMessaging: f67b3719f520ee200da0e20ce577fe2bce0c01d0
+  FirebaseStorage: 7ca4bb7b58a25fa647b04f524033fc7cb7eb272b
   Google-Mobile-Ads-SDK: 6e529e748b45507a2ca904e0b5a52669ba3920c4
   GoogleAppMeasurement: f7507b39b70ad0bd80b3d81518b2f43868974307
   GoogleUtilities: 06b66f9567769a7958db20a92f0128b2843e49d5
@@ -205,6 +214,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   XLPagerTabStrip: c908b17cbf42fcd2598ee1adfc49bae25444d88a
 
-PODFILE CHECKSUM: 9a6f085b42568198163b3e3dccebc06f806a2fdd
+PODFILE CHECKSUM: 1d89ceef37f9082e60cd0170056084289c49d59c
 
 COCOAPODS: 1.5.3

@@ -11,6 +11,7 @@ target 'SportsMatching' do
   pod 'Firebase/AdMob'
   pod 'Firebase/Firestore'
   pod 'Firebase/Messaging'
+  pod 'Firebase/Storage'
   pod 'SVProgressHUD'
   pod 'Eureka'
   pod 'ImageRow', '~> 3.0'
