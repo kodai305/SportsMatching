@@ -9,7 +9,7 @@
 import UIKit
 import XLPagerTabStrip
 
-class MailBoxSearchViewController: UIViewController, IndicatorInfoProvider {
+class MailBoxSearchViewController: BaseViewController, IndicatorInfoProvider {
 
     override func viewDidLoad() {
         super.viewDidLoad()

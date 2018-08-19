@@ -9,7 +9,7 @@
 import UIKit
 import XLPagerTabStrip
 
-class MailBoxRecruiteViewController: UIViewController, IndicatorInfoProvider {
+class MailBoxRecruiteViewController: BaseViewController, IndicatorInfoProvider {
 
     override func viewDidLoad() {
         super.viewDidLoad()

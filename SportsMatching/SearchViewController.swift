@@ -7,12 +7,11 @@
 //
 
 import UIKit
-import Eureka
 import ImageRow
 import FirebaseFirestore
 import SVProgressHUD
 
-class SearchViewController: FormViewController {
+class SearchViewController: BaseFormViewController {
 
     // 選択されたイメージ格納用
     var selectedImg = UIImage()

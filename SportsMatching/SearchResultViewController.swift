@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseFirestore
 
-class SearchResultViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
+class SearchResultViewController: BaseViewController,UITableViewDelegate, UITableViewDataSource {
     
     let temp = ["naito", "okada","kenny","riria"]
     var SearchResults:[(prefecture: String, teamName: String)] = []

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class SearchResultDetailViewController: UIViewController{
+class SearchResultDetailViewController: BaseViewController{
     
     @IBOutlet weak var DetailImage: UIImageView!
     @IBOutlet weak var TeamNameLabel: UILabel!

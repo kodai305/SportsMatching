@@ -6,13 +6,12 @@
 //
 
 import UIKit
-import Eureka
 import ImageRow
 import FirebaseFirestore
 import FirebaseStorage
 import SVProgressHUD
 
-class RecruiteViewController: FormViewController {
+class RecruiteViewController: BaseFormViewController {
 
     
     // 選択されたイメージ格納用
