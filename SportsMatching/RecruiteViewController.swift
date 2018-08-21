@@ -21,7 +21,6 @@ class RecruiteViewController: BaseFormViewController {
         super.viewDidLoad()
 
         form +++
-            
             Section(header: "必須項目", footer: "すべての項目を入力してください")
             <<< TextRow("TeamName") {
                 $0.title = "チーム名"
@@ -53,16 +52,16 @@ class RecruiteViewController: BaseFormViewController {
                     to.dismissOnChange = false
                     to.sectionKeyForValue = { option in
                         switch option {
-                        case "北海道", "青森県", "岩手県", "宮城県", "秋田県","山形県", "福島県": return "1北海道・東北"
-                        case "茨城県", "栃木県", "群馬県","埼玉県", "千葉県", "東京都", "神奈川県": return "2関東"
-                        case "新潟県","富山県", "石川県", "福井県", "山梨県", "長野県","岐阜県", "静岡県", "愛知県": return "3中部"
-                        case "三重県", "滋賀県","京都府", "大阪府", "兵庫県", "奈良県", "和歌山県": return "4関西"
-                        case "鳥取県", "島根県", "岡山県", "広島県", "山口県": return "5中国"
-                        case "徳島県", "香川県", "愛媛県", "高知県": return "6四国"
-                        case "福岡県","佐賀県", "長崎県", "熊本県", "大分県", "宮崎県","鹿児島県", "沖縄県": return "7九州・沖縄"
+                        case "北海道", "青森県", "岩手県", "宮城県", "秋田県","山形県", "福島県": return "1. 北海道・東北"
+                        case "茨城県", "栃木県", "群馬県","埼玉県", "千葉県", "東京都", "神奈川県": return "2. 関東"
+                        case "新潟県","富山県", "石川県", "福井県", "山梨県", "長野県","岐阜県", "静岡県", "愛知県": return "3. 中部"
+                        case "三重県", "滋賀県","京都府", "大阪府", "兵庫県", "奈良県", "和歌山県": return "4. 関西"
+                        case "鳥取県", "島根県", "岡山県", "広島県", "山口県": return "5. 中国"
+                        case "徳島県", "香川県", "愛媛県", "高知県": return "6. 四国"
+                        case "福岡県","佐賀県", "長崎県", "熊本県", "大分県", "宮崎県","鹿児島県", "沖縄県": return "7. 九州・沖縄"
                         default: return ""
                         }
-                        }
+                    }
             }
             <<< TextRow("Place"){
                 $0.title = "活動場所"
@@ -78,7 +77,7 @@ class RecruiteViewController: BaseFormViewController {
             }
             <<< MultipleSelectorRow<String>("Timezone") {
                 $0.title = "活動時間帯"
-                $0.selectorTitle = "活動する時間帯を選択(複数選択)"
+                $0.selectorTitle = "活動時間帯(複数選択可)"
                 $0.options = ["午前", "午後", "夜"]
                 }
                 .onPresent { from, to in
@@ -94,8 +93,7 @@ class RecruiteViewController: BaseFormViewController {
                 }
             }
             
-            form +++ Section(header: "任意項目", footer: "応募者が参考にするため、なるべく入力してください")
-                    
+        form +++ Section(header: "任意項目", footer: "応募者が参考にするため、なるべく入力してください")
             <<< MultipleSelectorRow<String>("Position") {
                 $0.title = "募集ポジション"
                 $0.selectorTitle = "募集するポジションを選択"
@@ -113,7 +111,7 @@ class RecruiteViewController: BaseFormViewController {
                     to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
             }
             <<< ActionSheetRow<String>("GenderRatio") {
-                $0.title = "男女比"
+                $0.title = "チーム構成"
                 $0.selectorTitle = "一番近い男女比を選択"
                 $0.options = ["ミックス", "男性のみ", "女性のみ"]
                 }
@@ -123,14 +121,14 @@ class RecruiteViewController: BaseFormViewController {
             <<< ActionSheetRow<String>("TeamLevel") {
                 $0.title = "チームのレベル"
                 $0.selectorTitle = "一番近いチームレベルを選択"
-                $0.options = ["未経験", "初心者", "上級者"]
+                $0.options = ["未経験中心", "初心者中心", "上級者中心"]
                 }
                 .onPresent { from, to in
                     to.popoverPresentationController?.permittedArrowDirections = .up
             }
             <<< IntRow("NumMembers"){
                 $0.title = "チームの人数"
-                $0.placeholder = "15"
+                $0.placeholder = "1回あたりの目安"
             }
                 
             <<< MultipleSelectorRow<String>("Day") {
@@ -140,25 +138,21 @@ class RecruiteViewController: BaseFormViewController {
                 }
                 .onPresent { from, to in
                     to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
-        }
+            }
             <<< MultipleSelectorRow<String>("MainAge") {
-                $0.title = "メンバーの年代"
+                $0.title = "メンバー年齢"
                 $0.selectorTitle = "メンバーの主な年代を選択(複数可)"
                 $0.options = ["10代", "20代", "30代", "40代", "50代", "60代以上"]
                 }
                 .onPresent { from, to in
                     to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
-                }
-            <<< IntRow("Fee"){
-                $0.title = "参加費(円)"
-                $0.placeholder = "500"
-        }
+            }
         
         form +++ Section(header: "募集内容/連絡事項", footer: "不特定多数の方が見るため連絡先の掲載はお控えください")
             <<< TextAreaRow("Comments") {
                 $0.placeholder = "自由記述"
                 $0.textAreaHeight = .dynamic(initialTextViewHeight: 110)
-        }
+            }
         
         // Do any additional setup after loading the view.
     }
@@ -167,29 +161,25 @@ class RecruiteViewController: BaseFormViewController {
         // タグ設定済みの全てのRowの値を取得
         let values = form.values()
         //必須項目が入力済みか確認
-        if values["TeamName"].unsafelyUnwrapped == nil{
+        if values["TeamName"].unsafelyUnwrapped == nil {
             SVProgressHUD.showError(withStatus: "チーム名を入力して下さい")
             return
-        }else if values["Category"].unsafelyUnwrapped == nil{
+        } else if values["Category"].unsafelyUnwrapped == nil {
             SVProgressHUD.showError(withStatus: "カテゴリーを選択して下さい")
             return
-        }else if values["Prefecture"].unsafelyUnwrapped == nil{
+        } else if values["Prefecture"].unsafelyUnwrapped == nil {
             SVProgressHUD.showError(withStatus: "都道府県を選択して下さい")
             return
-        }
-        else if values["Place"].unsafelyUnwrapped == nil{
+        } else if values["Place"].unsafelyUnwrapped == nil {
             SVProgressHUD.showError(withStatus: "活動場所を入力して下さい")
             return
-        }
-        else if values["ApplyGender"].unsafelyUnwrapped == nil{
+        } else if values["ApplyGender"].unsafelyUnwrapped == nil {
             SVProgressHUD.showError(withStatus: "性別を選択して下さい")
             return
-        }
-        else if values["Timezone"].unsafelyUnwrapped == nil{
+        } else if values["Timezone"].unsafelyUnwrapped == nil {
             SVProgressHUD.showError(withStatus: "活動時間帯を選択して下さい")
             return
-        }
-        else if values["Image1"].unsafelyUnwrapped == nil{
+        } else if values["Image1"].unsafelyUnwrapped == nil {
             SVProgressHUD.showError(withStatus: "活動画像を選択して下さい")
             return
         }
@@ -201,13 +191,18 @@ class RecruiteViewController: BaseFormViewController {
         f.locale = Locale(identifier: "ja_JP")
         let now = Date()
         
+        // UIDを取得
+        var myUID = ""
+        let defaults = UserDefaults.standard
+        myUID = defaults.string(forKey: "UID")!
+        
         //FireStoreに投稿データを保存
         //複数選択可能な項目はSetからArrayへの変換を行う
         let db = Firestore.firestore()
-        db.collection("posts").document().setData([
+        db.collection("posts").document(myUID).setData([
             "postedTime"  : f.string(from: now),
             "updateTime"  : f.string(from: now),
-            "postUser"    : "CegN3uKXIIgj0Bc01t2LHVbiCMT2",  //高木のGmailのUID
+            "postUser"    : myUID,
             "teamName"    : values["TeamName"] as! String,
             "category"    : values["Category"] as! String,
             "prefecture"  : values["Prefecture"] as! String,
@@ -220,8 +215,8 @@ class RecruiteViewController: BaseFormViewController {
             "teamLevel"   : values["TeamLevel"].unsafelyUnwrapped == nil ? "" : values["TeamLevel"] as! String,
             "numMembers"  : values["NumMembers"].unsafelyUnwrapped == nil ? "" : values["NumMembers"] as! Int,
             "day"         : values["Day"].unsafelyUnwrapped == nil ? "" : Array(values["Day"] as! Set<String>),
-            "fee"         : values["Fee"].unsafelyUnwrapped == nil ? "" : values["Fee"] as! Int,
-            "mainAge"      : values["MainAge"].unsafelyUnwrapped == nil ? "" : Array(values["MainAge"] as! Set<String>)
+            "mainAge"     : values["MainAge"].unsafelyUnwrapped == nil ? "" : Array(values["MainAge"] as! Set<String>),
+            "Comments"    : values["Comments"].unsafelyUnwrapped == nil ? "" : values["Comments"] as! String
         ]) { err in
             if let err = err {
                 print("Error writing document: \(err)")
@@ -239,7 +234,7 @@ class RecruiteViewController: BaseFormViewController {
         // UIImagePNGRepresentationでUIImageをNSDataに変換して格納
         if let data = UIImagePNGRepresentation(UIImgaeView1.image! ) {
             //とりあえずUIDのディレクトリを作成し、その下に画像を保存
-            let reference = storageRef.child("CegN3uKXIIgj0Bc01t2LHVbiCMT2/" + "image1" + ".jpg")
+            let reference = storageRef.child(myUID + "/post" + "/image1" + ".jpg")
             reference.putData(data, metadata: nil, completion: { metaData, error in
                 print(metaData as Any)
                 print(error as Any)
