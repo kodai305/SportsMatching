@@ -27,7 +27,7 @@ class RecruiteViewController: BaseFormViewController {
                 $0.placeholder = "チーム名/サークル名"
             }
             <<< ActionSheetRow<String>("Category") {
-                $0.title = "カテゴリー"
+                $0.title = "カテゴリ"
                 $0.selectorTitle = "チームのカテゴリーを選択"
                 $0.options = ["ミニバス", "ジュニア", "社会人", "クラブチーム"]
                 }
@@ -216,7 +216,7 @@ class RecruiteViewController: BaseFormViewController {
             "numMembers"  : values["NumMembers"].unsafelyUnwrapped == nil ? "" : values["NumMembers"] as! Int,
             "day"         : values["Day"].unsafelyUnwrapped == nil ? "" : Array(values["Day"] as! Set<String>),
             "mainAge"     : values["MainAge"].unsafelyUnwrapped == nil ? "" : Array(values["MainAge"] as! Set<String>),
-            "Comments"    : values["Comments"].unsafelyUnwrapped == nil ? "" : values["Comments"] as! String
+            "comments"    : values["Comments"].unsafelyUnwrapped == nil ? "" : values["Comments"] as! String
         ]) { err in
             if let err = err {
                 print("Error writing document: \(err)")

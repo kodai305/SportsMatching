@@ -13,17 +13,17 @@ import FirebaseFirestore
 import SVProgressHUD
 
 class SearchViewController: BaseFormViewController {
-
-    // 選択されたイメージ格納用
-    var selectedImg = UIImage()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         form +++ Section(header: "必須項目", footer: "すべての項目を入力してください")
-            <<< NameRow("events") {
-                $0.title = "種目"
-                $0.placeholder = "プルダウン？"
-                //$0.value = "" //初期値
+            <<< ActionSheetRow<String>("category") {
+                $0.title = "カテゴリ"
+                $0.selectorTitle = "チームのカテゴリーを選択"
+                $0.options = ["ミニバス", "ジュニア", "社会人", "クラブチーム"]
+                }
+                .onPresent { from, to in
+                    to.popoverPresentationController?.permittedArrowDirections = .up
             }
             <<< PushRow<String>("prefecture") {
                 $0.title = "都道府県"
@@ -69,8 +69,8 @@ class SearchViewController: BaseFormViewController {
             let nextView:SearchResultViewController = segue.destination as! SearchResultViewController
             // タグ設定済みの全てのRowの値を取得
             let values = form.values()
-            // Rowの値を取得する
-            nextView.events = values["events"] as! String
+            // Rowの値を取得して遷移先の変数に設定
+            nextView.category = values["category"] as! String
             nextView.prefecture = values["prefecture"] as! String
         }
     }
@@ -79,14 +79,13 @@ class SearchViewController: BaseFormViewController {
         if identifier == "toResultViewController" {
             // タグ設定済みの全てのRowの値を取得
             let values = form.values()
-            if values["events"].unsafelyUnwrapped == nil{
+            if values["category"].unsafelyUnwrapped == nil {
                 SVProgressHUD.showError(withStatus: "種目名を選択して下さい")
                 return false
-            }else{
-                if values["prefecture"].unsafelyUnwrapped == nil{
-                    SVProgressHUD.showError(withStatus: "都道府県を選択して下さい")
-                    return false
-                }
+            }
+            if values["prefecture"].unsafelyUnwrapped == nil {
+                SVProgressHUD.showError(withStatus: "都道府県を選択して下さい")
+                return false
             }
             return true
         }

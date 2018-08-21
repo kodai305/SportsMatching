@@ -10,20 +10,17 @@ import Foundation
 import UIKit
 import FirebaseCore
 import FirebaseFunctions
+import FirebaseFirestore
 import SVProgressHUD
 
 class SearchResultDetailViewController: BaseViewController{
-    // XXX: 募集ID
-    let postID:String = "abcdefjhijklmn"
+    //検索結果一覧からデータを受け取る変数
+    var postDoc:QueryDocumentSnapshot!
+    var selectedImg:UIImage!
     
     @IBOutlet weak var DetailImage: UIImageView!
     @IBOutlet weak var TeamNameLabel: UILabel!
     @IBOutlet weak var PrefectureLabel: UILabel!
-    //検索結果一覧からデータを受け取る変数
-    var selectedImg:UIImage!
-    var TeamName:String!
-    var PrefectureName:String!
-
     
     @IBAction func Back(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -36,8 +33,8 @@ class SearchResultDetailViewController: BaseViewController{
         DetailImage.image = selectedImg
         // 画像のアスペクト比を維持しUIImageViewサイズに収まるように表示
         DetailImage.contentMode = UIViewContentMode.scaleAspectFit
-        TeamNameLabel.text = TeamName
-        PrefectureLabel.text = PrefectureName
+        TeamNameLabel.text = self.postDoc.data()["teamName"] as? String
+        PrefectureLabel.text = self.postDoc.data()["prefecture"] as? String
     }
     
     // 応募ボタンを押して募集者にメッセージを送る
@@ -46,8 +43,9 @@ class SearchResultDetailViewController: BaseViewController{
         // XXX:ポップアップを出して応募メッセージ入力フォーマットを出す？
 
         // 募集者に通知を送る
+        let postID = self.postDoc.data()["postUser"] as! String
         functions.httpsCallable("sendNotification").call(["postID": postID]) { (result, error) in
-            print(result?.data)
+            print(result?.data as Any)
             print("function is called")
             if let error = error as NSError? {
                 SVProgressHUD.showError(withStatus: "失敗")
