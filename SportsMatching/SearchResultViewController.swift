@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseFirestore
 import FirebaseStorage
+import SVProgressHUD
 
 class SearchResultViewController: BaseViewController,UITableViewDelegate, UITableViewDataSource {
     // サムネイル画像格納用
@@ -25,6 +26,13 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        SVProgressHUD.show(withStatus: "検索中")
+        //デリゲート
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        //セルの高さを設定（画面全体の5分の1に設定）
+        self.tableView.rowHeight = self.view.frame.height / 5
         
         let db = Firestore.firestore()
         let settings = db.settings
@@ -48,15 +56,13 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
                     print("count :")
                     print(self.LoadedDocumentArray.count)
                     self.tableView.reloadData()
+                    SVProgressHUD.showSuccess(withStatus: String(self.LoadedDocumentArray.count) + "件の投稿があります")
+                    SVProgressHUD.dismiss(withDelay: 2)
                 }
             }
 
         print("count :")
         print(self.LoadedDocumentArray.count)
-        
-        //デリゲート
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
         // Do any additional setup after loading the view.
     }
     
@@ -132,7 +138,6 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
 
         // Segueを呼び出す
         performSegue(withIdentifier: "toDetailViewController",sender: nil)
- 
     }
     
     // Segue 準備

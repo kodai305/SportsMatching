@@ -17,6 +17,7 @@ class SerachResultCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        //self.frame.size.height = 150
         // Initialization code
     }
 
