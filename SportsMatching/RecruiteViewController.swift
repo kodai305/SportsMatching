@@ -199,6 +199,9 @@ class RecruiteViewController: BaseFormViewController {
         //FireStoreに投稿データを保存
         //複数選択可能な項目はSetからArrayへの変換を行う
         let db = Firestore.firestore()
+        let settings = db.settings
+        settings.areTimestampsInSnapshotsEnabled = true
+        db.settings = settings
         db.collection("posts").document(myUID).setData([
             "postedTime"  : f.string(from: now),
             "updateTime"  : f.string(from: now),
@@ -227,12 +230,17 @@ class RecruiteViewController: BaseFormViewController {
         
         //画像セルから画像を取得
         let UIImgae1 = values["Image1"] as! UIImage
-        let UIImgaeView1 = UIImageView(image: UIImgae1)
+        var ImageShrinkRatio:CGFloat = 1.0
         //Firebase Storageの準備
         let storage = Storage.storage()
         let storageRef = storage.reference()
-        // UIImagePNGRepresentationでUIImageをNSDataに変換して格納
-        if let data = UIImagePNGRepresentation(UIImgaeView1.image! ) {
+        // UIImageJPEGRepresentationでUIImageをNSDataに変換して格納
+        if var data = UIImageJPEGRepresentation(UIImgae1, ImageShrinkRatio){
+            //画像のファイルサイズが1024*1024bytes以下になるまで縮小係数を調整
+            while data.count > 1024 * 1024{
+                ImageShrinkRatio = ImageShrinkRatio - 0.1
+                data = UIImageJPEGRepresentation(UIImgae1, ImageShrinkRatio)!
+            }
             //とりあえずUIDのディレクトリを作成し、その下に画像を保存
             let reference = storageRef.child(myUID + "/post" + "/image1" + ".jpg")
             reference.putData(data, metadata: nil, completion: { metaData, error in
