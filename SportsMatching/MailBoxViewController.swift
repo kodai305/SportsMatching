@@ -15,7 +15,6 @@ class MailBoxViewController: ButtonBarPagerTabStripViewController {
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         //バーの色
         settings.style.buttonBarBackgroundColor = UIColor(red: 73/255, green: 72/255, blue: 62/255, alpha: 1)
         //ボタンの色
@@ -24,6 +23,8 @@ class MailBoxViewController: ButtonBarPagerTabStripViewController {
         settings.style.buttonBarItemTitleColor = UIColor.white
         //セレクトバーの色
         settings.style.selectedBarBackgroundColor = UIColor.yellow
+        
+        super.viewDidLoad()
         
 
         // Do any additional setup after loading the view.

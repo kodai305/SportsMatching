@@ -9,14 +9,20 @@
 import UIKit
 import XLPagerTabStrip
 
-class MailBoxSearchViewController: BaseViewController, IndicatorInfoProvider {
+class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITableViewDataSource, IndicatorInfoProvider  {
 
+    @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        //デリゲート
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        //セルの高さを設定（画面全体の5分の1に設定）
+        self.tableView.rowHeight = self.view.frame.height / 5
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -26,6 +32,34 @@ class MailBoxSearchViewController: BaseViewController, IndicatorInfoProvider {
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return "応募履歴"
     }
+    
+    // セクション数
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    // セクションの行数
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    
+    func tableView(_ table: UITableView,cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // 設定したIDでUITableViewCell のインスタンスを生成
+        let cell = table.dequeueReusableCell(withIdentifier: "SearchMailBoxCell",
+                                             for: indexPath) as! SearchMailBoxCell
+        return cell
+    }
+    
+    // Cell が選択された場合
+    func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
+        //セルの選択解除 //書かないと審査に通らない? cf.http://mjk0513.hateblo.jp/entry/2017/07/01/220542
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        // Segueを呼び出す
+        performSegue(withIdentifier: "toMailMatsueViewController",sender: nil)
+    }
+    
     /*
     // MARK: - Navigation
 
