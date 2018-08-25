@@ -55,11 +55,6 @@ class SearchViewController: BaseFormViewController {
                     }
         }
 
-        // fcmTokenをuser-defaultに保存
-        let defaults = UserDefaults.standard
-        let data = defaults.string(forKey: "background")
-        print("data:")
-        print(data as Any)
         // Do any additional setup after loading the view.
     }
 
