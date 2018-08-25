@@ -14,7 +14,12 @@ class MailBoxViewController: ButtonBarPagerTabStripViewController {
     @IBAction func comeHome (segue: UIStoryboardSegue){
     }
     
+    var firstVC:MailBoxRecruiteViewController!
+    var secondVC:MailBoxSearchViewController!
+    var PartnerID:String!
+    
     override func viewDidLoad() {
+        
         //バーの色
         settings.style.buttonBarBackgroundColor = UIColor(red: 73/255, green: 72/255, blue: 62/255, alpha: 1)
         //ボタンの色
@@ -25,15 +30,12 @@ class MailBoxViewController: ButtonBarPagerTabStripViewController {
         settings.style.selectedBarBackgroundColor = UIColor.yellow
         
         super.viewDidLoad()
-        
-
         // Do any additional setup after loading the view.
     }
     
     var handle: AuthStateDidChangeListenerHandle?
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
         //        handle = Auth.addStateDidChangeListener()
         Auth.auth().addStateDidChangeListener { (auth, user) in
             // [START_EXCLUDE]
@@ -54,10 +56,15 @@ class MailBoxViewController: ButtonBarPagerTabStripViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func setViewController() {
+        firstVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RecruiteHistory") as! MailBoxRecruiteViewController
+        secondVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchHistory") as! MailBoxSearchViewController
+        secondVC.PartnerID = self.PartnerID
+    }
+    
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         //管理されるViewControllerを返す処理
-        let firstVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RecruiteHistory")
-        let secondVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchHistory")
+        setViewController()
         let childViewControllers:[UIViewController] = [firstVC, secondVC ]
         return childViewControllers
     }

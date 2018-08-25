@@ -55,6 +55,7 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
                     }
                     print("count :")
                     print(self.LoadedDocumentArray.count)
+                    //ここでreloadすると、検索結果一覧画面を開いている場合reloadが繰り返される
                     self.tableView.reloadData()
                     SVProgressHUD.showSuccess(withStatus: String(self.LoadedDocumentArray.count) + "件の投稿があります")
                     SVProgressHUD.dismiss(withDelay: 2)
