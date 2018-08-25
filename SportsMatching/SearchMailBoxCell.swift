@@ -10,6 +10,10 @@ import UIKit
 
 class SearchMailBoxCell: UITableViewCell {
 
+    @IBOutlet weak var PartnerNameLabel: UILabel!
+    @IBOutlet weak var LastMessageLabel: UILabel!
+    @IBOutlet weak var DateLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

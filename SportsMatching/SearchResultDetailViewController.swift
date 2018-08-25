@@ -56,9 +56,32 @@ class SearchResultDetailViewController: BaseViewController{
                 }
             } else {
                 SVProgressHUD.showSuccess(withStatus: "成功")
+                // Segueを呼び出す
+                self.performSegue(withIdentifier: "toMailBoxViewController",sender: nil)
             }
         }
-        
+    }
+    
+    // Segue 準備
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+        if segue.identifier == "toMailBoxViewController" {
+            // 履歴タブのViewControllerを取得する
+            let viewController = self.tabBarController?.viewControllers![3] as! UINavigationController
+            // 履歴タブを選択済みにする
+            self.tabBarController?.selectedViewController = viewController
+            
+            //応募履歴を一度も表示していない場合の処理
+            //親ビューであるMailBoxViewを経由して渡す
+            let mailboxview = viewController.topViewController as! MailBoxViewController
+            mailboxview.PartnerID = self.postDoc.data()["postUser"] as! String
+            
+            //応募履歴を一度は表示している場合の処理
+            //直接渡して、loadviewとviewDidLoadを再度発火
+            let nextView:MailBoxSearchViewController = segue.destination as! MailBoxSearchViewController
+            nextView.PartnerID = self.postDoc.data()["postUser"] as! String
+            nextView.loadView()
+            nextView.viewDidLoad()
+        }
     }
     
     override func didReceiveMemoryWarning() {
