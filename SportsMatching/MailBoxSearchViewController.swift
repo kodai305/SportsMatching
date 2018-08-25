@@ -76,7 +76,6 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
         return MailHistory.count
     }
     
-    
     func tableView(_ table: UITableView,cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // 設定したIDでUITableViewCell のインスタンスを生成
         let cell = table.dequeueReusableCell(withIdentifier: "SearchMailBoxCell",
