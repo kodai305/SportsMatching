@@ -122,15 +122,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
     }
+
     
-    
+    // アプリがバックグラウンド状態の時に通知を受け取った場合の処理を行う。//  "content_available" : true が必要
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        // fcmTokenをuser-defaultに保存
+        let defaults = UserDefaults.standard
+        defaults.set("kkkkk" ,forKey: "background")
+        print("back ground")
+        completionHandler(UIBackgroundFetchResult.newData)
+    }
 
 }
 
 // MARK: - UNUserNotificationCenterDelegate
 extension AppDelegate {
-    
-    // 通知を受け取った時に(開く前に)呼ばれるメソッド
+    // 通知を受け取った時に(開く前に)呼ばれるメソッド　//background時は呼ばれない // "content_available" : trueがあっても
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
@@ -141,6 +149,10 @@ extension AppDelegate {
         if let messageID = userInfo["gcm.message_id"] {
             print("Message ID: \(messageID)")
         }
+        // fcmTokenをuser-defaultに保存
+        let defaults = UserDefaults.standard
+        defaults.set("sssss" ,forKey: "background")
+        print("back")
         
         completionHandler([.alert])
     }
@@ -157,6 +169,7 @@ extension AppDelegate {
         
         completionHandler()
     }
+
 }
 
 // MARK: - MessagingDelegate

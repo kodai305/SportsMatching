@@ -10,6 +10,9 @@ import UIKit
 import MessageKit
 
 class MailBoxTakagiViewController: MessagesViewController {
+    // メッセージ一覧画面から受け取る値
+    let roomID = ""
+    
     // 使うかどうかは後回し
     //let refreshControl = UIRefreshControl()
     
@@ -40,14 +43,13 @@ class MailBoxTakagiViewController: MessagesViewController {
     }
 
     // メッセージの読込/保存
-    let messageId = "message1" // XXX: 相手のIDと紐づくようにする
     func loadMessages() {
         let defaults  = UserDefaults.standard
-        let readdata  = defaults.data(forKey: messageId)
+        let readdata  = defaults.data(forKey: self.roomID)
     }
     func saveMessages() {
         let defaults = UserDefaults.standard
-        defaults.set(self.messageList ,forKey: messageId)
+        defaults.set(self.messageList ,forKey: self.roomID)
     }
     
     
@@ -134,7 +136,7 @@ extension MailBoxTakagiViewController: MessageInputBarDelegate {
                 self.messageList.append(message)
                 messagesCollectionView.insertSections([self.messageList.count - 1])
 
-                testRecvMessage()   
+                testRecvMessage()
             }
         }
 

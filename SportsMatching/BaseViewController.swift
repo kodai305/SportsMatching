@@ -34,6 +34,12 @@ class BaseViewController: UIViewController {
             }
             // [END_EXCLUDE]
         }
+        
+        // fcmTokenをuser-defaultに保存
+        let defaults = UserDefaults.standard
+        let data = defaults.string(forKey: "background")
+        print("data:")
+        print(data as Any)
     }
     
     func saveUID (uid: String) {
