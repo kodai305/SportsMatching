@@ -59,7 +59,6 @@ class MailBoxViewController: ButtonBarPagerTabStripViewController {
     func setViewController() {
         firstVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RecruiteHistory") as! MailBoxRecruiteViewController
         secondVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchHistory") as! MailBoxSearchViewController
-        secondVC.PartnerID = self.PartnerID
     }
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {

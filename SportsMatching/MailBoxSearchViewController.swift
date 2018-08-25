@@ -12,12 +12,10 @@ import XLPagerTabStrip
 class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITableViewDataSource, IndicatorInfoProvider  {
 
     @IBOutlet weak var tableView: UITableView!
-    
-    //応募ボタンから遷移してきた時に応募先のユーザーIDを記録
-    var PartnerID:String!
-    let defaults = UserDefaults.standard
+
     //ユーザーID、時間、メッセージの順で格納したArrayで管理
     var MailHistory = [[String]]()
+    let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,32 +24,12 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
         self.tableView.dataSource = self
         //セルの高さを設定（画面全体の5分の1に設定）
         self.tableView.rowHeight = self.view.frame.height / 5
-        
-        //時刻を取得(年月日、時分)
-        let f = DateFormatter()
-        f.timeStyle = .long
-        f.dateStyle = .short
-        f.locale = Locale(identifier: "ja_JP")
-        let now = Date()
-        
         //今までのメール履歴を取得
         if defaults.value(forKey: "History") != nil{
             MailHistory = defaults.value(forKey: "History") as! [[String]]
-            //応募ボタンからの遷移とそれ以外で分岐
-            if PartnerID != nil{
-                MailHistory.insert([PartnerID,f.string(from: now),"応募します"], at: 1)
-                defaults.set(MailHistory, forKey: "History")
-                self.tableView.reloadData()
-            }else{
-                self.tableView.reloadData()
-            }
-        }else{ //メール履歴がない場合
-            if PartnerID != nil{
-                MailHistory.append([PartnerID,f.string(from: now),"応募します"])
-                defaults.set(MailHistory, forKey: "History")
-                self.tableView.reloadData()
-            }
         }
+        
+        self.tableView.reloadData()
         
         // Do any additional setup after loading the view.
     }
@@ -73,6 +51,7 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
     
     // セクションの行数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(MailHistory.count)
         return MailHistory.count
     }
     

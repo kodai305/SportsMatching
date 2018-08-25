@@ -70,15 +70,25 @@ class SearchResultDetailViewController: BaseViewController{
             // 履歴タブを選択済みにする
             self.tabBarController?.selectedViewController = viewController
             
-            //応募履歴を一度も表示していない場合の処理
-            //親ビューであるMailBoxViewを経由して渡す
-            let mailboxview = viewController.topViewController as! MailBoxViewController
-            mailboxview.PartnerID = self.postDoc.data()["postUser"] as! String
+            //時刻を取得(年月日、時分)
+            let f = DateFormatter()
+            f.timeStyle = .long
+            f.dateStyle = .short
+            f.locale = Locale(identifier: "ja_JP")
+            let now = Date()
             
-            //応募履歴を一度は表示している場合の処理
-            //直接渡して、loadviewとviewDidLoadを再度発火
+            let defaults = UserDefaults.standard
+            var MailHistory = [[String]]()
+            //今までのメール履歴を取得
+            if defaults.value(forKey: "History") != nil{
+                MailHistory = defaults.value(forKey: "History") as! [[String]]
+                MailHistory.insert([self.postDoc.data()["postUser"] as! String,f.string(from: now),"応募します"], at: 1)
+                defaults.set(MailHistory, forKey: "History")
+            }else{ //メール履歴がない場合
+                MailHistory.append([self.postDoc.data()["postUser"] as! String,f.string(from: now),"応募します"])
+                defaults.set(MailHistory, forKey: "History")
+            }
             let nextView:MailBoxSearchViewController = segue.destination as! MailBoxSearchViewController
-            nextView.PartnerID = self.postDoc.data()["postUser"] as! String
             nextView.loadView()
             nextView.viewDidLoad()
         }
