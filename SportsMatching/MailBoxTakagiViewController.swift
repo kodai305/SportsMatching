@@ -74,7 +74,7 @@ extension MailBoxTakagiViewController: MessagesDataSource {
     func currentSender() -> Sender {
         return Sender(id: "12345", displayName: "自分")
     }
-
+    
     // 表示するメッセージの数
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
         return messageList.count
@@ -133,11 +133,24 @@ extension MailBoxTakagiViewController: MessageInputBarDelegate {
 
                 self.messageList.append(message)
                 messagesCollectionView.insertSections([self.messageList.count - 1])
+
+                testRecvMessage()   
             }
         }
+
+
         
         inputBar.inputTextView.text = String()
         messagesCollectionView.scrollToBottom()
+    }
+    
+    // テスト用 メッセージを返す
+    func testRecvMessage() {
+        let attributedText = NSAttributedString(string: "返信", attributes: [.font: UIFont.systemFont(ofSize: 15), .foregroundColor: UIColor.black])
+        let message = MockMessage(attributedText: attributedText, sender: Sender(id: "11111", displayName: "相手"), messageId: UUID().uuidString, date: Date())
+
+        self.messageList.append(message)
+        messagesCollectionView.insertSections([self.messageList.count - 1])
     }
     
 }
@@ -146,7 +159,8 @@ extension MailBoxTakagiViewController: MessageInputBarDelegate {
 extension MailBoxTakagiViewController: MessagesDisplayDelegate {
     // メッセージの色を変更（デフォルトは自分：白、相手：黒）
     func textColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
-        return isFromCurrentSender(message: message) ? .white : .darkText
+//        return isFromCurrentSender(message: message) ? .white : .darkText
+                return isFromCurrentSender(message: message) ? .white : .black
     }
     
     // メッセージの背景色を変更している（デフォルトは自分：緑、相手：グレー）
