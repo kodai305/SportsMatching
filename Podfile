@@ -4,6 +4,7 @@ target 'SportsMatching' do
   use_frameworks!
   pod 'Google-Mobile-Ads-SDK'
   pod 'JSQMessagesViewController' 
+  pod 'MessageKit'
   pod 'Firebase'
   pod 'Firebase/Auth'
   pod 'Firebase/Core'

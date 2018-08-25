@@ -7,141 +7,47 @@
 //
 
 import UIKit
-import JSQMessagesViewController
+import MessageKit
 
-
-
-class MailBoxTakagiViewController: JSQMessagesViewController {
-
+class MailBoxTakagiViewController: MessagesViewController {
+    // 使うかどうかは後回し
+    //let refreshControl = UIRefreshControl()
+    
+    // メッセージ内容に関するプロパティ
+    var messageList: [MockMessage] = []
+    
     // デバッグ用
     @IBAction func testButtonPushed(_ sender: Any) {
         print("messages_count:")
-        print(messages.count)
+        print(messageList.count)
     }
-    
-    // メッセージ内容に関するプロパティ
-    var messages: [JSQMessage] = []
-    
-    // 背景画像に関するプロパティ
-    var incomingBubble: JSQMessagesBubbleImage!
-    var outgoingBubble: JSQMessagesBubbleImage!
-    // アバター画像に関するプロパティ
-    var incomingAvatar: JSQMessagesAvatarImage!
-    var outgoingAvatar: JSQMessagesAvatarImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+
+        // MocMessageを使う場合は全部実装する必要がある
+        messagesCollectionView.messagesDataSource = self
+        messagesCollectionView.messagesLayoutDelegate = self
+        messagesCollectionView.messagesDisplayDelegate = self
+        messagesCollectionView.messageCellDelegate = self
+        messageInputBar.delegate = self
         
+        messageInputBar.sendButton.tintColor = UIColor.blue
         // メッセージのload
         //self.loadMessages()
         
-        // クリーンアップツールバーの設定
-        inputToolbar!.contentView!.leftBarButtonItem = nil
-        // 新しいメッセージを受信するたびに下にスクロールする
-        automaticallyScrollsToMostRecentMessage = true
-        
-        // 自分のsenderId, senderDisplayNameを設定
-        self.senderId = "user1"
-        self.senderDisplayName = "test"
-        
-        // 吹き出しの設定
-        let bubbleFactory = JSQMessagesBubbleImageFactory()
-        self.incomingBubble = bubbleFactory?.incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
-        self.outgoingBubble = bubbleFactory?.outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleBlue())
-        
-        // アバターの設定
-        self.incomingAvatar = JSQMessagesAvatarImageFactory.avatarImage(with: UIImage(named: "sample")!, diameter: 64)
-        self.outgoingAvatar = JSQMessagesAvatarImageFactory.avatarImage(with: UIImage(named: "sample")!, diameter: 64)
-
     }
 
-    //アイテムごとに参照するメッセージデータを返す
-    override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageDataForItemAt indexPath: IndexPath!) -> JSQMessageData! {
-        return messages[indexPath.row]
-    }
-    
-    //アイテムごとのMessageBubble(背景)を返す
-    override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAt indexPath: IndexPath!) -> JSQMessageBubbleImageDataSource! {
-        if messages[indexPath.row].senderId == senderId {
-            return JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(
-                with: UIColor(red: 112/255, green: 192/255, blue:  75/255, alpha: 1))
-        } else {
-            return JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(
-                with: UIColor(red: 229/255, green: 229/255, blue: 229/255, alpha: 1))
-        }
-    }
-    
-    //アイテムごとのセルを返す
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell
-        
-        if messages[indexPath.row].senderId == senderId {
-            cell.textView?.textColor = UIColor.white
-        } else {
-            cell.textView?.textColor = UIColor.darkGray
-        }
-        return cell
-    }
-    
-    //アイテムごとにアバター画像を返す
-    override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
-        
-        //senderId == 自分　だった場合表示しない
-        let senderId = messages[indexPath.row].senderId
-        
-        if senderId == "user1" {
-            return nil
-        }
-        return JSQMessagesAvatarImage.avatar(with: UIImage(named: "sample"))
-    }
-    
-    //アイテムの総数を返す
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return messages.count
-    }
-    
-    //Sendボタンが押された時に呼ばれる
-    override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
-        
-        //メッセージを追加
-        let message = JSQMessage(senderId: senderId, displayName: senderDisplayName, text: text)
-        self.messages.append(message!)
-        
-        //メッセージの送信処理を完了する(画面上にメッセージが表示される)
-        self.finishReceivingMessage(animated: true)
-        
-        //firebaseにデータを送信、保存する
-
-        //キーボードを閉じる
-        self.view.endEditing(true)
-        
-        //textFieldをクリアする
-        self.inputToolbar.contentView.textView.text = ""
-        
-        //テスト返信を呼ぶ
-        testRecvMessage()
-        
-        //saveMessages()
-    }
-    
-    // テスト用 メッセージを返す
-    func testRecvMessage() {
-        let message = JSQMessage(senderId: "sushi", displayName: "B", text: messages[messages.count-1].text)
-        self.messages.append(message!)
-        self.finishReceivingMessage(animated: true)
-    }
-    
     // メッセージの読込/保存
-    let messageId = "message1"
+    let messageId = "message1" // XXX: 相手のIDと紐づくようにする
     func loadMessages() {
         let defaults  = UserDefaults.standard
         let readdata  = defaults.data(forKey: messageId)
-        print(readdata)
     }
     func saveMessages() {
         let defaults = UserDefaults.standard
-        defaults.set(self.messages ,forKey: messageId)
+        defaults.set(self.messageList ,forKey: messageId)
     }
     
     
@@ -162,3 +68,135 @@ class MailBoxTakagiViewController: JSQMessagesViewController {
     */
 
 }
+
+extension MailBoxTakagiViewController: MessagesDataSource {
+    // 自分の情報を設定
+    func currentSender() -> Sender {
+        return Sender(id: "12345", displayName: "自分")
+    }
+
+    // 表示するメッセージの数
+    func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
+        return messageList.count
+    }
+
+    // メッセージの実態。返り値はMessageType
+    func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
+        return messageList[indexPath.section]
+    }
+    
+    // XXX: アバターの設定
+    // func configureAvatarView()
+    
+    // 自動で電話番号やURLを検出
+    func enabledDetectors(for message: MessageType, at indexPath: IndexPath, in     messagesCollectionView: MessagesCollectionView) -> [DetectorType] {
+            return [.url, .address, .phoneNumber, .date, .transitInformation]
+    }
+    
+}
+
+// MARK: - MessagesLayoutDelegate
+extension MailBoxTakagiViewController: MessagesLayoutDelegate {
+    
+    func cellTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        if indexPath.section % 3 == 0 {
+            return 10
+        }
+        return 0
+    }
+    
+    func messageTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        return 16
+    }
+    
+    func messageBottomLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        return 16
+    }
+}
+
+extension MailBoxTakagiViewController: MessageInputBarDelegate {
+    // メッセージ送信ボタンをタップした時の挙動
+    func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
+        
+        // Each NSTextAttachment that contains an image will count as one empty character in the text: String
+        for component in inputBar.inputTextView.components {
+            if let image = component as? UIImage {
+                
+                let imageMessage = MockMessage(image: image, sender: currentSender(), messageId: UUID().uuidString, date: Date())
+                messageList.append(imageMessage)
+                messagesCollectionView.insertSections([messageList.count - 1])
+                
+            } else if let text = component as? String {
+                let attributedText = NSAttributedString(string: text, attributes: [.font: UIFont.systemFont(ofSize: 15), .foregroundColor: UIColor.white])
+
+                let message = MockMessage(attributedText: attributedText, sender: currentSender(), messageId: UUID().uuidString, date: Date())
+
+                self.messageList.append(message)
+                messagesCollectionView.insertSections([self.messageList.count - 1])
+            }
+        }
+        
+        inputBar.inputTextView.text = String()
+        messagesCollectionView.scrollToBottom()
+    }
+    
+}
+
+// MARK: - MessagesDisplayDelegate
+extension MailBoxTakagiViewController: MessagesDisplayDelegate {
+    // メッセージの色を変更（デフォルトは自分：白、相手：黒）
+    func textColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
+        return isFromCurrentSender(message: message) ? .white : .darkText
+    }
+    
+    // メッセージの背景色を変更している（デフォルトは自分：緑、相手：グレー）
+    func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
+        return isFromCurrentSender(message: message) ?
+            UIColor(red: 69/255, green: 193/255, blue: 89/255, alpha: 1) :
+            UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
+    }
+    
+    // メッセージの枠にしっぽを付ける
+    func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
+        let corner: MessageStyle.TailCorner = isFromCurrentSender(message: message) ? .bottomRight : .bottomLeft
+        return .bubbleTail(corner, .curved)
+    }
+    
+    // アイコンをセット
+    func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
+
+        let initName = message.sender.displayName
+        // そこからイニシャルを生成するとよい
+        let avatar = Avatar(initials: initName)
+        avatarView.set(avatar: avatar)
+    }
+
+}
+
+// MARK: - MessageCellDelegate
+extension MailBoxTakagiViewController: MessageCellDelegate {
+    
+    func didTapAvatar(in cell: MessageCollectionViewCell) {
+        print("Avatar tapped")
+    }
+    
+    func didTapMessage(in cell: MessageCollectionViewCell) {
+        print("Message tapped")
+    }
+    
+    func didTapCellTopLabel(in cell: MessageCollectionViewCell) {
+        print("Top cell label tapped")
+    }
+    
+    func didTapMessageTopLabel(in cell: MessageCollectionViewCell) {
+        print("Top message label tapped")
+    }
+    
+    func didTapMessageBottomLabel(in cell: MessageCollectionViewCell) {
+        print("Bottom label tapped")
+    }
+    
+}
+
+
+
