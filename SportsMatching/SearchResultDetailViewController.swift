@@ -42,75 +42,70 @@ class SearchResultDetailViewController: BaseViewController{
     @IBAction func entryButtonTapped(_ sender: Any) {
         // XXX:ポップアップを出して応募メッセージ入力フォーマットを出す？
 
-        
+        let alert = UIAlertController(title:"投稿者へメッセージ", message:"message", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addTextField(configurationHandler: nil)
 
-        
-        
-        // 募集者に通知を送る
-        let postID = self.postDoc.data()["postUser"] as! String
-        functions.httpsCallable("sendNotification").call(["postID": postID]) { (result, error) in
-            print(result?.data as Any)
-            print("function is called")
-            if let error = error as NSError? {
-                SVProgressHUD.showError(withStatus: "失敗")
-                if error.domain == FunctionsErrorDomain {
-                    let code = FunctionsErrorCode(rawValue: error.code)
-                    let message = error.localizedDescription
-                    let details = error.userInfo[FunctionsErrorDetailsKey]
+        let okAction = UIAlertAction(title:"送信",style: UIAlertActionStyle.default){(action:UIAlertAction) in
+            if let textField = alert.textFields?.first {  // ?? .first
+                let messageStr:String = textField.text!
+                if (messageStr.isEmpty) {
+                    // XXX: 入力されてなかったときの処理
+                    SVProgressHUD.showError(withStatus: "メッセージを入力してください")
+                    return
                 }
-            } else {
-                SVProgressHUD.showSuccess(withStatus: "成功")
+                SVProgressHUD.show(withStatus: "送信中")
+                // 募集者に通知を送る
+                let postID = self.postDoc.data()["postUser"] as! String
+                self.functions.httpsCallable("sendNotification").call(["postID": postID, "message": messageStr]) { (result, error) in
+                    print(result?.data as Any)
+                    print("function is called")
+                    if let error = error as NSError? {
+                        SVProgressHUD.showError(withStatus: "失敗")
+                        if error.domain == FunctionsErrorDomain {
+                            let code = FunctionsErrorCode(rawValue: error.code)
+                            let message = error.localizedDescription
+                            let details = error.userInfo[FunctionsErrorDetailsKey]
+                        }
+                    } else {
+                        SVProgressHUD.showSuccess(withStatus: "成功")
+                        // 応募履歴にデータを追加
+                        self.addApplyHistoryArray(postID: postID)
+                        
+                        // 履歴タブのViewControllerを取得する
+                        let viewController = self.tabBarController?.viewControllers![3] as! UINavigationController
+                        // 履歴タブを選択済みにする
+                        self.tabBarController?.selectedViewController = viewController
+                        //stororyboard内であることをここで定義
+                        let storyboard: UIStoryboard = self.storyboard!
+                        //移動先のstoryboardを選択
+                        let nextView = storyboard.instantiateViewController(withIdentifier: "SearchHistory")
+                        //移動する
+                        self.show(nextView, sender: nil)
+                    }
+                }
 
-                // 履歴タブのViewControllerを取得する
-                let viewController = self.tabBarController?.viewControllers![3] as! UINavigationController
-                // 履歴タブを選択済みにする
-                self.tabBarController?.selectedViewController = viewController
-                //stororyboard内であることをここで定義
-                let storyboard: UIStoryboard = self.storyboard!
-                //移動先のstoryboardを選択
-                let nextView = storyboard.instantiateViewController(withIdentifier: "SearchHistory")
-                //移動する
-                self.show(nextView, sender: nil)
-
-                print("idousimasu")
             }
         }
-        
+        alert.addAction(okAction)
+        let cancelButton = UIAlertAction(title: "キャンセル",style:UIAlertActionStyle.cancel, handler: nil)
+        alert.addAction(cancelButton)
+        present(alert, animated: true, completion: nil)
     }
 
-/*
-    // Segue 準備
-    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
-        if segue.identifier == "toMailBoxViewController" {
-            // 履歴タブのViewControllerを取得する
-            let viewController = self.tabBarController?.viewControllers![3] as! UINavigationController
-            // 履歴タブを選択済みにする
-            self.tabBarController?.selectedViewController = viewController
-            
-            //時刻を取得(年月日、時分)
-            let f = DateFormatter()
-            f.timeStyle = .long
-            f.dateStyle = .short
-            f.locale = Locale(identifier: "ja_JP")
-            let now = Date()
-            
-            let defaults = UserDefaults.standard
-            var MailHistory = [[String]]()
-            //今までのメール履歴を取得
-            if defaults.value(forKey: "History") != nil{
-                MailHistory = defaults.value(forKey: "History") as! [[String]]
-                MailHistory.insert([self.postDoc.data()["postUser"] as! String,f.string(from: now),"応募します"], at: 1)
-                defaults.set(MailHistory, forKey: "History")
-            }else{ //メール履歴がない場合
-                MailHistory.append([self.postDoc.data()["postUser"] as! String,f.string(from: now),"応募します"])
-                defaults.set(MailHistory, forKey: "History")
-            }
-            let nextView:MailBoxSearchViewController = segue.destination as! MailBoxSearchViewController
-            //nextView.loadView()
-            //nextView.viewDidLoad()
+    func addApplyHistoryArray(postID: String) {
+        var StubApplyHistory:[String] = []
+        let defaults = UserDefaults.standard
+        //今までの応募履歴を取得
+        if defaults.value(forKey: "ApplyHistory") != nil {
+            StubApplyHistory = defaults.value(forKey: "ApplyHistory") as! [String]
+            StubApplyHistory.insert(postID, at: 0)
+            defaults.set(StubApplyHistory, forKey: "ApplyHistory")
+        } else { //応募履歴がない場合
+            StubApplyHistory.append(postID)
+            defaults.set(StubApplyHistory, forKey: "ApplyHistory")
         }
     }
-*/
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
