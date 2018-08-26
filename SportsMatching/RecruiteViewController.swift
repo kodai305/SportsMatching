@@ -199,9 +199,9 @@ class RecruiteViewController: BaseFormViewController {
         //FireStoreに投稿データを保存
         //複数選択可能な項目はSetからArrayへの変換を行う
         let db = Firestore.firestore()
-        let settings = db.settings
-        settings.areTimestampsInSnapshotsEnabled = true
-        db.settings = settings
+//        let settings = db.settings
+//        settings.areTimestampsInSnapshotsEnabled = true
+//        db.settings = settings
         db.collection("posts").document(myUID).setData([
             "postedTime"  : f.string(from: now),
             "updateTime"  : f.string(from: now),

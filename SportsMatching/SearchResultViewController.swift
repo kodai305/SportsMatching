@@ -33,9 +33,6 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
         SVProgressHUD.show(withStatus: "検索中")
         
         let db = Firestore.firestore()
-        let settings = db.settings
-        settings.areTimestampsInSnapshotsEnabled = true
-        db.settings = settings
         
         //postsコレクションから条件に一致するドキュメントを取得
         db.collection("posts")
