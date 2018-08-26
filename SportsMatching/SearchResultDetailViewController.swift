@@ -78,12 +78,6 @@ class SearchResultDetailViewController: BaseViewController{
                         let viewController = self.tabBarController?.viewControllers![3] as! UINavigationController
                         // 履歴タブを選択済みにする
                         self.tabBarController?.selectedViewController = viewController
-                        //stororyboard内であることをここで定義
-                        let storyboard: UIStoryboard = self.storyboard!
-                        //移動先のstoryboardを選択
-                        let nextView = storyboard.instantiateViewController(withIdentifier: "SearchHistory")
-                        //移動する
-                        self.show(nextView, sender: nil)
                     }
                 }
             }
