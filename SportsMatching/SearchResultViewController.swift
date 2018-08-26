@@ -10,8 +10,9 @@ import UIKit
 import FirebaseFirestore
 import FirebaseStorage
 import SVProgressHUD
+import DZNEmptyDataSet
 
-class SearchResultViewController: BaseViewController,UITableViewDelegate, UITableViewDataSource {
+class SearchResultViewController: BaseViewController,UITableViewDelegate, UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     // サムネイル画像格納用
     var postedImage:UIImage!
     // firestoreから読み込んだDocumentを格納する配列
@@ -25,14 +26,11 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
     @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        self.tableView.rowHeight = self.view.frame.height / 5
         
         SVProgressHUD.show(withStatus: "検索中")
-        //デリゲート
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        //セルの高さを設定（画面全体の5分の1に設定）
-        self.tableView.rowHeight = self.view.frame.height / 5
         
         let db = Firestore.firestore()
         let settings = db.settings
@@ -41,8 +39,8 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
         
         //postsコレクションから条件に一致するドキュメントを取得
         db.collection("posts")
-            .whereField("category", isEqualTo: category)
-            .whereField("prefecture", isEqualTo: prefecture)
+            .whereField("category", isEqualTo: self.category)
+            .whereField("prefecture", isEqualTo: self.prefecture)
             //.limit(to: 5)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
@@ -53,18 +51,29 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
                         print(String(describing: type(of: document.data())))
                         self.LoadedDocumentArray.append(document)
                     }
-                    print("count :")
+                    print("loadcount :")
                     print(self.LoadedDocumentArray.count)
-                    //ここでreloadすると、検索結果一覧画面を開いている場合reloadが繰り返される
-                    self.tableView.reloadData()
                     SVProgressHUD.showSuccess(withStatus: String(self.LoadedDocumentArray.count) + "件の投稿があります")
                     SVProgressHUD.dismiss(withDelay: 2)
-                }
+                    self.setTableview()
+                    
             }
-
-        print("count :")
-        print(self.LoadedDocumentArray.count)
+        }
+        
         // Do any additional setup after loading the view.
+    }
+    
+    func setTableview() {
+        //デリゲート
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.emptyDataSetSource = self
+        self.tableView.emptyDataSetDelegate = self
+        //セルの高さを設定（画面全体の5分の1に設定）
+        self.tableView.rowHeight = self.view.frame.height / 5
+        self.tableView.reloadData()
+        print("endcount :")
+        print(self.LoadedDocumentArray.count)
     }
     
     override func didReceiveMemoryWarning() {
@@ -147,6 +156,18 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
             let nextView:SearchResultDetailViewController = segue.destination as! SearchResultDetailViewController
             nextView.postDoc = self.sendDocument
         }
+    }
+    
+    //tableViewのセクションの行数が0の時小島さんの画像を出す
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        tableView.tableFooterView = UIView(frame: .zero)
+        return UIImage(named: "riria")
+    }
+    
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let str = "まだ募集がありません"
+        let attrs = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
+        return NSAttributedString(string: str, attributes: attrs)
     }
     
     

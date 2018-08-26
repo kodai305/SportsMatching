@@ -19,4 +19,5 @@ target 'SportsMatching' do
   pod 'ImageRow', '~> 3.0'
   pod 'XLPagerTabStrip', '~> 8.0'
   pod 'SVProgressHUD'
+  pod 'DZNEmptyDataSet'
 end
