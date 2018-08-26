@@ -129,7 +129,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         // fcmTokenをuser-defaultに保存
         let defaults = UserDefaults.standard
-        defaults.set("kkkkk" ,forKey: "background")
+        defaults.set("おおおお" ,forKey: "background")
         print("back ground")
         completionHandler(UIBackgroundFetchResult.newData)
     }
@@ -151,7 +151,7 @@ extension AppDelegate {
         }
         // fcmTokenをuser-defaultに保存
         let defaults = UserDefaults.standard
-        defaults.set("sssss" ,forKey: "background")
+        defaults.set("aaaa" ,forKey: "background")
         print("back")
         
         completionHandler([.alert])

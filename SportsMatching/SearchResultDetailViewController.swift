@@ -42,6 +42,10 @@ class SearchResultDetailViewController: BaseViewController{
     @IBAction func entryButtonTapped(_ sender: Any) {
         // XXX:ポップアップを出して応募メッセージ入力フォーマットを出す？
 
+        
+
+        
+        
         // 募集者に通知を送る
         let postID = self.postDoc.data()["postUser"] as! String
         functions.httpsCallable("sendNotification").call(["postID": postID]) { (result, error) in
@@ -56,12 +60,25 @@ class SearchResultDetailViewController: BaseViewController{
                 }
             } else {
                 SVProgressHUD.showSuccess(withStatus: "成功")
-                // Segueを呼び出す
-                self.performSegue(withIdentifier: "toMailBoxViewController",sender: nil)
+
+                // 履歴タブのViewControllerを取得する
+                let viewController = self.tabBarController?.viewControllers![3] as! UINavigationController
+                // 履歴タブを選択済みにする
+                self.tabBarController?.selectedViewController = viewController
+                //stororyboard内であることをここで定義
+                let storyboard: UIStoryboard = self.storyboard!
+                //移動先のstoryboardを選択
+                let nextView = storyboard.instantiateViewController(withIdentifier: "SearchHistory")
+                //移動する
+                self.show(nextView, sender: nil)
+
+                print("idousimasu")
             }
         }
+        
     }
-    
+
+/*
     // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         if segue.identifier == "toMailBoxViewController" {
@@ -89,11 +106,11 @@ class SearchResultDetailViewController: BaseViewController{
                 defaults.set(MailHistory, forKey: "History")
             }
             let nextView:MailBoxSearchViewController = segue.destination as! MailBoxSearchViewController
-            nextView.loadView()
-            nextView.viewDidLoad()
+            //nextView.loadView()
+            //nextView.viewDidLoad()
         }
     }
-    
+*/
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

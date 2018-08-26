@@ -355,7 +355,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JkF-X4-PHb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4884" y="2862.8185907046477"/>
+            <point key="canvasLocation" x="4884" y="2863"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="xAo-RM-wK9">
@@ -658,7 +658,6 @@
                         <barButtonItem key="rightBarButtonItem" title="応募" id="WuB-bH-36L">
                             <connections>
                                 <action selector="entryButtonTapped:" destination="jWl-L5-TpW" id="15P-nZ-8sU"/>
-                                <segue destination="57Z-R9-07r" kind="showDetail" identifier="toMailBoxViewController" id="Gwo-hC-qPB"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
