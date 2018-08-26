@@ -59,6 +59,7 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
         // 設定したIDでUITableViewCell のインスタンスを生成
         let cell = table.dequeueReusableCell(withIdentifier: "RecruiteMailBoxCell",
                                              for: indexPath) as! MailBoxCell
+        cell.PartnerNameLabel.text = "test"
         return cell
     }
     
