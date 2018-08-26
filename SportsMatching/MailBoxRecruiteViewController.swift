@@ -48,7 +48,7 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
     func tableView(_ table: UITableView,cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // 設定したIDでUITableViewCell のインスタンスを生成
         let cell = table.dequeueReusableCell(withIdentifier: "RecruiteMailBoxCell",
-                                             for: indexPath) as! RecruiteMailBoxCell
+                                             for: indexPath) as! MailBoxCell
         return cell
     }
     
