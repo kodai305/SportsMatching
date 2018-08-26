@@ -35,9 +35,6 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
         self.tableView.rowHeight = self.view.frame.height / 5
         
         let db = Firestore.firestore()
-        let settings = db.settings
-        settings.areTimestampsInSnapshotsEnabled = true
-        db.settings = settings
         
         //postsコレクションから条件に一致するドキュメントを取得
         db.collection("posts")

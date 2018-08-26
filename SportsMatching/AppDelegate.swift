@@ -13,6 +13,7 @@ import UserNotifications
 import Firebase
 import FirebaseMessaging
 import FirebaseCore
+import FirebaseFirestore
 import FirebaseAuth
 import SVProgressHUD
 
@@ -23,6 +24,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        
+        // setup firestore
+        // Tell Cloud Firestore to use the new Timestamp object
+        let db = Firestore.firestore()
+        let settings = db.settings
+        settings.areTimestampsInSnapshotsEnabled = true
+        db.settings = settings
+        
         // For Authentication
         if let _ = Auth.auth().currentUser {
             // ログイン中

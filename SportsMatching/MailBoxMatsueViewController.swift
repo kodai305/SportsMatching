@@ -25,9 +25,9 @@ class MailBoxMatsueViewController: JSQMessagesViewController  {
         super.viewDidLoad()
         
         //firestoreのおまじない（入れないとコンソールで警告）
-        let settings = db.settings
-        settings.areTimestampsInSnapshotsEnabled = true
-        db.settings = settings
+        //let settings = db.settings
+        //settings.areTimestampsInSnapshotsEnabled = true
+        //db.settings = settings
 
         
         senderDisplayName = "A"
