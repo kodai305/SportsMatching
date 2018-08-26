@@ -71,6 +71,9 @@ class SearchResultDetailViewController: BaseViewController{
                         // 応募履歴にデータを追加
                         self.addApplyHistoryArray(postID: postID)
                         
+                        // XXX: ここで投稿内容をUserDefaultとかに保存しておかないと
+                        //      応募履歴のセルに投稿情報を表示できない？？
+                        
                         // 履歴タブのViewControllerを取得する
                         let viewController = self.tabBarController?.viewControllers![3] as! UINavigationController
                         // 履歴タブを選択済みにする
@@ -83,7 +86,6 @@ class SearchResultDetailViewController: BaseViewController{
                         self.show(nextView, sender: nil)
                     }
                 }
-
             }
         }
         alert.addAction(okAction)
@@ -95,7 +97,9 @@ class SearchResultDetailViewController: BaseViewController{
     func addApplyHistoryArray(postID: String) {
         var StubApplyHistory:[String] = []
         let defaults = UserDefaults.standard
-        //今までの応募履歴を取得
+        // XXX: 2回応募できないようにする必要がある？
+        
+        // 今までの応募履歴を取得
         if defaults.value(forKey: "ApplyHistory") != nil {
             StubApplyHistory = defaults.value(forKey: "ApplyHistory") as! [String]
             StubApplyHistory.insert(postID, at: 0)
