@@ -1,5 +1,5 @@
 //
-//  MailBoxTakagiViewController.swift
+//  MailViewController.swift
 //  SportsMatching
 //
 //  Created by 高木広大 on 2018/08/10.
@@ -139,8 +139,6 @@ extension MailViewController: MessageInputBarDelegate {
                 testRecvMessage()
             }
         }
-
-
         
         inputBar.inputTextView.text = String()
         messagesCollectionView.scrollToBottom()

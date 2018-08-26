@@ -217,10 +217,10 @@
             </objects>
             <point key="canvasLocation" x="4080.8000000000002" y="2862.8185907046477"/>
         </scene>
-        <!--Mail Box Takagi View Controller-->
+        <!--Mail View Controller-->
         <scene sceneID="JAU-Gf-cha">
             <objects>
-                <viewController id="XEq-qz-s82" customClass="MailBoxTakagiViewController" customModule="SportsMatching" sceneMemberID="viewController">
+                <viewController id="XEq-qz-s82" customClass="MailViewController" customModule="SportsMatching" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xff-K5-9gz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1349,6 +1349,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="wwG-UP-1zQ"/>
         <segue reference="dYF-6A-Iab"/>
-        <segue reference="Lbe-8n-gZh"/>
+        <segue reference="tjC-Lk-eCX"/>
     </inferredMetricsTieBreakers>
 </document>
