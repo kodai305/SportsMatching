@@ -9,7 +9,7 @@
 import UIKit
 import MessageKit
 
-class MailBoxTakagiViewController: MessagesViewController {
+class MailViewController: MessagesViewController {
     // メッセージ一覧画面から受け取る値
     let roomID = ""
     
@@ -71,7 +71,7 @@ class MailBoxTakagiViewController: MessagesViewController {
 
 }
 
-extension MailBoxTakagiViewController: MessagesDataSource {
+extension MailViewController: MessagesDataSource {
     // 自分の情報を設定
     func currentSender() -> Sender {
         return Sender(id: "12345", displayName: "自分")
@@ -98,7 +98,7 @@ extension MailBoxTakagiViewController: MessagesDataSource {
 }
 
 // MARK: - MessagesLayoutDelegate
-extension MailBoxTakagiViewController: MessagesLayoutDelegate {
+extension MailViewController: MessagesLayoutDelegate {
     
     func cellTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
         if indexPath.section % 3 == 0 {
@@ -116,7 +116,7 @@ extension MailBoxTakagiViewController: MessagesLayoutDelegate {
     }
 }
 
-extension MailBoxTakagiViewController: MessageInputBarDelegate {
+extension MailViewController: MessageInputBarDelegate {
     // メッセージ送信ボタンをタップした時の挙動
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
         
@@ -158,7 +158,7 @@ extension MailBoxTakagiViewController: MessageInputBarDelegate {
 }
 
 // MARK: - MessagesDisplayDelegate
-extension MailBoxTakagiViewController: MessagesDisplayDelegate {
+extension MailViewController: MessagesDisplayDelegate {
     // メッセージの色を変更（デフォルトは自分：白、相手：黒）
     func textColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
 //        return isFromCurrentSender(message: message) ? .white : .darkText
@@ -190,7 +190,7 @@ extension MailBoxTakagiViewController: MessagesDisplayDelegate {
 }
 
 // MARK: - MessageCellDelegate
-extension MailBoxTakagiViewController: MessageCellDelegate {
+extension MailViewController: MessageCellDelegate {
     
     func didTapAvatar(in cell: MessageCollectionViewCell) {
         print("Avatar tapped")

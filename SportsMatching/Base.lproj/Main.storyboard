@@ -245,7 +245,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AZb-bE-1CG" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="bxe-2u-Vrg" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4081" y="4352"/>
+            <point key="canvasLocation" x="4498" y="4371"/>
         </scene>
         <!--Mail Box Matsue View Controller-->
         <scene sceneID="edd-lY-rJS">
@@ -268,7 +268,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1ED-fr-jaK" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="vjr-su-x7i" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4884" y="4352"/>
+            <point key="canvasLocation" x="5692" y="4372"/>
         </scene>
         <!--Mail Box Search View Controller-->
         <scene sceneID="uQT-OU-Tzt">
@@ -1338,7 +1338,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="G1q-vX-7N1" kind="relationship" relationship="rootViewController" id="Q23-7p-eKK"/>
+                        <segue destination="XEq-qz-s82" kind="relationship" relationship="rootViewController" id="Lbe-8n-gZh"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fdC-Wy-rA5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1349,5 +1349,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="wwG-UP-1zQ"/>
         <segue reference="dYF-6A-Iab"/>
+        <segue reference="Lbe-8n-gZh"/>
     </inferredMetricsTieBreakers>
 </document>

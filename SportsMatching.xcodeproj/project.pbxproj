@@ -19,7 +19,7 @@
 		4735B105211AF34A009D1323 /* MailBoxSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B104211AF34A009D1323 /* MailBoxSearchViewController.swift */; };
 		4735B107211C7B84009D1323 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B106211C7B84009D1323 /* SignUpViewController.swift */; };
 		4735B109211C8526009D1323 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B108211C8526009D1323 /* SignInViewController.swift */; };
-		4735B10B211DCD63009D1323 /* MailBoxTakagiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B10A211DCD63009D1323 /* MailBoxTakagiViewController.swift */; };
+		4735B10B211DCD63009D1323 /* MailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B10A211DCD63009D1323 /* MailViewController.swift */; };
 		4735B10D211DCD75009D1323 /* MailBoxMatsueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B10C211DCD74009D1323 /* MailBoxMatsueViewController.swift */; };
 		4735B11221232984009D1323 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4735B11121232984009D1323 /* GoogleService-Info.plist */; };
 		4735B11F21295CA3009D1323 /* BaseFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B11E21295CA3009D1323 /* BaseFormViewController.swift */; };
@@ -49,7 +49,7 @@
 		4735B104211AF34A009D1323 /* MailBoxSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailBoxSearchViewController.swift; sourceTree = "<group>"; };
 		4735B106211C7B84009D1323 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		4735B108211C8526009D1323 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
-		4735B10A211DCD63009D1323 /* MailBoxTakagiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailBoxTakagiViewController.swift; sourceTree = "<group>"; };
+		4735B10A211DCD63009D1323 /* MailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailViewController.swift; sourceTree = "<group>"; };
 		4735B10C211DCD74009D1323 /* MailBoxMatsueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailBoxMatsueViewController.swift; sourceTree = "<group>"; };
 		4735B10E21231B6D009D1323 /* SportsMatching.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SportsMatching.entitlements; sourceTree = "<group>"; };
 		4735B11121232984009D1323 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -135,10 +135,10 @@
 				4735B102211AF1C4009D1323 /* MailBoxRecruiteViewController.swift */,
 				4735B104211AF34A009D1323 /* MailBoxSearchViewController.swift */,
 				CEA6552B212EE89100C4B94A /* MailBoxCell.swift */,
-				4735B10A211DCD63009D1323 /* MailBoxTakagiViewController.swift */,
-				4735B10C211DCD74009D1323 /* MailBoxMatsueViewController.swift */,
+				4735B10A211DCD63009D1323 /* MailViewController.swift */,
 				4735B12221311590009D1323 /* MockMessage.swift */,
 				4735B0CB2115DBC9009D1323 /* Assets.xcassets */,
+				4735B10C211DCD74009D1323 /* MailBoxMatsueViewController.swift */,
 				4735B0CD2115DBC9009D1323 /* LaunchScreen.storyboard */,
 				4735B0D02115DBC9009D1323 /* Info.plist */,
 				4735B11121232984009D1323 /* GoogleService-Info.plist */,
@@ -320,7 +320,7 @@
 				4735B0C42115DBC6009D1323 /* BaseViewController.swift in Sources */,
 				CEBB289A211A9FBD00C7FFFE /* SerachResultCell.swift in Sources */,
 				4735B0C22115DBC6009D1323 /* AppDelegate.swift in Sources */,
-				4735B10B211DCD63009D1323 /* MailBoxTakagiViewController.swift in Sources */,
+				4735B10B211DCD63009D1323 /* MailViewController.swift in Sources */,
 				CEBB28A0211AC05C00C7FFFE /* SearchResultDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
