@@ -14,7 +14,6 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
     @IBOutlet weak var tableView: UITableView!
 
     var StubApplyHistory:[String] = []
-    let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +29,7 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         // 今までの応募履歴を取得
+        let defaults = UserDefaults.standard
         if defaults.value(forKey: "ApplyHistory") != nil {
             StubApplyHistory = defaults.value(forKey: "ApplyHistory") as! [String]
         }

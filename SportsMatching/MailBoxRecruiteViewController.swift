@@ -11,6 +11,7 @@ import XLPagerTabStrip
 
 class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UITableViewDataSource, IndicatorInfoProvider {
     
+    var StubRecruiteHistory:[String] = []
 
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
@@ -24,6 +25,16 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
         // Do any additional setup after loading the view.
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // 今までの募集履歴を取得
+        let defaults = UserDefaults.standard
+        if defaults.value(forKey: "RecruiteHistory") != nil {
+            StubRecruiteHistory = defaults.value(forKey: "RecruiteHistory") as! [String]
+        }
+        self.tableView.reloadData()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -43,7 +54,6 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
-    
     
     func tableView(_ table: UITableView,cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // 設定したIDでUITableViewCell のインスタンスを生成
