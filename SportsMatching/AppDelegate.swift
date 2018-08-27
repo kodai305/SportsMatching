@@ -17,13 +17,19 @@ import FirebaseFirestore
 import FirebaseAuth
 import SVProgressHUD
 
+import FacebookCore
+import FacebookLogin
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+    
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        
+        SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         // setup firestore
         // Tell Cloud Firestore to use the new Timestamp object
@@ -193,10 +199,51 @@ extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
         print("Received data message: \(remoteMessage.appData)")
     }
+}
+//facebook認証用
+extension AppDelegate: LoginButtonDelegate {
+    //application:openUrl:options:を追加
+    @available(iOS 9.0, *)
+    
+    func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any])
+        -> Bool {
+            return SDKApplicationDelegate.shared.application(application,
+                                                             open: url,
+                                                             options: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! [UIApplicationOpenURLOptionsKey : Any])
+    }
+    //loginButtonDidCompleteLogin:result:を追加
+    func loginButtonDidCompleteLogin(_ loginButton: LoginButton, result: LoginResult) {
+        switch result {
+        case let LoginResult.failed(error):
+            print(error)
+            break
+        case let LoginResult.success(_, _, token):
+            let credential = FacebookAuthProvider.credential(withAccessToken: token.authenticationToken)
+            // Firebaseにcredentialを渡してlogin
+            Auth.auth().signInAndRetrieveData(with: credential) { (fireUser, fireError) in
+                if let error = fireError {
+                    print(error)
+                    print("cant connect firebase")
+                    return
+                }
+                // ログインに成功した場合の挙動
+                if let loginVC = self.window?.rootViewController?.presentedViewController{
+                    print("success")
+                    //facebookのログイン画面を閉じる
+                    loginVC.dismiss(animated: true, completion: nil)
+                    //  main画面へ遷移
+                    let storyboard:UIStoryboard =  UIStoryboard(name: "Main",bundle:nil)
+                    self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "toMain")
+                }
+            }
+        default:
+            break
+        }
+        
+    }
+    //loginButtonDidLogOutを追加
+    func loginButtonDidLogOut(_ loginButton: LoginButton) {
+        print("loginButtonDidLogOut")
+    }
 
 }
-
-
-
-
-

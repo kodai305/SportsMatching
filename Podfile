@@ -20,4 +20,7 @@ target 'SportsMatching' do
   pod 'XLPagerTabStrip', '~> 8.0'
   pod 'SVProgressHUD'
   pod 'DZNEmptyDataSet'
+  pod 'FacebookCore'
+  pod 'FacebookLogin'
+  pod 'FBSDKLoginKit'
 end

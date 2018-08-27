@@ -352,7 +352,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="認証ボタン(スキップ)"/>
                                 <connections>
-                                    <segue destination="IPH-cI-EL2" kind="presentation" id="eD5-kH-Vcs"/>
+                                    <segue destination="IPH-cI-EL2" kind="presentation" identifier="toTopViewController" id="eD5-kH-Vcs"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ホーム画像(ローディング)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PDl-Cf-I3O">

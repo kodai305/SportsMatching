@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import SVProgressHUD
+import FacebookLogin
 
 class SignUpViewController: UIViewController {
 
@@ -29,6 +30,12 @@ class SignUpViewController: UIViewController {
         usernameTextField.placeholder = "user name"
         emailTextField.placeholder = "email"
         passTextField.placeholder = "pass"
+        
+        //Facebookのログインボタン
+        let loginButton = LoginButton(readPermissions: [ .email ])
+        loginButton.delegate = UIApplication.shared.delegate as! AppDelegate
+        loginButton.center = view.center
+        view.addSubview(loginButton)
 
     }
 
