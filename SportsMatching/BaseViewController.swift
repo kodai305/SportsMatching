@@ -34,10 +34,6 @@ class BaseViewController: UIViewController {
             }
             // [END_EXCLUDE]
         }
-        let defaults = UserDefaults.standard
-        let data = defaults.string(forKey: "background")
-        print("background:")
-        print(data)
     }
     
     func saveUID (uid: String) {

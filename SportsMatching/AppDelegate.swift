@@ -139,21 +139,59 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     
-    // アプリがバックグラウンド状態の時に通知を受け取った場合の処理を行う。//  "content_available" : true が必要
+    // アプリがバックグラウンド状態の時に通知を受け取った場合の処理を行う。
+    //  fcmのjsonに"content_available" : true が必要
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        // fcmTokenをuser-defaultに保存
-        let defaults = UserDefaults.standard
-        defaults.set("おおおお" ,forKey: "background")
-        print("back ground")
+        var msgType:String = ""
+        var sender:String = ""
+        
+        let key: Array! = Array(userInfo.keys)
+        if key == nil {
+            return
+        }
+        for i in 0..<key.count {
+            let key0 = key[i] as! String
+            let value0 = userInfo["\(key0)"]
+            if let stubValue = value0 {
+                let UnwrapValue = String(describing: stubValue)
+                // 新規応募の場合
+                if (key0 == "msgType") {
+                    msgType = UnwrapValue
+                }
+                if (key0 == "sender") {
+                    sender =  UnwrapValue
+                }
+                
+            }
+        }
+        if msgType == "NewApply" {
+            // Userdefaultに保存
+            var StubRecruite:[String] = []
+            let defaults = UserDefaults.standard
+            // XXX: 2回応募できないようにする必要がある？
+            
+            // 今までの応募履歴を取得
+            if defaults.value(forKey: "ApplyRecruite") != nil {
+                StubRecruite = defaults.value(forKey: "ApplyRecruite") as! [String]
+                StubRecruite.insert(sender, at: 0)
+                defaults.set(StubRecruite, forKey: "ApplyRecruite")
+            } else { //応募履歴がない場合
+                StubRecruite.append(sender)
+                defaults.set(StubRecruite, forKey: "ApplyRecruite")
+            }
+        }
         completionHandler(UIBackgroundFetchResult.newData)
     }
 
+    
 }
 
 // MARK: - UNUserNotificationCenterDelegate
 extension AppDelegate {
-    // 通知を受け取った時に(開く前に)呼ばれるメソッド　//background時は呼ばれない // "content_available" : trueがあっても
+    // 通知を受け取った時に(開く前に)呼ばれるメソッド
+    //background時は呼ばれない
+    // "content_available" : trueがあっても
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
