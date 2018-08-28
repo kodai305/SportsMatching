@@ -9,8 +9,17 @@
 import UIKit
 import FirebaseFirestore
 
+import FirebaseAuth
+
 class MyPageViewController: BaseViewController {
     
+    @IBAction func LogOutButton(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.

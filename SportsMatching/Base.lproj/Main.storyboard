@@ -100,6 +100,15 @@
                                     <segue destination="RdO-09-FdY" kind="show" id="hCn-Ki-Ili"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CgD-Tg-2zT">
+                                <rect key="frame" x="130" y="363" width="122" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title=" ログアウト"/>
+                                <connections>
+                                    <action selector="LogOutButton:" destination="i3S-RI-yy6" eventType="touchUpInside" id="H49-d7-dc7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="b9J-l5-zpB"/>
