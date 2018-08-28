@@ -23,4 +23,5 @@ target 'SportsMatching' do
   pod 'FacebookCore'
   pod 'FacebookLogin'
   pod 'FBSDKLoginKit'
+  pod 'GoogleSignIn'
 end

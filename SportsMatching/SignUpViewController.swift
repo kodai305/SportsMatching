@@ -11,15 +11,16 @@ import Firebase
 import FirebaseAuth
 import SVProgressHUD
 import FacebookLogin
+import GoogleSignIn
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController,LoginButtonDelegate, GIDSignInDelegate, GIDSignInUIDelegate {
 
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passTextField: UITextField!
     
-    
-    
+    @IBOutlet weak var GoogleSingInButton: GIDSignInButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -33,10 +34,15 @@ class SignUpViewController: UIViewController {
         
         //Facebookのログインボタン
         let loginButton = LoginButton(readPermissions: [ .email ])
-        loginButton.delegate = UIApplication.shared.delegate as! AppDelegate
+        loginButton.delegate = UIApplication.shared.delegate as? LoginButtonDelegate
         loginButton.center = view.center
         view.addSubview(loginButton)
-
+        
+        //Googleのログインボタン
+        //Google認証
+        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
+        GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance().uiDelegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -102,6 +108,79 @@ class SignUpViewController: UIViewController {
                 SVProgressHUD.dismiss()
             }
         }
+    }
+    
+    //facebook認証関連
+    //loginButtonDidCompleteLogin:result:を追加
+    func loginButtonDidCompleteLogin(_ loginButton: LoginButton, result: LoginResult) {
+        switch result {
+        case let LoginResult.failed(error):
+            print(error)
+            break
+        case let LoginResult.success(_, _, token):
+            let credential = FacebookAuthProvider.credential(withAccessToken: token.authenticationToken)
+            // Firebaseにcredentialを渡してlogin
+            Auth.auth().signInAndRetrieveData(with: credential) { (fireUser, fireError) in
+                if let error = fireError {
+                    print(error)
+                    print("cant connect firebase")
+                    return
+                }
+                // ログインに成功した場合の挙動
+                if let loginVC = self.presentedViewController{
+                    print("success")
+                    //facebookのログイン画面を閉じる
+                    loginVC.dismiss(animated: true, completion: nil)
+                    //  main画面へ遷移
+                    let storyboard:UIStoryboard =  UIStoryboard(name: "Main",bundle:nil)
+                    let mainview = storyboard.instantiateViewController(withIdentifier: "toMain")
+                    self.present(mainview, animated: true, completion: nil)
+                }
+            }
+        default:
+            break
+        }
+        
+    }
+    //loginButtonDidLogOutを追加
+    func loginButtonDidLogOut(_ loginButton: LoginButton) {
+        print("loginButtonDidLogOut")
+    }
+    
+    //Google認証関連
+    @IBAction func GoogleSingInButtonClicked(sender: AnyObject) {
+        GIDSignIn.sharedInstance().signIn()
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        print("Google Sing In didSignInForUser")
+        if let error = error {
+            print(error.localizedDescription)
+            return
+        }
+        guard let authentication = user.authentication else { return }
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
+                                                       accessToken: authentication.accessToken)
+        // Firebaseにcredentialを渡してlogin
+        Auth.auth().signInAndRetrieveData(with: credential) { (fireUser, fireError) in
+            if let error = fireError {
+                print(error)
+                print("cant connect firebase")
+                return
+            }
+            print("success")
+            //  main画面へ遷移
+            self.present((self.storyboard?.instantiateViewController(withIdentifier:
+                "toMain"))!,animated: true,completion: nil)
+        }
+    }
+    
+    //ログインがキャンセル・失敗した場合
+    func sign(signIn: GIDSignIn!, didDisconnectWithUser user:GIDGoogleUser!,
+                withError error: Error!) {
+        print("Google Sing In didDisconnectWithUser")
+        // Perform any operations when the user disconnects from app here.
+        // ...
     }
     
     /*
