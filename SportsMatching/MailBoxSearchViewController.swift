@@ -71,7 +71,15 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
         tableView.deselectRow(at: indexPath, animated: true)
         
         // Segueを呼び出す
-        performSegue(withIdentifier: "toMailMatsueViewController",sender: nil)
+        let postID = StubApplyHistory[indexPath.row]
+        performSegue(withIdentifier: "toMailMatsueViewController",sender: postID)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toMailMatsueViewController" {
+            let nextViewController = segue.destination as! MailViewController
+            nextViewController.partnerUID = sender as! String
+        }
     }
     
     /*

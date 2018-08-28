@@ -24,6 +24,7 @@ class MailViewController: MessagesViewController {
     @IBAction func testButtonPushed(_ sender: Any) {
         print("messages_count:")
         print(messageList.count)
+        print(self.partnerUID)
     }
     
     override func viewDidLoad() {

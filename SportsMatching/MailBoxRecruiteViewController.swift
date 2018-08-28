@@ -67,15 +67,16 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
     func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
         //セルの選択解除 //書かないと審査に通らない? cf.http://mjk0513.hateblo.jp/entry/2017/07/01/220542
         tableView.deselectRow(at: indexPath, animated: true)
-        
+
         // Segueを呼び出す
-        performSegue(withIdentifier: "toMailTakagiViewController",sender: nil)
+        let postID = StubRecruiteHistory[indexPath.row]
+        performSegue(withIdentifier: "toMailTakagiViewController",sender: postID)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toMailTakagiViewController" {
             let nextViewController = segue.destination as! MailViewController
-            nextViewController.partnerUID = "" // XXX: 
+            nextViewController.partnerUID = sender as! String
         }
     }
     
