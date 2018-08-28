@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             window?.rootViewController
                 = storyboard.instantiateViewController(withIdentifier: "toMain")
         }
-        
+ 
         // For Notification
         application.registerForRemoteNotifications()
         Messaging.messaging().delegate = self
@@ -165,7 +165,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 if (key0 == "sender") {
                     sender =  UnwrapValue
                 }
-                
             }
         }
         if msgType == "NewApply" {
