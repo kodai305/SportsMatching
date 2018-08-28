@@ -72,6 +72,12 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
         performSegue(withIdentifier: "toMailTakagiViewController",sender: nil)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toMailTakagiViewController" {
+            let nextViewController = segue.destination as! MailViewController
+            nextViewController.partnerUID = "" // XXX: 
+        }
+    }
     
     /*
     // MARK: - Navigation

@@ -11,6 +11,7 @@ import MessageKit
 
 class MailViewController: MessagesViewController {
     // メッセージ一覧画面から受け取る値
+    var partnerUID = ""
     let roomID = ""
     
     // 使うかどうかは後回し
