@@ -77,7 +77,9 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toMailMatsueViewController" {
-            let nextViewController = segue.destination as! MailViewController
+            // こうしないとNavigationControllerに値渡しできない
+            let nav = segue.destination as! UINavigationController
+            let nextViewController = nav.topViewController as! MailViewController
             nextViewController.partnerUID = sender as! String
         }
     }
