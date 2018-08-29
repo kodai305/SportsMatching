@@ -163,6 +163,8 @@ extension MailViewController: MessageInputBarDelegate {
    
     func sendNewMessageNotification(text: String) {
         self.functions.httpsCallable("sendNewMessageNotification").call(["partnerUID": self.partnerUID, "message": text]) { (result, error) in
+            // XXX: user nameも送りたい
+            
             print(result?.data as Any)
             print("function is called")
             if let error = error as NSError? {
