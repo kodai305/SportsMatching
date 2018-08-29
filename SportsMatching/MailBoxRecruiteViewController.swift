@@ -59,7 +59,10 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
         // 設定したIDでUITableViewCell のインスタンスを生成
         let cell = table.dequeueReusableCell(withIdentifier: "RecruiteMailBoxCell",
                                              for: indexPath) as! MailBoxCell
-        cell.PartnerNameLabel.text = "データなし"
+        //チャット相手のIDをセルに表示
+        // XXX : ここで落ちる
+        cell.PartnerNameLabel.text = StubRecruiteHistory[indexPath.row]
+
         return cell
     }
     

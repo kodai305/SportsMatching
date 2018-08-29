@@ -62,6 +62,7 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
                                              for: indexPath) as! MailBoxCell
         //チャット相手のIDをセルに表示
         cell.PartnerNameLabel.text = StubApplyHistory[indexPath.row]
+
         return cell
     }
     

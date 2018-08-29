@@ -174,13 +174,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             // XXX: 2回応募できないようにする必要がある？
             
             // 今までの応募履歴を取得
-            if defaults.value(forKey: "ApplyRecruite") != nil {
-                StubRecruite = defaults.value(forKey: "ApplyRecruite") as! [String]
+            if defaults.value(forKey: "RecruiteHistory") != nil {
+                StubRecruite = defaults.value(forKey: "RecruiteHistory") as! [String]
                 StubRecruite.insert(sender, at: 0)
-                defaults.set(StubRecruite, forKey: "ApplyRecruite")
+                defaults.set(StubRecruite, forKey: "RecruiteHistory")
             } else { //応募履歴がない場合
                 StubRecruite.append(sender)
-                defaults.set(StubRecruite, forKey: "ApplyRecruite")
+                defaults.set(StubRecruite, forKey: "RecruiteHistory")
             }
         }
         completionHandler(UIBackgroundFetchResult.newData)
