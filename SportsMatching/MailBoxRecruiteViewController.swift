@@ -75,8 +75,17 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toMailTakagiViewController" {
-            let nextViewController = segue.destination as! MailViewController
-            nextViewController.partnerUID = sender as! String
+            // UIDを取得
+            var myUID = ""
+            let defaults = UserDefaults.standard
+            myUID = defaults.string(forKey: "UID")!
+            let partnerUID = sender as! String
+            
+            // こうしないとNavigationControllerに値渡しできない
+            let nav = segue.destination as! UINavigationController
+            let nextViewController = nav.topViewController as! MailViewController
+            nextViewController.partnerUID = partnerUID
+            nextViewController.roomID = myUID+"-"+partnerUID //roomID = "投稿者UID" + "-" + "応募者UID"
         }
     }
     
