@@ -127,15 +127,11 @@ class SignUpViewController: UIViewController,LoginButtonDelegate, GIDSignInDeleg
                     return
                 }
                 // ログインに成功した場合の挙動
-                if let loginVC = self.presentedViewController{
-                    print("success")
-                    //facebookのログイン画面を閉じる
-                    loginVC.dismiss(animated: true, completion: nil)
-                    //  main画面へ遷移
-                    let storyboard:UIStoryboard =  UIStoryboard(name: "Main",bundle:nil)
-                    let mainview = storyboard.instantiateViewController(withIdentifier: "toMain")
-                    self.present(mainview, animated: true, completion: nil)
-                }
+                print("success")
+                //  main画面へ遷移
+                let storyboard:UIStoryboard =  UIStoryboard(name: "Main",bundle:nil)
+                let mainview = storyboard.instantiateViewController(withIdentifier: "toMain")
+                self.present(mainview, animated: true, completion: nil)
             }
         default:
             break

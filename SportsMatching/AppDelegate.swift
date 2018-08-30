@@ -245,11 +245,9 @@ extension AppDelegate {
     //application:openUrl:options:を追加
     @available(iOS 9.0, *)
     
-    func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any])
+    func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:])
         -> Bool {
-            let facebookLoginResult = SDKApplicationDelegate.shared.application(application,
-                                                                                open: url,
-                                                                                options: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! [UIApplicationOpenURLOptionsKey : Any])
+            let facebookLoginResult = SDKApplicationDelegate.shared.application(application, open: url, options: options)
             let googleLoginResult = GIDSignIn.sharedInstance().handle(url,
                                                                       sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
                                                                       annotation: [:])

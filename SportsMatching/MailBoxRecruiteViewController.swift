@@ -52,7 +52,7 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
     
     // セクションの行数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return StubRecruiteHistory.count
     }
     
     func tableView(_ table: UITableView,cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -60,7 +60,6 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
         let cell = table.dequeueReusableCell(withIdentifier: "RecruiteMailBoxCell",
                                              for: indexPath) as! MailBoxCell
         //チャット相手のIDをセルに表示
-        // XXX : ここで落ちる
         cell.PartnerNameLabel.text = StubRecruiteHistory[indexPath.row]
 
         return cell
