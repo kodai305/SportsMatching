@@ -100,12 +100,14 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
     func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
         tableView.tableFooterView = UIView(frame: .zero)
         return UIImage(named: "riria")
+        
     }
     
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let str = "まだ募集がありません"
         let attrs = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
         return NSAttributedString(string: str, attributes: attrs)
+        
     }
     
     /*
