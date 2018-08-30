@@ -62,6 +62,7 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
                                              for: indexPath) as! MailBoxCell
         //チャット相手のIDをセルに表示
         cell.PartnerNameLabel.text = StubApplyHistory[indexPath.row]
+
         return cell
     }
     
@@ -71,7 +72,25 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
         tableView.deselectRow(at: indexPath, animated: true)
         
         // Segueを呼び出す
-        performSegue(withIdentifier: "toMailMatsueViewController",sender: nil)
+        let postID = StubApplyHistory[indexPath.row]
+        performSegue(withIdentifier: "toMailMatsueViewController",sender: postID)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toMailMatsueViewController" {
+            // UIDを取得
+            var myUID = ""
+            let defaults = UserDefaults.standard
+            myUID = defaults.string(forKey: "UID")!
+            let partnerUID = sender as! String
+            
+            // こうしないとNavigationControllerに値渡しできない
+            let nav = segue.destination as! UINavigationController
+            let nextViewController = nav.topViewController as! MailViewController
+            nextViewController.partnerUID = partnerUID
+            nextViewController.roomID = partnerUID+"-"+myUID //roomID = "投稿者UID" + "-" + "応募者UID"
+            
+        }
     }
     
     /*

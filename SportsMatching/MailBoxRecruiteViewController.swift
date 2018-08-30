@@ -59,7 +59,10 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
         // 設定したIDでUITableViewCell のインスタンスを生成
         let cell = table.dequeueReusableCell(withIdentifier: "RecruiteMailBoxCell",
                                              for: indexPath) as! MailBoxCell
-        cell.PartnerNameLabel.text = "データなし"
+        //チャット相手のIDをセルに表示
+        // XXX : ここで落ちる
+        cell.PartnerNameLabel.text = StubRecruiteHistory[indexPath.row]
+
         return cell
     }
     
@@ -67,11 +70,27 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
     func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
         //セルの選択解除 //書かないと審査に通らない? cf.http://mjk0513.hateblo.jp/entry/2017/07/01/220542
         tableView.deselectRow(at: indexPath, animated: true)
-        
+
         // Segueを呼び出す
-        performSegue(withIdentifier: "toMailTakagiViewController",sender: nil)
+        let postID = StubRecruiteHistory[indexPath.row]
+        performSegue(withIdentifier: "toMailTakagiViewController",sender: postID)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toMailTakagiViewController" {
+            // UIDを取得
+            var myUID = ""
+            let defaults = UserDefaults.standard
+            myUID = defaults.string(forKey: "UID")!
+            let partnerUID = sender as! String
+            
+            // こうしないとNavigationControllerに値渡しできない
+            let nav = segue.destination as! UINavigationController
+            let nextViewController = nav.topViewController as! MailViewController
+            nextViewController.partnerUID = partnerUID
+            nextViewController.roomID = myUID+"-"+partnerUID //roomID = "投稿者UID" + "-" + "応募者UID"
+        }
+    }
     
     /*
     // MARK: - Navigation

@@ -8,10 +8,16 @@
 
 import UIKit
 import MessageKit
+import FirebaseFunctions
+import FirebaseFirestore
+import SVProgressHUD
 
 class MailViewController: MessagesViewController {
+    lazy var functions = Functions.functions()
+    
     // メッセージ一覧画面から受け取る値
-    let roomID = ""
+    var partnerUID = ""
+    var roomID = ""
     
     // 使うかどうかは後回し
     //let refreshControl = UIRefreshControl()
@@ -23,6 +29,7 @@ class MailViewController: MessagesViewController {
     @IBAction func testButtonPushed(_ sender: Any) {
         print("messages_count:")
         print(messageList.count)
+        print(self.partnerUID)
     }
     
     override func viewDidLoad() {
@@ -137,6 +144,7 @@ extension MailViewController: MessageInputBarDelegate {
                 messagesCollectionView.insertSections([self.messageList.count - 1])
 
                 testRecvMessage()
+                sendNewMessageNotification(text: text)
             }
         }
         
@@ -151,6 +159,25 @@ extension MailViewController: MessageInputBarDelegate {
 
         self.messageList.append(message)
         messagesCollectionView.insertSections([self.messageList.count - 1])
+    }
+   
+    func sendNewMessageNotification(text: String) {
+        self.functions.httpsCallable("sendNewMessageNotification").call(["partnerUID": self.partnerUID, "message": text]) { (result, error) in
+            // XXX: user nameも送りたい
+            
+            print(result?.data as Any)
+            print("function is called")
+            if let error = error as NSError? {
+                SVProgressHUD.showError(withStatus: "失敗")
+                if error.domain == FunctionsErrorDomain {
+                    let code = FunctionsErrorCode(rawValue: error.code)
+                    let message = error.localizedDescription
+                    let details = error.userInfo[FunctionsErrorDetailsKey]
+                }
+            } else {
+                SVProgressHUD.showSuccess(withStatus: "成功")
+            }
+        }
     }
     
 }

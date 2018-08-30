@@ -56,7 +56,7 @@ class SearchResultDetailViewController: BaseViewController{
                 SVProgressHUD.show(withStatus: "送信中")
                 // 募集者に通知を送る
                 let postID = self.postDoc.data()["postUser"] as! String
-                self.functions.httpsCallable("sendNotification").call(["postID": postID, "message": messageStr]) { (result, error) in
+                self.functions.httpsCallable("sendNewApplyNotification").call(["postID": postID, "message": messageStr]) { (result, error) in
                     print(result?.data as Any)
                     print("function is called")
                     if let error = error as NSError? {
