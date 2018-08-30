@@ -10,17 +10,22 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import SVProgressHUD
-import FacebookLogin
-import GoogleSignIn
+import FirebaseUI
 
-class SignUpViewController: UIViewController,LoginButtonDelegate, GIDSignInDelegate, GIDSignInUIDelegate {
+class SignUpViewController: UIViewController,FUIAuthDelegate {
 
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passTextField: UITextField!
     
-    @IBOutlet weak var GoogleSingInButton: GIDSignInButton!
-
+    var authUI: FUIAuth { get { return FUIAuth.defaultAuthUI()!}}
+    let providers: [FUIAuthProvider] = [
+        FUIGoogleAuth(),
+        FUIFacebookAuth(),
+        FUITwitterAuth(),
+        FUIPhoneAuth(authUI:FUIAuth.defaultAuthUI()!),
+        ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -32,19 +37,9 @@ class SignUpViewController: UIViewController,LoginButtonDelegate, GIDSignInDeleg
         emailTextField.placeholder = "email"
         passTextField.placeholder = "pass"
         
-        //Facebookのログインボタン
-        let loginButton = LoginButton(readPermissions: [ .email ])
-        loginButton.delegate = UIApplication.shared.delegate as? LoginButtonDelegate
-        loginButton.center = view.center
-        view.addSubview(loginButton)
-        
-        //Googleのログインボタン
-        //Google認証
-        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
-        GIDSignIn.sharedInstance().delegate = self
-        GIDSignIn.sharedInstance().uiDelegate = self
+        self.checkLoggedIn()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -110,83 +105,42 @@ class SignUpViewController: UIViewController,LoginButtonDelegate, GIDSignInDeleg
         }
     }
     
-    //facebook認証関連
-    //loginButtonDidCompleteLogin:result:を追加
-    func loginButtonDidCompleteLogin(_ loginButton: LoginButton, result: LoginResult) {
-        switch result {
-        case let LoginResult.failed(error):
-            print(error)
-            break
-        case let LoginResult.success(_, _, token):
-            let credential = FacebookAuthProvider.credential(withAccessToken: token.authenticationToken)
-            // Firebaseにcredentialを渡してlogin
-            Auth.auth().signInAndRetrieveData(with: credential) { (fireUser, fireError) in
-                if let error = fireError {
-                    print(error)
-                    print("cant connect firebase")
-                    return
-                }
-                // ログインに成功した場合の挙動
-                print("success")
-                //  main画面へ遷移
-                let storyboard:UIStoryboard =  UIStoryboard(name: "Main",bundle:nil)
-                let mainview = storyboard.instantiateViewController(withIdentifier: "toMain")
-                self.present(mainview, animated: true, completion: nil)
+    
+    func checkLoggedIn() {
+        authUI.delegate = self
+        self.authUI.providers = providers
+        Auth.auth().addStateDidChangeListener{auth, user in
+            if user != nil{
+                //サインインしている
+                self.present((self.storyboard?.instantiateViewController(withIdentifier:
+                    "toMain"))!,animated: true,completion: nil)
+            } else {
+                //サインインしていない
+                self.login()
             }
-        default:
-            break
-        }
-        
-    }
-    //loginButtonDidLogOutを追加
-    func loginButtonDidLogOut(_ loginButton: LoginButton) {
-        print("loginButtonDidLogOut")
-    }
-    
-    //Google認証関連
-    @IBAction func GoogleSingInButtonClicked(sender: AnyObject) {
-        GIDSignIn.sharedInstance().signIn()
-    }
-    
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        print("Google Sing In didSignInForUser")
-        if let error = error {
-            print(error.localizedDescription)
-            return
-        }
-        guard let authentication = user.authentication else { return }
-        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
-                                                       accessToken: authentication.accessToken)
-        // Firebaseにcredentialを渡してlogin
-        Auth.auth().signInAndRetrieveData(with: credential) { (fireUser, fireError) in
-            if let error = fireError {
-                print(error)
-                print("cant connect firebase")
-                return
-            }
-            print("success")
-            //  main画面へ遷移
-            self.present((self.storyboard?.instantiateViewController(withIdentifier:
-                "toMain"))!,animated: true,completion: nil)
         }
     }
     
-    //ログインがキャンセル・失敗した場合
-    func sign(signIn: GIDSignIn!, didDisconnectWithUser user:GIDGoogleUser!,
-                withError error: Error!) {
-        print("Google Sing In didDisconnectWithUser")
-        // Perform any operations when the user disconnects from app here.
-        // ...
+    func login() {
+        let authViewController = authUI.authViewController()
+        self.present(authViewController, animated: true, completion: nil)
     }
+    
+    //ログインに成功したときに呼ばれる
+    public func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?){
+        self.present((self.storyboard?.instantiateViewController(withIdentifier:
+            "toMain"))!,animated: true,completion: nil)
+    }
+    
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

@@ -20,8 +20,9 @@ target 'SportsMatching' do
   pod 'XLPagerTabStrip', '~> 8.0'
   pod 'SVProgressHUD'
   pod 'DZNEmptyDataSet'
-  pod 'FacebookCore'
-  pod 'FacebookLogin'
-  pod 'FBSDKLoginKit'
-  pod 'GoogleSignIn'
+  pod 'FirebaseUI/Auth'
+  pod 'FirebaseUI/Google'
+  pod 'FirebaseUI/Facebook'
+  pod 'FirebaseUI/Twitter'
+  pod 'FirebaseUI/Phone'
 end

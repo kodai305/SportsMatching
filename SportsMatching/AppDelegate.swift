@@ -17,22 +17,16 @@ import FirebaseFirestore
 import FirebaseAuth
 import SVProgressHUD
 
-import FacebookCore
-import FacebookLogin
-
-import GoogleSignIn
+import FirebaseUI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     
     var window: UIWindow?
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
-        
-        //facebook認証
-        SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         // setup firestore
         // Tell Cloud Firestore to use the new Timestamp object
@@ -48,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             window?.rootViewController
                 = storyboard.instantiateViewController(withIdentifier: "toMain")
         }
- 
+        
         // For Notification
         application.registerForRemoteNotifications()
         Messaging.messaging().delegate = self
@@ -76,41 +70,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
     }
-
+    
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
-
+    
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
     }
-
+    
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
-
+    
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
     }
-
+    
     // MARK: - Core Data stack
-
+    
     lazy var persistentContainer: NSPersistentContainer = {
         /*
          The persistent container for the application. This implementation
          creates and returns a container, having loaded the store for the
          application to it. This property is optional since there are legitimate
          error conditions that could cause the creation of the store to fail.
-        */
+         */
         let container = NSPersistentContainer(name: "SportsMatching")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                 
+                
                 /*
                  Typical reasons for an error here include:
                  * The parent directory does not exist, cannot be created, or disallows writing.
@@ -124,9 +118,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         })
         return container
     }()
-
+    
     // MARK: - Core Data Saving support
-
+    
     func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {
@@ -140,7 +134,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
     }
-
+    
     
     // アプリがバックグラウンド状態の時に通知を受け取った場合の処理を行う。
     //  fcmのjsonに"content_available" : true が必要
@@ -185,7 +179,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         completionHandler(UIBackgroundFetchResult.newData)
     }
-
+    
     
 }
 
@@ -200,7 +194,7 @@ extension AppDelegate {
         let userInfo = notification.request.content.userInfo
         // for analytics
         // Messaging.messaging().appDidReceiveMessage(userInfo)
-
+        
         if let messageID = userInfo["gcm.message_id"] {
             print("Message ID: \(messageID)")
         }
@@ -224,7 +218,7 @@ extension AppDelegate {
         
         completionHandler()
     }
-
+    
 }
 
 // MARK: - MessagingDelegate
@@ -242,21 +236,14 @@ extension AppDelegate: MessagingDelegate {
 }
 //facebook&Google認証用
 extension AppDelegate {
-    //application:openUrl:options:を追加
-    @available(iOS 9.0, *)
-    
-    func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:])
-        -> Bool {
-            let facebookLoginResult = SDKApplicationDelegate.shared.application(application, open: url, options: options)
-            let googleLoginResult = GIDSignIn.sharedInstance().handle(url,
-                                                                      sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
-                                                                      annotation: [:])
-            if facebookLoginResult{
-                return true
-            }else if googleLoginResult{
-                return true
-            }
-            return false
+    func application(_ app: UIApplication, open url: URL,
+                     options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+        let sourceApplication = options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String?
+        if FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication) ?? false {
+            return true
+        }
+        // other URL handling goes here.
+        return false
     }
 }
 

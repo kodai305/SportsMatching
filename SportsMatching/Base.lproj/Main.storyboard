@@ -401,18 +401,12 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ax0-BD-sOn" customClass="GIDSignInButton">
-                                <rect key="frame" x="67" y="492" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="AE4-dp-TUs"/>
                     </view>
                     <navigationItem key="navigationItem" id="fd9-Ok-92N"/>
                     <connections>
-                        <outlet property="GoogleSingInButton" destination="Ax0-BD-sOn" id="QKO-Jw-59l"/>
                         <outlet property="emailTextField" destination="vKH-V5-jcc" id="HyT-0P-leA"/>
                         <outlet property="passTextField" destination="3NE-Lf-VGX" id="u1Z-QE-YGh"/>
                         <outlet property="usernameTextField" destination="odm-Bq-qhn" id="dol-F2-YZo"/>
@@ -1363,7 +1357,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="wwG-UP-1zQ"/>
-        <segue reference="dYF-6A-Iab"/>
+        <segue reference="e6q-eW-bI0"/>
         <segue reference="Lbe-8n-gZh"/>
     </inferredMetricsTieBreakers>
 </document>
