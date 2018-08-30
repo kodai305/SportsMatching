@@ -8,8 +8,9 @@
 
 import UIKit
 import XLPagerTabStrip
+import DZNEmptyDataSet
 
-class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UITableViewDataSource, IndicatorInfoProvider {
+class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UITableViewDataSource, IndicatorInfoProvider, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
     var StubRecruiteHistory:[String] = []
 
@@ -19,6 +20,8 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
         //デリゲート
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.emptyDataSetSource = self
+        self.tableView.emptyDataSetDelegate = self
         //セルの高さを設定（画面全体の5分の1に設定）
         self.tableView.rowHeight = self.view.frame.height / 5
 
@@ -89,6 +92,18 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
             nextViewController.partnerUID = partnerUID
             nextViewController.roomID = myUID+"-"+partnerUID //roomID = "投稿者UID" + "-" + "応募者UID"
         }
+    }
+    
+    //tableViewのセクションの行数が0の時小島さんの画像を出す
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        tableView.tableFooterView = UIView(frame: .zero)
+        return UIImage(named: "riria")
+    }
+    
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let str = "まだ募集がありません"
+        let attrs = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
+        return NSAttributedString(string: str, attributes: attrs)
     }
     
     /*
