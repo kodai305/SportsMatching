@@ -12,12 +12,13 @@ class SerachResultCell: UITableViewCell {
 
     @IBOutlet weak var ImageView: UIImageView!
     
+
     @IBOutlet weak var TeamNameLabel: UILabel!
-    @IBOutlet weak var PrefectureNameLabel: UILabel!
+    @IBOutlet weak var PlaceLabel: UILabel!
+    @IBOutlet weak var GenderLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        //self.frame.size.height = 150
         // Initialization code
     }
 

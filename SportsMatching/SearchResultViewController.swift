@@ -124,13 +124,20 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
 
         let teamName:String = LoadedDocumentArray[indexPath.row].data()["teamName"] as! String
         cell.TeamNameLabel.text = "チーム名: " + teamName //XXX: null check
-        cell.TeamNameLabel.frame.origin = CGPoint(x: 110, y: 30)
+        cell.TeamNameLabel.frame.origin = CGPoint(x: 130, y: 30)
+        cell.TeamNameLabel.sizeToFit()
 
-        let prefecture:String = LoadedDocumentArray[indexPath.row].data()["prefecture"] as! String
-        cell.PrefectureNameLabel.text = "都道府県: " + prefecture
-        cell.PrefectureNameLabel.frame.origin = CGPoint(x: 110, y: 60)
+        let place:String = LoadedDocumentArray[indexPath.row].data()["place"] as! String
+        cell.PlaceLabel.text = "活動場所: " + place
+        cell.PlaceLabel.frame.origin = CGPoint(x: 130, y: 60)
+        cell.PlaceLabel.sizeToFit()
+        
+        let gender:String = LoadedDocumentArray[indexPath.row].data()["applyGender"] as! String
+        cell.GenderLabel.text = "募集性別: " + gender
+        cell.GenderLabel.frame.origin = CGPoint(x: 130, y: 90)
+        cell.GenderLabel.sizeToFit()
 
-        cell.ImageView.frame.origin = CGPoint(x: 10, y: 10)
+        cell.ImageView.frame.origin = CGPoint(x: 10, y: 20)
         return cell
     }
     
