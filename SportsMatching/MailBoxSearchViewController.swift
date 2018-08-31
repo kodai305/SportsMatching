@@ -24,7 +24,7 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
         self.tableView.emptyDataSetSource = self
         self.tableView.emptyDataSetDelegate = self
         //セルの高さを設定（画面全体の5分の1に設定）
-        self.tableView.rowHeight = self.view.frame.height / 5
+        self.tableView.rowHeight = 100
         
         // Do any additional setup after loading the view.
     }
@@ -63,8 +63,11 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
         // 設定したIDでUITableViewCell のインスタンスを生成
         let cell = table.dequeueReusableCell(withIdentifier: "SearchMailBoxCell",
                                              for: indexPath) as! MailBoxCell
-        //チャット相手のIDをセルに表示
-        cell.PartnerNameLabel.text = StubApplyHistory[indexPath.row]
+        //チャット相手の情報をセルに表示
+        cell.PartnerNameLabel.text = "チャット相手"
+        cell.LatestMessage.text = "最後のメッセージ"
+        cell.LatestExchangeTime.text = "xx時xx分"
+        cell.PartnerImageView.image = UIImage(named: "naito")
 
         return cell
     }

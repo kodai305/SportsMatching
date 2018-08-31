@@ -22,8 +22,8 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
         self.tableView.dataSource = self
         self.tableView.emptyDataSetSource = self
         self.tableView.emptyDataSetDelegate = self
-        //セルの高さを設定（画面全体の5分の1に設定）
-        self.tableView.rowHeight = self.view.frame.height / 5
+        //セルの高さを設定（80に設定）
+        self.tableView.rowHeight = 80
 
         // Do any additional setup after loading the view.
     }

@@ -11,12 +11,23 @@ import UIKit
 class MailBoxCell: UITableViewCell {
 
     var PartnerNameLabel:UILabel!
+    var LatestMessage:UILabel!
+    var LatestExchangeTime:UILabel!
+    var PartnerImageView:UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         PartnerNameLabel = UILabel(frame: CGRect.zero)
         PartnerNameLabel.textAlignment = .left
         self.contentView.addSubview(PartnerNameLabel)
+        LatestMessage = UILabel(frame: CGRect.zero)
+        LatestMessage.textAlignment = .left
+        self.contentView.addSubview(LatestMessage)
+        LatestExchangeTime = UILabel(frame: CGRect.zero)
+        LatestExchangeTime.textAlignment = .left
+        self.contentView.addSubview(LatestExchangeTime)
+        PartnerImageView = UIImageView(frame: CGRect.zero)
+        self.contentView.addSubview(PartnerImageView)
         // Initialization code
     }
 
@@ -28,8 +39,17 @@ class MailBoxCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        PartnerNameLabel.frame = CGRect(x: 10, y: 0, width: frame.width - 100, height: frame.height)
-        PartnerNameLabel.adjustsFontSizeToFitWidth = true
+        //セル内のレイアウト(LINE風)
+        PartnerImageView.frame = CGRect(x: 20, y: 10, width: 80, height: 80)
+        PartnerNameLabel.frame.origin = CGPoint(x: 130, y: 20)
+        PartnerNameLabel.font = UIFont.boldSystemFont(ofSize: 25)
+        PartnerNameLabel.sizeToFit()
+        LatestMessage.frame.origin = CGPoint(x: 130, y: 60)
+        LatestMessage.font = UIFont.systemFont(ofSize: 15)
+        LatestMessage.sizeToFit()
+        LatestExchangeTime.frame.origin = CGPoint(x: 300, y: 20)
+        LatestExchangeTime.font = UIFont.systemFont(ofSize: 12)
+        LatestExchangeTime.sizeToFit()
     }
 
 }
