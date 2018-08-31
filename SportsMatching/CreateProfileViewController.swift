@@ -14,18 +14,32 @@ import FirebaseStorage
 import SVProgressHUD
 
 class CreateProfileViewController: FormViewController {
+    // UIDの読み取り
+    let myUID: String = UserDefaults.standard.string(forKey: "UID")!
+    // fcmTokenの読み取り
+    let myFcmToken: String = UserDefaults.standard.string(forKey: "fcmToken")!
+    var UserName = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // TODO: 既に保存してあるデータの読込
-        // TODO: 保存してあるデータが有れば入力値に初期値として代入する
-        
-        // 登録フォーム
-        form +++ Section(header: "ユーザー情報", footer: "すべての項目を入力してください")
-            <<< TextRow("userRealName") {
-                $0.title = "ユーザー名"
-                $0.placeholder = "相手に表示される名前"
+        // 登録済みのプロフィールを取得
+        let db = Firestore.firestore()
+        let docRef = db.collection("users").document(myUID)
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                self.UserName = document.data()!["userRealName"] as! String
+                print("Document data: \(self.UserName)")
+            } else {
+                print("Document does not exist")
             }
+            // 登録フォーム
+            self.form +++ Section(header: "ユーザー情報", footer: "すべての項目を入力してください")
+                <<< TextRow("userRealName") {
+                    $0.title = "ユーザー名"
+                    $0.placeholder = "相手に表示される名前"
+                    $0.value = self.UserName
+            }
+        }
         
         
         // Do any additional setup after loading the view.
@@ -37,15 +51,11 @@ class CreateProfileViewController: FormViewController {
         // タグ設定済みの全てのRowの値を取得
         let values = form.values()
         // 入力値の確認
+        print(values["userRealName"].unsafelyUnwrapped)
         if values["userRealName"].unsafelyUnwrapped == nil {
             SVProgressHUD.showError(withStatus: "ユーザー名を入力して下さい")
             return
         }
-        
-        // UIDの読み取り
-        let myUID: String = UserDefaults.standard.string(forKey: "UID")!
-        // fcmTokenの読み取り
-        let myFcmToken: String = UserDefaults.standard.string(forKey: "fcmToken")!
 
         // プロフィールをfirestoreに保存
         // TODO: 登録日時/更新日時を追加
