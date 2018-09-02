@@ -14,10 +14,17 @@ import SVProgressHUD
 
 class MailViewController: MessagesViewController {
     lazy var functions = Functions.functions()
-    
     // メッセージ一覧画面から受け取る値
     var partnerUID = ""
     var roomID = ""
+    
+    // メッセージの構造体(保存用)
+    struct MessageInfo: Codable {
+        var message: String = ""
+        var senderID: String = ""
+        var sentDate: Date = Date()
+        var kind: String = ""
+    }
     
     // 使うかどうかは後回し
     //let refreshControl = UIRefreshControl()
@@ -35,7 +42,7 @@ class MailViewController: MessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-
+        
         // MocMessageを使う場合は全部実装する必要がある
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
@@ -45,50 +52,93 @@ class MailViewController: MessagesViewController {
         
         messageInputBar.sendButton.tintColor = UIColor.blue
         // メッセージのload
-        //self.loadMessages()
+        self.loadMessages()
         
     }
-
+    
     // メッセージの読込/保存
-    func loadMessages() {
-        let defaults  = UserDefaults.standard
-        let readdata  = defaults.data(forKey: self.roomID)
-    }
-    func saveMessages() {
+    func saveMessages(text: String, mocMessage: MockMessage) {
+        // 保存するmessageInfo配列
+        var messageArray:[MessageInfo] = []
+        
+        // 今回追加するメッセージ
+        var stubMessageInfo = MessageInfo()
+        stubMessageInfo.message  = text
+        stubMessageInfo.senderID = mocMessage.sender.id
+        stubMessageInfo.sentDate = mocMessage.sentDate
+        stubMessageInfo.kind     = "text"
+        
         let defaults = UserDefaults.standard
-        defaults.set(self.messageList ,forKey: self.roomID)
+        // 空だった場合
+        guard let data = defaults.data(forKey: self.roomID) else {
+            var stubMessageInfo = MessageInfo()
+            stubMessageInfo.message  = text
+            stubMessageInfo.senderID = mocMessage.sender.id
+            stubMessageInfo.sentDate = mocMessage.sentDate
+            stubMessageInfo.kind     = "text"
+            messageArray.append(stubMessageInfo)
+            let data = try? JSONEncoder().encode(messageArray)
+            defaults.set(data ,forKey: self.roomID)
+            return
+        }
+        // 保存してあるデータがあった場合、既存のものに追加する
+        let savedMessage = try? JSONDecoder().decode([MessageInfo].self, from: data)
+        messageArray = savedMessage!
+        messageArray.append(stubMessageInfo)
+        
+        // 保存
+        let data2 = try? JSONEncoder().encode(messageArray)
+        defaults.set(data2 ,forKey: self.roomID)
     }
     
+    func loadMessages() {
+        let defaults  = UserDefaults.standard
+        // 保存してあるデータが空の場合(基本的にはない??)
+        guard let data = defaults.data(forKey: self.roomID) else {
+            return
+        }
+        // 保存してあるデータが有る場合
+        let savedMessageInfoArray = try? JSONDecoder().decode([MessageInfo].self, from: data)
+        
+        for messageInfo in savedMessageInfoArray! {
+            let attributedText = NSAttributedString(string: messageInfo.message, attributes: [.font: UIFont.systemFont(ofSize: 15), .foregroundColor: UIColor.white])
+            let _sender = Sender(id: messageInfo.senderID, displayName: "")
+            let message = MockMessage(attributedText: attributedText, sender: _sender, messageId: UUID().uuidString, date: messageInfo.sentDate)
+            self.messageList.append(message)
+            print(messageInfo)
+        }
+        
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 extension MailViewController: MessagesDataSource {
     // 自分の情報を設定
     func currentSender() -> Sender {
-        return Sender(id: "12345", displayName: "自分")
+        let myUID: String = UserDefaults.standard.string(forKey: "UID")!
+        return Sender(id: myUID, displayName: "自分")
     }
     
     // 表示するメッセージの数
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
         return messageList.count
     }
-
+    
     // メッセージの実態。返り値はMessageType
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
         return messageList[indexPath.section]
@@ -99,7 +149,7 @@ extension MailViewController: MessagesDataSource {
     
     // 自動で電話番号やURLを検出
     func enabledDetectors(for message: MessageType, at indexPath: IndexPath, in     messagesCollectionView: MessagesCollectionView) -> [DetectorType] {
-            return [.url, .address, .phoneNumber, .date, .transitInformation]
+        return [.url, .address, .phoneNumber, .date, .transitInformation]
     }
     
 }
@@ -137,13 +187,16 @@ extension MailViewController: MessageInputBarDelegate {
                 
             } else if let text = component as? String {
                 let attributedText = NSAttributedString(string: text, attributes: [.font: UIFont.systemFont(ofSize: 15), .foregroundColor: UIColor.white])
-
+                
                 let message = MockMessage(attributedText: attributedText, sender: currentSender(), messageId: UUID().uuidString, date: Date())
-
+                
                 self.messageList.append(message)
                 messagesCollectionView.insertSections([self.messageList.count - 1])
-
+                
+                saveMessages(text: text, mocMessage: message)
+                
                 testRecvMessage()
+                
                 sendNewMessageNotification(text: text)
             }
         }
@@ -156,11 +209,11 @@ extension MailViewController: MessageInputBarDelegate {
     func testRecvMessage() {
         let attributedText = NSAttributedString(string: "返信", attributes: [.font: UIFont.systemFont(ofSize: 15), .foregroundColor: UIColor.black])
         let message = MockMessage(attributedText: attributedText, sender: Sender(id: "11111", displayName: "相手"), messageId: UUID().uuidString, date: Date())
-
+        
         self.messageList.append(message)
         messagesCollectionView.insertSections([self.messageList.count - 1])
     }
-   
+    
     func sendNewMessageNotification(text: String) {
         self.functions.httpsCallable("sendNewMessageNotification").call(["partnerUID": self.partnerUID, "message": text]) { (result, error) in
             // XXX: user nameも送りたい
@@ -186,8 +239,8 @@ extension MailViewController: MessageInputBarDelegate {
 extension MailViewController: MessagesDisplayDelegate {
     // メッセージの色を変更（デフォルトは自分：白、相手：黒）
     func textColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
-//        return isFromCurrentSender(message: message) ? .white : .darkText
-                return isFromCurrentSender(message: message) ? .white : .black
+        //        return isFromCurrentSender(message: message) ? .white : .darkText
+        return isFromCurrentSender(message: message) ? .white : .black
     }
     
     // メッセージの背景色を変更している（デフォルトは自分：緑、相手：グレー）
@@ -205,13 +258,13 @@ extension MailViewController: MessagesDisplayDelegate {
     
     // アイコンをセット
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
-
+        
         let initName = message.sender.displayName
         // そこからイニシャルを生成するとよい
         let avatar = Avatar(initials: initName)
         avatarView.set(avatar: avatar)
     }
-
+    
 }
 
 // MARK: - MessageCellDelegate
@@ -238,6 +291,4 @@ extension MailViewController: MessageCellDelegate {
     }
     
 }
-
-
 
