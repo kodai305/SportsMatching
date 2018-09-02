@@ -19,6 +19,15 @@ class SearchResultDetailViewController: BaseFormViewController{
     var postDoc:QueryDocumentSnapshot!
     var selectedImg:UIImage!
     
+    // メッセージの構造体(保存用)
+    // 二重定義になってしまうのをなんとかしたいいつか
+    struct MessageInfo: Codable {
+        var message: String = ""
+        var senderID: String = ""
+        var sentDate: Date = Date()
+        var kind: String = ""
+    }
+    
     @IBOutlet weak var DetailImage: UIImageView!
     @IBOutlet weak var TeamNameLabel: UILabel!
     @IBOutlet weak var PrefectureLabel: UILabel!
@@ -158,8 +167,21 @@ class SearchResultDetailViewController: BaseFormViewController{
                         // 応募履歴にデータを追加
                         self.addApplyHistoryArray(postID: postID)
                         
-                        // XXX: ここで投稿内容をUserDefaultとかに保存しておかないと
-                        //      応募履歴のセルに投稿情報を表示できない？？
+                        // 投稿内容をUserDefaultに保存(トーク履歴)
+                        var myUID = ""
+                        let defaults = UserDefaults.standard
+                        myUID = defaults.string(forKey: "UID")!
+                        let roomID = myUID+"-"+postID
+                        var stubMessageInfo = MessageInfo()
+                        stubMessageInfo.message  = messageStr
+                        stubMessageInfo.senderID = myUID
+                        stubMessageInfo.sentDate = Date()
+                        stubMessageInfo.kind     = "text"
+                        // 保存するmessageInfo配列
+                        var messageArray:[MessageInfo] = []
+                        messageArray.append(stubMessageInfo)
+                        let data = try? JSONEncoder().encode(messageArray)
+                        defaults.set(data ,forKey: roomID)
                         
                         // 履歴タブのViewControllerを取得する
                         let viewController = self.tabBarController?.viewControllers![3] as! UINavigationController
