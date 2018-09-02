@@ -14,9 +14,10 @@ import DZNEmptyDataSet
 
 class SearchResultViewController: BaseViewController,UITableViewDelegate, UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     // サムネイル画像格納用
-    var postedImage:UIImage!
+    var postedImage = UIImage(named: "sample")
     // firestoreから読み込んだDocumentを格納する配列
     var LoadedDocumentArray:[QueryDocumentSnapshot] = []
+    var LoadedImageArray:[UIImage] = []
     // 検索フォームから種目名と都道県名を受け取る変数
     var category:String!
     var prefecture:String!
@@ -50,8 +51,6 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
                     }
                     print("loadcount :")
                     print(self.LoadedDocumentArray.count)
-                    SVProgressHUD.showSuccess(withStatus: String(self.LoadedDocumentArray.count) + "件の投稿があります")
-                    SVProgressHUD.dismiss(withDelay: 2)
                     self.setTableview()
                     
             }
@@ -107,20 +106,23 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
                 self.postedImage = UIImage(named: "sample")
             } else {
                 // Data for "images/island.jpg" is returned
-                let image = UIImage(data: data!)
-                self.postedImage = image
+                self.LoadedImageArray[indexPath.row] = UIImage(data: data!)!
+                cell.ImageView.image = UIImage(data: data!)!
                 print("download succeed!")
-                self.tableView.reloadData()
             }
+            SVProgressHUD.showSuccess(withStatus: String(self.LoadedDocumentArray.count) + "件の投稿があります")
+            SVProgressHUD.dismiss(withDelay: 2)
         }
 
+        
+        //        let ratio:CGFloat = ResizedImageView.frame.size.height / 100
+        //        ResizedImageView.frame.size = CGSize(width: ResizedImageView.frame.size.width / ratio, height: ResizedImageView.frame.size.height / ratio)
         //Cellに画像と文章をセット
-        //画像をセルの高さに合わせてリサイズ
-        let ResizedImageView = UIImageView(image: self.postedImage)
-//        let ratio:CGFloat = ResizedImageView.frame.size.height / 100
-//        ResizedImageView.frame.size = CGSize(width: ResizedImageView.frame.size.width / ratio, height: ResizedImageView.frame.size.height / ratio)
-        ResizedImageView.frame.size = CGSize(width: 100, height: 100)
-        cell.ImageView.addSubview(ResizedImageView)
+        //FireStorageから画像がロード出来ていないのでSampleをセット
+        self.LoadedImageArray.append(UIImage(named: "sample")!)
+        cell.ImageView.image = UIImage(named: "sample")
+        cell.ImageView.frame.size = CGSize(width: 100, height: 100)
+        cell.ImageView.frame.origin = CGPoint(x: 10, y: 20)
 
         let teamName:String = LoadedDocumentArray[indexPath.row].data()["teamName"] as! String
         cell.TeamNameLabel.text = "チーム名: " + teamName //XXX: null check
@@ -137,7 +139,6 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
         cell.GenderLabel.frame.origin = CGPoint(x: 130, y: 90)
         cell.GenderLabel.sizeToFit()
 
-        cell.ImageView.frame.origin = CGPoint(x: 10, y: 20)
         return cell
     }
     
@@ -147,7 +148,7 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
         tableView.deselectRow(at: indexPath, animated: true)
         
         // [indexPath.row] から画像名を探し、UImage を設定　-> postsのdocumentを渡す, 画像は別でも良いかも
-        self.postedImage = UIImage(named: "sample")
+        self.postedImage = LoadedImageArray[indexPath.row]
         self.sendDocument = LoadedDocumentArray[indexPath.row]
 
         // Segueを呼び出す
@@ -159,6 +160,7 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
         if segue.identifier == "toDetailViewController" {
             let nextView:SearchResultDetailViewController = segue.destination as! SearchResultDetailViewController
             nextView.postDoc = self.sendDocument
+            nextView.selectedImg = self.postedImage
         }
     }
     

@@ -8,12 +8,13 @@
 
 import Foundation
 import UIKit
+import Eureka
 import FirebaseCore
 import FirebaseFunctions
 import FirebaseFirestore
 import SVProgressHUD
 
-class SearchResultDetailViewController: BaseViewController{
+class SearchResultDetailViewController: BaseFormViewController{
     //検索結果一覧からデータを受け取る変数
     var postDoc:QueryDocumentSnapshot!
     var selectedImg:UIImage!
@@ -30,11 +31,97 @@ class SearchResultDetailViewController: BaseViewController{
         super.viewDidLoad()
         //検索結果一覧から受け取ったデータを表示
         DetailImage.frame.size = CGSize(width: 200, height: 200)
+        DetailImage.frame.origin.y = 0
         DetailImage.image = selectedImg
         // 画像のアスペクト比を維持しUIImageViewサイズに収まるように表示
         DetailImage.contentMode = UIViewContentMode.scaleAspectFit
         TeamNameLabel.text = self.postDoc.data()["teamName"] as? String
         PrefectureLabel.text = self.postDoc.data()["prefecture"] as? String
+        
+        // 上部に画像を設定
+        form +++ Section(){ section in
+            section.header = {
+                var header = HeaderFooterView<UIView>(.callback({
+                    return self.DetailImage
+                }))
+                header.height = { 200 }
+                return header
+            }()
+        }
+        
+        +++ Section(header: "投稿の詳細", footer: "")
+            <<< TextRow("TeamName") {
+                $0.title = "チーム名"
+                $0.value = self.postDoc.data()["teamName"] as? String
+                $0.baseCell.isUserInteractionEnabled = false
+            }
+            <<< TextRow("Category") {
+                $0.title = "カテゴリ"
+                $0.value = self.postDoc.data()["category"] as? String
+                $0.baseCell.isUserInteractionEnabled = false
+            }
+            <<< TextRow("Prefecture") {
+                $0.title = "都道府県"
+                $0.value = self.postDoc.data()["prefecture"] as? String
+                $0.baseCell.isUserInteractionEnabled = false
+            }
+            <<< TextRow("Place"){
+                $0.title = "活動場所"
+                $0.value = self.postDoc.data()["place"] as? String
+                $0.baseCell.isUserInteractionEnabled = false
+            }
+            <<< TextRow("ApplyGender") {
+                $0.title = "募集性別"
+                $0.value = self.postDoc.data()["applyGender"] as? String
+                $0.baseCell.isUserInteractionEnabled = false
+            }
+            <<< TextRow("Timezone") {
+                $0.title = "活動時間帯"
+                $0.value = self.postDoc.data()["timezone"] as? String
+                $0.baseCell.isUserInteractionEnabled = false
+            }
+            <<< TextRow("Position") {
+                $0.title = "募集ポジション"
+                $0.value = self.postDoc.data()["position"] as? String
+                $0.baseCell.isUserInteractionEnabled = false
+            }
+            <<< TextRow("ApplyLevel") {
+                $0.title = "参加可能なレベル"
+                $0.value = self.postDoc.data()["applyLevel"] as? String
+                $0.baseCell.isUserInteractionEnabled = false
+            }
+            <<< TextRow("GenderRatio") {
+                $0.title = "チーム構成"
+                $0.value = self.postDoc.data()["genderRatio"] as? String
+                $0.baseCell.isUserInteractionEnabled = false
+            }
+            <<< TextRow("TeamLevel") {
+                $0.title = "チームのレベル"
+                $0.value = self.postDoc.data()["teamLevel"] as? String
+                $0.baseCell.isUserInteractionEnabled = false
+            }
+            <<< TextRow("NumMembers"){
+                $0.title = "チームの人数"
+                $0.value = self.postDoc.data()["numMembers"] as? String
+                $0.baseCell.isUserInteractionEnabled = false
+            }
+            
+            <<< TextRow("Day") {
+                $0.title = "開催曜日"
+                $0.value = self.postDoc.data()["day"] as? String
+                $0.baseCell.isUserInteractionEnabled = false
+            }
+            <<< TextRow("MainAge") {
+                $0.title = "メンバー年齢"
+                $0.value = self.postDoc.data()["mainAge"] as? String
+                $0.baseCell.isUserInteractionEnabled = false
+        }
+            <<< TextAreaRow("Comments") {
+                $0.value = self.postDoc.data()["comments"] as? String
+                $0.baseCell.isUserInteractionEnabled = false
+                $0.textAreaHeight = .dynamic(initialTextViewHeight: 110)
+        }
+        
     }
     
     // 応募ボタンを押して募集者にメッセージを送る
