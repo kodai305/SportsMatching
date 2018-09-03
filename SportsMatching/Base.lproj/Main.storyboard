@@ -34,7 +34,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <state key="normal" title="投稿の編集"/>
                                 <connections>
-                                    <segue destination="ZQl-sV-Gfl" kind="show" id="Tbl-TX-A8C"/>
+                                    <segue destination="V8X-2w-nJX" kind="show" id="ijk-T9-uKA"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -69,20 +69,27 @@
             </objects>
             <point key="canvasLocation" x="4081" y="700"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="e0K-tI-tLH">
+        <!--投稿編集-->
+        <scene sceneID="6wi-ja-7Sq">
             <objects>
-                <viewController id="ZQl-sV-Gfl" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="293-uU-7GW">
+                <viewController id="V8X-2w-nJX" customClass="EditRecruiteViewController" customModule="SportsMatching" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aRt-iO-fnl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="CZY-Ab-Xe7"/>
+                        <viewLayoutGuide key="safeArea" id="3YH-oA-pl5"/>
                     </view>
+                    <navigationItem key="navigationItem" title="投稿編集" id="YRh-CR-bmG">
+                        <barButtonItem key="rightBarButtonItem" title="編集完了" id="KCZ-t9-k4a">
+                            <connections>
+                                <action selector="completeButton:" destination="V8X-2w-nJX" id="zM2-HK-kF0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8KV-Y2-Blq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8r4-Gg-JZa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4084" y="1380"/>
+            <point key="canvasLocation" x="4084" y="1415"/>
         </scene>
         <!--マイページ-->
         <scene sceneID="7UN-90-qoU">

@@ -29,6 +29,7 @@
 		CEA5CF952123BAFE00DE1FEE /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA5CF942123BAFE00DE1FEE /* MyPageViewController.swift */; };
 		CEA6552C212EE89100C4B94A /* MailBoxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA6552B212EE89100C4B94A /* MailBoxCell.swift */; };
 		CEA7FBCC211732C10004FF88 /* RecruiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA7FBCB211732C10004FF88 /* RecruiteViewController.swift */; };
+		CEA8C6D2213D7FE80020D2F1 /* EditRecruiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8C6D1213D7FE80020D2F1 /* EditRecruiteViewController.swift */; };
 		CEBB289A211A9FBD00C7FFFE /* SerachResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB2899211A9FBD00C7FFFE /* SerachResultCell.swift */; };
 		CEBB28A0211AC05C00C7FFFE /* SearchResultDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB289F211AC05C00C7FFFE /* SearchResultDetailViewController.swift */; };
 		CEDCC4F8211BD3AA001DC758 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDCC4F7211BD3AA001DC758 /* SearchViewController.swift */; };
@@ -62,6 +63,7 @@
 		CEA5CF942123BAFE00DE1FEE /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		CEA6552B212EE89100C4B94A /* MailBoxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailBoxCell.swift; sourceTree = "<group>"; };
 		CEA7FBCB211732C10004FF88 /* RecruiteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecruiteViewController.swift; sourceTree = "<group>"; };
+		CEA8C6D1213D7FE80020D2F1 /* EditRecruiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecruiteViewController.swift; sourceTree = "<group>"; };
 		CEBB2899211A9FBD00C7FFFE /* SerachResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerachResultCell.swift; sourceTree = "<group>"; };
 		CEBB289F211AC05C00C7FFFE /* SearchResultDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultDetailViewController.swift; sourceTree = "<group>"; };
 		CEDCC4F7211BD3AA001DC758 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				4735B106211C7B84009D1323 /* SignUpViewController.swift */,
 				4735B108211C8526009D1323 /* SignInViewController.swift */,
 				CEA7FBCB211732C10004FF88 /* RecruiteViewController.swift */,
+				CEA8C6D1213D7FE80020D2F1 /* EditRecruiteViewController.swift */,
 				CEDCC4F7211BD3AA001DC758 /* SearchViewController.swift */,
 				4735B0DC211896FB009D1323 /* SearchResultViewController.swift */,
 				CEBB289F211AC05C00C7FFFE /* SearchResultDetailViewController.swift */,
@@ -367,6 +370,7 @@
 				4735B0C22115DBC6009D1323 /* AppDelegate.swift in Sources */,
 				4735B10B211DCD63009D1323 /* MailViewController.swift in Sources */,
 				CEBB28A0211AC05C00C7FFFE /* SearchResultDetailViewController.swift in Sources */,
+				CEA8C6D2213D7FE80020D2F1 /* EditRecruiteViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
