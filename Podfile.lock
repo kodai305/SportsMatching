@@ -13,46 +13,38 @@ PODS:
   - BoringSSL/Interface (10.0.6)
   - DZNEmptyDataSet (1.8.1)
   - Eureka (4.2.0)
-  - FacebookCore (0.3.2):
-    - Bolts (~> 1.8)
-    - FBSDKCoreKit (~> 4.35)
-  - FacebookLogin (0.3.2):
-    - Bolts (~> 1.8)
-    - FacebookCore (~> 0.3.2)
-    - FBSDKCoreKit (~> 4.35)
-    - FBSDKLoginKit (~> 4.35)
-  - FBSDKCoreKit (4.35.0):
+  - FBSDKCoreKit (4.36.0):
     - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.35.0):
+  - FBSDKLoginKit (4.36.0):
     - FBSDKCoreKit
-  - Firebase (5.6.0):
-    - Firebase/Core (= 5.6.0)
-  - Firebase/AdMob (5.6.0):
+  - Firebase (5.7.0):
+    - Firebase/Core (= 5.7.0)
+  - Firebase/AdMob (5.7.0):
     - Firebase/Core
-    - Google-Mobile-Ads-SDK (= 7.31.0)
-  - Firebase/Auth (5.6.0):
+    - Google-Mobile-Ads-SDK (~> 7.32)
+  - Firebase/Auth (5.7.0):
     - Firebase/CoreOnly
     - FirebaseAuth (= 5.0.3)
-  - Firebase/Core (5.6.0):
+  - Firebase/Core (5.7.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.1.1)
-  - Firebase/CoreOnly (5.6.0):
-    - FirebaseCore (= 5.1.1)
-  - Firebase/Database (5.6.0):
+  - Firebase/CoreOnly (5.7.0):
+    - FirebaseCore (= 5.1.2)
+  - Firebase/Database (5.7.0):
     - Firebase/CoreOnly
     - FirebaseDatabase (= 5.0.2)
-  - Firebase/Firestore (5.6.0):
+  - Firebase/Firestore (5.7.0):
     - Firebase/CoreOnly
-    - FirebaseFirestore (= 0.13.1)
-  - Firebase/Functions (5.6.0):
+    - FirebaseFirestore (= 0.13.2)
+  - Firebase/Functions (5.7.0):
     - Firebase/CoreOnly
     - FirebaseFunctions (= 2.1.0)
-  - Firebase/Messaging (5.6.0):
+  - Firebase/Messaging (5.7.0):
     - Firebase/CoreOnly
-    - FirebaseMessaging (= 3.1.0)
-  - Firebase/Storage (5.6.0):
+    - FirebaseMessaging (= 3.1.1)
+  - Firebase/Storage (5.7.0):
     - Firebase/CoreOnly
-    - FirebaseStorage (= 3.0.0)
+    - FirebaseStorage (= 3.0.1)
   - FirebaseAnalytics (5.1.1):
     - FirebaseCore (~> 5.1)
     - FirebaseInstanceID (~> 3.2)
@@ -68,20 +60,20 @@ PODS:
     - GoogleUtilities/Environment (~> 5.2)
     - GTMSessionFetcher/Core (~> 1.1)
   - FirebaseAuthInterop (1.0.0)
-  - FirebaseCore (5.1.1):
+  - FirebaseCore (5.1.2):
     - GoogleUtilities/Logger (~> 5.2)
   - FirebaseDatabase (5.0.2):
     - FirebaseCore (~> 5.0)
     - leveldb-library (~> 1.18)
-  - FirebaseFirestore (0.13.1):
+  - FirebaseFirestore (0.13.2):
     - FirebaseAuthInterop (~> 1.0)
     - FirebaseCore (~> 5.0)
-    - FirebaseFirestore/abseil-cpp (= 0.13.1)
+    - FirebaseFirestore/abseil-cpp (= 0.13.2)
     - gRPC-ProtoRPC (~> 1.0)
     - leveldb-library (~> 1.18)
     - nanopb (~> 0.3.8)
     - Protobuf (~> 3.1)
-  - FirebaseFirestore/abseil-cpp (0.13.1):
+  - FirebaseFirestore/abseil-cpp (0.13.2):
     - FirebaseAuthInterop (~> 1.0)
     - FirebaseCore (~> 5.0)
     - gRPC-ProtoRPC (~> 1.0)
@@ -94,15 +86,28 @@ PODS:
   - FirebaseInstanceID (3.2.1):
     - FirebaseCore (~> 5.1)
     - GoogleUtilities/Environment (~> 5.2)
-  - FirebaseMessaging (3.1.0):
+  - FirebaseMessaging (3.1.1):
     - FirebaseCore (~> 5.0)
     - FirebaseInstanceID (~> 3.0)
     - GoogleUtilities/Reachability (~> 5.2)
     - Protobuf (~> 3.1)
-  - FirebaseStorage (3.0.0):
+  - FirebaseStorage (3.0.1):
     - FirebaseCore (~> 5.0)
     - GTMSessionFetcher/Core (~> 1.1)
-  - Google-Mobile-Ads-SDK (7.31.0)
+  - FirebaseUI/Auth (5.2.0):
+    - Firebase/Auth (~> 5.0)
+  - FirebaseUI/Facebook (5.2.0):
+    - FBSDKLoginKit (~> 4.0)
+    - FirebaseUI/Auth
+  - FirebaseUI/Google (5.2.0):
+    - FirebaseUI/Auth
+    - GoogleSignIn (~> 4.0)
+  - FirebaseUI/Phone (5.2.0):
+    - FirebaseUI/Auth
+  - FirebaseUI/Twitter (5.2.0):
+    - FirebaseUI/Auth
+    - TwitterKit (~> 3.0)
+  - Google-Mobile-Ads-SDK (7.32.0)
   - GoogleAppMeasurement (5.1.1):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2.0)
     - GoogleUtilities/MethodSwizzler (~> 5.2.0)
@@ -180,14 +185,14 @@ PODS:
   - nanopb/encode (0.3.8)
   - Protobuf (3.6.1)
   - SVProgressHUD (2.2.5)
+  - TwitterCore (3.2.0)
+  - TwitterKit (3.4.0):
+    - TwitterCore (>= 3.1.0)
   - XLPagerTabStrip (8.0.1)
 
 DEPENDENCIES:
   - DZNEmptyDataSet
   - Eureka
-  - FacebookCore
-  - FacebookLogin
-  - FBSDKLoginKit
   - Firebase
   - Firebase/AdMob
   - Firebase/Auth
@@ -197,8 +202,12 @@ DEPENDENCIES:
   - Firebase/Functions
   - Firebase/Messaging
   - Firebase/Storage
+  - FirebaseUI/Auth
+  - FirebaseUI/Facebook
+  - FirebaseUI/Google
+  - FirebaseUI/Phone
+  - FirebaseUI/Twitter
   - Google-Mobile-Ads-SDK
-  - GoogleSignIn
   - ImageRow (~> 3.0)
   - JSQMessagesViewController
   - MessageKit
@@ -211,8 +220,6 @@ SPEC REPOS:
     - BoringSSL
     - DZNEmptyDataSet
     - Eureka
-    - FacebookCore
-    - FacebookLogin
     - FBSDKCoreKit
     - FBSDKLoginKit
     - Firebase
@@ -226,6 +233,7 @@ SPEC REPOS:
     - FirebaseInstanceID
     - FirebaseMessaging
     - FirebaseStorage
+    - FirebaseUI
     - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
     - GoogleSignIn
@@ -245,6 +253,8 @@ SPEC REPOS:
     - nanopb
     - Protobuf
     - SVProgressHUD
+    - TwitterCore
+    - TwitterKit
     - XLPagerTabStrip
 
 SPEC CHECKSUMS:
@@ -252,22 +262,21 @@ SPEC CHECKSUMS:
   BoringSSL: e10f92a27043805c01071fe815a5cd98ae8212e7
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Eureka: 0748c7bbb2560130e43c7bfa83e99c98854a1f42
-  FacebookCore: fe93222bb70346730ef33b061d493e9e7a7cb1f5
-  FacebookLogin: a4e225974791c82836765a294582b4778baffc07
-  FBSDKCoreKit: 1a5b2e3ceb5ca827a53c54aa5f4a3480efff80d2
-  FBSDKLoginKit: 00a3d65d1226852f9d76dcddff01981e5e6d9c38
-  Firebase: 75ea9e232eefa158c1049028030b8f661a2ccb62
+  FBSDKCoreKit: 3b8e6570eedb443f9fc4af196a7bf39f18e3a3d8
+  FBSDKLoginKit: 8bccb6064708ab2f4251a7fc4e3b6d8d00ad91ba
+  Firebase: 734a4f92957aa6c40e7ae3fda3d9359e1890aa87
   FirebaseAnalytics: 993577e91157feb40945abedd6ab346d8a4b6ac8
   FirebaseAuth: 657a25e4be044d2d333663ebf515a861c5a59cd7
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
-  FirebaseCore: cb9ee75e0894def766167c95a4d5a14b1c138269
+  FirebaseCore: 3a97432acb324b439fbed338e642f9cbb516a63d
   FirebaseDatabase: 27be5ac5bc75e0b17537b2bbfada8258addcc8cd
-  FirebaseFirestore: e953e8e02544cc60372f3787d4c30cb47a691aa7
+  FirebaseFirestore: 7eec93809ad61e7ebe303089c5cc5efa63424b72
   FirebaseFunctions: 0cb3bc0bbeac1daf6fea378a1064ff7f484e4c4e
   FirebaseInstanceID: ea5af6920d0a4a29b40459d055bebe4a6c1333c4
-  FirebaseMessaging: f67b3719f520ee200da0e20ce577fe2bce0c01d0
-  FirebaseStorage: 7ca4bb7b58a25fa647b04f524033fc7cb7eb272b
-  Google-Mobile-Ads-SDK: 6e529e748b45507a2ca904e0b5a52669ba3920c4
+  FirebaseMessaging: 698c94dd1e3436346c29bb9c85dcdca4c4a0c30b
+  FirebaseStorage: 43f823b96b72a08539eba21a7de043348a69d4c6
+  FirebaseUI: 9dfa423b6f1b73737ae8ab62692c1c0a8886186d
+  Google-Mobile-Ads-SDK: 2aca87e46e860f1e1fc0fdc1201dd9caa4be9ba6
   GoogleAppMeasurement: f7507b39b70ad0bd80b3d81518b2f43868974307
   GoogleSignIn: 591e46382014e591269f862ba6e7bc0fbd793532
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
@@ -286,8 +295,10 @@ SPEC CHECKSUMS:
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
+  TwitterKit: bc7bd086b9b724a1d888745a054e1d0b1ecc4f3f
   XLPagerTabStrip: c908b17cbf42fcd2598ee1adfc49bae25444d88a
 
-PODFILE CHECKSUM: 92ba61f3e124bb3d8b922daf8266ecf596fbfe7a
+PODFILE CHECKSUM: f38b5696184f443ac96246551487fec6aef4b44d
 
 COCOAPODS: 1.5.3

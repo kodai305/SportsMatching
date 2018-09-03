@@ -22,6 +22,15 @@ import FirebaseUI
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     
+    // メッセージの構造体(保存用)
+    // 二重定義になってしまうのをなんとかしたいいつか
+    struct MessageInfo: Codable {
+        var message: String = ""
+        var senderID: String = ""
+        var sentDate: Date = Date()
+        var kind: String = ""
+    }
+    
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -142,11 +151,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         var msgType:String = ""
         var sender:String = ""
+        var message:String = ""
+        var roomID:String = ""
         
         let key: Array! = Array(userInfo.keys)
         if key == nil {
             return
         }
+        // 通知からデータを取り出す
         for i in 0..<key.count {
             let key0 = key[i] as! String
             let value0 = userInfo["\(key0)"]
@@ -159,12 +171,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 if (key0 == "sender") {
                     sender =  UnwrapValue
                 }
+                if (key0 == "message") {
+                    message = UnwrapValue
+                }
+                if (key0 == "roomID") {
+                    roomID = UnwrapValue
+                }
             }
         }
+        let defaults = UserDefaults.standard
+        // 新着応募があった場合
         if msgType == "NewApply" {
-            // Userdefaultに保存
             var StubRecruite:[String] = []
-            let defaults = UserDefaults.standard
+            
+            // roomIDをつくる
+            var myUID = ""
+            myUID = defaults.string(forKey: "UID")!
+            let roomID = myUID+"-"+sender
+            
+            // message構造体をつくる
+            var stubMessageInfo = MessageInfo()
+            stubMessageInfo.message  = message
+            stubMessageInfo.senderID = sender
+            stubMessageInfo.sentDate = Date()
+            stubMessageInfo.kind     = "text"
+            
+            // 保存する
+            var messageArray:[MessageInfo] = []
+            messageArray.append(stubMessageInfo)
+            let data = try? JSONEncoder().encode(messageArray)
+            defaults.set(data ,forKey: roomID)
+            
             // XXX: 2回応募できないようにする必要がある？
             
             // 今までの応募履歴を取得
@@ -177,10 +214,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 defaults.set(StubRecruite, forKey: "RecruiteHistory")
             }
         }
+        // 新着メッセージがあった場合
+        if msgType == "NewMessage" {
+            // message構造体をつくる
+            var stubMessageInfo = MessageInfo()
+            stubMessageInfo.message  = message
+            stubMessageInfo.senderID = sender
+            stubMessageInfo.sentDate = Date()
+            stubMessageInfo.kind     = "text"
+            // 保存する用のmessageInfo構造体配列を用意
+            var messageArray:[MessageInfo] = []
+            // 空だった場合
+            guard let data = defaults.data(forKey: roomID) else {
+                var stubMessageInfo = MessageInfo()
+                messageArray.append(stubMessageInfo)
+                let data = try? JSONEncoder().encode(messageArray)
+                defaults.set(data ,forKey: roomID)
+                return
+            }
+            // 保存してあるデータがあった場合、既存のものに追加する
+            let savedMessage = try? JSONDecoder().decode([MessageInfo].self, from: data)
+            messageArray = savedMessage!
+            messageArray.append(stubMessageInfo)
+            // 保存
+            let data2 = try? JSONEncoder().encode(messageArray)
+            defaults.set(data2 ,forKey: roomID)
+        }
         completionHandler(UIBackgroundFetchResult.newData)
     }
-    
-    
 }
 
 // MARK: - UNUserNotificationCenterDelegate

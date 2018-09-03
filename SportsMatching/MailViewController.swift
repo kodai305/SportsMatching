@@ -195,8 +195,6 @@ extension MailViewController: MessageInputBarDelegate {
                 
                 saveMessages(text: text, mocMessage: message)
                 
-                testRecvMessage()
-                
                 sendNewMessageNotification(text: text)
             }
         }
@@ -215,8 +213,7 @@ extension MailViewController: MessageInputBarDelegate {
     }
     
     func sendNewMessageNotification(text: String) {
-        self.functions.httpsCallable("sendNewMessageNotification").call(["partnerUID": self.partnerUID, "message": text]) { (result, error) in
-            // XXX: user nameも送りたい
+        self.functions.httpsCallable("sendNewMessageNotification").call(["partnerUID": self.partnerUID, "message": text, "roomID": self.roomID]) { (result, error) in
             
             print(result?.data as Any)
             print("function is called")
