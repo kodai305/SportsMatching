@@ -47,7 +47,7 @@ class MailBoxCell: UITableViewCell {
         LatestMessage.frame.origin = CGPoint(x: 130, y: 60)
         LatestMessage.font = UIFont.systemFont(ofSize: 15)
         LatestMessage.sizeToFit()
-        LatestExchangeTime.frame.origin = CGPoint(x: 300, y: 20)
+        LatestExchangeTime.frame.origin = CGPoint(x: 200, y: 10)
         LatestExchangeTime.font = UIFont.systemFont(ofSize: 12)
         LatestExchangeTime.sizeToFit()
     }

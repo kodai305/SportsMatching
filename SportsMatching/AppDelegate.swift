@@ -202,8 +202,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             let data = try? JSONEncoder().encode(messageArray)
             defaults.set(data ,forKey: roomID)
             
-            // XXX: 2回応募できないようにする必要がある？
-            
             // 今までの応募履歴を取得
             if defaults.value(forKey: "RecruiteHistory") != nil {
                 StubRecruite = defaults.value(forKey: "RecruiteHistory") as! [String]

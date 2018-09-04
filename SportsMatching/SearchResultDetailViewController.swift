@@ -182,6 +182,25 @@ class SearchResultDetailViewController: BaseFormViewController{
                         messageArray.append(stubMessageInfo)
                         let data = try? JSONEncoder().encode(messageArray)
                         defaults.set(data ,forKey: roomID)
+
+                        // 募集者のプロフィールを取得->保存
+                        var postUserName = "no name"
+                        let db = Firestore.firestore()
+                        let docRef = db.collection("users").document(postID)
+                        docRef.getDocument { (document, error) in
+                            if let document = document, document.exists {
+                                if let tmp = document.data()!["userName"] {
+                                    postUserName = tmp as! String
+                                }
+                                defaults.set(postUserName, forKey: "user_"+postID)
+                                // 履歴タブのViewControllerを取得する
+                                let viewController = self.tabBarController?.viewControllers![3] as! UINavigationController
+                                // 履歴タブを選択済みにする
+                                self.tabBarController?.selectedViewController = viewController
+                            } else {
+                                print("Document does not exist")
+                            }
+                        }
                         
                         // 履歴タブのViewControllerを取得する
                         let viewController = self.tabBarController?.viewControllers![3] as! UINavigationController

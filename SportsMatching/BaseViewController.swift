@@ -10,6 +10,13 @@ import UIKit
 import FirebaseAuth
 
 class BaseViewController: UIViewController {
+    // 二重定義になってしまうのをなんとかしたいいつか
+    struct MessageInfo: Codable {
+        var message: String = ""
+        var senderID: String = ""
+        var sentDate: Date = Date()
+        var kind: String = ""
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
