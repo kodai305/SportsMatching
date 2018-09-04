@@ -36,6 +36,7 @@ class CreateProfileViewController: FormViewController {
         let docRef = db.collection("users").document(myUID)
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
+                //ここをなくして下に移したい
                 self.UserName = document.data()!["userName"] as! String
                 self.Gender = document.data()!["gender"] as! String
                 self.Age = document.data()!["age"] as! String
