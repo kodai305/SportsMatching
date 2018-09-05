@@ -19,30 +19,29 @@ class CreateProfileViewController: FormViewController {
     // fcmTokenの読み取り
     let myFcmToken: String = UserDefaults.standard.string(forKey: "fcmToken")!
     
-    //プロフィールが登録済みの場合、firestoreから読み取り保存
-    var UserName:String!
-    var Gender:String!
-    var Age:String!
-    var Level:String!
-    var Comments:String!
+    // プロフィールの構造体(保存用)
+    struct Profile: Codable {
+        var UserName: String = ""
+        var Gender: String = ""
+        var Age: String = ""
+        var Level: String = ""
+        var Comments: String = ""
+    }
     
     // 選択されたイメージ格納用
     var selectedImg = UIImage()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Userdefalutsから取得して繁栄させる予定
+        
         // 登録済みのプロフィールを取得
         let db = Firestore.firestore()
         let docRef = db.collection("users").document(myUID)
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 //ここをなくして下に移したい
-                self.UserName = document.data()!["userName"] as! String
-                self.Gender = document.data()!["gender"] as! String
-                self.Age = document.data()!["age"] as! String
-                self.Level = document.data()!["level"] as! String
-                self.Comments = document.data()!["comments"] as! String
-                print("Document data: \(self.UserName)")
+                print("Document data:")
             } else {
                 print("Document does not exist")
             }
@@ -51,13 +50,13 @@ class CreateProfileViewController: FormViewController {
                 <<< TextRow("UserName") {
                     $0.title = "ユーザー名"
                     $0.placeholder = "相手に表示される名前"
-                    $0.value = self.UserName
+                    $0.value = document?.data()!["userName"] as? String
             }
                 <<< ActionSheetRow<String>("Gender") {
                     $0.title = "性別"
                     $0.selectorTitle = "性別を選択"
                     $0.options = ["男性", "女性"]
-                    $0.value = self.Gender
+                    $0.value = document?.data()!["gender"] as? String
                     }
                     .onPresent { from, to in
                         to.popoverPresentationController?.permittedArrowDirections = .up
@@ -66,7 +65,7 @@ class CreateProfileViewController: FormViewController {
                     $0.title = "年代"
                     $0.selectorTitle = "あなたの年代を選択"
                     $0.options = ["10代", "20代", "30代", "40代", "50代", "60代以上"]
-                    $0.value = self.Age
+                    $0.value = document?.data()!["age"] as? String
                     }
                     .onPresent { from, to in
                         to.popoverPresentationController?.permittedArrowDirections = .up
@@ -75,7 +74,7 @@ class CreateProfileViewController: FormViewController {
                     $0.title = "バスケットの経験"
                     $0.selectorTitle = "バスケットの経験を選択"
                     $0.options = ["未経験", "初心者", "上級者"]
-                    $0.value = self.Level
+                    $0.value = document?.data()!["level"] as? String
                     }
                     .onPresent { from, to in
                         to.popoverPresentationController?.permittedArrowDirections = .up
@@ -94,7 +93,7 @@ class CreateProfileViewController: FormViewController {
                 <<< TextAreaRow("Comments") {
                     $0.placeholder = "自由記述"
                     $0.textAreaHeight = .dynamic(initialTextViewHeight: 110)
-                    $0.value = self.Comments
+                    $0.value = document?.data()!["comments"] as? String
             }
         }
         
@@ -121,7 +120,19 @@ class CreateProfileViewController: FormViewController {
             SVProgressHUD.showError(withStatus: "競技レベルを入力して下さい")
             return
         }
-
+        
+        // profile構造体をつくる
+        var MyProfile = Profile()
+        MyProfile.UserName = values["UserName"] as! String
+        MyProfile.Gender = values["Gender"] as! String
+        MyProfile.Age = values["Age"] as! String
+        MyProfile.Level = values["Level"] as! String
+        MyProfile.Comments = values["Comments"].unsafelyUnwrapped == nil ? "" : values["Comments"] as! String
+        let data = try? JSONEncoder().encode(MyProfile)
+        let defaults = UserDefaults.standard
+        defaults.set(data ,forKey: "profile")
+        
+        //消すか、クラウド保存ボタン用に残すか
         // プロフィールをfirestoreに保存
         // TODO: 登録日時/更新日時を追加
         let db = Firestore.firestore()

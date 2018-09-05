@@ -26,6 +26,8 @@ class EditRecruiteViewController: BaseFormViewController {
         let docRef = db.collection("posts").document(myUID)
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
+                print(Set(document.data()!["timezone"] as! Array<String>))
+                
                 self.form +++
                     Section(header: "必須項目", footer: "すべての項目を入力してください")
                     <<< TextRow("TeamName") {
@@ -90,7 +92,7 @@ class EditRecruiteViewController: BaseFormViewController {
                         $0.title = "活動時間帯"
                         $0.selectorTitle = "活動時間帯(複数選択可)"
                         $0.options = ["午前", "午後", "夜"]
-                        $0.value = document.data()!["timezone"] as? Set<String>
+                        $0.value = Set(document.data()!["timezone"] as! Array<String>)
                         }
                         .onPresent { from, to in
                             to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
@@ -110,7 +112,7 @@ class EditRecruiteViewController: BaseFormViewController {
                         $0.title = "募集ポジション"
                         $0.selectorTitle = "募集するポジションを選択"
                         $0.options = ["どこでも","ガード", "フォワード", "センター", "マネジャー"]
-                        $0.value = document.data()!["position"] as? Set<String>
+                        $0.value = Set(document.data()!["position"] as! Array<String>)
                         }
                         .onPresent { from, to in
                             to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
@@ -119,7 +121,7 @@ class EditRecruiteViewController: BaseFormViewController {
                         $0.title = "参加可能なレベル"
                         $0.selectorTitle = "参加可能なレベルを選択"
                         $0.options = ["未経験", "初心者", "上級者"]
-                        $0.value = document.data()!["applyLevel"] as? Set<String>
+                        $0.value = Set(document.data()!["applyLevel"] as! Array<String>)
                         }
                         .onPresent { from, to in
                             to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
@@ -152,7 +154,7 @@ class EditRecruiteViewController: BaseFormViewController {
                         $0.title = "開催曜日"
                         $0.selectorTitle = "主に開催している曜日を選択"
                         $0.options = ["月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日", "日曜日"]
-                        $0.value = document.data()!["day"] as? Set<String>
+                        $0.value = Set(document.data()!["day"] as! Array<String>)
                         }
                         .onPresent { from, to in
                             to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
@@ -161,7 +163,7 @@ class EditRecruiteViewController: BaseFormViewController {
                         $0.title = "メンバー年齢"
                         $0.selectorTitle = "メンバーの主な年代を選択(複数可)"
                         $0.options = ["10代", "20代", "30代", "40代", "50代", "60代以上"]
-                        $0.value = document.data()!["mainAge"] as? Set<String>
+                        $0.value = Set(document.data()!["mainAge"] as! Array<String>)
                         }
                         .onPresent { from, to in
                             to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
