@@ -21,11 +21,12 @@ class CreateProfileViewController: FormViewController {
     
     // プロフィールの構造体(保存用)
     struct Profile: Codable {
-        var UserName: String = ""
-        var Gender: String = ""
-        var Age: String = ""
-        var Level: String = ""
-        var Comments: String = ""
+        var UserName: String? = nil
+        var Gender: String? = nil
+        var Age: String? = nil
+        var Level: String? = nil
+        var Image: Data = Data()
+        var Comments: String? = nil
     }
     
     // 選択されたイメージ格納用
@@ -33,71 +34,63 @@ class CreateProfileViewController: FormViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Userdefalutsから取得して繁栄させる予定
-        
-        // 登録済みのプロフィールを取得
-        let db = Firestore.firestore()
-        let docRef = db.collection("users").document(myUID)
-        docRef.getDocument { (document, error) in
-            if let document = document, document.exists {
-                //ここをなくして下に移したい
-                print("Document data:")
-            } else {
-                print("Document does not exist")
-            }
-            // 登録フォーム
-            self.form +++ Section(header: "ユーザー情報", footer: "すべての項目を入力してください")
-                <<< TextRow("UserName") {
-                    $0.title = "ユーザー名"
-                    $0.placeholder = "相手に表示される名前"
-                    $0.value = document?.data()!["userName"] as? String
-            }
-                <<< ActionSheetRow<String>("Gender") {
-                    $0.title = "性別"
-                    $0.selectorTitle = "性別を選択"
-                    $0.options = ["男性", "女性"]
-                    $0.value = document?.data()!["gender"] as? String
-                    }
-                    .onPresent { from, to in
-                        to.popoverPresentationController?.permittedArrowDirections = .up
-                }
-                <<< ActionSheetRow<String>("Age") {
-                    $0.title = "年代"
-                    $0.selectorTitle = "あなたの年代を選択"
-                    $0.options = ["10代", "20代", "30代", "40代", "50代", "60代以上"]
-                    $0.value = document?.data()!["age"] as? String
-                    }
-                    .onPresent { from, to in
-                        to.popoverPresentationController?.permittedArrowDirections = .up
-                }
-                <<< ActionSheetRow<String>("Level") {
-                    $0.title = "バスケットの経験"
-                    $0.selectorTitle = "バスケットの経験を選択"
-                    $0.options = ["未経験", "初心者", "上級者"]
-                    $0.value = document?.data()!["level"] as? String
-                    }
-                    .onPresent { from, to in
-                        to.popoverPresentationController?.permittedArrowDirections = .up
-                }
-                <<< ImageRow("Image1") {
-                    $0.title = "公開される画像"
-                    $0.sourceTypes = [.PhotoLibrary, .SavedPhotosAlbum, .Camera]
-                    $0.value = UIImage(named: "activeImage")
-                    $0.clearAction = .yes(style: .destructive)
-                    $0.onChange { [unowned self] row in
-                        self.selectedImg = row.value!
-                    }
-            }
-            
-            self.form +++ Section(header: "自由記述", footer: "不特定多数の方が見るため連絡先の掲載はお控えください")
-                <<< TextAreaRow("Comments") {
-                    $0.placeholder = "自由記述"
-                    $0.textAreaHeight = .dynamic(initialTextViewHeight: 110)
-                    $0.value = document?.data()!["comments"] as? String
-            }
+        //Userdefalutsからプロフィールを取得
+        var savedProfile = Profile()
+        let defaults = UserDefaults.standard
+        if let data = defaults.data(forKey: "profile"){
+            savedProfile = try! JSONDecoder().decode(Profile.self, from: data)
         }
         
-        
+        // 登録フォーム
+        self.form +++ Section(header: "ユーザー情報", footer: "すべての項目を入力してください")
+            <<< TextRow("UserName") {
+                $0.title = "ユーザー名"
+                $0.placeholder = "相手に表示される名前"
+                $0.value = savedProfile.UserName
+            }
+            <<< ActionSheetRow<String>("Gender") {
+                $0.title = "性別"
+                $0.selectorTitle = "性別を選択"
+                $0.options = ["男性", "女性"]
+                $0.value = savedProfile.Gender
+                }
+                .onPresent { from, to in
+                    to.popoverPresentationController?.permittedArrowDirections = .up
+            }
+            <<< ActionSheetRow<String>("Age") {
+                $0.title = "年代"
+                $0.selectorTitle = "あなたの年代を選択"
+                $0.options = ["10代", "20代", "30代", "40代", "50代", "60代以上"]
+                $0.value = savedProfile.Age
+                }
+                .onPresent { from, to in
+                    to.popoverPresentationController?.permittedArrowDirections = .up
+            }
+            <<< ActionSheetRow<String>("Level") {
+                $0.title = "バスケットの経験"
+                $0.selectorTitle = "バスケットの経験を選択"
+                $0.options = ["未経験", "初心者", "上級者"]
+                $0.value = savedProfile.Level
+                }
+                .onPresent { from, to in
+                    to.popoverPresentationController?.permittedArrowDirections = .up
+            }
+            <<< ImageRow("Image") {
+                $0.title = "公開される画像"
+                $0.sourceTypes = [.PhotoLibrary, .SavedPhotosAlbum, .Camera]
+                $0.value = savedProfile.Image == Data() ? nil : UIImage(data: savedProfile.Image)
+                $0.clearAction = .yes(style: .destructive)
+                $0.onChange { [unowned self] row in
+                    self.selectedImg = row.value!
+            }
+        }
+            
+            self.form +++ Section(header: "自由記述", footer: "不特定多数の方が見るため連絡先の掲載はお控えください")
+            <<< TextAreaRow("Comments") {
+                $0.placeholder = "自由記述"
+                $0.textAreaHeight = .dynamic(initialTextViewHeight: 110)
+                $0.value = savedProfile.Comments
+            }
         // Do any additional setup after loading the view.
     }
 
@@ -119,40 +112,72 @@ class CreateProfileViewController: FormViewController {
         }else if values["Level"].unsafelyUnwrapped == nil {
             SVProgressHUD.showError(withStatus: "競技レベルを入力して下さい")
             return
+        }else if values["Image"].unsafelyUnwrapped == nil {
+            SVProgressHUD.showError(withStatus: "画像を入力して下さい")
+            return
         }
+        
+        //画像セルから画像を取得
+        let UIImgae = values["Image"] as! UIImage
         
         // profile構造体をつくる
         var MyProfile = Profile()
-        MyProfile.UserName = values["UserName"] as! String
-        MyProfile.Gender = values["Gender"] as! String
-        MyProfile.Age = values["Age"] as! String
-        MyProfile.Level = values["Level"] as! String
+        MyProfile.UserName = values["UserName"] as? String
+        MyProfile.Gender = values["Gender"] as? String
+        MyProfile.Age = values["Age"] as? String
+        MyProfile.Level = values["Level"] as? String
+        MyProfile.Image =  UIImageJPEGRepresentation(UIImgae, 0.5)!
         MyProfile.Comments = values["Comments"].unsafelyUnwrapped == nil ? "" : values["Comments"] as! String
         let data = try? JSONEncoder().encode(MyProfile)
         let defaults = UserDefaults.standard
         defaults.set(data ,forKey: "profile")
         
-        //消すか、クラウド保存ボタン用に残すか
+        //時刻を取得(年月日、時分)
+        let f = DateFormatter()
+        f.timeStyle = .long
+        f.dateStyle = .short
+        f.locale = Locale(identifier: "ja_JP")
+        let now = Date()
+        
         // プロフィールをfirestoreに保存
-        // TODO: 登録日時/更新日時を追加
         let db = Firestore.firestore()
         db.collection("users").document(myUID).setData([
-            "userName" :values["UserName"] as! String,
-            "gender"   :values["Gender"] as! String,
-            "age"      :values["Age"] as! String,
-            "level"    :values["Level"] as! String,
-            "comments" :values["Comments"].unsafelyUnwrapped == nil ? "" : values["Comments"] as! String,
-            "fcmToken" :myFcmToken
+            "postedTime"  : f.string(from: now),
+            "userName"    : values["UserName"] as! String,
+            "gender"      : values["Gender"] as! String,
+            "age"         : values["Age"] as! String,
+            "level"       : values["Level"] as! String,
+            "comments"    : values["Comments"].unsafelyUnwrapped == nil ? "" : values["Comments"] as! String,
+            "fcmToken"    : myFcmToken
         ]) { err in
             if let err = err {
                 print("Error writing document: \(err)")
             } else {
                 print("Document successfully written!")
-                SVProgressHUD.showSuccess(withStatus: "登録成功")
-                // TODO: 1秒待ったほうがいいかも？
-                // MyPageへ遷移する
-                self.show((self.storyboard?.instantiateViewController(withIdentifier: "MyPage"))!,sender: true)
             }
+        }
+        
+        var ImageShrinkRatio:CGFloat = 1.0
+        //Firebase Storageの準備
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        // UIImageJPEGRepresentationでUIImageをNSDataに変換して格納
+        if var data = UIImageJPEGRepresentation(UIImgae, ImageShrinkRatio){
+            //画像のファイルサイズが1024*1024bytes以下になるまで縮小係数を調整
+            while data.count > 1024 * 1024{
+                ImageShrinkRatio = ImageShrinkRatio - 0.1
+                data = UIImageJPEGRepresentation(UIImgae, ImageShrinkRatio)!
+            }
+            //とりあえずUIDのディレクトリを作成し、その下に画像を保存
+            let reference = storageRef.child(myUID + "/profile" + "/image" + ".jpg")
+            reference.putData(data, metadata: nil, completion: { metaData, error in
+                print(metaData as Any)
+                print(error as Any)
+            })
+            SVProgressHUD.showSuccess(withStatus: "登録成功")
+            // TODO: 1秒待ったほうがいいかも？
+            // MyPageへ遷移する
+            self.show((self.storyboard?.instantiateViewController(withIdentifier: "MyPage"))!,sender: true)
         }
     }
     
