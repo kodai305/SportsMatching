@@ -19,6 +19,9 @@ class SearchResultDetailViewController: BaseFormViewController{
     var postDoc:QueryDocumentSnapshot!
     var selectedImg:UIImage!
     
+    @IBAction func tapScreen(_ sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
+    }
     // メッセージの構造体(保存用)
     // 二重定義になってしまうのをなんとかしたいいつか
     struct MessageInfo: Codable {
@@ -137,13 +140,29 @@ class SearchResultDetailViewController: BaseFormViewController{
     lazy var functions = Functions.functions()
     @IBAction func entryButtonTapped(_ sender: Any) {
         // XXX:ポップアップを出して応募メッセージ入力フォーマットを出す？
+        let msg:String = "内容\n\n\n\n"
+        let alert = UIAlertController(title:"投稿者へメッセージ", message:msg, preferredStyle: UIAlertControllerStyle.alert)
+//        alert.addTextField(configurationHandler: nil)
 
-        let alert = UIAlertController(title:"投稿者へメッセージ", message:"message", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addTextField(configurationHandler: nil)
+        let textView = UITextView(frame: CGRect(x: 10, y:60, width:CGFloat(250), height:CGFloat(80)))
+        textView.text = "hoge"
+        textView.layer.borderColor = UIColor.lightGray.cgColor
+        textView.layer.borderWidth = 0.5
+        textView.layer.cornerRadius = 6
+        alert.view.addSubview(textView)
+        
 
+        
+        // 画面が開いたあとでないと textView にフォーカスが当たらないため、遅らせて実行する
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            textView.becomeFirstResponder()
+        }
+        
         let okAction = UIAlertAction(title:"送信",style: UIAlertActionStyle.default){(action:UIAlertAction) in
-            if let textField = alert.textFields?.first {  // ?? .first
-                let messageStr:String = textField.text!
+//            if let textField = alert.textFields?.first {  // ?? .first
+            if (textView.text != nil) {
+                let messageStr:String = textView.text!
+//                let messageStr:String = textField.text!
                 if (messageStr.isEmpty) {
                     // XXX: 入力されてなかったときの処理
                     SVProgressHUD.showError(withStatus: "メッセージを入力してください")
