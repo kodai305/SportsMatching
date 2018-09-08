@@ -17,6 +17,28 @@ class RecruiteViewController: BaseFormViewController {
     // 選択されたイメージ格納用
     var selectedImg = UIImage()
     
+    // 応募詳細の構造体
+    struct RecruiteDetail: Codable {
+        var PostedTime  : String? = nil
+        var UpdateTime  : String? = nil
+        var PostUser    : String? = nil
+        var TeamName    : String? = nil
+        var Category    : String? = nil
+        var Prefecture  : String? = nil
+        var Place       : String? = nil
+        var ApplyGender : String? = nil
+        var Timezone    : Array<String>? = nil
+        var Image       : Data = Data()
+        var Position    : Array<String>? = nil
+        var ApplyLevel  : Array<String>? = nil
+        var GenderRatio : String? = nil
+        var TeamLevel   : String? = nil
+        var NumMembers  : Int? = nil
+        var Day         : Array<String>? = nil
+        var MainAge     : Array<String>? = nil
+        var Comments    : String? = nil
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -195,6 +217,32 @@ class RecruiteViewController: BaseFormViewController {
         var myUID = ""
         let defaults = UserDefaults.standard
         myUID = defaults.string(forKey: "UID")!
+        
+        //画像セルから画像を取得
+        let UIImgae = values["Image1"] as! UIImage
+        
+        //Userdefaultsに保存
+        var NewRecruitDetaile = RecruiteDetail()
+        NewRecruitDetaile.PostedTime = f.string(from: now)
+        NewRecruitDetaile.UpdateTime = f.string(from: now)
+        NewRecruitDetaile.PostUser = myUID
+        NewRecruitDetaile.TeamName = values["TeamName"] as? String
+        NewRecruitDetaile.Category = values["Category"] as? String
+        NewRecruitDetaile.Prefecture = values["Prefecture"] as? String
+        NewRecruitDetaile.Place = values["Place"] as? String
+        NewRecruitDetaile.ApplyGender = values["ApplyGender"] as? String
+        NewRecruitDetaile.Timezone = values["Timezone"].unsafelyUnwrapped == nil ? nil : Array(values["Timezone"] as! Set<String>)
+        NewRecruitDetaile.Image = UIImageJPEGRepresentation(UIImgae, 0.5)!
+        NewRecruitDetaile.Position = values["Position"].unsafelyUnwrapped == nil ? nil : Array(values["Position"] as! Set<String>)
+        NewRecruitDetaile.ApplyLevel = values["ApplyLevel"].unsafelyUnwrapped == nil ? nil : Array(values["ApplyLevel"] as! Set<String>)
+        NewRecruitDetaile.GenderRatio = values["GenderRatio"] as? String
+        NewRecruitDetaile.TeamLevel = values["TeamLevel"] as? String
+        NewRecruitDetaile.NumMembers = values["NumMembers"] as? Int
+        NewRecruitDetaile.Day = values["Day"].unsafelyUnwrapped == nil ? nil : Array(values["Day"] as! Set<String>)
+        NewRecruitDetaile.MainAge = values["MainAge"].unsafelyUnwrapped == nil ? nil : Array(values["MainAge"] as! Set<String>)
+        NewRecruitDetaile.Comments = values["Comments"] as? String
+        let data = try? JSONEncoder().encode(NewRecruitDetaile)
+        defaults.set(data ,forKey: "recruite")
 
         //FireStoreに投稿データを保存
         //複数選択可能な項目はSetからArrayへの変換を行う
@@ -225,21 +273,19 @@ class RecruiteViewController: BaseFormViewController {
             }
         }
         
-        //画像セルから画像を取得
-        let UIImgae1 = values["Image1"] as! UIImage
         var ImageShrinkRatio:CGFloat = 1.0
         //Firebase Storageの準備
         let storage = Storage.storage()
         let storageRef = storage.reference()
         // UIImageJPEGRepresentationでUIImageをNSDataに変換して格納
-        if var data = UIImageJPEGRepresentation(UIImgae1, ImageShrinkRatio){
-            //画像のファイルサイズが1024*1024bytes以下になるまで縮小係数を調整
-            while data.count > 1024 * 1024{
+        if var data = UIImageJPEGRepresentation(UIImgae, ImageShrinkRatio){
+            //画像のファイルサイズが1024*1024 / 2bytes以下になるまで縮小係数を調整
+            while data.count > 1024 * 1024 / 2{
                 ImageShrinkRatio = ImageShrinkRatio - 0.1
-                data = UIImageJPEGRepresentation(UIImgae1, ImageShrinkRatio)!
+                data = UIImageJPEGRepresentation(UIImgae, ImageShrinkRatio)!
             }
             //とりあえずUIDのディレクトリを作成し、その下に画像を保存
-            let reference = storageRef.child(myUID + "/post" + "/image1" + ".jpg")
+            let reference = storageRef.child(myUID + "/post" + "/image" + ".jpg")
             reference.putData(data, metadata: nil, completion: { metaData, error in
                 print(metaData as Any)
                 print(error as Any)
