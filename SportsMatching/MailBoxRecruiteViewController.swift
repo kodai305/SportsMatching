@@ -62,9 +62,44 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
         // 設定したIDでUITableViewCell のインスタンスを生成
         let cell = table.dequeueReusableCell(withIdentifier: "RecruiteMailBoxCell",
                                              for: indexPath) as! MailBoxCell
-        //チャット相手のIDをセルに表示
-        cell.PartnerNameLabel.text = StubRecruiteHistory[indexPath.row]
 
+        // 準備
+        let dateFormater = DateFormatter()
+        dateFormater.locale = Locale(identifier: "ja_JP")
+        dateFormater.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        
+        // roomIDを求める
+        var myUID = ""
+        let defaults = UserDefaults.standard
+        myUID = defaults.string(forKey: "UID")!
+        let partnerID = StubRecruiteHistory[indexPath.row]
+        let roomID = myUID+"-"+partnerID
+        
+        // 募集者の名前を取得
+        var userName = "NoName"
+        if let tmpName = defaults.string(forKey: "user_"+partnerID) {
+            print("!!!!!!!!!")
+            print(tmpName)
+            userName = tmpName
+        }
+        
+        // トーク履歴を取得
+        var lastMessage:String = ""
+        var lastMsgTime:String = "xx:xx:xx"
+        if let data = defaults.data(forKey: roomID) {
+            let savedMessage = try? JSONDecoder().decode([MessageInfo].self, from: data)
+            lastMessage = savedMessage![(savedMessage?.count)!-1].message
+            lastMsgTime = dateFormater.string(from: savedMessage![(savedMessage?.count)!-1].sentDate)
+        }
+        
+        //チャット相手の情報をセルに表示
+        cell.PartnerNameLabel.text = "相手:"+userName
+        cell.LatestMessage.text = "最後のメッセージ:"+lastMessage
+        cell.LatestExchangeTime.text = lastMsgTime
+        cell.PartnerImageView.image = UIImage(named: "naito")
+
+        
+        
         return cell
     }
     
