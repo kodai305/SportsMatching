@@ -97,8 +97,6 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
         cell.LatestMessage.text = "最後のメッセージ:"+lastMessage
         cell.LatestExchangeTime.text = lastMsgTime
         cell.PartnerImageView.image = UIImage(named: "naito")
-
-        
         
         return cell
     }

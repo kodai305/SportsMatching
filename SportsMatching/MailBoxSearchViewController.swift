@@ -79,8 +79,6 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
         // 募集者の名前を取得
         var userName = "NoName"
         if let tmpName = defaults.string(forKey: "user_"+postID) {
-            print("!!!!!!!!!")
-            print(tmpName)
             userName = tmpName
         }
         
@@ -125,7 +123,6 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
             let nextViewController = nav.topViewController as! MailViewController
             nextViewController.partnerUID = partnerUID
             nextViewController.roomID = partnerUID+"-"+myUID //roomID = "投稿者UID" + "-" + "応募者UID"
-            
         }
     }
     
@@ -133,7 +130,6 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
     func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
         tableView.tableFooterView = UIView(frame: .zero)
         return UIImage(named: "riria")
-        
     }
     
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {

@@ -224,7 +224,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             var messageArray:[MessageInfo] = []
             // 空だった場合
             guard let data = defaults.data(forKey: roomID) else {
-                var stubMessageInfo = MessageInfo()
+                let stubMessageInfo = MessageInfo()
                 messageArray.append(stubMessageInfo)
                 let data = try? JSONEncoder().encode(messageArray)
                 defaults.set(data ,forKey: roomID)
@@ -245,23 +245,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 // MARK: - UNUserNotificationCenterDelegate
 extension AppDelegate {
     // 通知を受け取った時に(開く前に)呼ばれるメソッド
-    //background時は呼ばれない
-    // "content_available" : trueがあっても
+    //background時は呼ばれない // "content_available" : trueがあっても
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        let userInfo = notification.request.content.userInfo
-        // for analytics
-        // Messaging.messaging().appDidReceiveMessage(userInfo)
-        
-        if let messageID = userInfo["gcm.message_id"] {
-            print("Message ID: \(messageID)")
-        }
-        // fcmTokenをuser-defaultに保存
-        let defaults = UserDefaults.standard
-        defaults.set("aaaa" ,forKey: "background")
-        print("back")
-        
+        print("called")
         completionHandler([.alert])
     }
     
@@ -275,6 +263,17 @@ extension AppDelegate {
             print("Message ID: \(messageID)")
         }
         
+        //xx画面に遷移
+        let subStoryboard = UIStoryboard(name: "Main", bundle: nil) //Mainという名前は良くない
+        let viewController = subStoryboard.instantiateInitialViewController()
+        
+        self.window?.rootViewController = viewController
+        self.window?.backgroundColor = UIColor.white
+        self.window?.makeKeyAndVisible()
+        
+        //アイコンバッチを０にする
+        UIApplication.shared.applicationIconBadgeNumber = 0
+ 
         completionHandler()
     }
     

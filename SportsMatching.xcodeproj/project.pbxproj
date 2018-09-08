@@ -20,11 +20,11 @@
 		4735B107211C7B84009D1323 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B106211C7B84009D1323 /* SignUpViewController.swift */; };
 		4735B109211C8526009D1323 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B108211C8526009D1323 /* SignInViewController.swift */; };
 		4735B10B211DCD63009D1323 /* MailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B10A211DCD63009D1323 /* MailViewController.swift */; };
-		4735B10D211DCD75009D1323 /* MailBoxMatsueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B10C211DCD74009D1323 /* MailBoxMatsueViewController.swift */; };
 		4735B11221232984009D1323 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4735B11121232984009D1323 /* GoogleService-Info.plist */; };
 		4735B11F21295CA3009D1323 /* BaseFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B11E21295CA3009D1323 /* BaseFormViewController.swift */; };
 		4735B12121295FA5009D1323 /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B12021295FA5009D1323 /* CreateProfileViewController.swift */; };
 		4735B12321311590009D1323 /* MockMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B12221311590009D1323 /* MockMessage.swift */; };
+		47F038C12143A43800A02366 /* TopTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F038C02143A43800A02366 /* TopTabBarViewController.swift */; };
 		758EB0FB9270093A83F203D8 /* Pods_SportsMatching.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A32BBEB8E75216E6EACE267 /* Pods_SportsMatching.framework */; };
 		CEA5CF952123BAFE00DE1FEE /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA5CF942123BAFE00DE1FEE /* MyPageViewController.swift */; };
 		CEA6552C212EE89100C4B94A /* MailBoxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA6552B212EE89100C4B94A /* MailBoxCell.swift */; };
@@ -51,12 +51,12 @@
 		4735B106211C7B84009D1323 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		4735B108211C8526009D1323 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		4735B10A211DCD63009D1323 /* MailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailViewController.swift; sourceTree = "<group>"; };
-		4735B10C211DCD74009D1323 /* MailBoxMatsueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailBoxMatsueViewController.swift; sourceTree = "<group>"; };
 		4735B10E21231B6D009D1323 /* SportsMatching.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SportsMatching.entitlements; sourceTree = "<group>"; };
 		4735B11121232984009D1323 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4735B11E21295CA3009D1323 /* BaseFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseFormViewController.swift; sourceTree = "<group>"; };
 		4735B12021295FA5009D1323 /* CreateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileViewController.swift; sourceTree = "<group>"; };
 		4735B12221311590009D1323 /* MockMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMessage.swift; sourceTree = "<group>"; };
+		47F038C02143A43800A02366 /* TopTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTabBarViewController.swift; sourceTree = "<group>"; };
 		7C7EF586745D6367B67B1C34 /* Pods-SportsMatching.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsMatching.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SportsMatching/Pods-SportsMatching.debug.xcconfig"; sourceTree = "<group>"; };
 		8A32BBEB8E75216E6EACE267 /* Pods_SportsMatching.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SportsMatching.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E3DACCC8E3E7940618BA26B /* Pods-SportsMatching.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsMatching.release.xcconfig"; path = "Pods/Target Support Files/Pods-SportsMatching/Pods-SportsMatching.release.xcconfig"; sourceTree = "<group>"; };
@@ -123,17 +123,18 @@
 				4735B0C12115DBC6009D1323 /* AppDelegate.swift */,
 				4735B0C32115DBC6009D1323 /* BaseViewController.swift */,
 				4735B11E21295CA3009D1323 /* BaseFormViewController.swift */,
+				47F038C02143A43800A02366 /* TopTabBarViewController.swift */,
 				CEA5CF942123BAFE00DE1FEE /* MyPageViewController.swift */,
 				4735B12021295FA5009D1323 /* CreateProfileViewController.swift */,
 				4735B106211C7B84009D1323 /* SignUpViewController.swift */,
 				4735B108211C8526009D1323 /* SignInViewController.swift */,
 				CEA7FBCB211732C10004FF88 /* RecruiteViewController.swift */,
 				CEA8C6D1213D7FE80020D2F1 /* EditRecruiteViewController.swift */,
+				4735B0C52115DBC6009D1323 /* Main.storyboard */,
 				CEDCC4F7211BD3AA001DC758 /* SearchViewController.swift */,
 				4735B0DC211896FB009D1323 /* SearchResultViewController.swift */,
 				CEBB289F211AC05C00C7FFFE /* SearchResultDetailViewController.swift */,
 				CEBB2899211A9FBD00C7FFFE /* SerachResultCell.swift */,
-				4735B0C52115DBC6009D1323 /* Main.storyboard */,
 				4735B100211AEF2C009D1323 /* MailBoxViewController.swift */,
 				4735B102211AF1C4009D1323 /* MailBoxRecruiteViewController.swift */,
 				4735B104211AF34A009D1323 /* MailBoxSearchViewController.swift */,
@@ -141,7 +142,6 @@
 				4735B10A211DCD63009D1323 /* MailViewController.swift */,
 				4735B12221311590009D1323 /* MockMessage.swift */,
 				4735B0CB2115DBC9009D1323 /* Assets.xcassets */,
-				4735B10C211DCD74009D1323 /* MailBoxMatsueViewController.swift */,
 				4735B0CD2115DBC9009D1323 /* LaunchScreen.storyboard */,
 				4735B0D02115DBC9009D1323 /* Info.plist */,
 				4735B11121232984009D1323 /* GoogleService-Info.plist */,
@@ -354,7 +354,6 @@
 				4735B0CA2115DBC6009D1323 /* SportsMatching.xcdatamodeld in Sources */,
 				CEDCC4F8211BD3AA001DC758 /* SearchViewController.swift in Sources */,
 				4735B101211AEF2C009D1323 /* MailBoxViewController.swift in Sources */,
-				4735B10D211DCD75009D1323 /* MailBoxMatsueViewController.swift in Sources */,
 				CEA7FBCC211732C10004FF88 /* RecruiteViewController.swift in Sources */,
 				4735B107211C7B84009D1323 /* SignUpViewController.swift in Sources */,
 				4735B109211C8526009D1323 /* SignInViewController.swift in Sources */,
@@ -371,6 +370,7 @@
 				4735B10B211DCD63009D1323 /* MailViewController.swift in Sources */,
 				CEBB28A0211AC05C00C7FFFE /* SearchResultDetailViewController.swift in Sources */,
 				CEA8C6D2213D7FE80020D2F1 /* EditRecruiteViewController.swift in Sources */,
+				47F038C12143A43800A02366 /* TopTabBarViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
