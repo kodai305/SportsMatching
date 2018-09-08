@@ -291,6 +291,11 @@ class RecruiteViewController: BaseFormViewController {
                 print(error as Any)
             })
             SVProgressHUD.showSuccess(withStatus: "投稿成功")
+
+            // 履歴タブのViewControllerを取得する
+            let viewController = self.tabBarController?.viewControllers![3] as! UINavigationController
+            // 履歴タブを選択済みにする
+            self.tabBarController?.selectedViewController = viewController
         }
         
     }

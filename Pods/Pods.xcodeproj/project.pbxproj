@@ -781,6 +781,7 @@
 		30ACA1CDB6A9BB81DB01EB640CE45AEE /* FUIAuthUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 44B41F54B21EB7540DD3580DCD56BD69 /* FUIAuthUtils.m */; };
 		30AE4174309A0B456C7D0AE63A239BD2 /* connector.h in Headers */ = {isa = PBXBuildFile; fileRef = 73F19BDAA90359E6B489F49095062604 /* connector.h */; };
 		30CC1036A4F97B4F56886CA644F81C71 /* aes.h in Headers */ = {isa = PBXBuildFile; fileRef = CB2F1B4EF7B9AF01914621C03471E8F7 /* aes.h */; };
+		30D4B818939F364D88E0FE3FFB3FFFB3 /* FUIAccountSettingsOperationType.h in Headers */ = {isa = PBXBuildFile; fileRef = 52971FFA0130AFF1F1E3AB450A25CAE6 /* FUIAccountSettingsOperationType.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		30E7256B41BA0DABAA10CC68D8D7BF53 /* OptionsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED0F3169EC516D2BC1A3A23B38E6F38 /* OptionsRow.swift */; };
 		30F568593766A89EF2F05C56EFCC8A70 /* atomic_with_atm.h in Copy ../../src/core/lib/gprpp Private Headers */ = {isa = PBXBuildFile; fileRef = 1AD0307C8F37408067AE52635F665883 /* atomic_with_atm.h */; };
 		30F7E842CB3E8163286F027A91D485B3 /* mutexlock.h in Headers */ = {isa = PBXBuildFile; fileRef = C0E62DA632D544398CDA30F5DDDB23EE /* mutexlock.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -2320,7 +2321,6 @@
 		914DEA5309A0973CC4B0E4FE333CFD3A /* DateRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874E005CE52BCB56B648939121FAAC1E /* DateRow.swift */; };
 		915FB4CAF62AA0DCCAB771E0FCA97184 /* FIRStorageUploadTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B0E41CA3B6FC9CF60D503F8CCC5148 /* FIRStorageUploadTask.m */; };
 		9172C0072C803AE5E278D5CD023D004D /* statusor_internals.h in Headers */ = {isa = PBXBuildFile; fileRef = FEFD913E36A84BAB418508AA438FC806 /* statusor_internals.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		917D8628C2C396DB4DF3042350F77933 /* FUIAccountSettingsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8062EC2E783080894029380BD6E7234C /* FUIAccountSettingsViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		918C333E8A4B4BF2E762A7FAABF477D6 /* digestsign.c in Sources */ = {isa = PBXBuildFile; fileRef = 3443E9A015AA661143110E2B2A350A01 /* digestsign.c */; settings = {COMPILER_FLAGS = "-DOPENSSL_NO_ASM -GCC_WARN_INHIBIT_ALL_WARNINGS -w -fno-objc-arc"; }; };
 		919A58C68F0C75234C9EA31185D5962A /* ProtoMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CCEF7625107E3B3CF79CA06B6638708 /* ProtoMethod.m */; };
 		91A45EEFD842882F6362C7A569B30CB4 /* channelz_registry.h in Copy ../../src/core/lib/channel Private Headers */ = {isa = PBXBuildFile; fileRef = A7B842DDBC51189E7C7113FD5AD35962 /* channelz_registry.h */; };
@@ -2436,6 +2436,7 @@
 		98870FFE0B8DE34BDB429C0DA3233352 /* FUIAccountSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A0D339CD8F3FBE8E0200CBD8373ABA /* FUIAccountSettingsViewController.m */; };
 		9891FF90544E9DBB2832F53AED4E3ED9 /* workaround_utils.h in Copy ../../src/core/ext/filters/workarounds Private Headers */ = {isa = PBXBuildFile; fileRef = D44C3876844693F0940AD32547D24B57 /* workaround_utils.h */; };
 		98A7FCDB8BE4159093F42EE8482F2E70 /* transport.h in Copy ../../src/core/lib/transport Private Headers */ = {isa = PBXBuildFile; fileRef = EDA06BD1D78BFAFEE5013FF787F6598E /* transport.h */; };
+		98AB53A1E42B31DAAA63D14283918E43 /* FUIAccountSettingsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8062EC2E783080894029380BD6E7234C /* FUIAccountSettingsViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		98BBF5830C75D526141E97118D1BE015 /* json.h in Copy ../../src/core/lib/json Private Headers */ = {isa = PBXBuildFile; fileRef = B3F9F47FAFFA37CFDB094303063B91EF /* json.h */; };
 		98EF4EEE9F3AB56DB557837FD6549FD4 /* internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 412D35C1AC8F087982CCDC99780E7D5E /* internal.h */; };
 		9913E5A0FAA1CE0BE782B0964F91E847 /* sv.lproj in Resources */ = {isa = PBXBuildFile; fileRef = DFAA89160A4A5E24E368B3F37428F071 /* sv.lproj */; };
@@ -2578,7 +2579,6 @@
 		A231179A2E595A90D00F85E340CC3BA7 /* tcp_server.h in Copy ../../src/core/lib/iomgr Private Headers */ = {isa = PBXBuildFile; fileRef = 0D2166A30EEACC864C34C57CDD2E8ECC /* tcp_server.h */; };
 		A2521C928609F406F8C4DA11D4497837 /* pollset_set_custom.cc in Sources */ = {isa = PBXBuildFile; fileRef = 04A3EC6FA190A0DAB11BE5992C360F2A /* pollset_set_custom.cc */; settings = {COMPILER_FLAGS = "-DGRPC_ARES=0 -DPB_FIELD_16BIT -fno-objc-arc"; }; };
 		A267A50AA34D81EAEB6FD4C2CD434687 /* GPBProtocolBuffers.h in Headers */ = {isa = PBXBuildFile; fileRef = 463B7A0616695B3474CCB39061BE3008 /* GPBProtocolBuffers.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A27E4BB3E0E17AAA3FBF42B02D44E93A /* FUIAccountSettingsOperationType.h in Headers */ = {isa = PBXBuildFile; fileRef = 52971FFA0130AFF1F1E3AB450A25CAE6 /* FUIAccountSettingsOperationType.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		A29720EB3A93E72132BAD68EA42B62D9 /* FTupleNodePath.h in Headers */ = {isa = PBXBuildFile; fileRef = 9118E9FFD05892FC225B55E73992B3BA /* FTupleNodePath.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		A298BDC59CC0AE9C1CCDFFD17EB422CE /* FUIAuthTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A98FD717A0D1E450AB5ED87D0619DD /* FUIAuthTableViewCell.m */; };
 		A29CFF90E6CB043D806209304A242D7A /* FIROAuthProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5FD0A7C8D82DEDF55B822142BA75F6 /* FIROAuthProvider.m */; };
@@ -14910,12 +14910,12 @@
 				5B7D91220F046CBDCAB459F5ADD11D8A /* FUIAccountSettingsOperationDeleteAccount.h in Headers */,
 				85655B9AEA8AC0F41559F60FA3BD6C49 /* FUIAccountSettingsOperationForgotPassword.h in Headers */,
 				6943911189ED77CF829C9ACD0DC59D8B /* FUIAccountSettingsOperationSignOut.h in Headers */,
-				A27E4BB3E0E17AAA3FBF42B02D44E93A /* FUIAccountSettingsOperationType.h in Headers */,
+				30D4B818939F364D88E0FE3FFB3FFFB3 /* FUIAccountSettingsOperationType.h in Headers */,
 				027975F2EC533F058877E56B613BBD46 /* FUIAccountSettingsOperationUnlinkAccount.h in Headers */,
 				69DD86380C0935B9CA819681E42EB002 /* FUIAccountSettingsOperationUpdateEmail.h in Headers */,
 				3A27FA66658BA7EE06691FC50395DDF0 /* FUIAccountSettingsOperationUpdateName.h in Headers */,
 				38B6FED8E0156FBF499B9E964B580F2C /* FUIAccountSettingsOperationUpdatePassword.h in Headers */,
-				917D8628C2C396DB4DF3042350F77933 /* FUIAccountSettingsViewController.h in Headers */,
+				98AB53A1E42B31DAAA63D14283918E43 /* FUIAccountSettingsViewController.h in Headers */,
 				B86430D669C832BE286EE27B628451E5 /* FUIAuth.h in Headers */,
 				7EF1DB8AD0260C2C4725F5DFEF9F5E4D /* FUIAuth_Internal.h in Headers */,
 				776128AF5A0973CEEBA6BEC918E54A66 /* FUIAuthBaseViewController.h in Headers */,
