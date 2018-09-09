@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/kodai/SportsMatching_2/SportsMatching/Profile.swift">
+   </FileRef>
+   <FileRef
       location = "group:SportsMatching.xcodeproj">
    </FileRef>
    <FileRef

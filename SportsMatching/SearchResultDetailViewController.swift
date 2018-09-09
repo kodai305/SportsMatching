@@ -171,7 +171,16 @@ class SearchResultDetailViewController: BaseFormViewController{
                 SVProgressHUD.show(withStatus: "送信中")
                 // 募集者に通知を送る
                 let postID = self.postDoc.data()["postUser"] as! String
-                self.functions.httpsCallable("sendNewApplyNotification").call(["postID": postID, "message": messageStr]) { (result, error) in
+                
+                  //自分の名前を取得
+                var myName:String = "no name"
+                let defaults = UserDefaults.standard
+                if let data = defaults.data(forKey: "profile") {
+                    let profile = try? JSONDecoder().decode(Profile.self, from: data)
+                    myName = (profile?.UserName)!
+                }
+                
+                self.functions.httpsCallable("sendNewApplyNotification").call(["postID": postID, "message": messageStr, "userName": myName]) { (result, error) in
                     print(result?.data as Any)
                     print("function is called")
                     if let error = error as NSError? {

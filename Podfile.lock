@@ -173,9 +173,6 @@ PODS:
     - GTMSessionFetcher/Core (= 1.2.0)
   - ImageRow (3.1.0):
     - Eureka (~> 4.0)
-  - JSQMessagesViewController (7.3.5):
-    - JSQSystemSoundPlayer (~> 2.0.1)
-  - JSQSystemSoundPlayer (2.0.1)
   - leveldb-library (1.20)
   - MessageKit (1.0.0)
   - nanopb (0.3.8):
@@ -209,7 +206,6 @@ DEPENDENCIES:
   - FirebaseUI/Twitter
   - Google-Mobile-Ads-SDK
   - ImageRow (~> 3.0)
-  - JSQMessagesViewController
   - MessageKit
   - SVProgressHUD
   - XLPagerTabStrip (~> 8.0)
@@ -246,8 +242,6 @@ SPEC REPOS:
     - GTMOAuth2
     - GTMSessionFetcher
     - ImageRow
-    - JSQMessagesViewController
-    - JSQSystemSoundPlayer
     - leveldb-library
     - MessageKit
     - nanopb
@@ -288,8 +282,6 @@ SPEC CHECKSUMS:
   GTMOAuth2: c77fe325e4acd453837e72d91e3b5f13116857b2
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
   ImageRow: 1ea483078bfa3d880a7fc76fdfcddfd5f29a9e6b
-  JSQMessagesViewController: 6587f56aedbcb150a8ba1d968e1ef58b1bc758b7
-  JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   MessageKit: 16160036b16476b04bd0e9f2c7ce67e662e503e4
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
@@ -299,6 +291,6 @@ SPEC CHECKSUMS:
   TwitterKit: bc7bd086b9b724a1d888745a054e1d0b1ecc4f3f
   XLPagerTabStrip: c908b17cbf42fcd2598ee1adfc49bae25444d88a
 
-PODFILE CHECKSUM: f38b5696184f443ac96246551487fec6aef4b44d
+PODFILE CHECKSUM: e0afb1d3dba57dd2475bec412c4c0c422c8e6d9e
 
 COCOAPODS: 1.5.3

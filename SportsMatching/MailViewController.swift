@@ -18,14 +18,6 @@ class MailViewController: MessagesViewController {
     var partnerUID = ""
     var roomID = ""
     
-    // メッセージの構造体(保存用)
-    struct MessageInfo: Codable {
-        var message: String = ""
-        var senderID: String = ""
-        var sentDate: Date = Date()
-        var kind: String = ""
-    }
-    
     // 使うかどうかは後回し
     //let refreshControl = UIRefreshControl()
     

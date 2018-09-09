@@ -18,17 +18,7 @@ class CreateProfileViewController: FormViewController {
     let myUID: String = UserDefaults.standard.string(forKey: "UID")!
     // fcmTokenの読み取り
     let myFcmToken: String = UserDefaults.standard.string(forKey: "fcmToken")!
-    
-    // プロフィールの構造体(保存用)
-    struct Profile: Codable {
-        var UserName: String? = nil
-        var Gender: String? = nil
-        var Age: String? = nil
-        var Level: String? = nil
-        var Image: Data = Data()
-        var Comments: String? = nil
-    }
-    
+   
     // 選択されたイメージ格納用
     var selectedImg = UIImage()
 
@@ -120,7 +110,7 @@ class CreateProfileViewController: FormViewController {
         //画像セルから画像を取得
         let UIImgae = values["Image"] as! UIImage
         
-        // profile構造体をつくる
+        // profile構造体をつくってUser-defaultに保存
         var MyProfile = Profile()
         MyProfile.UserName = values["UserName"] as? String
         MyProfile.Gender = values["Gender"] as? String

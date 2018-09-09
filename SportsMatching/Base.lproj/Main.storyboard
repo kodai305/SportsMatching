@@ -630,11 +630,11 @@
             </objects>
             <point key="canvasLocation" x="4884" y="2185"/>
         </scene>
-        <!--Recruite-->
+        <!--Navigation Controller-->
         <scene sceneID="hWu-Xi-RzD">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2Ta-Cr-MUG" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Recruite" id="HYk-05-FUd"/>
+                    <tabBarItem key="tabBarItem" systemItem="contacts" id="HYk-05-FUd"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PtC-An-A9M">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -649,11 +649,11 @@
             </objects>
             <point key="canvasLocation" x="2329" y="1435"/>
         </scene>
-        <!--MyPage-->
+        <!--メンバー募集-->
         <scene sceneID="Y6T-Yz-nrR">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="22f-Zy-oiZ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="MyPage" id="LLe-cx-UWx"/>
+                    <tabBarItem key="tabBarItem" title="メンバー募集" id="LLe-cx-UWx"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="y3j-YI-VYa">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -668,11 +668,11 @@
             </objects>
             <point key="canvasLocation" x="2329" y="716"/>
         </scene>
-        <!--Search-->
+        <!--Navigation Controller-->
         <scene sceneID="L0e-BQ-mMp">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nP6-wp-vBp" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Search" image=".search" id="CGT-KK-Qzi"/>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="CGT-KK-Qzi"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4rE-yC-nxu">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -687,11 +687,11 @@
             </objects>
             <point key="canvasLocation" x="2329" y="2186"/>
         </scene>
-        <!--Mail-->
+        <!--Navigation Controller-->
         <scene sceneID="HRg-zo-e4u">
             <objects>
                 <navigationController storyboardIdentifier="MailViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2hi-6l-wtD" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Mail" id="rsh-4Z-3wA"/>
+                    <tabBarItem key="tabBarItem" systemItem="history" id="rsh-4Z-3wA"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gdm-lf-lql">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -741,9 +741,6 @@
             <point key="canvasLocation" x="4884" y="3597"/>
         </scene>
     </scenes>
-    <resources>
-        <image name=".search" width="16" height="16"/>
-    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="e6q-eW-bI0"/>
         <segue reference="Lbe-8n-gZh"/>

@@ -22,15 +22,6 @@ import FirebaseUI
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     
-    // メッセージの構造体(保存用)
-    // 二重定義になってしまうのをなんとかしたいいつか
-    struct MessageInfo: Codable {
-        var message: String = ""
-        var senderID: String = ""
-        var sentDate: Date = Date()
-        var kind: String = ""
-    }
-    
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
