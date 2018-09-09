@@ -140,10 +140,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     //  fcmのjsonに"content_available" : true が必要
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        var msgType:String = ""
-        var sender:String = ""
-        var message:String = ""
-        var roomID:String = ""
+        var msgType:String  = ""
+        var sender:String   = ""
+        var message:String  = ""
+        var roomID:String   = ""
+        var userName:String = "NO NAME"
         
         let key: Array! = Array(userInfo.keys)
         if key == nil {
@@ -168,6 +169,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 if (key0 == "roomID") {
                     roomID = UnwrapValue
                 }
+                if (key0 == "userName") {
+                    userName = UnwrapValue
+                }
             }
         }
         let defaults = UserDefaults.standard
@@ -187,11 +191,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             stubMessageInfo.sentDate = Date()
             stubMessageInfo.kind     = "text"
             
-            // 保存する
+            // メッセージを保存する
             var messageArray:[MessageInfo] = []
             messageArray.append(stubMessageInfo)
             let data = try? JSONEncoder().encode(messageArray)
             defaults.set(data ,forKey: roomID)
+            
+            // 相手の名前を保存する
+            defaults.set(userName ,forKey: "user_"+sender)
             
             // 今までの応募履歴を取得
             if defaults.value(forKey: "RecruiteHistory") != nil {
