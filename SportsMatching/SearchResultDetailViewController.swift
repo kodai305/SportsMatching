@@ -231,10 +231,14 @@ class SearchResultDetailViewController: BaseFormViewController{
                             }
                         }
                         
+
+
+/*
                         // 履歴タブのViewControllerを取得する
                         let viewController = self.tabBarController?.viewControllers![3] as! UINavigationController
                         // 履歴タブを選択済みにする
                         self.tabBarController?.selectedViewController = viewController
+ */
                     }
                 }
             }
