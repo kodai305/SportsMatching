@@ -68,8 +68,12 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
         //セルの高さを設定（画面全体の5分の1に設定）
         self.tableView.rowHeight = self.view.frame.height / 5
         self.tableView.reloadData()
-        print("endcount :")
-        print(self.LoadedDocumentArray.count)
+        //0件の時はここでSVProgressを消す
+        if self.LoadedDocumentArray.count == 0{
+            SVProgressHUD.showSuccess(withStatus: "投稿がありません")
+            SVProgressHUD.dismiss(withDelay: 2)
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -164,15 +168,10 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
         }
     }
     
-    //tableViewのセクションの行数が0の時小島さんの画像を出す
-    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-        tableView.tableFooterView = UIView(frame: .zero)
-        return UIImage(named: "riria")
-    }
-    
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = "まだ募集がありません"
+        let str = "条件に該当する投稿がありません"
         let attrs = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
+        tableView.tableFooterView = UIView(frame: .zero)
         return NSAttributedString(string: str, attributes: attrs)
     }
     
