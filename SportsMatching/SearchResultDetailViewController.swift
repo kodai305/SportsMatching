@@ -139,6 +139,18 @@ class SearchResultDetailViewController: BaseFormViewController{
     // 応募ボタンを押して募集者にメッセージを送る
     lazy var functions = Functions.functions()
     @IBAction func entryButtonTapped(_ sender: Any) {
+        //プロフィール登録がない場合プロフィール登録画面に遷移させる
+        let defaults = UserDefaults.standard
+        if defaults.data(forKey: "profile") == nil{
+            SVProgressHUD.showError(withStatus: "応募にはプロフィールの作成が必要です")
+            // マイページタブのViewControllerを取得する
+            let viewController = self.tabBarController?.viewControllers![0] as! UINavigationController
+            // マイページタブを選択済みにする
+            self.tabBarController?.selectedViewController = viewController
+            return
+        }
+        
+        
         // XXX:ポップアップを出して応募メッセージ入力フォーマットを出す？
         let msg:String = "内容\n\n\n\n"
         let alert = UIAlertController(title:"投稿者へメッセージ", message:msg, preferredStyle: UIAlertControllerStyle.alert)

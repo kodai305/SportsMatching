@@ -129,7 +129,7 @@
         <!--プロフィール登録-->
         <scene sceneID="so7-Hc-eAK">
             <objects>
-                <viewController title="プロフィール登録" id="RdO-09-FdY" customClass="CreateProfileViewController" customModule="SportsMatching" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateProfile" title="プロフィール登録" id="RdO-09-FdY" customClass="CreateProfileViewController" customModule="SportsMatching" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Fof-jq-1Xr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
