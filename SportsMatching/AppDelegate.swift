@@ -169,7 +169,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 if (key0 == "roomID") {
                     roomID = UnwrapValue
                 }
-                if (key0 == "userName") {
+                if (key0 == "senderName") {
                     userName = UnwrapValue
                 }
             }
@@ -199,7 +199,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             
             // 相手の名前を保存する
             defaults.set(userName ,forKey: "user_"+sender)
-            
+            print("user name:")
+            print(userName)
             // 今までの応募履歴を取得
             if defaults.value(forKey: "RecruiteHistory") != nil {
                 StubRecruite = defaults.value(forKey: "RecruiteHistory") as! [String]

@@ -179,7 +179,8 @@ class SearchResultDetailViewController: BaseFormViewController{
                     let profile = try? JSONDecoder().decode(Profile.self, from: data)
                     myName = (profile?.UserName)!
                 }
-                
+                print("myName:")
+                print(myName)
                 self.functions.httpsCallable("sendNewApplyNotification").call(["postID": postID, "message": messageStr, "userName": myName]) { (result, error) in
                     print(result?.data as Any)
                     print("function is called")
