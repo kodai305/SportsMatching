@@ -91,17 +91,17 @@ class SearchResultDetailViewController: BaseFormViewController{
             }
             <<< TextRow("Timezone") {
                 $0.title = "活動時間帯"
-                $0.value = self.postDoc.data()["timezone"] as? String
+                $0.value = self.ArraytoSting(array: postDoc.data()["timezone"] as! Array<String>)
                 $0.baseCell.isUserInteractionEnabled = false
             }
             <<< TextRow("Position") {
                 $0.title = "募集ポジション"
-                $0.value = self.postDoc.data()["position"] as? String
+                $0.value = self.ArraytoSting(array: postDoc.data()["position"] as! Array<String>)
                 $0.baseCell.isUserInteractionEnabled = false
             }
             <<< TextRow("ApplyLevel") {
                 $0.title = "参加可能なレベル"
-                $0.value = self.postDoc.data()["applyLevel"] as? String
+                $0.value = self.ArraytoSting(array: postDoc.data()["applyLevel"] as! Array<String>)
                 $0.baseCell.isUserInteractionEnabled = false
             }
             <<< TextRow("GenderRatio") {
@@ -116,18 +116,18 @@ class SearchResultDetailViewController: BaseFormViewController{
             }
             <<< TextRow("NumMembers"){
                 $0.title = "チームの人数"
-                $0.value = self.postDoc.data()["numMembers"] as? String
+                $0.value = String(self.postDoc.data()["numMembers"] as! Int)
                 $0.baseCell.isUserInteractionEnabled = false
             }
             
             <<< TextRow("Day") {
                 $0.title = "開催曜日"
-                $0.value = self.postDoc.data()["day"] as? String
+                $0.value = self.ArraytoSting(array: postDoc.data()["day"] as! Array<String>)
                 $0.baseCell.isUserInteractionEnabled = false
             }
             <<< TextRow("MainAge") {
                 $0.title = "メンバー年齢"
-                $0.value = self.postDoc.data()["mainAge"] as? String
+                $0.value = self.ArraytoSting(array: postDoc.data()["mainAge"] as! Array<String>)
                 $0.baseCell.isUserInteractionEnabled = false
         }
             <<< TextAreaRow("Comments") {
@@ -270,6 +270,19 @@ class SearchResultDetailViewController: BaseFormViewController{
         } else { //応募履歴がない場合
             StubApplyHistory.append(postID)
             defaults.set(StubApplyHistory, forKey: "ApplyHistory")
+        }
+    }
+    
+    //Set型の中身を単独のStingにまとめて返す
+    func ArraytoSting(array: Array<String>) -> String?{
+        if array.isEmpty{
+            return nil
+        }else{
+            var string:String!
+            for i in 0 ..< array.count {
+                string = i == 0 ? array[i] : array[i] + "," + string
+            }
+            return string
         }
     }
 
