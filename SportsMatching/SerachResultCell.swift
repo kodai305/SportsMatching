@@ -14,8 +14,10 @@ class SerachResultCell: UITableViewCell {
     
 
     @IBOutlet weak var TeamNameLabel: UILabel!
+    @IBOutlet weak var CategoryLabel: UILabel!
     @IBOutlet weak var PlaceLabel: UILabel!
     @IBOutlet weak var GenderLabel: UILabel!
+    @IBOutlet weak var TimezoneLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
