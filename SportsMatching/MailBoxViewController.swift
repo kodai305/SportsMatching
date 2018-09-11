@@ -29,6 +29,9 @@ class MailBoxViewController: ButtonBarPagerTabStripViewController {
         //セレクトバーの色
         settings.style.selectedBarBackgroundColor = UIColor.yellow
         
+        //描画領域がNavigationBarの下に潜り込まないように設定
+        self.edgesForExtendedLayout = .bottom
+        
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
