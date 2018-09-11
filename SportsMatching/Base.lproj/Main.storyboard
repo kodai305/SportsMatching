@@ -151,7 +151,7 @@
         <!--履歴-->
         <scene sceneID="lp5-X6-ev6">
             <objects>
-                <viewController storyboardIdentifier="Main" id="VpO-Qw-kVs" customClass="MailBoxViewController" customModule="SportsMatching" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MailBox" useStoryboardIdentifierAsRestorationIdentifier="YES" id="VpO-Qw-kVs" customClass="MailBoxViewController" customModule="SportsMatching" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1Bi-w5-V5L">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

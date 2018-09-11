@@ -229,6 +229,7 @@ class SearchResultDetailViewController: BaseFormViewController{
                                             postUserName = tmp as! String
                                         }
                                         defaults.set(postUserName, forKey: "user_"+postID)
+                                        UserDefaults.standard.set(1, forKey: "fromApplyFlag")
                                         // 履歴タブのViewControllerを取得する
                                         let viewController = self.tabBarController?.viewControllers![3] as! UINavigationController
                                         // 履歴タブを選択済みにする
