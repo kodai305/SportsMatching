@@ -254,6 +254,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Item" id="gT0-Rs-za9">
                             <connections>
                                 <action selector="testButtonPushed:" destination="XEq-qz-s82" id="vcr-hr-VGw"/>
+                                <segue destination="4WF-jF-A1D" kind="presentation" modalTransitionStyle="coverVertical" id="lVV-CP-Etq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -262,6 +263,31 @@
                 <exit id="bxe-2u-Vrg" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4492" y="4371"/>
+        </scene>
+        <!--Apply Detail View Controller-->
+        <scene sceneID="h7a-7p-DYn">
+            <objects>
+                <viewController id="4WF-jF-A1D" customClass="ApplyDetailViewController" customModule="SportsMatching" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zrU-cR-eai">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1aR-bp-DC2">
+                                <rect key="frame" x="164" y="37" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="BackButton:" destination="4WF-jF-A1D" eventType="touchUpInside" id="WbB-ZX-Dmg"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="E1v-Pa-RNQ"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FR1-Sn-GFV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5341.6000000000004" y="4369.5652173913049"/>
         </scene>
         <!--Mail Box Search View Controller-->
         <scene sceneID="uQT-OU-Tzt">

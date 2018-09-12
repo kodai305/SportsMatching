@@ -35,6 +35,7 @@
 		CEBB289A211A9FBD00C7FFFE /* SerachResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB2899211A9FBD00C7FFFE /* SerachResultCell.swift */; };
 		CEBB28A0211AC05C00C7FFFE /* SearchResultDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB289F211AC05C00C7FFFE /* SearchResultDetailViewController.swift */; };
 		CEDCC4F8211BD3AA001DC758 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDCC4F7211BD3AA001DC758 /* SearchViewController.swift */; };
+		CEE35C4A2148E79600F1D0C1 /* ApplyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE35C492148E79600F1D0C1 /* ApplyDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +72,7 @@
 		CEBB2899211A9FBD00C7FFFE /* SerachResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerachResultCell.swift; sourceTree = "<group>"; };
 		CEBB289F211AC05C00C7FFFE /* SearchResultDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultDetailViewController.swift; sourceTree = "<group>"; };
 		CEDCC4F7211BD3AA001DC758 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		CEE35C492148E79600F1D0C1 /* ApplyDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 				4735B104211AF34A009D1323 /* MailBoxSearchViewController.swift */,
 				CEA6552B212EE89100C4B94A /* MailBoxCell.swift */,
 				4735B10A211DCD63009D1323 /* MailViewController.swift */,
+				CEE35C492148E79600F1D0C1 /* ApplyDetailViewController.swift */,
 				4735B12221311590009D1323 /* MockMessage.swift */,
 				470DDE772144A08600D774B9 /* MessageInfo.swift */,
 				4735B0CB2115DBC9009D1323 /* Assets.xcassets */,
@@ -354,6 +357,7 @@
 			files = (
 				4735B12321311590009D1323 /* MockMessage.swift in Sources */,
 				CEA6F7C1214509BD00271AA4 /* Profile.swift in Sources */,
+				CEE35C4A2148E79600F1D0C1 /* ApplyDetailViewController.swift in Sources */,
 				4735B0CA2115DBC6009D1323 /* SportsMatching.xcdatamodeld in Sources */,
 				CEDCC4F8211BD3AA001DC758 /* SearchViewController.swift in Sources */,
 				4735B101211AEF2C009D1323 /* MailBoxViewController.swift in Sources */,
