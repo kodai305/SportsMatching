@@ -126,15 +126,10 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
         }
     }
     
-    //tableViewのセクションの行数が0の時小島さんの画像を出す
-    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-        tableView.tableFooterView = UIView(frame: .zero)
-        return UIImage(named: "riria")
-    }
-    
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = "まだ募集がありません"
+        let str = "まだ応募していません"
         let attrs = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
+        tableView.tableFooterView = UIView(frame: .zero)
         return NSAttributedString(string: str, attributes: attrs)
         
     }

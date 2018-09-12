@@ -29,7 +29,11 @@ class MailBoxViewController: ButtonBarPagerTabStripViewController {
         //セレクトバーの色
         settings.style.selectedBarBackgroundColor = UIColor.yellow
         
+        //描画領域がNavigationBarの下に潜り込まないように設定
+        self.edgesForExtendedLayout = .bottom
+        
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view.
     }
     
@@ -49,6 +53,18 @@ class MailBoxViewController: ButtonBarPagerTabStripViewController {
             }
             // [END_EXCLUDE]
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        //Userdefalutsの有無で応募ボタンからの遷移か判断
+        //Userdefalutsで管理するのが適切かどうかは微妙
+        if UserDefaults.standard.object(forKey: "fromApplyFlag") != nil {
+        //応募ボタンからの遷移の場合、応募履歴タブをアクティブにする
+            print(currentIndex)
+            moveToViewController(at: 1, animated: true)
+        }
+        UserDefaults.standard.removeObject(forKey: "fromApplyFlag")
     }
     
     override func didReceiveMemoryWarning() {

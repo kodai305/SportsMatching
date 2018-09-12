@@ -129,7 +129,7 @@
         <!--プロフィール登録-->
         <scene sceneID="so7-Hc-eAK">
             <objects>
-                <viewController title="プロフィール登録" id="RdO-09-FdY" customClass="CreateProfileViewController" customModule="SportsMatching" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateProfile" title="プロフィール登録" id="RdO-09-FdY" customClass="CreateProfileViewController" customModule="SportsMatching" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Fof-jq-1Xr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -151,7 +151,7 @@
         <!--履歴-->
         <scene sceneID="lp5-X6-ev6">
             <objects>
-                <viewController storyboardIdentifier="Main" id="VpO-Qw-kVs" customClass="MailBoxViewController" customModule="SportsMatching" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MailBox" useStoryboardIdentifierAsRestorationIdentifier="YES" id="VpO-Qw-kVs" customClass="MailBoxViewController" customModule="SportsMatching" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1Bi-w5-V5L">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -254,6 +254,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Item" id="gT0-Rs-za9">
                             <connections>
                                 <action selector="testButtonPushed:" destination="XEq-qz-s82" id="vcr-hr-VGw"/>
+                                <segue destination="4WF-jF-A1D" kind="presentation" modalTransitionStyle="coverVertical" id="lVV-CP-Etq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -262,6 +263,31 @@
                 <exit id="bxe-2u-Vrg" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4492" y="4371"/>
+        </scene>
+        <!--Apply Detail View Controller-->
+        <scene sceneID="h7a-7p-DYn">
+            <objects>
+                <viewController id="4WF-jF-A1D" customClass="ApplyDetailViewController" customModule="SportsMatching" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zrU-cR-eai">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1aR-bp-DC2">
+                                <rect key="frame" x="164" y="37" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="BackButton:" destination="4WF-jF-A1D" eventType="touchUpInside" id="WbB-ZX-Dmg"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="E1v-Pa-RNQ"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FR1-Sn-GFV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5341.6000000000004" y="4369.5652173913049"/>
         </scene>
         <!--Mail Box Search View Controller-->
         <scene sceneID="uQT-OU-Tzt">
@@ -515,11 +541,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SerachResultCell" rowHeight="172" id="Y8F-u1-bf6" customClass="SerachResultCell" customModule="SportsMatching" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="172"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SerachResultCell" rowHeight="245" id="Y8F-u1-bf6" customClass="SerachResultCell" customModule="SportsMatching" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="245"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Y8F-u1-bf6" id="Mgf-IZ-hNp">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="171.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="244.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bcx-Si-hpy">
@@ -534,14 +560,28 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="活動場所" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kei-gT-Hh0">
-                                                    <rect key="frame" x="169" y="67" width="177" height="21"/>
+                                                    <rect key="frame" x="169" y="91" width="177" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="性別" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HDH-kR-f0H">
-                                                    <rect key="frame" x="194" y="124" width="129" height="21"/>
+                                                    <rect key="frame" x="193" y="128" width="129" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="カテゴリ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VIQ-6o-bTW">
+                                                    <rect key="frame" x="222" y="50" width="70" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="活動時間帯" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="osq-mo-Ohq">
+                                                    <rect key="frame" x="214" y="171" width="87" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -550,10 +590,12 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="CategoryLabel" destination="VIQ-6o-bTW" id="qqN-xT-103"/>
                                             <outlet property="GenderLabel" destination="HDH-kR-f0H" id="Umg-tg-1Ie"/>
                                             <outlet property="ImageView" destination="Bcx-Si-hpy" id="PCd-sD-ZZU"/>
                                             <outlet property="PlaceLabel" destination="kei-gT-Hh0" id="TZe-8P-XCi"/>
                                             <outlet property="TeamNameLabel" destination="3GT-mZ-szT" id="DR5-f2-O0b"/>
+                                            <outlet property="TimezoneLabel" destination="osq-mo-Ohq" id="aFC-Ab-tgZ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
