@@ -32,6 +32,7 @@
 		CEA6F7C1214509BD00271AA4 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA6F7C0214509BC00271AA4 /* Profile.swift */; };
 		CEA7FBCC211732C10004FF88 /* RecruiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA7FBCB211732C10004FF88 /* RecruiteViewController.swift */; };
 		CEA8C6D2213D7FE80020D2F1 /* EditRecruiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8C6D1213D7FE80020D2F1 /* EditRecruiteViewController.swift */; };
+		CEAEE8BA2149FA3F00323B12 /* TopAuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAEE8B92149FA3F00323B12 /* TopAuthenticationViewController.swift */; };
 		CEBB289A211A9FBD00C7FFFE /* SerachResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB2899211A9FBD00C7FFFE /* SerachResultCell.swift */; };
 		CEBB28A0211AC05C00C7FFFE /* SearchResultDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB289F211AC05C00C7FFFE /* SearchResultDetailViewController.swift */; };
 		CEDCC4F8211BD3AA001DC758 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDCC4F7211BD3AA001DC758 /* SearchViewController.swift */; };
@@ -69,6 +70,7 @@
 		CEA6F7C0214509BC00271AA4 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		CEA7FBCB211732C10004FF88 /* RecruiteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecruiteViewController.swift; sourceTree = "<group>"; };
 		CEA8C6D1213D7FE80020D2F1 /* EditRecruiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecruiteViewController.swift; sourceTree = "<group>"; };
+		CEAEE8B92149FA3F00323B12 /* TopAuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAuthenticationViewController.swift; sourceTree = "<group>"; };
 		CEBB2899211A9FBD00C7FFFE /* SerachResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerachResultCell.swift; sourceTree = "<group>"; };
 		CEBB289F211AC05C00C7FFFE /* SearchResultDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultDetailViewController.swift; sourceTree = "<group>"; };
 		CEDCC4F7211BD3AA001DC758 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				CEA5CF942123BAFE00DE1FEE /* MyPageViewController.swift */,
 				4735B12021295FA5009D1323 /* CreateProfileViewController.swift */,
 				CEA6F7C0214509BC00271AA4 /* Profile.swift */,
+				CEAEE8B92149FA3F00323B12 /* TopAuthenticationViewController.swift */,
 				4735B106211C7B84009D1323 /* SignUpViewController.swift */,
 				4735B108211C8526009D1323 /* SignInViewController.swift */,
 				CEA7FBCB211732C10004FF88 /* RecruiteViewController.swift */,
@@ -311,6 +314,7 @@
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
@@ -337,6 +341,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
@@ -373,6 +378,7 @@
 				4735B103211AF1C4009D1323 /* MailBoxRecruiteViewController.swift in Sources */,
 				4735B105211AF34A009D1323 /* MailBoxSearchViewController.swift in Sources */,
 				4735B0C42115DBC6009D1323 /* BaseViewController.swift in Sources */,
+				CEAEE8BA2149FA3F00323B12 /* TopAuthenticationViewController.swift in Sources */,
 				CEBB289A211A9FBD00C7FFFE /* SerachResultCell.swift in Sources */,
 				4735B0C22115DBC6009D1323 /* AppDelegate.swift in Sources */,
 				4735B10B211DCD63009D1323 /* MailViewController.swift in Sources */,

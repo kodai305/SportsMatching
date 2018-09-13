@@ -325,10 +325,10 @@
             </objects>
             <point key="canvasLocation" x="4884" y="2863"/>
         </scene>
-        <!--View Controller-->
+        <!--Top Authentication View Controller-->
         <scene sceneID="xAo-RM-wK9">
             <objects>
-                <viewController id="5Y7-M5-uDw" sceneMemberID="viewController">
+                <viewController id="5Y7-M5-uDw" customClass="TopAuthenticationViewController" customModule="SportsMatching" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fw8-8O-DwC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -790,7 +790,7 @@
         <image name="search" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="e6q-eW-bI0"/>
+        <segue reference="dYF-6A-Iab"/>
         <segue reference="Lbe-8n-gZh"/>
     </inferredMetricsTieBreakers>
 </document>
