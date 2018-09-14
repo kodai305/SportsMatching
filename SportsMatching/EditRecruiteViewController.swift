@@ -20,53 +20,32 @@ class EditRecruiteViewController: BaseFormViewController {
     let myUID: String = UserDefaults.standard.string(forKey: "UID")!
     //初回投稿時間を保存
     var InitialPostedTime:String!
-    // 応募詳細の構造体
-    struct RecruiteDetail: Codable {
-        var PostedTime  : String? = nil
-        var UpdateTime  : String? = nil
-        var PostUser    : String? = nil
-        var TeamName    : String? = nil
-        var Category    : String? = nil
-        var Prefecture  : String? = nil
-        var Place       : String? = nil
-        var ApplyGender : String? = nil
-        var Timezone    : Array<String>? = nil
-        var Image       : Data = Data()
-        var Position    : Array<String>? = nil
-        var ApplyLevel  : Array<String>? = nil
-        var GenderRatio : String? = nil
-        var TeamLevel   : String? = nil
-        var NumMembers  : Int? = nil
-        var Day         : Array<String>? = nil
-        var MainAge     : Array<String>? = nil
-        var Comments    : String? = nil
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //Userdefalutsから投稿詳細を取得
-        var savedRecruiteDetail = RecruiteDetail()
+        var savedPostDetail = PostDetail()
         let defaults = UserDefaults.standard
         //投稿がない場合アラートを出す
         guard let data = defaults.data(forKey: "recruite") else {
             SVProgressHUD.showError(withStatus: "投稿がありません")
             return
         }
-        savedRecruiteDetail = try! JSONDecoder().decode(RecruiteDetail.self, from: data)
-        InitialPostedTime = savedRecruiteDetail.PostedTime
+        savedPostDetail = try! JSONDecoder().decode(PostDetail.self, from: data)
+        InitialPostedTime = savedPostDetail.PostedTime
         
         self.form +++
             Section(header: "必須項目", footer: "すべての項目を入力してください")
             <<< TextRow("TeamName") {
                 $0.title = "チーム名"
                 $0.placeholder = "チーム名/サークル名"
-                $0.value = savedRecruiteDetail.TeamName
+                $0.value = savedPostDetail.TeamName
             }
             <<< ActionSheetRow<String>("Category") {
                 $0.title = "カテゴリ"
                 $0.selectorTitle = "チームのカテゴリーを選択"
                 $0.options = ["ミニバス", "ジュニア", "社会人", "クラブチーム"]
-                $0.value = savedRecruiteDetail.Category
+                $0.value = savedPostDetail.Category
                 }
                 .onPresent { from, to in
                             to.popoverPresentationController?.permittedArrowDirections = .up
@@ -84,7 +63,7 @@ class EditRecruiteViewController: BaseFormViewController {
                               "佐賀県", "長崎県", "熊本県", "大分県", "宮崎県",
                               "鹿児島県", "沖縄県"]
                 $0.selectorTitle = "都道府県名"
-                $0.value = savedRecruiteDetail.Prefecture
+                $0.value = savedPostDetail.Prefecture
                 }.onPresent { from, to in
                     to.dismissOnSelection = false
                     to.dismissOnChange = false
@@ -104,13 +83,13 @@ class EditRecruiteViewController: BaseFormViewController {
             <<< TextRow("Place"){
                 $0.title = "活動場所"
                 $0.placeholder = "体育館名など"
-                $0.value = savedRecruiteDetail.Place
+                $0.value = savedPostDetail.Place
             }
             <<< ActionSheetRow<String>("ApplyGender") {
                 $0.title = "募集性別"
                 $0.selectorTitle = "募集する性別を選択"
                 $0.options = ["不問", "男性", "女性"]
-                $0.value = savedRecruiteDetail.ApplyGender
+                $0.value = savedPostDetail.ApplyGender
                 }
                 .onPresent { from, to in
                     to.popoverPresentationController?.permittedArrowDirections = .up
@@ -119,7 +98,7 @@ class EditRecruiteViewController: BaseFormViewController {
                 $0.title = "活動時間帯"
                 $0.selectorTitle = "活動時間帯(複数選択可)"
                 $0.options = ["午前", "午後", "夜"]
-                $0.value = Set(savedRecruiteDetail.Timezone!)
+                $0.value = Set(savedPostDetail.Timezone!)
                 }
                 .onPresent { from, to in
                     to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
@@ -127,7 +106,7 @@ class EditRecruiteViewController: BaseFormViewController {
             <<< ImageRow("Image1") {
                 $0.title = "活動風景画像"
                 $0.sourceTypes = [.PhotoLibrary, .SavedPhotosAlbum, .Camera]
-                $0.value = UIImage(data: savedRecruiteDetail.Image)
+                $0.value = UIImage(data: savedPostDetail.Image)
                 $0.clearAction = .yes(style: .destructive)
                 $0.onChange { [unowned self] row in
                     self.selectedImg = row.value!
@@ -139,7 +118,7 @@ class EditRecruiteViewController: BaseFormViewController {
                 $0.title = "募集ポジション"
                 $0.selectorTitle = "募集するポジションを選択"
                 $0.options = ["どこでも","ガード", "フォワード", "センター", "マネジャー"]
-                $0.value = savedRecruiteDetail.Position == nil ? nil : Set(savedRecruiteDetail.Position!)
+                $0.value = (savedPostDetail.Position?.isEmpty)! ? nil : Set(savedPostDetail.Position!)
                 }
                 .onPresent { from, to in
                     to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
@@ -148,7 +127,7 @@ class EditRecruiteViewController: BaseFormViewController {
                 $0.title = "参加可能なレベル"
                 $0.selectorTitle = "参加可能なレベルを選択"
                 $0.options = ["未経験", "初心者", "上級者"]
-                $0.value = savedRecruiteDetail.ApplyLevel == nil ? nil : Set(savedRecruiteDetail.ApplyLevel!)
+                $0.value = (savedPostDetail.ApplyLevel?.isEmpty)! ? nil : Set(savedPostDetail.ApplyLevel!)
                 }
                 .onPresent { from, to in
                     to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
@@ -157,7 +136,7 @@ class EditRecruiteViewController: BaseFormViewController {
                 $0.title = "チーム構成"
                 $0.selectorTitle = "一番近い男女比を選択"
                 $0.options = ["ミックス", "男性のみ", "女性のみ"]
-                $0.value = savedRecruiteDetail.GenderRatio
+                $0.value = savedPostDetail.GenderRatio == "" ? nil : savedPostDetail.GenderRatio
                 }
                 .onPresent { from, to in
                     to.popoverPresentationController?.permittedArrowDirections = .up
@@ -166,7 +145,7 @@ class EditRecruiteViewController: BaseFormViewController {
                 $0.title = "チームのレベル"
                 $0.selectorTitle = "一番近いチームレベルを選択"
                 $0.options = ["未経験中心", "初心者中心", "上級者中心"]
-                $0.value = savedRecruiteDetail.TeamLevel
+                $0.value = savedPostDetail.TeamLevel == "" ? nil : savedPostDetail.TeamLevel
                 }
                 .onPresent { from, to in
                     to.popoverPresentationController?.permittedArrowDirections = .up
@@ -174,14 +153,14 @@ class EditRecruiteViewController: BaseFormViewController {
             <<< IntRow("NumMembers"){
                 $0.title = "チームの人数"
                 $0.placeholder = "1回あたりの目安"
-                $0.value = savedRecruiteDetail.NumMembers
+                $0.value = savedPostDetail.NumMembers == 0 ? nil : savedPostDetail.NumMembers
             }
             
             <<< MultipleSelectorRow<String>("Day") {
                 $0.title = "開催曜日"
                 $0.selectorTitle = "主に開催している曜日を選択"
                 $0.options = ["月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日", "日曜日"]
-                $0.value = savedRecruiteDetail.Day == nil ? nil : Set(savedRecruiteDetail.Day!)
+                $0.value = (savedPostDetail.Day?.isEmpty)! ? nil : Set(savedPostDetail.Day!)
                 }
                 .onPresent { from, to in
                     to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
@@ -190,7 +169,7 @@ class EditRecruiteViewController: BaseFormViewController {
                 $0.title = "メンバー年齢"
                 $0.selectorTitle = "メンバーの主な年代を選択(複数可)"
                 $0.options = ["10代", "20代", "30代", "40代", "50代", "60代以上"]
-                $0.value = savedRecruiteDetail.MainAge == nil ? nil : Set(savedRecruiteDetail.MainAge!)
+                $0.value = (savedPostDetail.MainAge?.isEmpty)! ? nil : Set(savedPostDetail.MainAge!)
                 }
                 .onPresent { from, to in
                     to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
@@ -200,7 +179,7 @@ class EditRecruiteViewController: BaseFormViewController {
             <<< TextAreaRow("Comments") {
                 $0.placeholder = "自由記述"
                 $0.textAreaHeight = .dynamic(initialTextViewHeight: 110)
-                $0.value = savedRecruiteDetail.Comments
+                $0.value = savedPostDetail.Comments == "" ? nil : savedPostDetail.Comments
         }
         
         // Do any additional setup after loading the view.
@@ -245,26 +224,26 @@ class EditRecruiteViewController: BaseFormViewController {
         
         //Userdefaultsに保存
         let defaults = UserDefaults.standard
-        var NewRecruitDetaile = RecruiteDetail()
-        NewRecruitDetaile.PostedTime = InitialPostedTime
-        NewRecruitDetaile.UpdateTime = f.string(from: now)
-        NewRecruitDetaile.PostUser = myUID
-        NewRecruitDetaile.TeamName = values["TeamName"] as? String
-        NewRecruitDetaile.Category = values["Category"] as? String
-        NewRecruitDetaile.Prefecture = values["Prefecture"] as? String
-        NewRecruitDetaile.Place = values["Place"] as? String
-        NewRecruitDetaile.ApplyGender = values["ApplyGender"] as? String
-        NewRecruitDetaile.Timezone = values["Timezone"].unsafelyUnwrapped == nil ? nil : Array(values["Timezone"] as! Set<String>)
-        NewRecruitDetaile.Image = UIImageJPEGRepresentation(UIImgae, 0.5)!
-        NewRecruitDetaile.Position = values["Position"].unsafelyUnwrapped == nil ? nil : Array(values["Position"] as! Set<String>)
-        NewRecruitDetaile.ApplyLevel = values["ApplyLevel"].unsafelyUnwrapped == nil ? nil : Array(values["ApplyLevel"] as! Set<String>)
-        NewRecruitDetaile.GenderRatio = values["GenderRatio"] as? String
-        NewRecruitDetaile.TeamLevel = values["TeamLevel"] as? String
-        NewRecruitDetaile.NumMembers = values["NumMembers"] as? Int
-        NewRecruitDetaile.Day = values["Day"].unsafelyUnwrapped == nil ? nil : Array(values["Day"] as! Set<String>)
-        NewRecruitDetaile.MainAge = values["MainAge"].unsafelyUnwrapped == nil ? nil : Array(values["MainAge"] as! Set<String>)
-        NewRecruitDetaile.Comments = values["Comments"] as? String
-        let data = try? JSONEncoder().encode(NewRecruitDetaile)
+        var NewPostDetail = PostDetail()
+        NewPostDetail.PostedTime = InitialPostedTime
+        NewPostDetail.UpdateTime = f.string(from: now)
+        NewPostDetail.PostUser = myUID
+        NewPostDetail.TeamName = values["TeamName"] as? String
+        NewPostDetail.Category = values["Category"] as? String
+        NewPostDetail.Prefecture = values["Prefecture"] as? String
+        NewPostDetail.Place = values["Place"] as? String
+        NewPostDetail.ApplyGender = values["ApplyGender"] as? String
+        NewPostDetail.Timezone = Array(values["Timezone"] as! Set<String>)
+        NewPostDetail.Image = UIImageJPEGRepresentation(UIImgae, 0.5)!
+        NewPostDetail.Position = values["Position"].unsafelyUnwrapped == nil ? Array() : Array(values["Position"] as! Set<String>)
+        NewPostDetail.ApplyLevel = values["ApplyLevel"].unsafelyUnwrapped == nil ? Array() : Array(values["ApplyLevel"] as! Set<String>)
+        NewPostDetail.GenderRatio = values["GenderRatio"].unsafelyUnwrapped == nil ? "" : values["GenderRatio"] as! String
+        NewPostDetail.TeamLevel = values["TeamLevel"].unsafelyUnwrapped == nil ? "" : values["TeamLevel"] as! String
+        NewPostDetail.NumMembers = values["NumMembers"].unsafelyUnwrapped == nil ? 0 : values["NumMembers"] as! Int
+        NewPostDetail.Day = values["Day"].unsafelyUnwrapped == nil ? Array() : Array(values["Day"] as! Set<String>)
+        NewPostDetail.MainAge = values["MainAge"].unsafelyUnwrapped == nil ? Array() : Array(values["MainAge"] as! Set<String>)
+        NewPostDetail.Comments = values["Comments"].unsafelyUnwrapped == nil ? "" : values["Comments"] as! String
+        let data = try? JSONEncoder().encode(NewPostDetail)
         defaults.set(data ,forKey: "recruite")
         
         //FireStoreに投稿データを保存
@@ -280,13 +259,13 @@ class EditRecruiteViewController: BaseFormViewController {
             "place"       : values["Place"] as! String,
             "applyGender" : values["ApplyGender"] as! String,
             "timezone"    : Array(values["Timezone"] as! Set<String>),  //ここまでは必須項目
-            "position"    : values["Position"].unsafelyUnwrapped == nil ? "" : Array(values["Position"] as! Set<String>),
-            "applyLevel"  : values["ApplyLevel"].unsafelyUnwrapped == nil ? "" : Array(values["ApplyLevel"] as! Set<String>),
+            "position"    : values["Position"].unsafelyUnwrapped == nil ? Array() : Array(values["Position"] as! Set<String>),
+            "applyLevel"  : values["ApplyLevel"].unsafelyUnwrapped == nil ? Array() : Array(values["ApplyLevel"] as! Set<String>),
             "genderRatio" : values["GenderRatio"].unsafelyUnwrapped == nil ? "" : values["GenderRatio"] as! String,
             "teamLevel"   : values["TeamLevel"].unsafelyUnwrapped == nil ? "" : values["TeamLevel"] as! String,
-            "numMembers"  : values["NumMembers"].unsafelyUnwrapped == nil ? "" : values["NumMembers"] as! Int,
-            "day"         : values["Day"].unsafelyUnwrapped == nil ? "" : Array(values["Day"] as! Set<String>),
-            "mainAge"     : values["MainAge"].unsafelyUnwrapped == nil ? "" : Array(values["MainAge"] as! Set<String>),
+            "numMembers"  : values["NumMembers"].unsafelyUnwrapped == nil ? 0 : values["NumMembers"] as! Int,
+            "day"         : values["Day"].unsafelyUnwrapped == nil ? Array() : Array(values["Day"] as! Set<String>),
+            "mainAge"     : values["MainAge"].unsafelyUnwrapped == nil ? Array() : Array(values["MainAge"] as! Set<String>),
             "comments"    : values["Comments"].unsafelyUnwrapped == nil ? "" : values["Comments"] as! String
         ]) { err in
             if let err = err {

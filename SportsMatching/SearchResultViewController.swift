@@ -102,7 +102,7 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
         // XXX: ファイルが有るかをチェックとかが必要？
         let storage   = Storage.storage()
         let postUser  = LoadedDocumentArray[indexPath.row].data()["postUser"] as! String
-        let imagePath = postUser + "/post/image1.jpg"
+        let imagePath = postUser + "/post/image.jpg"
         // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
         storage.reference().child(imagePath).getData(maxSize: 1 * 1024 * 1024 * 20) { data, error in //サイズ超過してるファイルがあるため*20
             if let error = error {

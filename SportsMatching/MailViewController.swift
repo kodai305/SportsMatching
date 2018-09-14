@@ -29,6 +29,9 @@ class MailViewController: MessagesViewController {
         print("messages_count:")
         print(messageList.count)
         print(self.partnerUID)
+        let storyboard: UIStoryboard = self.storyboard!
+        let postDetailView = storyboard.instantiateViewController(withIdentifier: "PostDetail") as! PostDetailViewController
+        self.present(postDetailView, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {

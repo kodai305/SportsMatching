@@ -254,7 +254,6 @@
                         <barButtonItem key="rightBarButtonItem" title="Item" id="gT0-Rs-za9">
                             <connections>
                                 <action selector="testButtonPushed:" destination="XEq-qz-s82" id="vcr-hr-VGw"/>
-                                <segue destination="4WF-jF-A1D" kind="presentation" modalTransitionStyle="coverVertical" id="lVV-CP-Etq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -264,10 +263,10 @@
             </objects>
             <point key="canvasLocation" x="4492" y="4371"/>
         </scene>
-        <!--Apply Detail View Controller-->
+        <!--Post Detail View Controller-->
         <scene sceneID="h7a-7p-DYn">
             <objects>
-                <viewController id="4WF-jF-A1D" customClass="ApplyDetailViewController" customModule="SportsMatching" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PostDetail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4WF-jF-A1D" customClass="PostDetailViewController" customModule="SportsMatching" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zrU-cR-eai">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -284,6 +283,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="E1v-Pa-RNQ"/>
                     </view>
+                    <connections>
+                        <outlet property="BackButtonView" destination="1aR-bp-DC2" id="7XI-Lc-xcV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FR1-Sn-GFV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
