@@ -103,9 +103,6 @@
                                 <rect key="frame" x="126" y="167" width="123" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="プロフィール作成"/>
-                                <connections>
-                                    <segue destination="RdO-09-FdY" kind="show" id="hCn-Ki-Ili"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CgD-Tg-2zT">
                                 <rect key="frame" x="130" y="363" width="122" height="40"/>
@@ -121,6 +118,11 @@
                         <viewLayoutGuide key="safeArea" id="b9J-l5-zpB"/>
                     </view>
                     <navigationItem key="navigationItem" title="マイページ" id="ohL-JJ-tX5"/>
+                    <connections>
+                        <outlet property="EditProfileButton" destination="Mlc-9l-RyQ" id="G1x-8G-wP1"/>
+                        <outletCollection property="EditProfileButton" destination="Mlc-9l-RyQ" id="8S1-QI-5bu"/>
+                        <segue destination="RdO-09-FdY" kind="show" identifier="toProfileDetail" id="5gc-2v-1je"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pxp-1T-StY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
