@@ -17,28 +17,6 @@ class RecruiteViewController: BaseFormViewController {
     // 選択されたイメージ格納用
     var selectedImg = UIImage()
     
-    // 応募詳細の構造体
-    struct RecruiteDetail: Codable {
-        var PostedTime  : String? = nil
-        var UpdateTime  : String? = nil
-        var PostUser    : String? = nil
-        var TeamName    : String? = nil
-        var Category    : String? = nil
-        var Prefecture  : String? = nil
-        var Place       : String? = nil
-        var ApplyGender : String? = nil
-        var Timezone    : Array<String>? = nil
-        var Image       : Data = Data()
-        var Position    : Array<String>? = nil
-        var ApplyLevel  : Array<String>? = nil
-        var GenderRatio : String? = nil
-        var TeamLevel   : String? = nil
-        var NumMembers  : Int? = nil
-        var Day         : Array<String>? = nil
-        var MainAge     : Array<String>? = nil
-        var Comments    : String? = nil
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -222,26 +200,26 @@ class RecruiteViewController: BaseFormViewController {
         let UIImgae = values["Image1"] as! UIImage
         
         //Userdefaultsに保存
-        var NewRecruitDetaile = RecruiteDetail()
-        NewRecruitDetaile.PostedTime = f.string(from: now)
-        NewRecruitDetaile.UpdateTime = f.string(from: now)
-        NewRecruitDetaile.PostUser = myUID
-        NewRecruitDetaile.TeamName = values["TeamName"] as? String
-        NewRecruitDetaile.Category = values["Category"] as? String
-        NewRecruitDetaile.Prefecture = values["Prefecture"] as? String
-        NewRecruitDetaile.Place = values["Place"] as? String
-        NewRecruitDetaile.ApplyGender = values["ApplyGender"] as? String
-        NewRecruitDetaile.Timezone = values["Timezone"].unsafelyUnwrapped == nil ? nil : Array(values["Timezone"] as! Set<String>)
-        NewRecruitDetaile.Image = UIImageJPEGRepresentation(UIImgae, 0.5)!
-        NewRecruitDetaile.Position = values["Position"].unsafelyUnwrapped == nil ? nil : Array(values["Position"] as! Set<String>)
-        NewRecruitDetaile.ApplyLevel = values["ApplyLevel"].unsafelyUnwrapped == nil ? nil : Array(values["ApplyLevel"] as! Set<String>)
-        NewRecruitDetaile.GenderRatio = values["GenderRatio"] as? String
-        NewRecruitDetaile.TeamLevel = values["TeamLevel"] as? String
-        NewRecruitDetaile.NumMembers = values["NumMembers"] as? Int
-        NewRecruitDetaile.Day = values["Day"].unsafelyUnwrapped == nil ? nil : Array(values["Day"] as! Set<String>)
-        NewRecruitDetaile.MainAge = values["MainAge"].unsafelyUnwrapped == nil ? nil : Array(values["MainAge"] as! Set<String>)
-        NewRecruitDetaile.Comments = values["Comments"] as? String
-        let data = try? JSONEncoder().encode(NewRecruitDetaile)
+        var NewPostDetail = PostDetail()
+        NewPostDetail.PostedTime = f.string(from: now)
+        NewPostDetail.UpdateTime = f.string(from: now)
+        NewPostDetail.PostUser = myUID
+        NewPostDetail.TeamName = values["TeamName"] as? String
+        NewPostDetail.Category = values["Category"] as? String
+        NewPostDetail.Prefecture = values["Prefecture"] as? String
+        NewPostDetail.Place = values["Place"] as? String
+        NewPostDetail.ApplyGender = values["ApplyGender"] as? String
+        NewPostDetail.Timezone = Array(values["Timezone"] as! Set<String>)
+        NewPostDetail.Image = UIImageJPEGRepresentation(UIImgae, 0.5)!
+        NewPostDetail.Position = values["Position"].unsafelyUnwrapped == nil ? Array() : Array(values["Position"] as! Set<String>)
+        NewPostDetail.ApplyLevel = values["ApplyLevel"].unsafelyUnwrapped == nil ? Array() : Array(values["ApplyLevel"] as! Set<String>)
+        NewPostDetail.GenderRatio = values["GenderRatio"].unsafelyUnwrapped == nil ? "" : values["GenderRatio"] as! String
+        NewPostDetail.TeamLevel = values["TeamLevel"].unsafelyUnwrapped == nil ? "" : values["TeamLevel"] as! String
+        NewPostDetail.NumMembers = values["NumMembers"].unsafelyUnwrapped == nil ? 0 : values["NumMembers"] as! Int
+        NewPostDetail.Day = values["Day"].unsafelyUnwrapped == nil ? Array() : Array(values["Day"] as! Set<String>)
+        NewPostDetail.MainAge = values["MainAge"].unsafelyUnwrapped == nil ? Array() : Array(values["MainAge"] as! Set<String>)
+        NewPostDetail.Comments = values["Comments"].unsafelyUnwrapped == nil ? "" : values["Comments"] as! String
+        let data = try? JSONEncoder().encode(NewPostDetail)
         defaults.set(data ,forKey: "recruite")
 
         //FireStoreに投稿データを保存
@@ -257,13 +235,13 @@ class RecruiteViewController: BaseFormViewController {
             "place"       : values["Place"] as! String,
             "applyGender" : values["ApplyGender"] as! String,
             "timezone"    : Array(values["Timezone"] as! Set<String>),  //ここまでは必須項目
-            "position"    : values["Position"].unsafelyUnwrapped == nil ? "" : Array(values["Position"] as! Set<String>),
-            "applyLevel"  : values["ApplyLevel"].unsafelyUnwrapped == nil ? "" : Array(values["ApplyLevel"] as! Set<String>),
+            "position"    : values["Position"].unsafelyUnwrapped == nil ? Array() : Array(values["Position"] as! Set<String>),
+            "applyLevel"  : values["ApplyLevel"].unsafelyUnwrapped == nil ? Array() : Array(values["ApplyLevel"] as! Set<String>),
             "genderRatio" : values["GenderRatio"].unsafelyUnwrapped == nil ? "" : values["GenderRatio"] as! String,
             "teamLevel"   : values["TeamLevel"].unsafelyUnwrapped == nil ? "" : values["TeamLevel"] as! String,
-            "numMembers"  : values["NumMembers"].unsafelyUnwrapped == nil ? "" : values["NumMembers"] as! Int,
-            "day"         : values["Day"].unsafelyUnwrapped == nil ? "" : Array(values["Day"] as! Set<String>),
-            "mainAge"     : values["MainAge"].unsafelyUnwrapped == nil ? "" : Array(values["MainAge"] as! Set<String>),
+            "numMembers"  : values["NumMembers"].unsafelyUnwrapped == nil ? 0 : values["NumMembers"] as! Int,
+            "day"         : values["Day"].unsafelyUnwrapped == nil ? Array() : Array(values["Day"] as! Set<String>),
+            "mainAge"     : values["MainAge"].unsafelyUnwrapped == nil ? Array() : Array(values["MainAge"] as! Set<String>),
             "comments"    : values["Comments"].unsafelyUnwrapped == nil ? "" : values["Comments"] as! String
         ]) { err in
             if let err = err {

@@ -34,6 +34,7 @@ class BaseFormViewController: FormViewController {
                 //サインインしている
                 print("user:")
                 print(user?.uid)
+                self.saveUID(uid: (user?.uid)!)
             } else {
                 //サインインしていない
                 print("ログインをしてください")
@@ -41,6 +42,21 @@ class BaseFormViewController: FormViewController {
             // [END_EXCLUDE]
         }
     }
+    
+    func saveUID (uid: String) {
+        if uid.isEmpty {
+            print("認証してください")
+            // TODO: 警告, 認証画面への遷移ロジックを追加する
+            
+        } else {
+            // UIDをuser defaultに保存
+            // TODO: 保存してあるUIDと違ったら警告を出したほうがいいかもしれない
+            let defaults = UserDefaults.standard
+            defaults.set(uid ,forKey: "UID")
+        }
+    }
+    
+    
     
 
     /*

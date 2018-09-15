@@ -103,9 +103,6 @@
                                 <rect key="frame" x="126" y="167" width="123" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="プロフィール作成"/>
-                                <connections>
-                                    <segue destination="RdO-09-FdY" kind="show" id="hCn-Ki-Ili"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CgD-Tg-2zT">
                                 <rect key="frame" x="130" y="363" width="122" height="40"/>
@@ -121,6 +118,11 @@
                         <viewLayoutGuide key="safeArea" id="b9J-l5-zpB"/>
                     </view>
                     <navigationItem key="navigationItem" title="マイページ" id="ohL-JJ-tX5"/>
+                    <connections>
+                        <outlet property="EditProfileButton" destination="Mlc-9l-RyQ" id="G1x-8G-wP1"/>
+                        <outletCollection property="EditProfileButton" destination="Mlc-9l-RyQ" id="8S1-QI-5bu"/>
+                        <segue destination="RdO-09-FdY" kind="show" identifier="toProfileDetail" id="5gc-2v-1je"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pxp-1T-StY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -254,7 +256,6 @@
                         <barButtonItem key="rightBarButtonItem" title="Item" id="gT0-Rs-za9">
                             <connections>
                                 <action selector="testButtonPushed:" destination="XEq-qz-s82" id="vcr-hr-VGw"/>
-                                <segue destination="4WF-jF-A1D" kind="presentation" modalTransitionStyle="coverVertical" id="lVV-CP-Etq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -264,10 +265,10 @@
             </objects>
             <point key="canvasLocation" x="4492" y="4371"/>
         </scene>
-        <!--Apply Detail View Controller-->
+        <!--Post Detail View Controller-->
         <scene sceneID="h7a-7p-DYn">
             <objects>
-                <viewController id="4WF-jF-A1D" customClass="ApplyDetailViewController" customModule="SportsMatching" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PostDetail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4WF-jF-A1D" customClass="PostDetailViewController" customModule="SportsMatching" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zrU-cR-eai">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -284,6 +285,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="E1v-Pa-RNQ"/>
                     </view>
+                    <connections>
+                        <outlet property="BackButtonView" destination="1aR-bp-DC2" id="7XI-Lc-xcV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FR1-Sn-GFV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -325,10 +329,10 @@
             </objects>
             <point key="canvasLocation" x="4884" y="2863"/>
         </scene>
-        <!--View Controller-->
+        <!--Top Authentication View Controller-->
         <scene sceneID="xAo-RM-wK9">
             <objects>
-                <viewController id="5Y7-M5-uDw" sceneMemberID="viewController">
+                <viewController id="5Y7-M5-uDw" customClass="TopAuthenticationViewController" customModule="SportsMatching" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fw8-8O-DwC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -790,7 +794,7 @@
         <image name="search" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="e6q-eW-bI0"/>
+        <segue reference="dYF-6A-Iab"/>
         <segue reference="Lbe-8n-gZh"/>
     </inferredMetricsTieBreakers>
 </document>
