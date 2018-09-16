@@ -96,7 +96,7 @@ class MailViewController: MessagesViewController {
         let savedMessageInfoArray = try? JSONDecoder().decode([MessageInfo].self, from: data)
         
         for messageInfo in savedMessageInfoArray! {
-            let attributedText = NSAttributedString(string: messageInfo.message, attributes: [.font: UIFont.systemFont(ofSize: 15), .foregroundColor: UIColor.white])
+            let attributedText = NSAttributedString(string: messageInfo.message, attributes: [.font: UIFont.systemFont(ofSize: 15), .foregroundColor: UIColor.black])
             let _sender = Sender(id: messageInfo.senderID, displayName: "")
             let message = MockMessage(attributedText: attributedText, sender: _sender, messageId: UUID().uuidString, date: messageInfo.sentDate)
             self.messageList.append(message)
@@ -181,7 +181,7 @@ extension MailViewController: MessageInputBarDelegate {
                 messagesCollectionView.insertSections([messageList.count - 1])
                 
             } else if let text = component as? String {
-                let attributedText = NSAttributedString(string: text, attributes: [.font: UIFont.systemFont(ofSize: 15), .foregroundColor: UIColor.white])
+                let attributedText = NSAttributedString(string: text, attributes: [.font: UIFont.systemFont(ofSize: 15), .foregroundColor: UIColor.black])
                 
                 let message = MockMessage(attributedText: attributedText, sender: currentSender(), messageId: UUID().uuidString, date: Date())
                 
@@ -229,10 +229,10 @@ extension MailViewController: MessageInputBarDelegate {
 
 // MARK: - MessagesDisplayDelegate
 extension MailViewController: MessagesDisplayDelegate {
-    // メッセージの色を変更（デフォルトは自分：白、相手：黒）
+    // メッセージの色を変更（デフォルトは自分：黒、相手：黒）
     func textColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
         //        return isFromCurrentSender(message: message) ? .white : .darkText
-        return isFromCurrentSender(message: message) ? .white : .black
+        return isFromCurrentSender(message: message) ? .black : .black
     }
     
     // メッセージの背景色を変更している（デフォルトは自分：緑、相手：グレー）
