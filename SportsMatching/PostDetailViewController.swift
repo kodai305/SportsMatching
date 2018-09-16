@@ -8,17 +8,13 @@
 
 import Foundation
 import UIKit
-import Eureka
-import FirebaseCore
-import FirebaseFunctions
-import FirebaseFirestore
 
-class PostDetailViewController: BaseFormViewController {
-    
+class PostDetailViewController: BaseViewController {
+
     @IBAction func BackButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

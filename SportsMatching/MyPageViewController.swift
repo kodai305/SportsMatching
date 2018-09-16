@@ -99,11 +99,13 @@ class MyPageViewController: BaseFormViewController {
                 $0.baseCell.isUserInteractionEnabled = false
         }
         self.form +++ Section(header: "利用規約", footer: "")
-            <<< TextAreaRow("利用規約") {
-                $0.value = "ここに利用規約をかく？"
-                $0.baseCell.isUserInteractionEnabled = false
-                $0.textAreaHeight = .dynamic(initialTextViewHeight: 110)
-        }
+            <<< LabelRow () {
+                $0.title = "利用規約"
+                $0.value = "利用規約を読む"
+                }
+                .onCellSelection { cell, row in
+                    self.performSegue(withIdentifier: "toTermsofUse", sender: self)
+            }
         // Do any additional setup after loading the view.
     }
     

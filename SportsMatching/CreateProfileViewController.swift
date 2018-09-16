@@ -75,7 +75,7 @@ class CreateProfileViewController: FormViewController {
             }
         }
             
-            self.form +++ Section(header: "自由記述", footer: "不特定多数の方が見るため連絡先の掲載はお控えください")
+        self.form +++ Section(header: "自由記述", footer: "不特定多数の方が見るため連絡先の掲載はお控えください")
             <<< TextAreaRow("Comments") {
                 $0.placeholder = "自由記述"
                 $0.textAreaHeight = .dynamic(initialTextViewHeight: 110)
