@@ -8,10 +8,10 @@
 
 import UIKit
 
-class TermsOfUseViewController: BaseViewController {
+class TermsOfServiceViewController: BaseViewController {
     
     let termsOfUse_1 = UILabel()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -19,24 +19,24 @@ class TermsOfUseViewController: BaseViewController {
         termsOfUse_1.frame.origin = CGPoint(x: 20, y: 100)
         termsOfUse_1.sizeToFit()
         self.view.addSubview(termsOfUse_1)
-
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
