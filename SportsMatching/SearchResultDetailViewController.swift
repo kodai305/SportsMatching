@@ -24,14 +24,6 @@ class SearchResultDetailViewController: BaseFormViewController{
     @IBAction func tapScreen(_ sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }
-    // メッセージの構造体(保存用)
-    // 二重定義になってしまうのをなんとかしたいいつか
-    struct MessageInfo: Codable {
-        var message: String = ""
-        var senderID: String = ""
-        var sentDate: Date = Date()
-        var kind: String = ""
-    }
     
     @IBOutlet weak var DetailImage: UIImageView!
     @IBOutlet weak var TeamNameLabel: UILabel!
@@ -135,7 +127,6 @@ class SearchResultDetailViewController: BaseFormViewController{
                 $0.baseCell.isUserInteractionEnabled = false
                 $0.textAreaHeight = .dynamic(initialTextViewHeight: 110)
         }
-        
     }
     
     // 応募ボタンを押して募集者にメッセージを送る
@@ -157,115 +148,18 @@ class SearchResultDetailViewController: BaseFormViewController{
             }
             //プロフィールが作成済みの場合
             print("Profile exists")
-            // XXX:ポップアップを出して応募メッセージ入力フォーマットを出す？
-            //ApplyAlertViewController.show(presentintViewController: self)
-
+            // ポップアップを出して応募メッセージ入力フォーマットを出す
+            //次のビューのインスタンスを生成し値を渡す。
+            // 募集者に通知を送る
+            let postID = self.postDoc.data()["postUser"] as! String
+            let secondView = ApplyAlertViewController()
+            secondView.postID = postID
+            
             let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let next = storyboard.instantiateViewController(withIdentifier: "ApplyAlert")
+            let next = storyboard.instantiateViewController(withIdentifier: "ApplyAlert") as! ApplyAlertViewController
+            next.postID = postID
             self.present(next,animated: true, completion: nil)
- 
-            /*
-            let msg:String = "内容\n\n\n\n"
-            let alert = UIAlertController(title:"投稿者へメッセージ", message:msg, preferredStyle: UIAlertControllerStyle.alert)
-            //        alert.addTextField(configurationHandler: nil)
-            
-            let textView = UITextView(frame: CGRect(x: 10, y:60, width:CGFloat(250), height:CGFloat(80)))
-            textView.text = "hoge"
-            textView.layer.borderColor = UIColor.lightGray.cgColor
-            textView.layer.borderWidth = 0.5
-            textView.layer.cornerRadius = 6
-            alert.view.addSubview(textView)
-            
-            // 画面が開いたあとでないと textView にフォーカスが当たらないため、遅らせて実行する
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                textView.becomeFirstResponder()
-            }
-            */
-            
-            /*
-            let okAction = UIAlertAction(title:"送信",style: UIAlertActionStyle.default){(action:UIAlertAction) in
-                //            if let textField = alert.textFields?.first {  // ?? .first
-                if (textView.text != nil) {
-                    let messageStr:String = textView.text!
-                    //                let messageStr:String = textField.text!
-                    if (messageStr.isEmpty) {
-                        // XXX: 入力されてなかったときの処理
-                        SVProgressHUD.showError(withStatus: "メッセージを入力してください")
-                        return
-                    }
-                    SVProgressHUD.show(withStatus: "送信中")
-                    // 募集者に通知を送る
-                    let postID = self.postDoc.data()["postUser"] as! String
-                    
-                    //自分の名前を取得
-                    var myName:String = "no name"
-                    let defaults = UserDefaults.standard
-                    if let data = defaults.data(forKey: "profile") {
-                        let profile = try? JSONDecoder().decode(Profile.self, from: data)
-                        myName = (profile?.UserName)!
-                    }
-                    print("myName:")
-                    print(myName)
-                    self.functions.httpsCallable("sendNewApplyNotification").call(["postID": postID, "message": messageStr, "userName": myName]) { (result, error) in
-                        print(result?.data as Any)
-                        print("function is called")
-                        if let error = error as NSError? {
-                            SVProgressHUD.showError(withStatus: "失敗")
-                            if error.domain == FunctionsErrorDomain {
-                                let code = FunctionsErrorCode(rawValue: error.code)
-                                let message = error.localizedDescription
-                                let details = error.userInfo[FunctionsErrorDetailsKey]
-                            }
-                        } else {
-                            SVProgressHUD.showSuccess(withStatus: "成功")
-                            // 応募履歴にデータを追加
-                            self.addApplyHistoryArray(postID: postID)
-                            
-                            // 投稿内容をUserDefaultに保存(トーク履歴)
-                            var myUID = ""
-                            let defaults = UserDefaults.standard
-                            myUID = defaults.string(forKey: "UID")!
-                            let roomID = myUID+"-"+postID
-                            var stubMessageInfo = MessageInfo()
-                            stubMessageInfo.message  = messageStr
-                            stubMessageInfo.senderID = myUID
-                            stubMessageInfo.sentDate = Date()
-                            stubMessageInfo.kind     = "text"
-                            // 保存するmessageInfo配列
-                            var messageArray:[MessageInfo] = []
-                            messageArray.append(stubMessageInfo)
-                            let data = try? JSONEncoder().encode(messageArray)
-                            defaults.set(data ,forKey: roomID)
-                            
-                            // 募集者のプロフィールを取得->保存
-                            var postUserName = "no name"
-                            let docRef = db.collection("users").document(postID)
-                            docRef.getDocument { (document, error) in
-                                if let document = document, document.exists {
-                                    if let tmp = document.data()!["userName"] {
-                                        postUserName = tmp as! String
-                                    }
-                                    defaults.set(postUserName, forKey: "user_"+postID)
-                                    UserDefaults.standard.set(1, forKey: "fromApplyFlag")
-                                    // 履歴タブのViewControllerを取得する
-                                    let viewController = self.tabBarController?.viewControllers![3] as! UINavigationController
-                                    // 履歴タブを選択済みにする
-                                    self.tabBarController?.selectedViewController = viewController
-                                } else {
-                                    print("Document does not exist")
-                                }
-                            }
-                        }
-                    }
-                }*/
-            }
-        /*
-            alert.addAction(okAction)
-            let cancelButton = UIAlertAction(title: "キャンセル",style:UIAlertActionStyle.cancel, handler: nil)
-            alert.addAction(cancelButton)
-            self.present(alert, animated: false, completion: nil)
-
-        }*/
+        }
     }
 
     func addApplyHistoryArray(postID: String) {

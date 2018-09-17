@@ -573,6 +573,9 @@
                                         <rect key="frame" x="182" y="256" width="161" height="38"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="送信"/>
+                                        <connections>
+                                            <action selector="SendButtonTapped:" destination="8eF-oH-hkm" eventType="touchUpInside" id="Qgt-GN-HNv"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="smM-jP-HN6">
                                         <rect key="frame" x="0.0" y="256" width="188" height="38"/>
@@ -583,7 +586,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="投稿者へのメッセージ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q5S-gn-SeA">
-                                        <rect key="frame" x="28" y="18" width="286" height="21"/>
+                                        <rect key="frame" x="28" y="19" width="286" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -610,6 +613,11 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.39972174657534248" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="bo9-eN-PQr"/>
                     </view>
+                    <connections>
+                        <outlet property="AlertSubscriptionLabel" destination="ael-c9-gUM" id="1vp-W3-ji0"/>
+                        <outlet property="AlertTitleLabel" destination="q5S-gn-SeA" id="Px5-pB-Xf3"/>
+                        <outlet property="MessageTextView" destination="ghb-2J-IZq" id="tJl-nE-p3h"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IZb-Vy-MRI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -7,18 +7,94 @@
 //
 
 import UIKit
+import FirebaseFunctions
+import SVProgressHUD
+import FirebaseFirestore
 
 class ApplyAlertViewController: UIViewController {
     
-    @IBAction func SendButton(_ sender: Any) {
-        
-    }
+    var postID:String!
     
-    @IBAction func unwind(_ segue:UIStoryboardSegue){
-        // マイページタブのViewControllerを取得する
-        let viewController = self.tabBarController?.viewControllers![0] as! UINavigationController
-        // マイページタブを選択済みにする
-        self.tabBarController?.selectedViewController = viewController
+    @IBOutlet weak var AlertTitleLabel: UILabel!
+    @IBOutlet weak var AlertSubscriptionLabel: UILabel!
+    @IBOutlet weak var MessageTextView: UITextView!
+    
+    lazy var functions = Functions.functions()
+    @IBAction func SendButtonTapped(_ sender: Any) {
+        // XXX: textviewが空だったら警告を出す
+        guard let message = MessageTextView.text else {
+            SVProgressHUD.showError(withStatus: "メッセージは空では送れません.")
+            return
+        }
+        // 自分の名前を取得
+        var myName:String = "no name"
+        let defaults = UserDefaults.standard
+        if let data = defaults.data(forKey: "profile") {
+            let profile = try? JSONDecoder().decode(Profile.self, from: data)
+            myName = (profile?.UserName)!
+        }
+        print("myName:")
+        print(myName)
+        
+        print("postID:")
+        print(self.postID)
+        
+        // メッセージの送信
+        self.functions.httpsCallable("sendNewApplyNotification").call(["postID": self.postID, "message": message, "userName": myName]) { (result, error) in
+            print(result?.data as Any)
+            print("function is called")
+            if let error = error as NSError? {
+                SVProgressHUD.showError(withStatus: "失敗")
+                if error.domain == FunctionsErrorDomain {
+                    let code = FunctionsErrorCode(rawValue: error.code)
+                    let message = error.localizedDescription
+                    let details = error.userInfo[FunctionsErrorDetailsKey]
+                }
+                return
+            }
+            SVProgressHUD.showSuccess(withStatus: "成功")
+            // 応募履歴にデータを追加
+            self.addApplyHistoryArray(postID: self.postID)
+            
+            // 投稿内容をUserDefaultに保存(トーク履歴)
+            var myUID = ""
+            let defaults = UserDefaults.standard
+            myUID = defaults.string(forKey: "UID")!
+            let roomID = myUID+"-"+self.postID
+            var stubMessageInfo = MessageInfo()
+            stubMessageInfo.message  = message
+            stubMessageInfo.senderID = myUID
+            stubMessageInfo.sentDate = Date()
+            stubMessageInfo.kind     = "text"
+            // 保存するmessageInfo配列
+            var messageArray:[MessageInfo] = []
+            messageArray.append(stubMessageInfo)
+            let data = try? JSONEncoder().encode(messageArray)
+            defaults.set(data ,forKey: roomID)
+            
+            // 募集者のプロフィールを取得->保存
+            var postUserName = "no name"
+            let db = Firestore.firestore()
+            let docRef = db.collection("users").document(self.postID)
+            docRef.getDocument { (document, error) in
+                guard let document = document, document.exists else {
+                    SVProgressHUD.showError(withStatus: "ユーザー情報取得失敗")
+                    return
+                }
+                
+                if let tmp = document.data()!["userName"] {
+                    postUserName = tmp as! String
+                }
+                defaults.set(postUserName, forKey: "user_"+self.postID)
+                /*
+                 UserDefaults.standard.set(1, forKey: "fromApplyFlag")
+                 // 履歴タブのViewControllerを取得する
+                 let viewController = self.tabBarController?.viewControllers![3] as! UINavigationController
+                 // 履歴タブを選択済みにする
+                 self.tabBarController?.selectedViewController = viewController
+                 */
+            }
+        }
     }
     
     @IBAction func CancelButtonTapped(_ sender: Any) {
@@ -27,14 +103,31 @@ class ApplyAlertViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
+        
         // Do any additional setup after loading the view.
     }
 
-    @IBOutlet weak var AlertTitleLabel: UILabel!
-    @IBOutlet weak var AlertSubscriptionLabel: UILabel!
-    @IBOutlet weak var messageTextView: UITextView!
+    func addApplyHistoryArray(postID: String) {
+        var StubApplyHistory:[String] = []
+        let defaults = UserDefaults.standard
+        // XXX: 2回応募できないようにする必要がある？
+        
+        // 今までの応募履歴を取得
+        if defaults.value(forKey: "ApplyHistory") != nil {
+            StubApplyHistory = defaults.value(forKey: "ApplyHistory") as! [String]
+            StubApplyHistory.insert(postID, at: 0)
+            defaults.set(StubApplyHistory, forKey: "ApplyHistory")
+        } else { //応募履歴がない場合
+            StubApplyHistory.append(postID)
+            defaults.set(StubApplyHistory, forKey: "ApplyHistory")
+        }
+    }
+ 
+    //前のビューから値を受け取る
+    func setPostID(_ str:String){
+        postID = str
+        print("postID:"+self.postID)
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
