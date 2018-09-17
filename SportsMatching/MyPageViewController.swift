@@ -20,13 +20,9 @@ class MyPageViewController: BaseFormViewController {
     @IBOutlet weak var EditProfileButton: UIButton!
 
     //ログアウトボタン(開発用、本番では消す)
-    @IBAction func LogOutButton(_ sender: Any) {
-        do {
-            try Auth.auth().signOut()
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
-        }
-    }
+    @IBOutlet weak var LogOutButton: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -55,15 +51,22 @@ class MyPageViewController: BaseFormViewController {
         // 画像のアスペクト比を維持しUIImageViewサイズに収まるように表示
         HeaderImageView.contentMode = UIViewContentMode.scaleAspectFit
         HeaderUIView.addSubview(HeaderImageView)
-        
+        // プロフィール編集ボタンの設定、画像の下に配置
         EditProfileButton.frame.size = CGSize(width: 200, height: 30)
         EditProfileButton.frame.origin.y = 210
         EditProfileButton.center.x = HeaderUIView.center.x
-        EditProfileButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.center
         EditProfileButton.backgroundColor = UIColor.red
         EditProfileButton.setTitleColor(UIColor.black, for: .normal)
-        EditProfileButton.addTarget(self,action: #selector(self.buttonTapped(sender:)),for: .touchUpInside)
+        EditProfileButton.addTarget(self,action: #selector(self.editProfileButtonTapped(sender:)),for: .touchUpInside)
         HeaderUIView.addSubview(EditProfileButton)
+        
+        //ログアウトボタンの設定、本番では消す
+        LogOutButton.frame.size = CGSize(width: 200, height: 30)
+        LogOutButton.frame.origin.y = 10
+        LogOutButton.center.x = HeaderUIView.center.x
+        LogOutButton.backgroundColor = UIColor.brown
+        LogOutButton.addTarget(self,action: #selector(self.LogOutButtonTapped(sender:)),for: .touchUpInside)
+        HeaderUIView.addSubview(LogOutButton)
         
         // 上部に画像とボタンを設定
         form +++ Section(){ section in
@@ -98,6 +101,7 @@ class MyPageViewController: BaseFormViewController {
                 $0.value = savedProfile.Level
                 $0.baseCell.isUserInteractionEnabled = false
         }
+        // 利用規約ページに遷移するセル
         self.form +++ Section(header: "利用規約", footer: "")
             <<< LabelRow () {
                 $0.title = "利用規約"
@@ -114,8 +118,16 @@ class MyPageViewController: BaseFormViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @objc func buttonTapped(sender : AnyObject) {
+    @objc func editProfileButtonTapped(sender : AnyObject) {
         self.performSegue(withIdentifier: "toProfileDetail", sender: nil)
+    }
+    
+    @objc func LogOutButtonTapped(sender : AnyObject) {
+        do {
+            try Auth.auth().signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
     }
     
     /*

@@ -18,8 +18,6 @@
 		4735B101211AEF2C009D1323 /* MailBoxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B100211AEF2C009D1323 /* MailBoxViewController.swift */; };
 		4735B103211AF1C4009D1323 /* MailBoxRecruiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B102211AF1C4009D1323 /* MailBoxRecruiteViewController.swift */; };
 		4735B105211AF34A009D1323 /* MailBoxSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B104211AF34A009D1323 /* MailBoxSearchViewController.swift */; };
-		4735B107211C7B84009D1323 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B106211C7B84009D1323 /* SignUpViewController.swift */; };
-		4735B109211C8526009D1323 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B108211C8526009D1323 /* SignInViewController.swift */; };
 		4735B10B211DCD63009D1323 /* MailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B10A211DCD63009D1323 /* MailViewController.swift */; };
 		4735B11221232984009D1323 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4735B11121232984009D1323 /* GoogleService-Info.plist */; };
 		4735B11F21295CA3009D1323 /* BaseFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B11E21295CA3009D1323 /* BaseFormViewController.swift */; };
@@ -55,8 +53,6 @@
 		4735B100211AEF2C009D1323 /* MailBoxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailBoxViewController.swift; sourceTree = "<group>"; };
 		4735B102211AF1C4009D1323 /* MailBoxRecruiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailBoxRecruiteViewController.swift; sourceTree = "<group>"; };
 		4735B104211AF34A009D1323 /* MailBoxSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailBoxSearchViewController.swift; sourceTree = "<group>"; };
-		4735B106211C7B84009D1323 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		4735B108211C8526009D1323 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		4735B10A211DCD63009D1323 /* MailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailViewController.swift; sourceTree = "<group>"; };
 		4735B10E21231B6D009D1323 /* SportsMatching.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SportsMatching.entitlements; sourceTree = "<group>"; };
 		4735B11121232984009D1323 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -141,8 +137,6 @@
 				CEA9FF5C214E26110013CCAA /* TermsofUseViewController.swift */,
 				CEA6F7C0214509BC00271AA4 /* Profile.swift */,
 				CEAEE8B92149FA3F00323B12 /* TopAuthenticationViewController.swift */,
-				4735B106211C7B84009D1323 /* SignUpViewController.swift */,
-				4735B108211C8526009D1323 /* SignInViewController.swift */,
 				CEA7FBCB211732C10004FF88 /* RecruiteViewController.swift */,
 				CEA8C6D1213D7FE80020D2F1 /* EditRecruiteViewController.swift */,
 				CEAEE8BB214B090B00323B12 /* PostDetail.swift */,
@@ -373,8 +367,6 @@
 				4735B101211AEF2C009D1323 /* MailBoxViewController.swift in Sources */,
 				CEA7FBCC211732C10004FF88 /* RecruiteViewController.swift in Sources */,
 				CEA9FF5D214E26110013CCAA /* TermsofUseViewController.swift in Sources */,
-				4735B107211C7B84009D1323 /* SignUpViewController.swift in Sources */,
-				4735B109211C8526009D1323 /* SignInViewController.swift in Sources */,
 				CEA5CF952123BAFE00DE1FEE /* MyPageViewController.swift in Sources */,
 				CEA6552C212EE89100C4B94A /* MailBoxCell.swift in Sources */,
 				4735B11F21295CA3009D1323 /* BaseFormViewController.swift in Sources */,
