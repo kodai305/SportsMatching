@@ -29,7 +29,8 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        self.tableView.rowHeight = self.view.frame.height / 3.5
+        self.tableView.rowHeight = self.view.frame.height / 3
+        self.tableView.backgroundColor = UIColor(hex: "FDEDEC", alpha: 2.0)
         
         SVProgressHUD.show(withStatus: "検索中")
         
@@ -65,8 +66,8 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
         self.tableView.dataSource = self
         self.tableView.emptyDataSetSource = self
         self.tableView.emptyDataSetDelegate = self
-        //セルの高さを設定（画面全体の3.5分の1に設定）
-        self.tableView.rowHeight = self.view.frame.height / 3.5
+        //セルの高さを設定（画面全体の3分の1に設定）
+        self.tableView.rowHeight = self.view.frame.height / 3
         self.tableView.reloadData()
         //0件の時はここでSVProgressを消す
         if self.LoadedDocumentArray.count == 0{
@@ -121,38 +122,39 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
         
         //        let ratio:CGFloat = ResizedImageView.frame.size.height / 100
         //        ResizedImageView.frame.size = CGSize(width: ResizedImageView.frame.size.width / ratio, height: ResizedImageView.frame.size.height / ratio)
+        
         //Cellに画像と文章をセット
         //FireStorageから画像がロード出来ていないのでSampleをセット
         self.LoadedImageArray.append(UIImage(named: "sample")!)
         cell.ImageView.image = UIImage(named: "sample")
-        cell.ImageView.frame.size = CGSize(width: 100, height: 100)
-        cell.ImageView.center = CGPoint(x: 60, y: self.view.frame.height / 7)
+        cell.ImageView.frame.size = CGSize(width: 130, height: 130)
+        cell.ImageView.center = CGPoint(x: self.view.frame.width - 85, y: self.view.frame.height / 6.5)
 
         let teamName:String = LoadedDocumentArray[indexPath.row].data()["teamName"] as! String
-        cell.TeamNameLabel.text = "チーム名: " + teamName //XXX: null check
-        cell.TeamNameLabel.font = UIFont.systemFont(ofSize: UIFont.systemFontSize)
-        cell.TeamNameLabel.frame.origin.x = 120
+        cell.TeamNameLabel.text = teamName //XXX: null check
+        cell.TeamNameLabel.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
+        cell.TeamNameLabel.frame.origin.x = 20
         cell.TeamNameLabel.center.y = self.view.frame.height / 21 * 1
         cell.TeamNameLabel.sizeToFit()
         
         let category:String = LoadedDocumentArray[indexPath.row].data()["category"] as! String
-        cell.CategoryLabel.text = "チーム名: " + category //XXX: null check
+        cell.CategoryLabel.text = "カテゴリー　: " + category //XXX: null check
         cell.CategoryLabel.font = UIFont.systemFont(ofSize: UIFont.systemFontSize)
-        cell.CategoryLabel.frame.origin.x = 120
+        cell.CategoryLabel.frame.origin.x = 30
         cell.CategoryLabel.center.y = self.view.frame.height / 21 * 2
         cell.CategoryLabel.sizeToFit()
 
         let place:String = LoadedDocumentArray[indexPath.row].data()["place"] as! String
-        cell.PlaceLabel.text = "活動場所: " + place
+        cell.PlaceLabel.text = "活動場所　　: " + place
         cell.PlaceLabel.font = UIFont.systemFont(ofSize: UIFont.systemFontSize)
-        cell.PlaceLabel.frame.origin.x = 120
+        cell.PlaceLabel.frame.origin.x = 30
         cell.PlaceLabel.center.y = self.view.frame.height / 21 * 3
         cell.PlaceLabel.sizeToFit()
         
         let gender:String = LoadedDocumentArray[indexPath.row].data()["applyGender"] as! String
-        cell.GenderLabel.text = "募集性別: " + gender
+        cell.GenderLabel.text = "募集性別　　: " + gender
         cell.GenderLabel.font = UIFont.systemFont(ofSize: UIFont.systemFontSize)
-        cell.GenderLabel.frame.origin.x = 120
+        cell.GenderLabel.frame.origin.x = 30
         cell.GenderLabel.center.y = self.view.frame.height / 21 * 4
         cell.GenderLabel.sizeToFit()
         
@@ -161,11 +163,18 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
         for i in 0 ..< timezone.count {
             string = i == 0 ? timezone[i] : timezone[i] + "," + string
         }
-        cell.TimezoneLabel.text = "活動時間帯: " + string
+        cell.TimezoneLabel.text = "活動時間帯　: " + string
         cell.TimezoneLabel.font = UIFont.systemFont(ofSize: UIFont.systemFontSize)
-        cell.TimezoneLabel.frame.origin.x = 120
+        cell.TimezoneLabel.frame.origin.x = 30
         cell.TimezoneLabel.center.y = self.view.frame.height / 21 * 5
         cell.TimezoneLabel.sizeToFit()
+        
+        let updatedtime = LoadedDocumentArray[indexPath.row].data()["updateTime"] as! String
+        cell.UpdatedTimeLabel.text = updatedtime
+        cell.UpdatedTimeLabel.font = UIFont.boldSystemFont(ofSize: UIFont.systemFontSize)
+        cell.UpdatedTimeLabel.frame.origin.x = self.view.frame.size.width / 2
+        cell.UpdatedTimeLabel.center.y = self.view.frame.height / 21 * 6.3
+        cell.UpdatedTimeLabel.sizeToFit()
 
         return cell
     }

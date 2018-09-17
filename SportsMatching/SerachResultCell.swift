@@ -18,9 +18,13 @@ class SerachResultCell: UITableViewCell {
     @IBOutlet weak var PlaceLabel: UILabel!
     @IBOutlet weak var GenderLabel: UILabel!
     @IBOutlet weak var TimezoneLabel: UILabel!
+    @IBOutlet weak var UpdatedTimeLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.layer.borderColor = UIColor(hex: "FDEDEC", alpha: 2.0).cgColor
+        self.layer.borderWidth = 10
+        self.layer.cornerRadius = 15
         // Initialization code
     }
 

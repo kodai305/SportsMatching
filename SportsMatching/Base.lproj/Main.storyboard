@@ -603,6 +603,13 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0a-Qf-2E7">
+                                                    <rect key="frame" x="148" y="213" width="42" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
@@ -612,6 +619,7 @@
                                             <outlet property="PlaceLabel" destination="kei-gT-Hh0" id="TZe-8P-XCi"/>
                                             <outlet property="TeamNameLabel" destination="3GT-mZ-szT" id="DR5-f2-O0b"/>
                                             <outlet property="TimezoneLabel" destination="osq-mo-Ohq" id="aFC-Ab-tgZ"/>
+                                            <outlet property="UpdatedTimeLabel" destination="L0a-Qf-2E7" id="J9a-wE-64X"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
