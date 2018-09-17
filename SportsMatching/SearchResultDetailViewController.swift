@@ -159,17 +159,10 @@ class SearchResultDetailViewController: BaseFormViewController{
             print("Profile exists")
             // XXX:ポップアップを出して応募メッセージ入力フォーマットを出す？
             //ApplyAlertViewController.show(presentintViewController: self)
-            
-//            let next =  storyboard!.instantiateViewController(withIdentifier: "nextView")
-            let storyboard: UIStoryboard = UIStoryboard(name: "ApplyAlertViewController", bundle: nil)
+
+            let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let next = storyboard.instantiateViewController(withIdentifier: "ApplyAlert")
             self.present(next,animated: true, completion: nil)
-            
-            /*
-            let storyboard: UIStoryboard = UIStoryboard(name: "ApplyAlertViewController", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "ApplyAlert") as! ApplyAlertViewController
-            self.show(vc, sender: self)
-             */
  
             /*
             let msg:String = "内容\n\n\n\n"

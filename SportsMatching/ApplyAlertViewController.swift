@@ -14,11 +14,16 @@ class ApplyAlertViewController: UIViewController {
         
     }
     
-    @IBAction func CancelButton(_ sender: Any) {
-//        self.dismiss(animated: false, completion: nil)
+    @IBAction func unwind(_ segue:UIStoryboardSegue){
+        // マイページタブのViewControllerを取得する
+        let viewController = self.tabBarController?.viewControllers![0] as! UINavigationController
+        // マイページタブを選択済みにする
+        self.tabBarController?.selectedViewController = viewController
     }
-
-    @IBAction func unwind(_ segue:UIStoryboardSegue){}
+    
+    @IBAction func CancelButtonTapped(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

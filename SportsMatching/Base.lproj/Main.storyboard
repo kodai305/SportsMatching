@@ -560,7 +560,7 @@
         <!--Apply Alert View Controller-->
         <scene sceneID="0al-Wb-9rT">
             <objects>
-                <viewController modalPresentationStyle="overCurrentContext" id="8eF-oH-hkm" customClass="ApplyAlertViewController" customModule="SportsMatching" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ApplyAlert" modalPresentationStyle="overCurrentContext" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8eF-oH-hkm" customClass="ApplyAlertViewController" customModule="SportsMatching" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f9T-9i-iaS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -578,6 +578,9 @@
                                         <rect key="frame" x="0.0" y="256" width="188" height="38"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="キャンセル"/>
+                                        <connections>
+                                            <action selector="CancelButtonTapped:" destination="8eF-oH-hkm" eventType="touchUpInside" id="U60-I2-9Jk"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="投稿者へのメッセージ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q5S-gn-SeA">
                                         <rect key="frame" x="28" y="18" width="286" height="21"/>
@@ -610,7 +613,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IZb-Vy-MRI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5586" y="2185"/>
+            <point key="canvasLocation" x="5745" y="2185"/>
         </scene>
         <!--メンバー募集-->
         <scene sceneID="hWu-Xi-RzD">
@@ -730,6 +733,6 @@
         <image name="search" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Lbe-8n-gZh"/>
+        <segue reference="tjC-Lk-eCX"/>
     </inferredMetricsTieBreakers>
 </document>
