@@ -13,7 +13,7 @@
         <!--View Controller-->
         <scene sceneID="Yj1-r9-eUK">
             <objects>
-                <viewController id="SmD-cm-XDY" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RecruiteTop" useStoryboardIdentifierAsRestorationIdentifier="YES" id="SmD-cm-XDY" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OSH-pP-Xpj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -126,10 +126,10 @@
             </objects>
             <point key="canvasLocation" x="3268" y="716"/>
         </scene>
-        <!--Termsof Use View Controller-->
+        <!--Terms Of Service View Controller-->
         <scene sceneID="CYf-io-swm">
             <objects>
-                <viewController id="032-AK-Olg" customClass="TermsofUseViewController" customModule="SportsMatching" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="032-AK-Olg" customClass="TermsOfServiceViewController" customModule="SportsMatching" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6UK-3c-cdh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

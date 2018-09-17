@@ -29,6 +29,8 @@ class TopAuthenticationViewController: UIViewController,FUIAuthDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        // ログイン済みかをチェック
+        // didloadで行うとAppDelegateの実行前に実行され、エラーになるので注意
         self.checkLoggedIn()
     }
     
@@ -53,6 +55,7 @@ class TopAuthenticationViewController: UIViewController,FUIAuthDelegate {
     }
     
     func login() {
+        // Google、Facebook、電話番号、メールの認証ボタンの画面に遷移
         let authViewController = authUI.authViewController()
         self.present(authViewController, animated: true, completion: nil)
     }

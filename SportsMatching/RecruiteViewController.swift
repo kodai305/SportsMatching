@@ -14,9 +14,6 @@ import SVProgressHUD
 
 class RecruiteViewController: BaseFormViewController {
     
-    // 選択されたイメージ格納用
-    var selectedImg = UIImage()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -83,14 +80,11 @@ class RecruiteViewController: BaseFormViewController {
                 .onPresent { from, to in
                     to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
             }
-            <<< ImageRow("Image1") {
+            <<< ImageRow("Image") {
                 $0.title = "活動風景画像"
                 $0.sourceTypes = [.PhotoLibrary, .SavedPhotosAlbum, .Camera]
                 $0.value = UIImage(named: "activeImage")
                 $0.clearAction = .yes(style: .destructive)
-                $0.onChange { [unowned self] row in
-                    self.selectedImg = row.value!
-                }
             }
             
         form +++ Section(header: "任意項目", footer: "応募者が参考にするため、なるべく入力してください")
@@ -159,27 +153,27 @@ class RecruiteViewController: BaseFormViewController {
 
     @IBAction func postButton(_ sender: Any) {
         // タグ設定済みの全てのRowの値を取得
-        let values = form.values()
+        let Values = form.values()
         //必須項目が入力済みか確認
-        if values["TeamName"].unsafelyUnwrapped == nil {
+        if Values["TeamName"].unsafelyUnwrapped == nil {
             SVProgressHUD.showError(withStatus: "チーム名を入力して下さい")
             return
-        } else if values["Category"].unsafelyUnwrapped == nil {
+        } else if Values["Category"].unsafelyUnwrapped == nil {
             SVProgressHUD.showError(withStatus: "カテゴリーを選択して下さい")
             return
-        } else if values["Prefecture"].unsafelyUnwrapped == nil {
+        } else if Values["Prefecture"].unsafelyUnwrapped == nil {
             SVProgressHUD.showError(withStatus: "都道府県を選択して下さい")
             return
-        } else if values["Place"].unsafelyUnwrapped == nil {
+        } else if Values["Place"].unsafelyUnwrapped == nil {
             SVProgressHUD.showError(withStatus: "活動場所を入力して下さい")
             return
-        } else if values["ApplyGender"].unsafelyUnwrapped == nil {
+        } else if Values["ApplyGender"].unsafelyUnwrapped == nil {
             SVProgressHUD.showError(withStatus: "性別を選択して下さい")
             return
-        } else if values["Timezone"].unsafelyUnwrapped == nil {
+        } else if Values["Timezone"].unsafelyUnwrapped == nil {
             SVProgressHUD.showError(withStatus: "活動時間帯を選択して下さい")
             return
-        } else if values["Image1"].unsafelyUnwrapped == nil {
+        } else if Values["Image"].unsafelyUnwrapped == nil {
             SVProgressHUD.showError(withStatus: "活動画像を選択して下さい")
             return
         }
@@ -192,57 +186,38 @@ class RecruiteViewController: BaseFormViewController {
         let now = Date()
         
         // UIDを取得
-        var myUID = ""
+        var MyUID = ""
         let defaults = UserDefaults.standard
-        myUID = defaults.string(forKey: "UID")!
+        MyUID = defaults.string(forKey: "UID")!
         
         //画像セルから画像を取得
-        let UIImgae = values["Image1"] as! UIImage
+        let SelectedImgae = Values["Image"] as! UIImage
         
         //Userdefaultsに保存
-        var NewPostDetail = PostDetail()
-        NewPostDetail.PostedTime = f.string(from: now)
-        NewPostDetail.UpdateTime = f.string(from: now)
-        NewPostDetail.PostUser = myUID
-        NewPostDetail.TeamName = values["TeamName"] as? String
-        NewPostDetail.Category = values["Category"] as? String
-        NewPostDetail.Prefecture = values["Prefecture"] as? String
-        NewPostDetail.Place = values["Place"] as? String
-        NewPostDetail.ApplyGender = values["ApplyGender"] as? String
-        NewPostDetail.Timezone = Array(values["Timezone"] as! Set<String>)
-        NewPostDetail.Image = UIImageJPEGRepresentation(UIImgae, 0.5)!
-        NewPostDetail.Position = values["Position"].unsafelyUnwrapped == nil ? Array() : Array(values["Position"] as! Set<String>)
-        NewPostDetail.ApplyLevel = values["ApplyLevel"].unsafelyUnwrapped == nil ? Array() : Array(values["ApplyLevel"] as! Set<String>)
-        NewPostDetail.GenderRatio = values["GenderRatio"].unsafelyUnwrapped == nil ? "" : values["GenderRatio"] as! String
-        NewPostDetail.TeamLevel = values["TeamLevel"].unsafelyUnwrapped == nil ? "" : values["TeamLevel"] as! String
-        NewPostDetail.NumMembers = values["NumMembers"].unsafelyUnwrapped == nil ? 0 : values["NumMembers"] as! Int
-        NewPostDetail.Day = values["Day"].unsafelyUnwrapped == nil ? Array() : Array(values["Day"] as! Set<String>)
-        NewPostDetail.MainAge = values["MainAge"].unsafelyUnwrapped == nil ? Array() : Array(values["MainAge"] as! Set<String>)
-        NewPostDetail.Comments = values["Comments"].unsafelyUnwrapped == nil ? "" : values["Comments"] as! String
-        let data = try? JSONEncoder().encode(NewPostDetail)
-        defaults.set(data ,forKey: "recruite")
+        savePostDetailtoUserdefautls(postedTime: f.string(from: now), updateTime: f.string(from: now), myUID: MyUID, values: Values, selectedImgae: SelectedImgae)
 
         //FireStoreに投稿データを保存
         //複数選択可能な項目はSetからArrayへの変換を行う
         let db = Firestore.firestore()
-        db.collection("posts").document(myUID).setData([
+        db.collection("posts").document(MyUID).setData([
             "postedTime"  : f.string(from: now),
             "updateTime"  : f.string(from: now),
-            "postUser"    : myUID,
-            "teamName"    : values["TeamName"] as! String,
-            "category"    : values["Category"] as! String,
-            "prefecture"  : values["Prefecture"] as! String,
-            "place"       : values["Place"] as! String,
-            "applyGender" : values["ApplyGender"] as! String,
-            "timezone"    : Array(values["Timezone"] as! Set<String>),  //ここまでは必須項目
-            "position"    : values["Position"].unsafelyUnwrapped == nil ? Array() : Array(values["Position"] as! Set<String>),
-            "applyLevel"  : values["ApplyLevel"].unsafelyUnwrapped == nil ? Array() : Array(values["ApplyLevel"] as! Set<String>),
-            "genderRatio" : values["GenderRatio"].unsafelyUnwrapped == nil ? "" : values["GenderRatio"] as! String,
-            "teamLevel"   : values["TeamLevel"].unsafelyUnwrapped == nil ? "" : values["TeamLevel"] as! String,
-            "numMembers"  : values["NumMembers"].unsafelyUnwrapped == nil ? 0 : values["NumMembers"] as! Int,
-            "day"         : values["Day"].unsafelyUnwrapped == nil ? Array() : Array(values["Day"] as! Set<String>),
-            "mainAge"     : values["MainAge"].unsafelyUnwrapped == nil ? Array() : Array(values["MainAge"] as! Set<String>),
-            "comments"    : values["Comments"].unsafelyUnwrapped == nil ? "" : values["Comments"] as! String
+            "postUser"    : MyUID,
+            "teamName"    : Values["TeamName"] as! String,
+            "category"    : Values["Category"] as! String,
+            "prefecture"  : Values["Prefecture"] as! String,
+            "place"       : Values["Place"] as! String,
+            "applyGender" : Values["ApplyGender"] as! String,
+            "timezone"    : Array(Values["Timezone"] as! Set<String>),
+            //ここまでは必須項目、ここから下はnilチェックが必要
+            "position"    : Values["Position"].unsafelyUnwrapped == nil ? Array() : Array(Values["Position"] as! Set<String>),
+            "applyLevel"  : Values["ApplyLevel"].unsafelyUnwrapped == nil ? Array() : Array(Values["ApplyLevel"] as! Set<String>),
+            "genderRatio" : Values["GenderRatio"].unsafelyUnwrapped == nil ? "" : Values["GenderRatio"] as! String,
+            "teamLevel"   : Values["TeamLevel"].unsafelyUnwrapped == nil ? "" : Values["TeamLevel"] as! String,
+            "numMembers"  : Values["NumMembers"].unsafelyUnwrapped == nil ? 0 : Values["NumMembers"] as! Int,
+            "day"         : Values["Day"].unsafelyUnwrapped == nil ? Array() : Array(Values["Day"] as! Set<String>),
+            "mainAge"     : Values["MainAge"].unsafelyUnwrapped == nil ? Array() : Array(Values["MainAge"] as! Set<String>),
+            "comments"    : Values["Comments"].unsafelyUnwrapped == nil ? "" : Values["Comments"] as! String
         ]) { err in
             if let err = err {
                 print("Error writing document: \(err)")
@@ -250,30 +225,13 @@ class RecruiteViewController: BaseFormViewController {
                 print("Document successfully written!")
             }
         }
-        
-        var ImageShrinkRatio:CGFloat = 1.0
-        //Firebase Storageの準備
-        let storage = Storage.storage()
-        let storageRef = storage.reference()
-        // UIImageJPEGRepresentationでUIImageをNSDataに変換して格納
-        if var data = UIImageJPEGRepresentation(UIImgae, ImageShrinkRatio){
-            //画像のファイルサイズが1024*1024 / 2bytes以下になるまで縮小係数を調整
-            while data.count > 1024 * 1024 / 2{
-                ImageShrinkRatio = ImageShrinkRatio - 0.1
-                data = UIImageJPEGRepresentation(UIImgae, ImageShrinkRatio)!
-            }
-            //とりあえずUIDのディレクトリを作成し、その下に画像を保存
-            let reference = storageRef.child(myUID + "/post" + "/image" + ".jpg")
-            reference.putData(data, metadata: nil, completion: { metaData, error in
-                print(metaData as Any)
-                print(error as Any)
-            })
-            SVProgressHUD.showSuccess(withStatus: "投稿成功")
 
-            // 履歴タブのViewControllerを取得する
-            let viewController = self.tabBarController?.viewControllers![3] as! UINavigationController
-            // 履歴タブを選択済みにする
-            self.tabBarController?.selectedViewController = viewController
+        // FirebaseStorageに画像を保存
+        // 保存が成功するとtrueが返ってくる
+        if saveImagetoFirebaseStorage(directory: "post", myUID: MyUID, selectedImgae: SelectedImgae) {
+            SVProgressHUD.showSuccess(withStatus: "投稿成功")
+            // 新規投稿と投稿編集のボタンがある画面に戻る
+            self.navigationController?.popViewController(animated: false)
         }
         
     }

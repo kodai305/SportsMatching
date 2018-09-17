@@ -31,7 +31,7 @@
 		CEA6F7C1214509BD00271AA4 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA6F7C0214509BC00271AA4 /* Profile.swift */; };
 		CEA7FBCC211732C10004FF88 /* RecruiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA7FBCB211732C10004FF88 /* RecruiteViewController.swift */; };
 		CEA8C6D2213D7FE80020D2F1 /* EditRecruiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8C6D1213D7FE80020D2F1 /* EditRecruiteViewController.swift */; };
-		CEA9FF5D214E26110013CCAA /* TermsofUseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA9FF5C214E26110013CCAA /* TermsofUseViewController.swift */; };
+		CEA9FF61214F8B270013CCAA /* TermsOfServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA9FF60214F8B270013CCAA /* TermsOfServiceViewController.swift */; };
 		CEAEE8BA2149FA3F00323B12 /* TopAuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAEE8B92149FA3F00323B12 /* TopAuthenticationViewController.swift */; };
 		CEAEE8BC214B090B00323B12 /* PostDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAEE8BB214B090B00323B12 /* PostDetail.swift */; };
 		CEAEE8BE214B71B400323B12 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAEE8BD214B71B400323B12 /* PostDetailViewController.swift */; };
@@ -70,7 +70,7 @@
 		CEA6F7C0214509BC00271AA4 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		CEA7FBCB211732C10004FF88 /* RecruiteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecruiteViewController.swift; sourceTree = "<group>"; };
 		CEA8C6D1213D7FE80020D2F1 /* EditRecruiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecruiteViewController.swift; sourceTree = "<group>"; };
-		CEA9FF5C214E26110013CCAA /* TermsofUseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsofUseViewController.swift; sourceTree = "<group>"; };
+		CEA9FF60214F8B270013CCAA /* TermsOfServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfServiceViewController.swift; sourceTree = "<group>"; };
 		CEAEE8B92149FA3F00323B12 /* TopAuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAuthenticationViewController.swift; sourceTree = "<group>"; };
 		CEAEE8BB214B090B00323B12 /* PostDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetail.swift; sourceTree = "<group>"; };
 		CEAEE8BD214B71B400323B12 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
@@ -137,7 +137,7 @@
 				47F038C02143A43800A02366 /* TopTabBarViewController.swift */,
 				CEA5CF942123BAFE00DE1FEE /* MyPageViewController.swift */,
 				4735B12021295FA5009D1323 /* CreateProfileViewController.swift */,
-				CEA9FF5C214E26110013CCAA /* TermsofUseViewController.swift */,
+				CEA9FF60214F8B270013CCAA /* TermsOfServiceViewController.swift */,
 				CEA6F7C0214509BC00271AA4 /* Profile.swift */,
 				CEA7FBCB211732C10004FF88 /* RecruiteViewController.swift */,
 				CEA8C6D1213D7FE80020D2F1 /* EditRecruiteViewController.swift */,
@@ -372,13 +372,13 @@
 				4783696B214F78E5000B13AD /* ApplyAlertViewController.swift in Sources */,
 				4735B101211AEF2C009D1323 /* MailBoxViewController.swift in Sources */,
 				CEA7FBCC211732C10004FF88 /* RecruiteViewController.swift in Sources */,
-				CEA9FF5D214E26110013CCAA /* TermsofUseViewController.swift in Sources */,
 				CEA5CF952123BAFE00DE1FEE /* MyPageViewController.swift in Sources */,
 				CEA6552C212EE89100C4B94A /* MailBoxCell.swift in Sources */,
 				4735B11F21295CA3009D1323 /* BaseFormViewController.swift in Sources */,
 				470DDE782144A08600D774B9 /* MessageInfo.swift in Sources */,
 				4735B0DD211896FB009D1323 /* SearchResultViewController.swift in Sources */,
 				4735B12121295FA5009D1323 /* CreateProfileViewController.swift in Sources */,
+				CEA9FF61214F8B270013CCAA /* TermsOfServiceViewController.swift in Sources */,
 				4735B103211AF1C4009D1323 /* MailBoxRecruiteViewController.swift in Sources */,
 				4735B105211AF34A009D1323 /* MailBoxSearchViewController.swift in Sources */,
 				4735B0C42115DBC6009D1323 /* BaseViewController.swift in Sources */,
