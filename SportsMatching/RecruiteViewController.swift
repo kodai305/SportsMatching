@@ -14,9 +14,6 @@ import SVProgressHUD
 
 class RecruiteViewController: BaseFormViewController {
     
-    // 選択されたイメージ格納用
-    var selectedImg = UIImage()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -83,14 +80,11 @@ class RecruiteViewController: BaseFormViewController {
                 .onPresent { from, to in
                     to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
             }
-            <<< ImageRow("Image1") {
+            <<< ImageRow("Image") {
                 $0.title = "活動風景画像"
                 $0.sourceTypes = [.PhotoLibrary, .SavedPhotosAlbum, .Camera]
                 $0.value = UIImage(named: "activeImage")
                 $0.clearAction = .yes(style: .destructive)
-                $0.onChange { [unowned self] row in
-                    self.selectedImg = row.value!
-                }
             }
             
         form +++ Section(header: "任意項目", footer: "応募者が参考にするため、なるべく入力してください")
@@ -179,7 +173,7 @@ class RecruiteViewController: BaseFormViewController {
         } else if values["Timezone"].unsafelyUnwrapped == nil {
             SVProgressHUD.showError(withStatus: "活動時間帯を選択して下さい")
             return
-        } else if values["Image1"].unsafelyUnwrapped == nil {
+        } else if values["Image"].unsafelyUnwrapped == nil {
             SVProgressHUD.showError(withStatus: "活動画像を選択して下さい")
             return
         }
@@ -197,7 +191,7 @@ class RecruiteViewController: BaseFormViewController {
         myUID = defaults.string(forKey: "UID")!
         
         //画像セルから画像を取得
-        let UIImgae = values["Image1"] as! UIImage
+        let UIImgae = values["Image"] as! UIImage
         
         //Userdefaultsに保存
         var NewPostDetail = PostDetail()
@@ -234,7 +228,8 @@ class RecruiteViewController: BaseFormViewController {
             "prefecture"  : values["Prefecture"] as! String,
             "place"       : values["Place"] as! String,
             "applyGender" : values["ApplyGender"] as! String,
-            "timezone"    : Array(values["Timezone"] as! Set<String>),  //ここまでは必須項目
+            "timezone"    : Array(values["Timezone"] as! Set<String>),
+            //ここまでは必須項目、ここから下はnilチェックが必要
             "position"    : values["Position"].unsafelyUnwrapped == nil ? Array() : Array(values["Position"] as! Set<String>),
             "applyLevel"  : values["ApplyLevel"].unsafelyUnwrapped == nil ? Array() : Array(values["ApplyLevel"] as! Set<String>),
             "genderRatio" : values["GenderRatio"].unsafelyUnwrapped == nil ? "" : values["GenderRatio"] as! String,
@@ -250,7 +245,7 @@ class RecruiteViewController: BaseFormViewController {
                 print("Document successfully written!")
             }
         }
-        
+
         var ImageShrinkRatio:CGFloat = 1.0
         //Firebase Storageの準備
         let storage = Storage.storage()
@@ -270,10 +265,8 @@ class RecruiteViewController: BaseFormViewController {
             })
             SVProgressHUD.showSuccess(withStatus: "投稿成功")
 
-            // 履歴タブのViewControllerを取得する
-            let viewController = self.tabBarController?.viewControllers![3] as! UINavigationController
-            // 履歴タブを選択済みにする
-            self.tabBarController?.selectedViewController = viewController
+            // 新規投稿と投稿編集のボタンがある画面に戻る
+            self.navigationController?.popViewController(animated: false)
         }
         
     }

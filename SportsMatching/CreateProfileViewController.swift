@@ -24,7 +24,7 @@ class CreateProfileViewController: FormViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Userdefalutsからプロフィールを取得
+        // Userdefalutsからプロフィールを取得
         var savedProfile = Profile()
         let defaults = UserDefaults.standard
         if let data = defaults.data(forKey: "profile"){
@@ -32,6 +32,7 @@ class CreateProfileViewController: FormViewController {
         }
         
         // 登録フォーム
+        // プロフィールが作成済みの場合はその情報をvalueに入れる
         self.form +++ Section(header: "ユーザー情報", footer: "すべての項目を入力してください")
             <<< TextRow("UserName") {
                 $0.title = "ユーザー名"
@@ -116,7 +117,9 @@ class CreateProfileViewController: FormViewController {
         MyProfile.Gender = values["Gender"] as? String
         MyProfile.Age = values["Age"] as? String
         MyProfile.Level = values["Level"] as? String
+        // サイズを半分(0.5倍)してNSDataに変換
         MyProfile.Image =  UIImageJPEGRepresentation(UIImgae, 0.5)!
+        // コメントは未入力の可能性があるのでnilチェック
         MyProfile.Comments = values["Comments"].unsafelyUnwrapped == nil ? "" : values["Comments"] as! String
         let data = try? JSONEncoder().encode(MyProfile)
         let defaults = UserDefaults.standard

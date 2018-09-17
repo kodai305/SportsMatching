@@ -13,9 +13,7 @@ import FirebaseStorage
 import SVProgressHUD
 
 class EditRecruiteViewController: BaseFormViewController {
-    
-    // 選択されたイメージ格納用
-    var selectedImg = UIImage()
+
     // UIDの読み取り
     let myUID: String = UserDefaults.standard.string(forKey: "UID")!
     //初回投稿時間を保存
@@ -34,6 +32,8 @@ class EditRecruiteViewController: BaseFormViewController {
         savedPostDetail = try! JSONDecoder().decode(PostDetail.self, from: data)
         InitialPostedTime = savedPostDetail.PostedTime
         
+        // 投稿済みの内容をフォームに反映する
+        // 複数選択可能な項目はArrayで保存してあるデータをSetに変換する
         self.form +++
             Section(header: "必須項目", footer: "すべての項目を入力してください")
             <<< TextRow("TeamName") {
@@ -103,14 +103,11 @@ class EditRecruiteViewController: BaseFormViewController {
                 .onPresent { from, to in
                     to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
             }
-            <<< ImageRow("Image1") {
+            <<< ImageRow("Image") {
                 $0.title = "活動風景画像"
                 $0.sourceTypes = [.PhotoLibrary, .SavedPhotosAlbum, .Camera]
                 $0.value = UIImage(data: savedPostDetail.Image)
                 $0.clearAction = .yes(style: .destructive)
-                $0.onChange { [unowned self] row in
-                    self.selectedImg = row.value!
-                }
         }
         
         self.form +++ Section(header: "任意項目", footer: "応募者が参考にするため、なるべく入力してください")
@@ -207,7 +204,7 @@ class EditRecruiteViewController: BaseFormViewController {
         } else if values["Timezone"].unsafelyUnwrapped == nil {
             SVProgressHUD.showError(withStatus: "活動時間帯を選択して下さい")
             return
-        } else if values["Image1"].unsafelyUnwrapped == nil {
+        } else if values["Image"].unsafelyUnwrapped == nil {
             SVProgressHUD.showError(withStatus: "活動画像を選択して下さい")
             return
         }
@@ -220,7 +217,7 @@ class EditRecruiteViewController: BaseFormViewController {
         let now = Date()
         
         //画像セルから画像を取得
-        let UIImgae = values["Image1"] as! UIImage
+        let UIImgae = values["Image"] as! UIImage
         
         //Userdefaultsに保存
         let defaults = UserDefaults.standard
@@ -258,7 +255,7 @@ class EditRecruiteViewController: BaseFormViewController {
             "prefecture"  : values["Prefecture"] as! String,
             "place"       : values["Place"] as! String,
             "applyGender" : values["ApplyGender"] as! String,
-            "timezone"    : Array(values["Timezone"] as! Set<String>),  //ここまでは必須項目
+            "timezone"    : Array(values["Timezone"] as! Set<String>),
             "position"    : values["Position"].unsafelyUnwrapped == nil ? Array() : Array(values["Position"] as! Set<String>),
             "applyLevel"  : values["ApplyLevel"].unsafelyUnwrapped == nil ? Array() : Array(values["ApplyLevel"] as! Set<String>),
             "genderRatio" : values["GenderRatio"].unsafelyUnwrapped == nil ? "" : values["GenderRatio"] as! String,
@@ -275,26 +272,27 @@ class EditRecruiteViewController: BaseFormViewController {
             }
         }
         
-        //画像セルから画像を取得
-        let UIImgae1 = values["Image1"] as! UIImage
         var ImageShrinkRatio:CGFloat = 1.0
         //Firebase Storageの準備
         let storage = Storage.storage()
         let storageRef = storage.reference()
         // UIImageJPEGRepresentationでUIImageをNSDataに変換して格納
-        if var data = UIImageJPEGRepresentation(UIImgae1, ImageShrinkRatio){
+        if var data = UIImageJPEGRepresentation(UIImgae, ImageShrinkRatio){
             //画像のファイルサイズが1024*1024/2bytes以下になるまで縮小係数を調整
             while data.count > 1024 * 1024 / 2{
                 ImageShrinkRatio = ImageShrinkRatio - 0.1
-                data = UIImageJPEGRepresentation(UIImgae1, ImageShrinkRatio)!
+                data = UIImageJPEGRepresentation(UIImgae, ImageShrinkRatio)!
             }
             //とりあえずUIDのディレクトリを作成し、その下に画像を保存
-            let reference = storageRef.child(myUID + "/post" + "/image1" + ".jpg")
+            let reference = storageRef.child(myUID + "/post" + "/image" + ".jpg")
             reference.putData(data, metadata: nil, completion: { metaData, error in
                 print(metaData as Any)
                 print(error as Any)
             })
             SVProgressHUD.showSuccess(withStatus: "投稿成功")
+            
+            // 新規投稿と投稿編集のボタンがある画面に戻る
+            self.navigationController?.popViewController(animated: false)
         }
         
     }
