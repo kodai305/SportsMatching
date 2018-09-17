@@ -198,15 +198,6 @@ extension MailViewController: MessageInputBarDelegate {
         messagesCollectionView.scrollToBottom()
     }
     
-    // テスト用 メッセージを返す
-    func testRecvMessage() {
-        let attributedText = NSAttributedString(string: "返信", attributes: [.font: UIFont.systemFont(ofSize: 15), .foregroundColor: UIColor.black])
-        let message = MockMessage(attributedText: attributedText, sender: Sender(id: "11111", displayName: "相手"), messageId: UUID().uuidString, date: Date())
-        
-        self.messageList.append(message)
-        messagesCollectionView.insertSections([self.messageList.count - 1])
-    }
-    
     func sendNewMessageNotification(text: String) {
         self.functions.httpsCallable("sendNewMessageNotification").call(["partnerUID": self.partnerUID, "message": text, "roomID": self.roomID]) { (result, error) in
             

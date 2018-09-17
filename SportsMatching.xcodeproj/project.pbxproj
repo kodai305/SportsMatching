@@ -23,6 +23,7 @@
 		4735B11F21295CA3009D1323 /* BaseFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B11E21295CA3009D1323 /* BaseFormViewController.swift */; };
 		4735B12121295FA5009D1323 /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B12021295FA5009D1323 /* CreateProfileViewController.swift */; };
 		4735B12321311590009D1323 /* MockMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B12221311590009D1323 /* MockMessage.swift */; };
+		4783696B214F78E5000B13AD /* ApplyAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4783696A214F78E5000B13AD /* ApplyAlertViewController.swift */; };
 		47F038C12143A43800A02366 /* TopTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F038C02143A43800A02366 /* TopTabBarViewController.swift */; };
 		758EB0FB9270093A83F203D8 /* Pods_SportsMatching.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A32BBEB8E75216E6EACE267 /* Pods_SportsMatching.framework */; };
 		CEA5CF952123BAFE00DE1FEE /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA5CF942123BAFE00DE1FEE /* MyPageViewController.swift */; };
@@ -59,6 +60,7 @@
 		4735B11E21295CA3009D1323 /* BaseFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseFormViewController.swift; sourceTree = "<group>"; };
 		4735B12021295FA5009D1323 /* CreateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileViewController.swift; sourceTree = "<group>"; };
 		4735B12221311590009D1323 /* MockMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMessage.swift; sourceTree = "<group>"; };
+		4783696A214F78E5000B13AD /* ApplyAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyAlertViewController.swift; sourceTree = "<group>"; };
 		47F038C02143A43800A02366 /* TopTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTabBarViewController.swift; sourceTree = "<group>"; };
 		7C7EF586745D6367B67B1C34 /* Pods-SportsMatching.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsMatching.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SportsMatching/Pods-SportsMatching.debug.xcconfig"; sourceTree = "<group>"; };
 		8A32BBEB8E75216E6EACE267 /* Pods_SportsMatching.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SportsMatching.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,12 +133,12 @@
 				4735B0C12115DBC6009D1323 /* AppDelegate.swift */,
 				4735B0C32115DBC6009D1323 /* BaseViewController.swift */,
 				4735B11E21295CA3009D1323 /* BaseFormViewController.swift */,
+				CEAEE8B92149FA3F00323B12 /* TopAuthenticationViewController.swift */,
 				47F038C02143A43800A02366 /* TopTabBarViewController.swift */,
 				CEA5CF942123BAFE00DE1FEE /* MyPageViewController.swift */,
 				4735B12021295FA5009D1323 /* CreateProfileViewController.swift */,
 				CEA9FF5C214E26110013CCAA /* TermsofUseViewController.swift */,
 				CEA6F7C0214509BC00271AA4 /* Profile.swift */,
-				CEAEE8B92149FA3F00323B12 /* TopAuthenticationViewController.swift */,
 				CEA7FBCB211732C10004FF88 /* RecruiteViewController.swift */,
 				CEA8C6D1213D7FE80020D2F1 /* EditRecruiteViewController.swift */,
 				CEAEE8BB214B090B00323B12 /* PostDetail.swift */,
@@ -144,6 +146,7 @@
 				CEDCC4F7211BD3AA001DC758 /* SearchViewController.swift */,
 				4735B0DC211896FB009D1323 /* SearchResultViewController.swift */,
 				CEBB289F211AC05C00C7FFFE /* SearchResultDetailViewController.swift */,
+				4783696A214F78E5000B13AD /* ApplyAlertViewController.swift */,
 				CEBB2899211A9FBD00C7FFFE /* SerachResultCell.swift */,
 				4735B100211AEF2C009D1323 /* MailBoxViewController.swift */,
 				4735B102211AF1C4009D1323 /* MailBoxRecruiteViewController.swift */,
@@ -309,6 +312,7 @@
 				"${BUILT_PRODUCTS_DIR}/ImageRow/ImageRow.framework",
 				"${BUILT_PRODUCTS_DIR}/MessageKit/MessageKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SDCAlertView/SDCAlertView.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
@@ -336,6 +340,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImageRow.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDCAlertView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
@@ -364,6 +369,7 @@
 				CEA6F7C1214509BD00271AA4 /* Profile.swift in Sources */,
 				4735B0CA2115DBC6009D1323 /* SportsMatching.xcdatamodeld in Sources */,
 				CEDCC4F8211BD3AA001DC758 /* SearchViewController.swift in Sources */,
+				4783696B214F78E5000B13AD /* ApplyAlertViewController.swift in Sources */,
 				4735B101211AEF2C009D1323 /* MailBoxViewController.swift in Sources */,
 				CEA7FBCC211732C10004FF88 /* RecruiteViewController.swift in Sources */,
 				CEA9FF5D214E26110013CCAA /* TermsofUseViewController.swift in Sources */,
