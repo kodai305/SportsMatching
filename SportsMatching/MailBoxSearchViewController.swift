@@ -123,6 +123,8 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
             let nextViewController = nav.topViewController as! MailViewController
             nextViewController.partnerUID = partnerUID
             nextViewController.roomID = partnerUID+"-"+myUID //roomID = "投稿者UID" + "-" + "応募者UID"
+            // 応募履歴から遷移することを伝達
+            nextViewController.fromWhichFlag = 2
         }
     }
     

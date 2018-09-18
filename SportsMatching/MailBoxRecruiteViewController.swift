@@ -9,6 +9,9 @@
 import UIKit
 import XLPagerTabStrip
 import DZNEmptyDataSet
+import FirebaseCore
+import FirebaseFunctions
+import FirebaseFirestore
 
 class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UITableViewDataSource, IndicatorInfoProvider, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
@@ -36,6 +39,7 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
             StubRecruiteHistory = defaults.value(forKey: "RecruiteHistory") as! [String]
         }
         self.tableView.reloadData()
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -124,6 +128,8 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
             let nextViewController = nav.topViewController as! MailViewController
             nextViewController.partnerUID = partnerUID
             nextViewController.roomID = myUID+"-"+partnerUID //roomID = "投稿者UID" + "-" + "応募者UID"
+            // 募集履歴から遷移することを伝達
+            nextViewController.fromWhichFlag = 1
         }
     }
 

@@ -251,7 +251,7 @@
         <!--Mail View Controller-->
         <scene sceneID="JAU-Gf-cha">
             <objects>
-                <viewController id="XEq-qz-s82" customClass="MailViewController" customModule="SportsMatching" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MailView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XEq-qz-s82" customClass="MailViewController" customModule="SportsMatching" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xff-K5-9gz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -266,12 +266,11 @@
                                 <segue destination="bxe-2u-Vrg" kind="unwind" unwindAction="comeHomeWithSegue:" id="4wu-aY-ZKq"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="gT0-Rs-za9">
-                            <connections>
-                                <action selector="testButtonPushed:" destination="XEq-qz-s82" id="vcr-hr-VGw"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="gT0-Rs-za9"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="ShowDetailButton" destination="gT0-Rs-za9" id="gmH-Vt-O2W"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AZb-bE-1CG" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="bxe-2u-Vrg" userLabel="Exit" sceneMemberID="exit"/>
@@ -287,17 +286,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1aR-bp-DC2">
-                                <rect key="frame" x="164" y="37" width="46" height="30"/>
+                                <rect key="frame" x="172" y="37" width="31" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="BackButton:" destination="4WF-jF-A1D" eventType="touchUpInside" id="d1N-X9-q9w"/>
-                                </connections>
+                                <state key="normal" title="戻る">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="E1v-Pa-RNQ"/>
                     </view>
+                    <connections>
+                        <outlet property="BackButton" destination="1aR-bp-DC2" id="amw-fq-6rF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FR1-Sn-GFV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

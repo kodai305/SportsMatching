@@ -156,8 +156,8 @@ class CreateProfileViewController: FormViewController {
         let storageRef = storage.reference()
         // UIImageJPEGRepresentationでUIImageをNSDataに変換して格納
         if var data = UIImageJPEGRepresentation(UIImgae, ImageShrinkRatio){
-            //画像のファイルサイズが1024*1024bytes以下になるまで縮小係数を調整
-            while data.count > 1024 * 1024{
+            //画像のファイルサイズが1024*1024/2bytes以下になるまで縮小係数を調整
+            while data.count > 1024 * 1024 / 2{
                 ImageShrinkRatio = ImageShrinkRatio - 0.1
                 data = UIImageJPEGRepresentation(UIImgae, ImageShrinkRatio)!
             }

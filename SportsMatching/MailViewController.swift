@@ -10,6 +10,7 @@ import UIKit
 import MessageKit
 import FirebaseFunctions
 import FirebaseFirestore
+import FirebaseStorage
 import SVProgressHUD
 
 class MailViewController: MessagesViewController {
@@ -18,21 +19,28 @@ class MailViewController: MessagesViewController {
     var partnerUID = ""
     var roomID = ""
     
+    // 募集履歴と応募履歴のどちらから来たかを管理するFlag
+    // 募集履歴なら1、応募履歴なら2
+    // 変数名は要検討…
+    var fromWhichFlag = 0
+    
+    // 画像のダウンロードが完了しているかのFlag
+    var downloadSucceedFlag = 0
+    
+    // FireStoreから取得したDocumentを保存（応募者のプロフィールを保存or応募した投稿内容）
+    var GottenDoc:DocumentSnapshot!
+    
+    //　FirebaseStorageから取得した画像を保存
+    var GottenUIImage:UIImage!
+    
     // 使うかどうかは後回し
     //let refreshControl = UIRefreshControl()
     
     // メッセージ内容に関するプロパティ
     var messageList: [MockMessage] = []
     
-    // デバッグ用
-    @IBAction func testButtonPushed(_ sender: Any) {
-        print("messages_count:")
-        print(messageList.count)
-        print(self.partnerUID)
-        let storyboard: UIStoryboard = self.storyboard!
-        let postDetailView = storyboard.instantiateViewController(withIdentifier: "PostDetail") as! PostDetailViewController
-        self.present(postDetailView, animated: true, completion: nil)
-    }
+    //
+    @IBOutlet weak var ShowDetailButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,9 +54,75 @@ class MailViewController: MessagesViewController {
         messageInputBar.delegate = self
         
         messageInputBar.sendButton.tintColor = UIColor.blue
+        
+        // 詳細ボタンの設定
+        // 募集履歴から遷移してきた場合
+        if fromWhichFlag == 1{
+            ShowDetailButton.title = "応募者のプロフィール"
+        }else if fromWhichFlag == 2{
+        // 応募履歴から遷移してきた場合
+            ShowDetailButton.title = "応募した投稿の内容"
+        }
+        ShowDetailButton.action = #selector(self.ShowDetailButtonTapped(sender:))
+        
         // メッセージのload
         self.loadMessages()
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        //　募集履歴から遷移してきた場合
+        if fromWhichFlag == 1{
+            // 相手の最新のプロフィールを取得
+            // 相手のプロフィールが変更されるたびに呼ばれる
+            let db = Firestore.firestore()
+            db.collection("users").document(partnerUID)
+                .addSnapshotListener { documentSnapshot, error in
+                    guard let document = documentSnapshot else {
+                        print("Error fetching document: \(error!)")
+                        return
+                    }
+                    print("Current data: \(String(describing: document.data()))")
+                    self.GottenDoc = document
+                    // FirebaseStorageから画像を取得
+                    self.getImageFromFirebaseStorage(path: "profile")
+            }
+        }else if fromWhichFlag == 2{ //　応募履歴から遷移してきた場合
+            // 最新の投稿内容を取得
+            // 投稿内容が変更されるたびに呼ばれる
+            let db = Firestore.firestore()
+            db.collection("posts").document(partnerUID)
+                .addSnapshotListener { documentSnapshot, error in
+                    guard let document = documentSnapshot else {
+                        print("Error fetching document: \(error!)")
+                        return
+                    }
+                    print("Current data: \(String(describing: document.data()))")
+                    self.GottenDoc = document
+                    // FirebaseStorageから画像を取得
+                    self.getImageFromFirebaseStorage(path: "post")
+            }
+        }
+    }
+    
+    func getImageFromFirebaseStorage(path: String){
+        //画像をfirestoreから取得
+        let storage   = Storage.storage()
+        let imagePath = self.partnerUID + "/" + path + "/image.jpg"
+        // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+        storage.reference().child(imagePath).getData(maxSize: 1 * 1024 * 1024) { data, error in
+            if let error = error {
+                print(error)
+                self.GottenUIImage = UIImage(named: "sample")!
+            } else {
+                // ダウンロード成功
+                self.GottenUIImage = UIImage(data: data!)
+                self.downloadSucceedFlag = 1
+                print("download succeed!")
+            }
+        }
     }
     
     // メッセージの読込/保存
@@ -102,7 +176,23 @@ class MailViewController: MessagesViewController {
             self.messageList.append(message)
             print(messageInfo)
         }
-        
+    }
+    
+    // 応募者のプロフィールor応募した投稿内容を表示する画面に遷移
+    @objc func ShowDetailButtonTapped(sender : AnyObject) {
+        print("messages_count:")
+        print(messageList.count)
+        print(self.partnerUID)
+        // 画像がダウンロード出来ていれば遷移
+        if self.downloadSucceedFlag == 1{
+            let storyboard: UIStoryboard = self.storyboard!
+            let postDetailView = storyboard.instantiateViewController(withIdentifier: "PostDetail") as! PostDetailViewController
+            //　必要な値を渡す
+            postDetailView.GottenDoc = self.GottenDoc
+            postDetailView.fromWhichFlag = self.fromWhichFlag
+            postDetailView.GottenUIImage = self.GottenUIImage
+            self.present(postDetailView, animated: true, completion: nil)
+        }
     }
     
     override func didReceiveMemoryWarning() {
