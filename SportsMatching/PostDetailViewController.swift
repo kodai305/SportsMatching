@@ -16,8 +16,8 @@ import Eureka
 class PostDetailViewController: BaseFormViewController {
     
     // 募集履歴と応募履歴のどちらから来たかを管理するFlag
-    // 募集履歴なら1、応募履歴なら2
-    var fromWhichFlag = 0
+    var fromRecruiteFlag = 0
+    var fromSearchFlag = 0
     
     // チャット画面で取得したDocumentを受け取る
     var GottenDoc:DocumentSnapshot!
@@ -66,7 +66,7 @@ class PostDetailViewController: BaseFormViewController {
         
         //　募集履歴から遷移してきた場合
         //　募集者のプロフィールを表示
-        if fromWhichFlag == 1{
+        if fromRecruiteFlag == 1 && fromSearchFlag == 0 {
             self.form +++ Section(header: "ユーザー情報", footer: "")
                 <<< TextRow("UserName") {
                     $0.title = "ユーザー名"
@@ -93,7 +93,7 @@ class PostDetailViewController: BaseFormViewController {
                     $0.baseCell.isUserInteractionEnabled = false
                     $0.textAreaHeight = .dynamic(initialTextViewHeight: 110)
             }
-        }else if fromWhichFlag == 2{
+        } else if fromRecruiteFlag == 0 && fromSearchFlag == 1 {
             //　応募履歴から遷移してきた場合
             //　応募した投稿の内容を表示
             self.form +++ Section(header: "投稿の詳細", footer: "")
@@ -183,7 +183,8 @@ class PostDetailViewController: BaseFormViewController {
         let storyboard: UIStoryboard = self.storyboard!
         let mailView = storyboard.instantiateViewController(withIdentifier: "MailView") as! MailViewController
         //  再度ボタンを押す場合のためにFlagの値を返す
-        mailView.fromWhichFlag = self.fromWhichFlag
+        mailView.fromRecruiteFlag = self.fromRecruiteFlag
+        mailView.fromSearchFlag = self.fromSearchFlag
         dismiss(animated: true, completion: nil)
     }
     

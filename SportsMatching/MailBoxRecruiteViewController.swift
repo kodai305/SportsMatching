@@ -16,7 +16,7 @@ import FirebaseFirestore
 class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UITableViewDataSource, IndicatorInfoProvider, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
     var StubRecruiteHistory:[String] = []
-
+    
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,10 +27,10 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
         self.tableView.emptyDataSetDelegate = self
         //セルの高さを設定（100に設定）
         self.tableView.rowHeight = 100
-
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         // 今までの募集履歴を取得
@@ -39,7 +39,7 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
             StubRecruiteHistory = defaults.value(forKey: "RecruiteHistory") as! [String]
         }
         self.tableView.reloadData()
-
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -66,7 +66,7 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
         // 設定したIDでUITableViewCell のインスタンスを生成
         let cell = table.dequeueReusableCell(withIdentifier: "RecruiteMailBoxCell",
                                              for: indexPath) as! MailBoxCell
-
+        
         // 準備
         let dateFormater = DateFormatter()
         dateFormater.locale = Locale(identifier: "ja_JP")
@@ -109,7 +109,7 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
     func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
         //セルの選択解除 //書かないと審査に通らない? cf.http://mjk0513.hateblo.jp/entry/2017/07/01/220542
         tableView.deselectRow(at: indexPath, animated: true)
-
+        
         // Segueを呼び出す
         let postID = StubRecruiteHistory[indexPath.row]
         performSegue(withIdentifier: "toMailTakagiViewController",sender: postID)
@@ -129,10 +129,10 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
             nextViewController.partnerUID = partnerUID
             nextViewController.roomID = myUID+"-"+partnerUID //roomID = "投稿者UID" + "-" + "応募者UID"
             // 募集履歴から遷移することを伝達
-            nextViewController.fromWhichFlag = 1
+            nextViewController.fromRecruiteFlag = 1
         }
     }
-
+    
     
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let str = "まだ募集がありません"
@@ -142,15 +142,15 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 

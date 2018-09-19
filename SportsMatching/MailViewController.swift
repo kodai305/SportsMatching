@@ -20,9 +20,8 @@ class MailViewController: MessagesViewController {
     var roomID = ""
     
     // 募集履歴と応募履歴のどちらから来たかを管理するFlag
-    // 募集履歴なら1、応募履歴なら2
-    // 変数名は要検討…
-    var fromWhichFlag = 0
+    var fromRecruiteFlag = 0
+    var fromSearchFlag = 0
     
     // 画像のダウンロードが完了しているかのFlag
     var downloadSucceedFlag = 0
@@ -57,10 +56,10 @@ class MailViewController: MessagesViewController {
         
         // 詳細ボタンの設定
         // 募集履歴から遷移してきた場合
-        if fromWhichFlag == 1{
+        if fromRecruiteFlag == 1 && fromSearchFlag == 0 {
             ShowDetailButton.title = "応募者のプロフィール"
-        }else if fromWhichFlag == 2{
-        // 応募履歴から遷移してきた場合
+        } else if fromRecruiteFlag == 0 && fromSearchFlag == 1 {
+            // 応募履歴から遷移してきた場合
             ShowDetailButton.title = "応募した投稿の内容"
         }
         ShowDetailButton.action = #selector(self.ShowDetailButtonTapped(sender:))
@@ -74,7 +73,7 @@ class MailViewController: MessagesViewController {
         super.viewDidAppear(animated)
         
         //　募集履歴から遷移してきた場合
-        if fromWhichFlag == 1{
+        if fromRecruiteFlag == 1 && fromSearchFlag == 0 {
             // 相手の最新のプロフィールを取得
             // 相手のプロフィールが変更されるたびに呼ばれる
             let db = Firestore.firestore()
@@ -89,7 +88,8 @@ class MailViewController: MessagesViewController {
                     // FirebaseStorageから画像を取得
                     self.getImageFromFirebaseStorage(path: "profile")
             }
-        }else if fromWhichFlag == 2{ //　応募履歴から遷移してきた場合
+        } else if fromRecruiteFlag == 0 && fromSearchFlag == 1 {
+            //　応募履歴から遷移してきた場合
             // 最新の投稿内容を取得
             // 投稿内容が変更されるたびに呼ばれる
             let db = Firestore.firestore()
@@ -189,7 +189,8 @@ class MailViewController: MessagesViewController {
             let postDetailView = storyboard.instantiateViewController(withIdentifier: "PostDetail") as! PostDetailViewController
             //　必要な値を渡す
             postDetailView.GottenDoc = self.GottenDoc
-            postDetailView.fromWhichFlag = self.fromWhichFlag
+            postDetailView.fromRecruiteFlag = self.fromRecruiteFlag
+            postDetailView.fromSearchFlag = self.fromSearchFlag
             postDetailView.GottenUIImage = self.GottenUIImage
             self.present(postDetailView, animated: true, completion: nil)
         }

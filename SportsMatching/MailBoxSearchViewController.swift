@@ -11,9 +11,9 @@ import XLPagerTabStrip
 import DZNEmptyDataSet
 
 class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITableViewDataSource, IndicatorInfoProvider ,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate  {
-
+    
     @IBOutlet weak var tableView: UITableView!
-
+    
     var StubApplyHistory:[String] = []
     
     override func viewDidLoad() {
@@ -96,13 +96,13 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
         cell.LatestMessage.text = "最後のメッセージ:"+lastMessage
         cell.LatestExchangeTime.text = lastMsgTime
         cell.PartnerImageView.image = UIImage(named: "naito")
-
+        
         return cell
     }
     
     // Cell が選択された場合
     func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
-        //セルの選択解除 
+        //セルの選択解除
         tableView.deselectRow(at: indexPath, animated: true)
         
         // Segueを呼び出す
@@ -124,7 +124,7 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
             nextViewController.partnerUID = partnerUID
             nextViewController.roomID = partnerUID+"-"+myUID //roomID = "投稿者UID" + "-" + "応募者UID"
             // 応募履歴から遷移することを伝達
-            nextViewController.fromWhichFlag = 2
+            nextViewController.fromSearchFlag = 1
         }
     }
     
@@ -137,13 +137,13 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
