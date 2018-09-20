@@ -18,6 +18,8 @@ class MailBoxViewController: ButtonBarPagerTabStripViewController {
     var secondVC:MailBoxSearchViewController!
     var PartnerID:String!
     
+    var fromSendButtonFlag = 0
+    
     override func viewDidLoad() {
         
         //バーの色
@@ -57,14 +59,13 @@ class MailBoxViewController: ButtonBarPagerTabStripViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        //Userdefalutsの有無で応募ボタンからの遷移か判断
-        //Userdefalutsで管理するのが適切かどうかは微妙
-        if UserDefaults.standard.object(forKey: "fromApplyFlag") != nil {
+        print(fromSendButtonFlag)
+        //fromSendButtonFlagの値が1の場合応募ボタンからの遷移
+        if fromSendButtonFlag == 1 {
         //応募ボタンからの遷移の場合、応募履歴タブをアクティブにする
             print(currentIndex)
             moveToViewController(at: 1, animated: true)
         }
-        UserDefaults.standard.removeObject(forKey: "fromApplyFlag")
     }
     
     override func didReceiveMemoryWarning() {
