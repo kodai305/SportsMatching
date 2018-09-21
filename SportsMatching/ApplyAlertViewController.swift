@@ -18,15 +18,19 @@ class ApplyAlertViewController: BaseViewController {
     @IBOutlet weak var AlertTitleLabel: UILabel!
     @IBOutlet weak var AlertSubscriptionLabel: UILabel!
     @IBOutlet weak var MessageTextView: UITextView!
+    @IBOutlet weak var AlertUIView: UIView!
+    @IBOutlet weak var CancelButton: UIButton!
+    @IBOutlet weak var SendButton: UIButton!
     
     lazy var functions = Functions.functions()
     @IBAction func SendButtonTapped(_ sender: Any) {
-        // XXX: textviewが空だったら警告を出す
+        // textviewが空だったら警告を出す
         let message = MessageTextView.text
         if message == "" {
             SVProgressHUD.showError(withStatus: "メッセージは空では送れません.")
             return
         }
+        SVProgressHUD.show(withStatus: "送信中")
         // 自分の名前を取得
         var myName:String = "no name"
         let defaults = UserDefaults.standard
@@ -87,9 +91,6 @@ class ApplyAlertViewController: BaseViewController {
                     postUserName = tmp as! String
                 }
                 defaults.set(postUserName, forKey: "user_"+self.postID)
-                /*
-                 UserDefaults.standard.set(1, forKey: "fromApplyFlag")
-                 */
                 // キーボードをしまう
                 self.MessageTextView.resignFirstResponder()
                 // このアラートビューを表示しているビューコントローラー
@@ -114,6 +115,39 @@ class ApplyAlertViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //　アラートのレイアウト
+        self.AlertUIView.frame =
+            CGRect(x: self.view.frame.size.width * 1 / 20, y: self.view.frame.size.height / 20, width: self.view.frame.size.width * 9 / 10, height: self.view.frame.size.height * 9 / 20)
+        self.AlertUIView.layer.cornerRadius = 20
+        self.AlertUIView.backgroundColor = UIColor(hex: "F4F6F6")
+        
+        // ラベルの設定
+        self.AlertTitleLabel.sizeToFit()
+        self.AlertTitleLabel.center.x = self.AlertUIView.frame.size.width / 2
+        self.AlertTitleLabel.frame.origin.y = 20
+        
+        self.AlertSubscriptionLabel.sizeToFit()
+        self.AlertSubscriptionLabel.center.x = self.AlertUIView.frame.size.width / 2
+        self.AlertSubscriptionLabel.frame.origin.y = self.AlertTitleLabel.frame.origin.y + self.AlertTitleLabel.frame.size.height + 10
+        
+        // キャンセル、送信ボタンの設定
+        self.CancelButton.sizeToFit()
+        self.CancelButton.center.x = self.AlertUIView.frame.size.width / 4
+        self.CancelButton.frame.origin.y = self.AlertUIView.frame.size.height - (self.CancelButton.frame.size.height + 10)
+        
+        self.SendButton.sizeToFit()
+        self.SendButton.center.x = self.AlertUIView.frame.size.width * 3 / 4
+        self.SendButton.frame.origin.y = self.CancelButton.frame.origin.y
+        
+        // メッセージ入力用のtextviewの設定
+        // サブタイトルとボタンの間隔から大きさを決める
+        self.MessageTextView.frame.size = CGSize(width: self.AlertUIView.frame.size.width * 4 / 5, height: self.CancelButton.frame.origin.y - (self.AlertSubscriptionLabel.frame.origin.y + self.AlertSubscriptionLabel.frame.size.height) - 20)
+        self.MessageTextView.center.x = self.AlertUIView.frame.size.width / 2
+        self.MessageTextView.frame.origin.y = self.AlertSubscriptionLabel.frame.origin.y + self.AlertSubscriptionLabel.frame.size.height + 10
+        
+        
+        
+        
         
         // Do any additional setup after loading the view.
     }
