@@ -33,7 +33,7 @@ class MyPageViewController: BaseFormViewController {
             savedProfile = try! JSONDecoder().decode(Profile.self, from: data)
             HeaderImageView.image = UIImage(data: savedProfile.Image)
             self.EditProfileButton.setTitle("プロフィールを編集", for: .normal)
-        } else{ //プロフィール作成されてない場合
+        } else { //プロフィール作成されてない場合
             savedProfile.UserName = nil
             savedProfile.Gender = nil
             savedProfile.Age = nil
