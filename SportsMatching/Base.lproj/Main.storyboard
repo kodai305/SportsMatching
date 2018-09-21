@@ -270,6 +270,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="ShowDetailButton" destination="gT0-Rs-za9" id="gmH-Vt-O2W"/>
+                        <segue destination="4WF-jF-A1D" kind="show" identifier="toPostDetailViewController" id="Qmq-fi-scu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AZb-bE-1CG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -284,21 +285,9 @@
                     <view key="view" contentMode="scaleToFill" id="zrU-cR-eai">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1aR-bp-DC2">
-                                <rect key="frame" x="172" y="37" width="31" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="戻る">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="E1v-Pa-RNQ"/>
                     </view>
-                    <connections>
-                        <outlet property="BackButton" destination="1aR-bp-DC2" id="amw-fq-6rF"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FR1-Sn-GFV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -745,6 +734,6 @@
         <image name="search" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="tjC-Lk-eCX"/>
+        <segue reference="Lbe-8n-gZh"/>
     </inferredMetricsTieBreakers>
 </document>

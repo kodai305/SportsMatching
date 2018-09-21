@@ -7,9 +7,7 @@
 //
 
 import Foundation
-import FirebaseFunctions
 import FirebaseFirestore
-import FirebaseStorage
 import UIKit
 import Eureka
 
@@ -39,19 +37,11 @@ class PostDetailViewController: BaseFormViewController {
         
         HeaderImageView.image = self.GottenUIImage
         HeaderImageView.frame.size = CGSize(width: 200, height: 200)
-        HeaderImageView.frame.origin.y = 50
+        HeaderImageView.frame.origin.y = 10
         HeaderImageView.center.x = HeaderUIView.center.x
         // 画像のアスペクト比を維持しUIImageViewサイズに収まるように表示
         HeaderImageView.contentMode = UIViewContentMode.scaleAspectFit
         HeaderUIView.addSubview(HeaderImageView)
-        
-        //戻るボタンの設定
-        BackButton.frame.size = CGSize(width: 200, height: 30)
-        BackButton.frame.origin.y = 10
-        BackButton.center.x = HeaderUIView.center.x
-        BackButton.backgroundColor = UIColor.brown
-        BackButton.addTarget(self,action: #selector(self.BackButtonTapped(sender:)),for: .touchUpInside)
-        HeaderUIView.addSubview(BackButton)
         
         // 上部に画像とボタンを設定
         form +++ Section(){ section in
@@ -59,7 +49,7 @@ class PostDetailViewController: BaseFormViewController {
                 var header = HeaderFooterView<UIView>(.callback({
                     return self.HeaderUIView
                 }))
-                header.height = { 250 }
+                header.height = { 210 }
                 return header
             }()
         }
