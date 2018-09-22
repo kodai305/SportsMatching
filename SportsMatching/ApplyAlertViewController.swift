@@ -34,11 +34,6 @@ class ApplyAlertViewController: BaseViewController {
             let profile = try? JSONDecoder().decode(Profile.self, from: data)
             myName = (profile?.UserName)!
         }
-        print("myName:")
-        print(myName)
-        
-        print("postID:")
-        print(self.postID)
         
         // メッセージの送信
         self.functions.httpsCallable("sendNewApplyNotification").call(["postID": self.postID, "message": message, "userName": myName]) { (result, error) in
@@ -87,24 +82,20 @@ class ApplyAlertViewController: BaseViewController {
                     postUserName = tmp as! String
                 }
                 defaults.set(postUserName, forKey: "user_"+self.postID)
-                /*
-                 UserDefaults.standard.set(1, forKey: "fromApplyFlag")
-                 */
-                // キーボードをしまう
-                self.MessageTextView.resignFirstResponder()
-                // このアラートビューを表示しているビューコントローラー
-                let originVc = self.presentingViewController
-                // 履歴タブのViewControllerを取得する
-                let viewController = originVc?.tabBarController?.viewControllers![3] as! UINavigationController
-                // 履歴タブを選択済みにする
-                originVc?.tabBarController?.selectedViewController = viewController
-                // 募集履歴と応募履歴タブの親Viewを取得し、Flagに値を渡す
-                let nextViewController = viewController.topViewController as! MailBoxViewController
-                nextViewController.fromSendButtonFlag = 1
-                //　アラートビューを消す
-                self.dismiss(animated: false, completion: nil)
-                
             }
+            // キーボードをしまう
+            self.MessageTextView.resignFirstResponder()
+            // このアラートビューを表示しているビューコントローラー
+            let originVc = self.presentingViewController
+            // 履歴タブのViewControllerを取得する
+            let viewController = originVc?.tabBarController?.viewControllers![3] as! UINavigationController
+            // 履歴タブを選択済みにする
+            originVc?.tabBarController?.selectedViewController = viewController
+            // 募集履歴と応募履歴タブの親Viewを取得し、Flagに値を渡す
+            let nextViewController = viewController.topViewController as! MailBoxViewController
+            nextViewController.fromSendButtonFlag = 1
+            //　アラートビューを消す
+            self.dismiss(animated: false, completion: nil)
         }
     }
     
