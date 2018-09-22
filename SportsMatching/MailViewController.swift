@@ -185,14 +185,18 @@ class MailViewController: MessagesViewController {
         print(self.partnerUID)
         // 画像がダウンロード出来ていれば遷移
         if self.downloadSucceedFlag == 1{
-            let storyboard: UIStoryboard = self.storyboard!
-            let postDetailView = storyboard.instantiateViewController(withIdentifier: "PostDetail") as! PostDetailViewController
+            performSegue(withIdentifier: "toPostDetailViewController",sender: nil)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toPostDetailViewController" {
+            let destinationView = segue.destination as! PostDetailViewController
             //　必要な値を渡す
-            postDetailView.GottenDoc = self.GottenDoc
-            postDetailView.fromRecruiteFlag = self.fromRecruiteFlag
-            postDetailView.fromSearchFlag = self.fromSearchFlag
-            postDetailView.GottenUIImage = self.GottenUIImage
-            self.present(postDetailView, animated: true, completion: nil)
+            destinationView.GottenDoc = self.GottenDoc
+            destinationView.fromRecruiteFlag = self.fromRecruiteFlag
+            destinationView.fromSearchFlag = self.fromSearchFlag
+            destinationView.GottenUIImage = self.GottenUIImage
         }
     }
     

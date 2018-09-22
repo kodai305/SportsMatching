@@ -133,33 +133,30 @@ class SearchResultDetailViewController: BaseFormViewController{
     lazy var functions = Functions.functions()
     @IBAction func entryButtonTapped(_ sender: Any) {
         //プロフィールが作成済みかをチェック
-        //usersコレクションから条件に一致するドキュメントを取得
-        let db = Firestore.firestore()
-        let docRef = db.collection("users").document(myUID)
-        docRef.getDocument { (document, error) in
-            guard let document = document, document.exists else {
-                //プロフィールが存在しない場合
-                SVProgressHUD.showError(withStatus: "応募にはプロフィールの作成が必要です")
-                // マイページタブのViewControllerを取得する
-                let viewController = self.tabBarController?.viewControllers![0] as! UINavigationController
-                // マイページタブを選択済みにする
-                self.tabBarController?.selectedViewController = viewController
-                return
-            }
-            //プロフィールが作成済みの場合
-            print("Profile exists")
-            // ポップアップを出して応募メッセージ入力フォーマットを出す
-            //次のビューのインスタンスを生成し値を渡す。
-            // 募集者に通知を送る
-            let postID = self.postDoc.data()["postUser"] as! String
-            let secondView = ApplyAlertViewController()
-            secondView.postID = postID
-            
-            let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let next = storyboard.instantiateViewController(withIdentifier: "ApplyAlert") as! ApplyAlertViewController
-            next.postID = postID
-            self.present(next,animated: true, completion: nil)
+        //プロフィールのUserdefaultsの有無で判断
+        let defaults = UserDefaults.standard
+        guard defaults.data(forKey: "profile") != nil else {
+            //プロフィールが存在しない場合
+            SVProgressHUD.showError(withStatus: "応募にはプロフィールの作成が必要です")
+            // マイページタブのViewControllerを取得する
+            let viewController = self.tabBarController?.viewControllers![0] as! UINavigationController
+            // マイページタブを選択済みにする
+            self.tabBarController?.selectedViewController = viewController
+            return
         }
+        //プロフィールが作成済みの場合
+        print("Profile exists")
+        // ポップアップを出して応募メッセージ入力フォーマットを出す
+        // 次のビューのインスタンスを生成し値を渡す。
+        let postID = self.postDoc.data()["postUser"] as! String
+        let secondView = ApplyAlertViewController()
+        secondView.postID = postID
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let next = storyboard.instantiateViewController(withIdentifier: "ApplyAlert") as! ApplyAlertViewController
+        next.postID = postID
+        self.present(next,animated: true, completion: nil)
+        
     }
 
     func addApplyHistoryArray(postID: String) {
