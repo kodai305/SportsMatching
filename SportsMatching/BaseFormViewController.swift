@@ -70,7 +70,7 @@ class BaseFormViewController: FormViewController {
         postDetail.Place = values["Place"] as? String
         postDetail.ApplyGender = values["ApplyGender"] as? String
         postDetail.Timezone = Array(values["Timezone"] as! Set<String>)
-        postDetail.Image = UIImageJPEGRepresentation(selectedImgae, 0.5)!
+        postDetail.Image = UIImageJPEGRepresentation(selectedImgae, 0.1)!
         postDetail.Position = values["Position"].unsafelyUnwrapped == nil ? Array() : Array(values["Position"] as! Set<String>)
         postDetail.ApplyLevel = values["ApplyLevel"].unsafelyUnwrapped == nil ? Array() : Array(values["ApplyLevel"] as! Set<String>)
         postDetail.GenderRatio = values["GenderRatio"].unsafelyUnwrapped == nil ? "" : values["GenderRatio"] as! String
@@ -90,10 +90,10 @@ class BaseFormViewController: FormViewController {
         let storage = Storage.storage()
         let storageRef = storage.reference()
         // UIImageJPEGRepresentationでUIImageをNSDataに変換して格納
-        var ImageShrinkRatio:CGFloat = 1.0
+        var ImageShrinkRatio:CGFloat = 0.5
         if var data = UIImageJPEGRepresentation(selectedImgae, ImageShrinkRatio){
-            //画像のファイルサイズが1024*1024 / 2bytes以下になるまで縮小係数を調整
-            while data.count > 1024 * 1024 / 2{
+            //画像のファイルサイズが1024*1024bytes以下になるまで縮小係数を調整
+            while data.count > 1024 * 1024{
                 ImageShrinkRatio = ImageShrinkRatio - 0.1
                 data = UIImageJPEGRepresentation(selectedImgae, ImageShrinkRatio)!
             }

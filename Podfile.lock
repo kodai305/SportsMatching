@@ -201,7 +201,7 @@ PODS:
 
 DEPENDENCIES:
   - DZNEmptyDataSet
-  - Eureka
+  - Eureka (~> 4.2.0)
   - Firebase
   - Firebase/AdMob
   - Firebase/Auth
@@ -308,6 +308,6 @@ SPEC CHECKSUMS:
   TwitterKit: bc7bd086b9b724a1d888745a054e1d0b1ecc4f3f
   XLPagerTabStrip: c908b17cbf42fcd2598ee1adfc49bae25444d88a
 
-PODFILE CHECKSUM: 14bbd0b93396908f0f9d00ae3fb2ce1dbbf224f5
+PODFILE CHECKSUM: f5b6c78bdb1a36cc4a49540f6203dbe924b2c6a7
 
-COCOAPODS: 1.6.0.beta.1
+COCOAPODS: 1.5.3

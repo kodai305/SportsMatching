@@ -14,7 +14,7 @@ target 'SportsMatching' do
   pod 'Firebase/Messaging'
   pod 'Firebase/Storage'
   pod 'SVProgressHUD'
-  pod 'Eureka'
+  pod 'Eureka', '~> 4.2.0'
   pod 'ImageRow', '~> 3.0'
   pod 'XLPagerTabStrip', '~> 8.0'
   pod 'SVProgressHUD'
