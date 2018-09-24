@@ -39,17 +39,6 @@ class MailBoxCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        //セル内のレイアウト(LINE風)
-        PartnerImageView.frame = CGRect(x: 20, y: 10, width: 80, height: 80)
-        PartnerNameLabel.frame.origin = CGPoint(x: 130, y: 20)
-        PartnerNameLabel.font = UIFont.boldSystemFont(ofSize: 25)
-        PartnerNameLabel.sizeToFit()
-        LatestMessage.frame.origin = CGPoint(x: 130, y: 60)
-        LatestMessage.font = UIFont.systemFont(ofSize: 15)
-        LatestMessage.sizeToFit()
-        LatestExchangeTime.frame.origin = CGPoint(x: 200, y: 10)
-        LatestExchangeTime.font = UIFont.systemFont(ofSize: 12)
-        LatestExchangeTime.sizeToFit()
     }
 
 }

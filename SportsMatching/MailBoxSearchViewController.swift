@@ -23,7 +23,7 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
         self.tableView.dataSource = self
         self.tableView.emptyDataSetSource = self
         self.tableView.emptyDataSetDelegate = self
-        //セルの高さを設定（画面全体の5分の1に設定）
+        //セルの高さを設定
         self.tableView.rowHeight = 100
         
         // Do any additional setup after loading the view.
@@ -92,10 +92,25 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
         }
         
         //チャット相手の情報をセルに表示
-        cell.PartnerNameLabel.text = "相手:"+userName
-        cell.LatestMessage.text = "最後のメッセージ:"+lastMessage
+        cell.PartnerNameLabel.text = userName
+        cell.PartnerNameLabel.font = UIFont.boldSystemFont(ofSize: 25)
+        cell.PartnerNameLabel.sizeToFit()
+        cell.PartnerNameLabel.frame.origin = CGPoint(x: 120, y: 30)
+        
+        cell.LatestMessage.text = lastMessage
+        cell.LatestMessage.font = UIFont.systemFont(ofSize: 15)
+        cell.LatestMessage.textColor = UIColor.gray
+        cell.LatestMessage.sizeToFit()
+        cell.LatestMessage.frame.origin = CGPoint(x: 120, y: 70)
+        
         cell.LatestExchangeTime.text = lastMsgTime
-        cell.PartnerImageView.image = UIImage(named: "naito")
+        cell.LatestExchangeTime.font = UIFont.systemFont(ofSize: 12)
+        cell.LatestExchangeTime.textColor = UIColor.gray
+        cell.LatestExchangeTime.sizeToFit()
+        cell.LatestExchangeTime.frame.origin = CGPoint(x: self.view.frame.width - (cell.LatestExchangeTime.frame.width + 10), y: 15)
+        
+        cell.PartnerImageView.image = UIImage(named: "defaulticon")
+        cell.PartnerImageView.frame = CGRect(x: 20, y: 10, width: 80, height: 80)
         
         return cell
     }

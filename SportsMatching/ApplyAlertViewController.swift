@@ -90,6 +90,7 @@ class ApplyAlertViewController: BaseViewController {
                 self.MessageTextView.resignFirstResponder()
                 // このアラートビューを表示しているビューコントローラー
                 let originVc = self.presentingViewController
+                print(originVc)
                 // 履歴タブのViewControllerを取得する
                 let viewController = originVc?.tabBarController?.viewControllers![3] as! UINavigationController
                 // 履歴タブを選択済みにする
@@ -101,6 +102,7 @@ class ApplyAlertViewController: BaseViewController {
                 self.dismiss(animated: false, completion: nil)
                 
             }
+            /*
             // キーボードをしまう
             self.MessageTextView.resignFirstResponder()
             // このアラートビューを表示しているビューコントローラー
@@ -114,6 +116,7 @@ class ApplyAlertViewController: BaseViewController {
             nextViewController.fromSendButtonFlag = 1
             //　アラートビューを消す
             self.dismiss(animated: false, completion: nil)
+ */
         }
     }
     
