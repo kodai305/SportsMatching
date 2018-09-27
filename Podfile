@@ -24,5 +24,5 @@ target 'SportsMatching' do
   pod 'FirebaseUI/Facebook'
   pod 'FirebaseUI/Twitter'
   pod 'FirebaseUI/Phone'
-  pod 'SDCAlertView'
+  pod 'SDCAlertView', '~> 8.1.1'
 end
