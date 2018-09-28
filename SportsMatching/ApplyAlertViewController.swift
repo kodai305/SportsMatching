@@ -128,33 +128,39 @@ class ApplyAlertViewController: BaseViewController {
         super.viewDidLoad()
         //　アラートのレイアウト
         self.AlertUIView.frame =
-            CGRect(x: self.view.frame.size.width * 1 / 20, y: self.view.frame.size.height / 20, width: self.view.frame.size.width * 9 / 10, height: self.view.frame.size.height * 9 / 20)
+            CGRect(x: self.view.frame.width * 1 / 20, y: self.view.frame.height / 20, width: self.view.frame.width * 9 / 10, height: self.view.frame.height * 9 / 20)
         self.AlertUIView.layer.cornerRadius = 20
         self.AlertUIView.backgroundColor = UIColor(hex: "F4F6F6")
         
         // ラベルの設定
         self.AlertTitleLabel.sizeToFit()
-        self.AlertTitleLabel.center.x = self.AlertUIView.frame.size.width / 2
+        self.AlertTitleLabel.center.x = self.AlertUIView.frame.width / 2
         self.AlertTitleLabel.frame.origin.y = 20
         
         self.AlertSubscriptionLabel.sizeToFit()
-        self.AlertSubscriptionLabel.center.x = self.AlertUIView.frame.size.width / 2
-        self.AlertSubscriptionLabel.frame.origin.y = self.AlertTitleLabel.frame.origin.y + self.AlertTitleLabel.frame.size.height + 10
+        self.AlertSubscriptionLabel.center.x = self.AlertUIView.frame.width / 2
+        self.AlertSubscriptionLabel.frame.origin.y = self.AlertTitleLabel.frame.origin.y + self.AlertTitleLabel.frame.height + 10
         
         // キャンセル、送信ボタンの設定
-        self.CancelButton.sizeToFit()
-        self.CancelButton.center.x = self.AlertUIView.frame.size.width / 4
-        self.CancelButton.frame.origin.y = self.AlertUIView.frame.size.height - (self.CancelButton.frame.size.height + 10)
+        self.CancelButton.frame.size = CGSize(width: self.AlertUIView.frame.width / 2, height: 50)
+        self.CancelButton.frame.origin = CGPoint(x: 0, y:  self.AlertUIView.frame.height - self.CancelButton.frame.height)
+        self.CancelButton.layer.borderColor = UIColor(hex: "D5DBDB").cgColor
+        self.CancelButton.layer.borderWidth = 1
+        self.CancelButton.layer.cornerRadius = 20
+        self.CancelButton.layer.maskedCorners = [.layerMinXMaxYCorner]
         
-        self.SendButton.sizeToFit()
-        self.SendButton.center.x = self.AlertUIView.frame.size.width * 3 / 4
-        self.SendButton.frame.origin.y = self.CancelButton.frame.origin.y
+        self.SendButton.frame.origin = CGPoint(x: self.AlertUIView.frame.width / 2, y:  self.CancelButton.frame.origin.y)
+        self.SendButton.frame.size = CGSize(width: self.AlertUIView.frame.width / 2, height: 50)
+        self.SendButton.layer.borderColor = UIColor(hex: "D5DBDB").cgColor
+        self.SendButton.layer.borderWidth = 1
+        self.SendButton.layer.cornerRadius = 20
+        self.SendButton.layer.maskedCorners = [.layerMaxXMaxYCorner]
         
         // メッセージ入力用のtextviewの設定
         // サブタイトルとボタンの間隔から大きさを決める
-        self.MessageTextView.frame.size = CGSize(width: self.AlertUIView.frame.size.width * 4 / 5, height: self.CancelButton.frame.origin.y - (self.AlertSubscriptionLabel.frame.origin.y + self.AlertSubscriptionLabel.frame.size.height) - 20)
-        self.MessageTextView.center.x = self.AlertUIView.frame.size.width / 2
-        self.MessageTextView.frame.origin.y = self.AlertSubscriptionLabel.frame.origin.y + self.AlertSubscriptionLabel.frame.size.height + 10
+        self.MessageTextView.frame.size = CGSize(width: self.AlertUIView.frame.width * 4 / 5, height: self.CancelButton.frame.origin.y - (self.AlertSubscriptionLabel.frame.origin.y + self.AlertSubscriptionLabel.frame.height) - 30)
+        self.MessageTextView.center.x = self.AlertUIView.frame.width / 2
+        self.MessageTextView.frame.origin.y = self.AlertSubscriptionLabel.frame.origin.y + self.AlertSubscriptionLabel.frame.height + 10
         
         
         

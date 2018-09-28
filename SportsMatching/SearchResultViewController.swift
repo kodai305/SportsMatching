@@ -124,12 +124,6 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
         //        ResizedImageView.frame.size = CGSize(width: ResizedImageView.frame.size.width / ratio, height: ResizedImageView.frame.size.height / ratio)
         
         //Cellに画像と文章をセット
-        //FireStorageから画像がロード出来ていないのでSampleをセット
-        self.LoadedImageArray.append(UIImage(named: "sample")!)
-        cell.ImageView.image = UIImage(named: "sample")
-        cell.ImageView.frame.size = CGSize(width: 130, height: 130)
-        cell.ImageView.center = CGPoint(x: self.view.frame.width - 85, y: self.view.frame.height / 6.5)
-
         let teamName:String = LoadedDocumentArray[indexPath.row].data()["teamName"] as! String
         cell.TeamNameLabel.text = teamName //XXX: null check
         cell.TeamNameLabel.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
@@ -172,9 +166,15 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
         let updatedtime = LoadedDocumentArray[indexPath.row].data()["updateTime"] as! String
         cell.UpdatedTimeLabel.text = updatedtime
         cell.UpdatedTimeLabel.font = UIFont.boldSystemFont(ofSize: UIFont.systemFontSize)
+        cell.UpdatedTimeLabel.sizeToFit()
         cell.UpdatedTimeLabel.frame.origin.x = self.view.frame.size.width / 2
         cell.UpdatedTimeLabel.center.y = self.view.frame.height / 21 * 6.3
-        cell.UpdatedTimeLabel.sizeToFit()
+        
+        //FireStorageから画像がロード出来ていないのでSampleをセット
+        self.LoadedImageArray.append(UIImage(named: "sample")!)
+        cell.ImageView.image = UIImage(named: "sample")
+        cell.ImageView.frame.size = CGSize(width: 130, height: 130)
+        cell.ImageView.center = CGPoint(x: self.view.frame.width - 85, y: self.view.frame.height / 6.5)
 
         return cell
     }
