@@ -329,20 +329,40 @@
             </objects>
             <point key="canvasLocation" x="4884" y="2863"/>
         </scene>
-        <!--Top Authentication View Controller-->
+        <!--Top View Controller-->
         <scene sceneID="xAo-RM-wK9">
             <objects>
-                <viewController id="5Y7-M5-uDw" customClass="TopAuthenticationViewController" customModule="SportsMatching" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="5Y7-M5-uDw" customClass="TopViewController" customModule="SportsMatching" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fw8-8O-DwC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JFN-mJ-x2Y">
+                                <rect key="frame" x="141" y="147" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="ユーザー登録">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KtO-YE-CzR">
+                                <rect key="frame" x="126" y="282" width="123" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="試しに使ってみる">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="LIj-Sf-X13"/>
                     </view>
+                    <connections>
+                        <outlet property="AuthenticationButton" destination="JFN-mJ-x2Y" id="lrb-8i-8pf"/>
+                        <outlet property="GuestUserButton" destination="KtO-YE-CzR" id="y5A-GR-Os4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HjI-0U-8uJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="119" y="1522"/>
+            <point key="canvasLocation" x="-201" y="1522"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="zAB-gR-d4m">

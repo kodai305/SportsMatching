@@ -39,6 +39,7 @@ class BaseFormViewController: FormViewController {
             } else {
                 //サインインしていない
                 print("ログインをしてください")
+                print(user?.uid as Any)
             }
             // [END_EXCLUDE]
         }

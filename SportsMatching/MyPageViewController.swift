@@ -11,17 +11,19 @@ import Eureka
 import FirebaseFirestore
 
 import FirebaseAuth
+import FirebaseUI
 
-class MyPageViewController: BaseFormViewController {
+class MyPageViewController: BaseFormViewController,FUIAuthDelegate {
     
     let HeaderImageView = UIImageView()
     let HeaderUIView = UIView()
     
     @IBOutlet weak var EditProfileButton: UIButton!
+    
+    var CurrentUser:User!
 
     //ログアウトボタン(開発用、本番では消す)
     @IBOutlet weak var LogOutButton: UIButton!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,7 +121,44 @@ class MyPageViewController: BaseFormViewController {
     }
     
     @objc func editProfileButtonTapped(sender : AnyObject) {
-        self.performSegue(withIdentifier: "toProfileDetail", sender: nil)
+        // 現在のユーザー情報を取得
+        self.CurrentUser = Auth.auth().currentUser
+        // 匿名認証の場合、アラートを出す
+        if self.CurrentUser!.isAnonymous {
+            let alert: UIAlertController = UIAlertController(title: "プロフィールを作成するには認証が必要です", message: "認証を行いますか？", preferredStyle:  UIAlertControllerStyle.alert)
+            // OKボタン
+            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+                (action: UIAlertAction!) -> Void in
+                // 認証ページの準備
+                var authUI: FUIAuth { get { return FUIAuth.defaultAuthUI()!}}
+                let providers: [FUIAuthProvider] = [
+                    FUIGoogleAuth(),
+                    FUIFacebookAuth(),
+                    //FUITwitterAuth(),
+                    FUIPhoneAuth(authUI:FUIAuth.defaultAuthUI()!),
+                    ]
+                authUI.delegate = self
+                authUI.providers = providers
+                //　認証ページに遷移
+                let authViewController = authUI.authViewController()
+                self.present(authViewController, animated: true, completion: nil)
+            })
+            // キャンセルボタン
+            let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{
+                (action: UIAlertAction!) -> Void in
+                //　アラートを閉じる
+                alert.dismiss(animated: true, completion: nil)
+            })
+            // UIAlertControllerにActionを追加
+            alert.addAction(cancelAction)
+            alert.addAction(defaultAction)
+            // Alertを表示
+            present(alert, animated: true, completion: nil)
+        } else {
+            // 匿名認証でない場合、プロフィール編集画面に遷移
+            self.performSegue(withIdentifier: "toProfileDetail", sender: nil)
+        }
+        
     }
     
     @objc func LogOutButtonTapped(sender : AnyObject) {
@@ -127,6 +166,20 @@ class MyPageViewController: BaseFormViewController {
             try Auth.auth().signOut()
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
+        }
+    }
+    
+    //　認証画面から離れたときに呼ばれる（キャンセルボタン押下含む）
+    public func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?){
+        // 認証に成功した場合
+        if error == nil {
+            // 匿名認証のユーザー情報をFirebaseから削除
+            self.CurrentUser.delete { error in
+                if let error = error {
+                    print(error)
+                }
+                // エラーが出た時の処理を書かないといけない
+            }
         }
     }
     

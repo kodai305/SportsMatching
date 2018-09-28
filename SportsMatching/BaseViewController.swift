@@ -31,6 +31,7 @@ class BaseViewController: UIViewController {
             } else {
                 //サインインしていない
                 print("ログインをしてください")
+                print(user?.uid as Any)
             }
             // [END_EXCLUDE]
         }
