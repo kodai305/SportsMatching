@@ -90,7 +90,7 @@ class ApplyAlertViewController: BaseViewController {
                 self.MessageTextView.resignFirstResponder()
                 // このアラートビューを表示しているビューコントローラー
                 let originVc = self.presentingViewController
-                print(originVc)
+                
                 // 履歴タブのViewControllerを取得する
                 let viewController = originVc?.tabBarController?.viewControllers![3] as! UINavigationController
                 // 履歴タブを選択済みにする
@@ -144,17 +144,24 @@ class ApplyAlertViewController: BaseViewController {
         // キャンセル、送信ボタンの設定
         self.CancelButton.frame.size = CGSize(width: self.AlertUIView.frame.width / 2, height: 50)
         self.CancelButton.frame.origin = CGPoint(x: 0, y:  self.AlertUIView.frame.height - self.CancelButton.frame.height)
+        // 背景より濃いグレーで枠線
         self.CancelButton.layer.borderColor = UIColor(hex: "D5DBDB").cgColor
         self.CancelButton.layer.borderWidth = 1
+        // 左下のみ角を丸くする
         self.CancelButton.layer.cornerRadius = 20
         self.CancelButton.layer.maskedCorners = [.layerMinXMaxYCorner]
+        // タップした時に背景色が濃い灰色になる
+        self.CancelButton.setBackgroundColor(UIColor(hex: "CCD1D1"), for: .highlighted)
         
         self.SendButton.frame.origin = CGPoint(x: self.AlertUIView.frame.width / 2, y:  self.CancelButton.frame.origin.y)
         self.SendButton.frame.size = CGSize(width: self.AlertUIView.frame.width / 2, height: 50)
         self.SendButton.layer.borderColor = UIColor(hex: "D5DBDB").cgColor
         self.SendButton.layer.borderWidth = 1
+        // 右下のみ角を丸くする
         self.SendButton.layer.cornerRadius = 20
         self.SendButton.layer.maskedCorners = [.layerMaxXMaxYCorner]
+        // タップした時に背景色が濃い灰色になる
+        self.SendButton.setBackgroundColor(UIColor(hex: "CCD1D1"), for: .highlighted)
         
         // メッセージ入力用のtextviewの設定
         // サブタイトルとボタンの間隔から大きさを決める

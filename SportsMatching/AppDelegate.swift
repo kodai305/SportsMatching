@@ -309,7 +309,8 @@ extension AppDelegate {
     }
 }
 
-//UIColorを16進数で指定するための関数
+// 以下はAppDelegateに置くのが適切かは考えないといけない
+//　UIColorを16進数で指定するための関数
 extension UIColor{
     convenience init(hex: String, alpha: CGFloat) {
         let v = hex.map { String($0) } + Array(repeating: "0", count: max(6 - hex.count, 0))
@@ -324,3 +325,36 @@ extension UIColor{
     }
 }
 
+// UIButtonをタップしたときに色を変えるための関数
+// 元々あるsetBackgroundImageを使って単色のUIIImgeを設定
+extension UIButton {
+    func setBackgroundColor(_ color: UIColor, for state: UIControlState) {
+        let image = color.image(size: self.frame.size, layer: self.layer)
+        setBackgroundImage(image, for: state)
+    }
+}
+// ボタンと同じサイズの単色のUIImgeを作成
+extension UIColor {
+    func image(size: CGSize, layer: CALayer) -> UIImage? {
+        let rect = CGRect(origin: CGPoint(x: 0, y: 0), size: size)
+        // rectに定義したサイズの描画範囲を用意
+        UIGraphicsBeginImageContext(rect.size)
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return nil
+        }
+        //　ボタンで設定した角丸の位置に合わせてベジエ曲線を設定し
+        //　描写領域をベジエ曲線内のみに再設定
+        if layer.maskedCorners == [.layerMinXMaxYCorner] {
+            UIBezierPath(roundedRect: rect, byRoundingCorners: .bottomLeft, cornerRadii: CGSize(width: layer.cornerRadius, height: layer.cornerRadius)).addClip()
+        } else if layer.maskedCorners == [.layerMaxXMaxYCorner] {
+            UIBezierPath(roundedRect: rect, byRoundingCorners: .bottomRight, cornerRadii: CGSize(width: layer.cornerRadius, height: layer.cornerRadius)).addClip()
+        }
+        // 描画範囲を塗りつぶす
+        context.setFillColor(self.cgColor)
+        context.fill(rect)
+        // 描画範囲をUIImageに変換
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
+}
