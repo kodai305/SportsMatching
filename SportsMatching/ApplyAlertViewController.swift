@@ -121,11 +121,18 @@ class ApplyAlertViewController: BaseViewController {
     }
     
     @IBAction func CancelButtonTapped(_ sender: Any) {
+        //Navigation Controllerを取得
+        let nav = self.presentingViewController  as! UINavigationController
+        //呼び出し元のTabBarを表示する
+        let previousVc = nav.viewControllers[nav.viewControllers.count-1] as! SearchResultDetailViewController
+        previousVc.tabBarController?.tabBar.isHidden = false
+        //閉じる
         self.dismiss(animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.edgesForExtendedLayout = []
         //　アラートのレイアウト
         self.AlertUIView.frame =
             CGRect(x: self.view.frame.width * 1 / 20, y: self.view.frame.height / 20, width: self.view.frame.width * 9 / 10, height: self.view.frame.height * 9 / 20)
@@ -168,11 +175,6 @@ class ApplyAlertViewController: BaseViewController {
         self.MessageTextView.frame.size = CGSize(width: self.AlertUIView.frame.width * 4 / 5, height: self.CancelButton.frame.origin.y - (self.AlertSubscriptionLabel.frame.origin.y + self.AlertSubscriptionLabel.frame.height) - 30)
         self.MessageTextView.center.x = self.AlertUIView.frame.width / 2
         self.MessageTextView.frame.origin.y = self.AlertSubscriptionLabel.frame.origin.y + self.AlertSubscriptionLabel.frame.height + 10
-        
-        
-        
-        
-        
         // Do any additional setup after loading the view.
     }
 

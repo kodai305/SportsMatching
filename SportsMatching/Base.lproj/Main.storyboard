@@ -556,6 +556,7 @@
                         <outlet property="DetailImage" destination="mbe-Yh-9vw" id="akd-DN-9sT"/>
                         <outlet property="PrefectureLabel" destination="swZ-V6-Cv9" id="oDN-TB-U7P"/>
                         <outlet property="TeamNameLabel" destination="CbH-BR-XaS" id="iMa-xC-Z7l"/>
+                        <segue destination="8eF-oH-hkm" kind="show" id="zWW-b0-wgw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u9Y-1F-Qhb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -627,6 +628,7 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.39972174657534248" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="bo9-eN-PQr"/>
                     </view>
+                    <navigationItem key="navigationItem" id="uPC-Tu-1B8"/>
                     <connections>
                         <outlet property="AlertSubscriptionLabel" destination="ael-c9-gUM" id="1vp-W3-ji0"/>
                         <outlet property="AlertTitleLabel" destination="q5S-gn-SeA" id="Px5-pB-Xf3"/>
@@ -638,7 +640,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IZb-Vy-MRI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5745" y="2185"/>
+            <point key="canvasLocation" x="5770" y="2185"/>
         </scene>
         <!--メンバー募集-->
         <scene sceneID="hWu-Xi-RzD">

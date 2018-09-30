@@ -146,6 +146,8 @@ class SearchResultDetailViewController: BaseFormViewController{
         }
         //プロフィールが作成済みの場合
         print("Profile exists")
+        // アラートを出す前にtabbarを非表示にする
+        self.tabBarController?.tabBar.isHidden = true
         // ポップアップを出して応募メッセージ入力フォーマットを出す
         // 次のビューのインスタンスを生成し値を渡す。
         let postID = self.postDoc.data()["postUser"] as! String
