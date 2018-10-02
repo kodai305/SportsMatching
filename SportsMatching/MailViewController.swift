@@ -45,6 +45,12 @@ class MailViewController: MessagesViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        // 背景に画像を設定
+        let BGUIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
+        BGUIImageView.image = UIImage(named: "chatBG")
+        //self.view.addSubview(BGUIImageView)
+        messagesCollectionView.backgroundView = BGUIImageView
+        
         // MocMessageを使う場合は全部実装する必要がある
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
