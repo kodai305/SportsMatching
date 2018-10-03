@@ -23,13 +23,13 @@ class MailBoxViewController: ButtonBarPagerTabStripViewController {
     override func viewDidLoad() {
         
         //バーの色
-        settings.style.buttonBarBackgroundColor = UIColor(red: 73/255, green: 72/255, blue: 62/255, alpha: 1)
+        settings.style.buttonBarBackgroundColor = UIColor(hex: "E59866")
         //ボタンの色
-        settings.style.buttonBarItemBackgroundColor = UIColor(red: 73/255, green: 72/255, blue: 62/255, alpha: 1)
+        settings.style.buttonBarItemBackgroundColor = UIColor(hex: "E59866")
         //セルの文字色
-        settings.style.buttonBarItemTitleColor = UIColor.white
+        settings.style.buttonBarItemTitleColor = UIColor.black
         //セレクトバーの色
-        settings.style.selectedBarBackgroundColor = UIColor.yellow
+        settings.style.selectedBarBackgroundColor = UIColor(hex: "d45000")
         
         //描画領域がNavigationBarの下に潜り込まないように設定
         self.edgesForExtendedLayout = .bottom
