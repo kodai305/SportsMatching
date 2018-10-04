@@ -91,8 +91,10 @@ class ApplyAlertViewController: BaseViewController {
                 // このアラートビューを表示しているビューコントローラー
                 let originVc = self.presentingViewController
                 
-                // 履歴タブのViewControllerを取得する
+                // メッセージ履歴のViewControllerを取得する
                 let viewController = originVc?.tabBarController?.viewControllers![3] as! UINavigationController
+                // メッセージ履歴のTabBarを表示する
+                viewController.tabBarController?.tabBar.isHidden = false
                 // 履歴タブを選択済みにする
                 originVc?.tabBarController?.selectedViewController = viewController
                 // 募集履歴と応募履歴タブの親Viewを取得し、Flagに値を渡す
@@ -102,21 +104,6 @@ class ApplyAlertViewController: BaseViewController {
                 self.dismiss(animated: false, completion: nil)
                 
             }
-            /*
-            // キーボードをしまう
-            self.MessageTextView.resignFirstResponder()
-            // このアラートビューを表示しているビューコントローラー
-            let originVc = self.presentingViewController
-            // 履歴タブのViewControllerを取得する
-            let viewController = originVc?.tabBarController?.viewControllers![3] as! UINavigationController
-            // 履歴タブを選択済みにする
-            originVc?.tabBarController?.selectedViewController = viewController
-            // 募集履歴と応募履歴タブの親Viewを取得し、Flagに値を渡す
-            let nextViewController = viewController.topViewController as! MailBoxViewController
-            nextViewController.fromSendButtonFlag = 1
-            //　アラートビューを消す
-            self.dismiss(animated: false, completion: nil)
- */
         }
     }
     
