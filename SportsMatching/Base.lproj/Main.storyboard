@@ -30,12 +30,19 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <state key="normal" title="投稿の編集"/>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R7d-XS-vhQ">
+                                <rect key="frame" x="121" y="479" width="182" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <state key="normal" title="投稿の削除"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="hQe-Jn-sCI"/>
                     </view>
                     <navigationItem key="navigationItem" id="jx6-Mw-Oxr"/>
                     <connections>
+                        <outlet property="DeletePostButton" destination="R7d-XS-vhQ" id="fdR-wD-lqG"/>
                         <outlet property="EditPostButton" destination="GuR-lX-MWa" id="CiD-zy-F8m"/>
                         <outlet property="NewPostButton" destination="pwb-4d-Mo9" id="Ivw-Nt-byd"/>
                         <segue destination="1ff-AD-Ztu" kind="show" identifier="toRecruiteView" id="NrG-lK-3Vf"/>

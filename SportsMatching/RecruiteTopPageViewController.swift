@@ -9,11 +9,14 @@
 import UIKit
 import FirebaseAuth
 import FirebaseUI
+import FirebaseFirestore
+import SVProgressHUD
 
 class RecruiteTopPageViewController: UIViewController,FUIAuthDelegate {
     
     @IBOutlet weak var NewPostButton: UIButton!
     @IBOutlet weak var EditPostButton: UIButton!
+    @IBOutlet weak var DeletePostButton: UIButton!
     
     var CurrentUser:User!
     
@@ -23,6 +26,7 @@ class RecruiteTopPageViewController: UIViewController,FUIAuthDelegate {
         
         NewPostButton.addTarget(self,action: #selector(self.NewPostButtonTapped(sender:)),for: .touchUpInside)
         EditPostButton.addTarget(self,action: #selector(self.EditPostButtonTapped(sender:)),for: .touchUpInside)
+        DeletePostButton.addTarget(self,action: #selector(self.DeletePostButtonTapped(sender:)),for: .touchUpInside)
 
         // Do any additional setup after loading the view.
     }
@@ -118,6 +122,65 @@ class RecruiteTopPageViewController: UIViewController,FUIAuthDelegate {
         } else {
             //  投稿がある場合、編集ページに遷移
             self.performSegue(withIdentifier: "toEditRecruiteView", sender: nil)
+        }
+    }
+    
+    @objc func DeletePostButtonTapped(sender : AnyObject) {
+        
+        let defaults = UserDefaults.standard
+        //　投稿がない場合、 確認のアラートを出す
+        if defaults.data(forKey: "recruite") == nil {
+            //  UIAlertControllerクラスのインスタンスを生成
+            let alert: UIAlertController = UIAlertController(title: "募集の履歴がありません", message: "新規投稿から募集してください", preferredStyle:  UIAlertControllerStyle.alert)
+            
+            // OKボタン
+            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+                (action: UIAlertAction!) -> Void in
+                //　アラートを閉じる
+                alert.dismiss(animated: true, completion: nil)
+                
+            })
+            
+            // UIAlertControllerにActionを追加
+            alert.addAction(defaultAction)
+            // Alertを表示
+            present(alert, animated: true, completion: nil)
+        } else {
+            //  投稿がある場合、確認のアラートを出す
+            //  UIAlertControllerクラスのインスタンスを生成
+            let alert: UIAlertController = UIAlertController(title: "投稿済みの募集が消去されます", message: "投稿を削除しますか？", preferredStyle:  UIAlertControllerStyle.alert)
+            
+            // OKボタン
+            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+                (action: UIAlertAction!) -> Void in
+                SVProgressHUD.show(withStatus: "削除中")
+                // UIDを取得
+                var MyUID = ""
+                MyUID = defaults.string(forKey: "UID")!
+                // Firestoreから投稿を削除
+                let db = Firestore.firestore()
+                db.collection("posts").document(MyUID).delete() { err in
+                    if let err = err {
+                        print("Error removing document: \(err)")
+                    } else {
+                        // 投稿のUserdefalutsを削除
+                        defaults.removeObject(forKey: "recruite")
+                        SVProgressHUD.showSuccess(withStatus: "削除成功")
+                    }
+                }
+            })
+            // キャンセルボタン
+            let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{
+                (action: UIAlertAction!) -> Void in
+                //　アラートを閉じる
+                alert.dismiss(animated: true, completion: nil)
+            })
+            
+            // UIAlertControllerにActionを追加
+            alert.addAction(cancelAction)
+            alert.addAction(defaultAction)
+            // Alertを表示
+            present(alert, animated: true, completion: nil)
         }
     }
     

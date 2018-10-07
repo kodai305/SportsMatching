@@ -152,6 +152,7 @@ class RecruiteViewController: BaseFormViewController {
     }
 
     @IBAction func postButton(_ sender: Any) {
+        SVProgressHUD.show(withStatus: "投稿中")
         // タグ設定済みの全てのRowの値を取得
         let Values = form.values()
         //必須項目が入力済みか確認
