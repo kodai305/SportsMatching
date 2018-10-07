@@ -267,11 +267,18 @@ extension AppDelegate {
             print("Message ID: \(messageID)")
         }
         
-        //xx画面に遷移
-        let subStoryboard = UIStoryboard(name: "Main", bundle: nil) //Mainという名前は良くない
-        let viewController = subStoryboard.instantiateInitialViewController()
-        
-        self.window?.rootViewController = viewController
+        let msgTitle = response.notification.request.content.title
+        print(msgTitle)
+        if (msgTitle == "新着メッセージ") {
+            print("新着メッセージです。")
+        } else {
+            print("新着応募です。")
+        }
+        // メールボックス画面に遷移
+        let subStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let nextView = subStoryboard.instantiateViewController(withIdentifier: "toMain") as! UITabBarController
+        nextView.selectedIndex = 3
+        self.window?.rootViewController = nextView
         self.window?.backgroundColor = UIColor.white
         self.window?.makeKeyAndVisible()
         
