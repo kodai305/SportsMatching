@@ -57,7 +57,6 @@ class MailViewController: MessagesViewController {
         messagesCollectionView.messagesDisplayDelegate = self
         messagesCollectionView.messageCellDelegate = self
         messageInputBar.delegate = self
-        
         messageInputBar.sendButton.tintColor = UIColor.blue
         
         // 詳細ボタンの設定
@@ -95,8 +94,7 @@ class MailViewController: MessagesViewController {
                     self.getImageFromFirebaseStorage(path: "profile")
             }
         } else if fromRecruiteFlag == 0 && fromSearchFlag == 1 {
-            //　応募履歴から遷移してきた場合
-            // 最新の投稿内容を取得
+            // 応募履歴から遷移してきた場合、最新の投稿内容を取得
             // 投稿内容が変更されるたびに呼ばれる
             let db = Firestore.firestore()
             db.collection("posts").document(partnerUID)
@@ -184,6 +182,14 @@ class MailViewController: MessagesViewController {
         }
     }
     
+    func saveDisplayedMessageNumber(messageNumber: Int) {
+        let _key = "DisplayedNumber_"+self.roomID
+        let defaults = UserDefaults.standard
+        defaults.set(messageNumber, forKey: _key)
+        print("saveDisplayMessageNumber:")
+        print(messageNumber)
+    }
+    
     // 応募者のプロフィールor応募した投稿内容を表示する画面に遷移
     @objc func ShowDetailButtonTapped(sender : AnyObject) {
         print("messages_count:")
@@ -205,7 +211,7 @@ class MailViewController: MessagesViewController {
             destinationView.GottenUIImage = self.GottenUIImage
         }
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -232,6 +238,7 @@ extension MailViewController: MessagesDataSource {
     
     // 表示するメッセージの数
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
+        saveDisplayedMessageNumber(messageNumber: self.messageList.count)
         return messageList.count
     }
     
