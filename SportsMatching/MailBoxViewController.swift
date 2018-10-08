@@ -89,7 +89,7 @@ class MailBoxViewController: ButtonBarPagerTabStripViewController {
         // 応募履歴の取得
         var _tmpApplyHistory:[String] = []
         if defaults.value(forKey: "ApplyHistory") != nil {
-            _tmpApplyHistory = defaults.value(forKey: "RecruiteHistory") as! [String]
+            _tmpApplyHistory = defaults.value(forKey: "ApplyHistory") as! [String]
         }
         for partnerID in _tmpApplyHistory {
             let roomID = partnerID+"-"+myUID
