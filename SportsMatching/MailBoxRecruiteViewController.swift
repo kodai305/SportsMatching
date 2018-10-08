@@ -82,8 +82,6 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
         // 募集者の名前を取得
         var userName = "NoName"
         if let tmpName = defaults.string(forKey: "user_"+partnerID) {
-            print("!!!!!!!!!")
-            print(tmpName)
             userName = tmpName
         }
         
@@ -117,6 +115,11 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
         cell.PartnerImageView.image = UIImage(named: "defaulticon")
         cell.PartnerImageView.frame = CGRect(x: 20, y: 10, width: 80, height: 80)
         
+        let unreadCount = getUnreadCount(_roomID: roomID)
+        cell.UnreadCount.text = "未読数:"+String(unreadCount)
+        cell.UnreadCount.font = UIFont.systemFont(ofSize: 12)
+        cell.UnreadCount.sizeToFit()
+        cell.UnreadCount.frame.origin = CGPoint(x: self.view.frame.width - (cell.LatestExchangeTime.frame.width + 10), y: 35)
         return cell
     }
     
@@ -128,6 +131,28 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
         // Segueを呼び出す
         let postID = StubRecruiteHistory[indexPath.row]
         performSegue(withIdentifier: "toMailTakagiViewController",sender: postID)
+    }
+    
+    func getUnreadCount(_roomID: String) -> (Int) {
+        var _unreadCount = 0
+        let defaults = UserDefaults.standard
+        // ルームIDが_roomIDの総メッセージ数を取得
+        var _totalMessageCount = 0
+        guard let tmpData = defaults.data(forKey: _roomID) else {
+            // データがなかったら0を返す
+            return 0
+        }
+        let _savedMessageInfoArray = try? JSONDecoder().decode([MessageInfo].self, from: tmpData)
+        _totalMessageCount = _savedMessageInfoArray!.count
+        
+        // ルームIDが_roomIDの表示済みメッセージ数を取得
+        let _key = "DisplayedNumber_"+_roomID
+        let _displayedCount = defaults.integer(forKey: _key)
+        
+        // [未読数] = [メッセージ総数] - [表示済]
+        _unreadCount = _totalMessageCount - _displayedCount
+        
+        return _unreadCount
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

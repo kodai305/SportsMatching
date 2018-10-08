@@ -15,6 +15,8 @@ class MailBoxCell: UITableViewCell {
     var LatestExchangeTime:UILabel!
     var PartnerImageView:UIImageView!
     
+    var UnreadCount:UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         PartnerNameLabel = UILabel(frame: CGRect.zero)
@@ -29,6 +31,12 @@ class MailBoxCell: UITableViewCell {
         PartnerImageView = UIImageView(frame: CGRect.zero)
         self.contentView.addSubview(PartnerImageView)
         // Initialization code
+        
+        // 未読数を追加, 表示方法は未定
+        UnreadCount = UILabel(frame: CGRect.zero)
+        UnreadCount.textAlignment = .left
+        self.contentView.addSubview(UnreadCount)
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
