@@ -31,12 +31,17 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        print("recuite view will appear is called")
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         // 今までの募集履歴を取得
         let defaults = UserDefaults.standard
         if defaults.value(forKey: "RecruiteHistory") != nil {
-            StubRecruiteHistory = defaults.value(forKey: "RecruiteHistory") as! [String]
+            self.StubRecruiteHistory = defaults.value(forKey: "RecruiteHistory") as! [String]
         }
         self.tableView.reloadData()
         
@@ -172,7 +177,6 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
             nextViewController.fromRecruiteFlag = 1
         }
     }
-    
     
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let str = "まだ募集がありません"

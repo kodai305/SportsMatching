@@ -91,7 +91,6 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
             lastMsgTime = dateFormater.string(from: savedMessage![(savedMessage?.count)!-1].sentDate)
         }
         
-        
         //チャット相手の情報をセルに表示
         cell.PartnerNameLabel.text = userName
         cell.PartnerNameLabel.font = UIFont.boldSystemFont(ofSize: 25)

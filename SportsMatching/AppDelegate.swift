@@ -242,6 +242,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             let data2 = try? JSONEncoder().encode(messageArray)
             defaults.set(data2 ,forKey: roomID)
         }
+        
+        //アイコンバッチを+1する
+        UIApplication.shared.applicationIconBadgeNumber += 1
+        
         completionHandler(UIBackgroundFetchResult.newData)
     }
 }
@@ -282,9 +286,6 @@ extension AppDelegate {
         self.window?.backgroundColor = UIColor.white
         self.window?.makeKeyAndVisible()
         
-        //アイコンバッチを０にする
-        UIApplication.shared.applicationIconBadgeNumber = 0
- 
         completionHandler()
     }
     
