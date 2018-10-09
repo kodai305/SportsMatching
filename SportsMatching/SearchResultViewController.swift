@@ -35,6 +35,8 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
         super.viewDidLoad()
         self.tableView.rowHeight = self.view.frame.height / 3
         self.tableView.backgroundColor = UIColor(hex: "FDEDEC", alpha: 2.0)
+        // テーブルのサイズを画面サイズに合わせる
+        self.tableView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         
         SVProgressHUD.show(withStatus: "検索中")
         
@@ -70,7 +72,7 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
         self.tableView.dataSource = self
         self.tableView.emptyDataSetSource = self
         self.tableView.emptyDataSetDelegate = self
-        //セルの高さを設定（画面全体の3分の1に設定）
+        //セルの高さと幅を設定（高さは画面全体の3分の1に設定）
         self.tableView.rowHeight = self.view.frame.height / 3
         self.tableView.reloadData()
         //0件の時はここでSVProgressを消す
@@ -128,6 +130,13 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
         //        ResizedImageView.frame.size = CGSize(width: ResizedImageView.frame.size.width / ratio, height: ResizedImageView.frame.size.height / ratio)
         
         //Cellに画像と文章をセット
+        //FireStorageから画像がロード出来ていないのでSampleをセット
+        self.LoadedImageArray.append(UIImage(named: "sample")!)
+        cell.ImageView.image = UIImage(named: "sample")
+        cell.ImageView.frame.size = CGSize(width: 130, height: 130)
+        cell.ImageView.center = CGPoint(x: self.view.frame.width - 85, y: self.view.frame.height / 6.5)
+        
+        //　各ラベルの幅は写真に被らないように設定
         let teamName:String = LoadedDocumentArray[indexPath.row].data()["teamName"] as! String
         cell.TeamNameLabel.text = teamName //XXX: null check
         cell.TeamNameLabel.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
@@ -141,6 +150,7 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
         cell.CategoryLabel.frame.origin.x = 30
         cell.CategoryLabel.center.y = self.view.frame.height / 21 * 2
         cell.CategoryLabel.sizeToFit()
+        cell.CategoryLabel.frame.size.width = cell.ImageView.frame.origin.x - (cell.CategoryLabel.frame.origin.x + 5)
 
         let place:String = LoadedDocumentArray[indexPath.row].data()["place"] as! String
         cell.PlaceLabel.text = "活動場所　　: " + place
@@ -148,6 +158,7 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
         cell.PlaceLabel.frame.origin.x = 30
         cell.PlaceLabel.center.y = self.view.frame.height / 21 * 3
         cell.PlaceLabel.sizeToFit()
+        cell.PlaceLabel.frame.size.width = cell.ImageView.frame.origin.x - (cell.PlaceLabel.frame.origin.x + 5)
         
         let gender:String = LoadedDocumentArray[indexPath.row].data()["applyGender"] as! String
         cell.GenderLabel.text = "募集性別　　: " + gender
@@ -155,6 +166,7 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
         cell.GenderLabel.frame.origin.x = 30
         cell.GenderLabel.center.y = self.view.frame.height / 21 * 4
         cell.GenderLabel.sizeToFit()
+        cell.GenderLabel.frame.size.width = cell.ImageView.frame.origin.x - (cell.GenderLabel.frame.origin.x + 5)
         
         let timezone = LoadedDocumentArray[indexPath.row].data()["timezone"] as! Array<String>
         var string:String!
@@ -166,19 +178,14 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
         cell.TimezoneLabel.frame.origin.x = 30
         cell.TimezoneLabel.center.y = self.view.frame.height / 21 * 5
         cell.TimezoneLabel.sizeToFit()
+        cell.TimezoneLabel.frame.size.width = cell.ImageView.frame.origin.x - (cell.TimezoneLabel.frame.origin.x + 5)
         
         let updatedtime = LoadedDocumentArray[indexPath.row].data()["updateTime"] as! String
         cell.UpdatedTimeLabel.text = updatedtime
         cell.UpdatedTimeLabel.font = UIFont.boldSystemFont(ofSize: UIFont.systemFontSize)
         cell.UpdatedTimeLabel.sizeToFit()
-        cell.UpdatedTimeLabel.frame.origin.x = self.view.frame.size.width / 2
+        cell.UpdatedTimeLabel.frame.origin.x = cell.frame.width - (cell.UpdatedTimeLabel.frame.width + 20)
         cell.UpdatedTimeLabel.center.y = self.view.frame.height / 21 * 6.3
-        
-        //FireStorageから画像がロード出来ていないのでSampleをセット
-        self.LoadedImageArray.append(UIImage(named: "sample")!)
-        cell.ImageView.image = UIImage(named: "sample")
-        cell.ImageView.frame.size = CGSize(width: 130, height: 130)
-        cell.ImageView.center = CGPoint(x: self.view.frame.width - 85, y: self.view.frame.height / 6.5)
 
         return cell
     }

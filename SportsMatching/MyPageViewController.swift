@@ -48,7 +48,7 @@ class MyPageViewController: BaseFormViewController,FUIAuthDelegate {
         HeaderUIView.frame.size.width = 200
         HeaderUIView.center.x = self.view.center.x
         HeaderImageView.frame.size = CGSize(width: 200, height: 200)
-        HeaderImageView.frame.origin.y = 0
+        HeaderImageView.frame.origin.y = 5
         HeaderImageView.center.x = HeaderUIView.center.x
         // 画像のアスペクト比を維持しUIImageViewサイズに収まるように表示
         HeaderImageView.contentMode = UIViewContentMode.scaleAspectFit
