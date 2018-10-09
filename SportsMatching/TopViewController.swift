@@ -38,11 +38,18 @@ class TopViewController: UIViewController,FUIAuthDelegate {
                     "toMain"))!,animated: true,completion: nil)
             } else {
                 //サインインしていない
-                self.AuthenticationButton.backgroundColor = UIColor.red
-                self.AuthenticationButton.frame.size = CGSize(width: 200, height: 100)
-                self.GuestUserButton.backgroundColor = UIColor.yellow
-                self.GuestUserButton.frame.size = CGSize(width: 200, height: 100)
+                self.view.backgroundColor = UIColor(hex: "FAD7A0", alpha: 2.0)
+                // 認証ボタン、匿名認証ボタンの設定
+                self.AuthenticationButton.backgroundColor = UIColor(hex: "76D7C4")
+                self.AuthenticationButton.frame.size = CGSize(width: 220, height: 100)
+                self.AuthenticationButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.height / 3)
+                self.AuthenticationButton.layer.cornerRadius = 20
                 self.AuthenticationButton.addTarget(self,action: #selector(self.authenticationButtonTapped(sender:)),for: .touchUpInside)
+
+                self.GuestUserButton.backgroundColor = UIColor(hex: "7FB3D5")
+                self.GuestUserButton.frame.size = CGSize(width: 220, height: 100)
+                self.GuestUserButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.height * 2 / 3)
+                self.GuestUserButton.layer.cornerRadius = 20
                 self.GuestUserButton.addTarget(self,action: #selector(self.guestUserButtonTapped(sender:)),for: .touchUpInside)
             }
         }

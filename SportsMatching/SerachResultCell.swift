@@ -24,7 +24,7 @@ class SerachResultCell: UITableViewCell {
         super.awakeFromNib()
         // セルのサイズを設定（高さはSearchResultViewで再設定される）
         self.frame.size = CGSize(width: UIScreen.main.bounds.width, height: 20)
-        self.layer.borderColor = UIColor(hex: "FDEDEC", alpha: 2.0).cgColor
+        self.layer.borderColor = UIColor(hex: "FAD7A0", alpha: 2.0).cgColor
         self.layer.borderWidth = 10
         self.layer.cornerRadius = 15
         // Initialization code
