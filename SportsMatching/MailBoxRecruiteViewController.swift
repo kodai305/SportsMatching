@@ -20,6 +20,8 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        // テーブルのサイズを画面サイズに合わせる
+        self.tableView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         //デリゲート
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -120,11 +122,22 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
         cell.PartnerImageView.image = UIImage(named: "defaulticon")
         cell.PartnerImageView.frame = CGRect(x: 20, y: 10, width: 80, height: 80)
         
+        // 未読数をLINE風に表示
         let unreadCount = getUnreadCount(_roomID: roomID)
-        cell.UnreadCount.text = "未読数:"+String(unreadCount)
-        cell.UnreadCount.font = UIFont.systemFont(ofSize: 12)
-        cell.UnreadCount.sizeToFit()
-        cell.UnreadCount.frame.origin = CGPoint(x: self.view.frame.width - (cell.LatestExchangeTime.frame.width + 10), y: 35)
+        // 未読数が0の場合は非表示
+        if unreadCount == 0 {
+            cell.UnReadCountBadge.isHidden = true
+        } else {
+            // 未読数が1以上の場合
+            cell.UnReadCountBadge.setTitle(String(unreadCount), for: .normal)
+            cell.UnReadCountBadge.setTitleColor(UIColor.white, for: .normal)
+            cell.UnReadCountBadge.frame.size = CGSize(width: 30, height: 30)
+            cell.UnReadCountBadge.layer.cornerRadius = 15
+            cell.UnReadCountBadge.backgroundColor = UIColor(hex: "D45000")
+            cell.UnReadCountBadge.frame.origin.x = cell.frame.width - 40
+            cell.UnReadCountBadge.center.y = cell.center.y + 10
+        }
+        
         return cell
     }
     

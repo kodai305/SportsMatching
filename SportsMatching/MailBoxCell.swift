@@ -14,11 +14,13 @@ class MailBoxCell: UITableViewCell {
     var LatestMessage:UILabel!
     var LatestExchangeTime:UILabel!
     var PartnerImageView:UIImageView!
-    
-    var UnreadCount:UILabel!
+    // 未読数をLINE風に表示する
+    // Labelだと上手く丸にならないのでButtonで代用
+    var UnReadCountBadge:UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.frame.size.width = UIScreen.main.bounds.width
         PartnerNameLabel = UILabel(frame: CGRect.zero)
         PartnerNameLabel.textAlignment = .left
         self.contentView.addSubview(PartnerNameLabel)
@@ -30,13 +32,8 @@ class MailBoxCell: UITableViewCell {
         self.contentView.addSubview(LatestExchangeTime)
         PartnerImageView = UIImageView(frame: CGRect.zero)
         self.contentView.addSubview(PartnerImageView)
-        // Initialization code
-        
-        // 未読数を追加, 表示方法は未定
-        UnreadCount = UILabel(frame: CGRect.zero)
-        UnreadCount.textAlignment = .left
-        self.contentView.addSubview(UnreadCount)
-        
+        UnReadCountBadge = UIButton(frame: CGRect.zero)
+        self.contentView.addSubview(UnReadCountBadge)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
