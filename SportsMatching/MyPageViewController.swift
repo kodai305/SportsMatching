@@ -54,10 +54,11 @@ class MyPageViewController: BaseFormViewController,FUIAuthDelegate {
         HeaderImageView.contentMode = UIViewContentMode.scaleAspectFit
         HeaderUIView.addSubview(HeaderImageView)
         // プロフィール編集ボタンの設定、画像の下に配置
-        EditProfileButton.frame.size = CGSize(width: 200, height: 30)
+        EditProfileButton.frame.size = CGSize(width: 250, height: 40)
         EditProfileButton.frame.origin.y = 210
         EditProfileButton.center.x = HeaderUIView.center.x
-        EditProfileButton.backgroundColor = UIColor.red
+        EditProfileButton.backgroundColor = UIColor(hex: "76D7C4")
+        EditProfileButton.layer.cornerRadius = 5
         EditProfileButton.setTitleColor(UIColor.black, for: .normal)
         EditProfileButton.addTarget(self,action: #selector(self.editProfileButtonTapped(sender:)),for: .touchUpInside)
         HeaderUIView.addSubview(EditProfileButton)
@@ -76,10 +77,12 @@ class MyPageViewController: BaseFormViewController,FUIAuthDelegate {
                 var header = HeaderFooterView<UIView>(.callback({
                     return self.HeaderUIView
                 }))
-                header.height = { 240 }
+                header.height = { 250 }
                 return header
             }()
         }
+        
+        self.tableView.backgroundColor = UIColor(hex: "FAD7A0", alpha: 2.0)
         
         // プロフィールを表示
         self.form +++ Section(header: "ユーザー情報", footer: "")

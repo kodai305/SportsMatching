@@ -35,6 +35,7 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
         super.viewDidLoad()
         self.tableView.rowHeight = self.view.frame.height / 3
         self.tableView.backgroundColor = UIColor(hex: "FAD7A0", alpha: 2.0)
+        
         // テーブルのサイズを画面サイズに合わせる
         self.tableView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         

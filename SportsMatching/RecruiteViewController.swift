@@ -16,6 +16,8 @@ class RecruiteViewController: BaseFormViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tableView.backgroundColor = UIColor(hex: "FAD7A0", alpha: 2.0)
 
         form +++
             Section(header: "必須項目", footer: "すべての項目を入力してください")

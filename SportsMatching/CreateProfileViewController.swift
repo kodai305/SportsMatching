@@ -33,6 +33,8 @@ class CreateProfileViewController: FormViewController {
         
         // 登録フォーム
         // プロフィールが作成済みの場合はその情報をvalueに入れる
+        self.tableView.backgroundColor = UIColor(hex: "FAD7A0", alpha: 2.0)
+        
         self.form +++ Section(header: "ユーザー情報", footer: "すべての項目を入力してください")
             <<< TextRow("UserName") {
                 $0.title = "ユーザー名"

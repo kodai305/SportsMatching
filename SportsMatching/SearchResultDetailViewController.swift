@@ -35,6 +35,9 @@ class SearchResultDetailViewController: BaseFormViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tableView.backgroundColor = UIColor(hex: "FAD7A0", alpha: 2.0)
+        
         //検索結果一覧から受け取ったデータを表示
         DetailImage.frame.size = CGSize(width: 200, height: 200)
         DetailImage.frame.origin.y = 0
