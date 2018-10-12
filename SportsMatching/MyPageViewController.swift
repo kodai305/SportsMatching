@@ -57,7 +57,7 @@ class MyPageViewController: BaseFormViewController,FUIAuthDelegate {
         EditProfileButton.frame.size = CGSize(width: 250, height: 40)
         EditProfileButton.frame.origin.y = 210
         EditProfileButton.center.x = HeaderUIView.center.x
-        EditProfileButton.backgroundColor = UIColor(hex: "76D7C4")
+        EditProfileButton.backgroundColor = UIColor(hex: "E59866")
         EditProfileButton.layer.cornerRadius = 5
         EditProfileButton.setTitleColor(UIColor.black, for: .normal)
         EditProfileButton.addTarget(self,action: #selector(self.editProfileButtonTapped(sender:)),for: .touchUpInside)
@@ -81,8 +81,6 @@ class MyPageViewController: BaseFormViewController,FUIAuthDelegate {
                 return header
             }()
         }
-        
-        self.tableView.backgroundColor = UIColor(hex: "FAD7A0", alpha: 2.0)
         
         // プロフィールを表示
         self.form +++ Section(header: "ユーザー情報", footer: "")

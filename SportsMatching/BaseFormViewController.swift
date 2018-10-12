@@ -15,6 +15,8 @@ class BaseFormViewController: FormViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // 背景色を設定
+        self.tableView.backgroundColor = UIColor(hex: "EBEDEF")
 
         // Do any additional setup after loading the view.
     }

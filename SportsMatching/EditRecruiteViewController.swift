@@ -22,7 +22,6 @@ class EditRecruiteViewController: BaseFormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.backgroundColor = UIColor(hex: "FAD7A0", alpha: 2.0)
         //Userdefalutsから投稿詳細を取得
         var savedPostDetail = PostDetail()
         let defaults = UserDefaults.standard

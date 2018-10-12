@@ -12,7 +12,7 @@ import FirebaseUI
 import FirebaseFirestore
 import SVProgressHUD
 
-class RecruiteTopPageViewController: UIViewController,FUIAuthDelegate {
+class RecruiteTopPageViewController: BaseViewController,FUIAuthDelegate {
     
     @IBOutlet weak var NewPostButton: UIButton!
     @IBOutlet weak var EditPostButton: UIButton!
@@ -23,7 +23,6 @@ class RecruiteTopPageViewController: UIViewController,FUIAuthDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(hex: "FAD7A0", alpha: 2.0)
         
         self.NewPostButton.backgroundColor = UIColor(hex: "76D7C4")
         self.NewPostButton.frame.size = CGSize(width: 220, height: 100)
