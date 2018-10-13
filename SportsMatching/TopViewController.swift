@@ -22,7 +22,7 @@ class TopViewController: UIViewController,FUIAuthDelegate {
     let providers: [FUIAuthProvider] = [
         FUIGoogleAuth(),
         FUIFacebookAuth(),
-        //FUITwitterAuth(),
+        FUITwitterAuth(),
         FUIPhoneAuth(authUI:FUIAuth.defaultAuthUI()!),
         ]
     

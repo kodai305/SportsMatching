@@ -18,6 +18,7 @@ import FirebaseAuth
 import SVProgressHUD
 
 import FirebaseUI
+import TwitterKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -39,6 +40,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let settings = db.settings
         settings.areTimestampsInSnapshotsEnabled = true
         db.settings = settings
+        //Twitter認証用のイニシャライズ
+        TWTRTwitter.sharedInstance().start(withConsumerKey:"P11c3I8G4LnDgirnY4tS8qu2Q",consumerSecret:"q3M6Pc2m46Pl4agvDyKR5PdrLvFUqVg7aJ4Ctkw87pdO7JrI6a")
         
         // For Authentication
         if let _ = Auth.auth().currentUser {
@@ -304,10 +307,12 @@ extension AppDelegate: MessagingDelegate {
         print("Received data message: \(remoteMessage.appData)")
     }
 }
-//facebook&Google認証用
+
 extension AppDelegate {
+    //facebook&Google認証用
     func application(_ app: UIApplication, open url: URL,
                      options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+        
         let sourceApplication = options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String?
         if FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication) ?? false {
             return true
