@@ -115,7 +115,7 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
         cell.PartnerImageView.frame = CGRect(x: 20, y: 10, width: 80, height: 80)
         
         // 未読数をLINE風に表示
-        let unreadCount = getUnreadCount(_roomID: roomID)
+        let unreadCount = Budge().getUnreadCount(_roomID: roomID)
         // 未読数が0の場合は非表示
         if unreadCount == 0 {
             cell.UnReadCountBadge.isHidden = true

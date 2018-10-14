@@ -123,7 +123,7 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
         cell.PartnerImageView.frame = CGRect(x: 20, y: 10, width: 80, height: 80)
         
         // 未読数をLINE風に表示
-        let unreadCount = getUnreadCount(_roomID: roomID)
+        let unreadCount = Budge().getUnreadCount(_roomID: roomID)
         // 未読数が0の場合は非表示
         if unreadCount == 0 {
             cell.UnReadCountBadge.isHidden = true
@@ -150,29 +150,7 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
         let postID = StubRecruiteHistory[indexPath.row]
         performSegue(withIdentifier: "toMailTakagiViewController",sender: postID)
     }
-    
-    func getUnreadCount(_roomID: String) -> (Int) {
-        var _unreadCount = 0
-        let defaults = UserDefaults.standard
-        // ルームIDが_roomIDの総メッセージ数を取得
-        var _totalMessageCount = 0
-        guard let tmpData = defaults.data(forKey: _roomID) else {
-            // データがなかったら0を返す
-            return 0
-        }
-        let _savedMessageInfoArray = try? JSONDecoder().decode([MessageInfo].self, from: tmpData)
-        _totalMessageCount = _savedMessageInfoArray!.count
         
-        // ルームIDが_roomIDの表示済みメッセージ数を取得
-        let _key = "DisplayedNumber_"+_roomID
-        let _displayedCount = defaults.integer(forKey: _key)
-        
-        // [未読数] = [メッセージ総数] - [表示済]
-        _unreadCount = _totalMessageCount - _displayedCount
-        
-        return _unreadCount
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toMailTakagiViewController" {
             // UIDを取得
