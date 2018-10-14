@@ -273,15 +273,27 @@ extension AppDelegate {
         
         let msgTitle = response.notification.request.content.title
         print(msgTitle)
-        if (msgTitle == "新着メッセージ") {
+        var is_ApplyHistoryView = 0
+        if (msgTitle == "応募者からのメッセージがあります。") {
+            // 応募者か募集者かどっちからのメッセージかで募集履歴を開くか応募履歴を開くかを区別したい
             print("新着メッセージです。")
         } else {
+            // 新着応募が来たときは募集者なので、募集履歴を開く
+            is_ApplyHistoryView = 1
             print("新着応募です。")
         }
         // メールボックス画面に遷移
         let subStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let nextView = subStoryboard.instantiateViewController(withIdentifier: "toMain") as! UITabBarController
         nextView.selectedIndex = 3
+
+        if (is_ApplyHistoryView == 1) {
+            // 応募履歴を開く場合
+            let vc = nextView.viewControllers?[3] as! UINavigationController
+            let mailView = vc.topViewController as! MailBoxViewController
+            mailView.fromSendButtonFlag = 1
+        }
+        
         self.window?.rootViewController = nextView
         self.window?.backgroundColor = UIColor.white
         self.window?.makeKeyAndVisible()

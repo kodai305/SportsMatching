@@ -23,6 +23,8 @@ class MailViewController: MessagesViewController {
     var fromRecruiteFlag = 0
     var fromSearchFlag = 0
     
+    var senderType = "Applicant" // or Recruiter
+    
     // 画像のダウンロードが完了しているかのFlag
     var downloadSucceedFlag = 0
     
@@ -63,9 +65,11 @@ class MailViewController: MessagesViewController {
         // 募集履歴から遷移してきた場合
         if fromRecruiteFlag == 1 && fromSearchFlag == 0 {
             ShowDetailButton.title = "応募者のプロフィール"
+            self.senderType = "Recruiter" // 自分自身は募集者
         } else if fromRecruiteFlag == 0 && fromSearchFlag == 1 {
             // 応募履歴から遷移してきた場合
             ShowDetailButton.title = "応募した投稿の内容"
+            self.senderType = "Applicant"
         }
         ShowDetailButton.action = #selector(self.ShowDetailButtonTapped(sender:))
         
@@ -307,8 +311,8 @@ extension MailViewController: MessageInputBarDelegate {
     }
     
     func sendNewMessageNotification(text: String) {
-        self.functions.httpsCallable("sendNewMessageNotification").call(["partnerUID": self.partnerUID, "message": text, "roomID": self.roomID]) { (result, error) in
-            
+        self.functions.httpsCallable("sendNewMessageNotification").call(["partnerUID": self.partnerUID, "message": text, "roomID": self.roomID, "senderType": self.senderType]) { (result, error) in
+            print(self.senderType)
             print(result?.data as Any)
             print("function is called")
             if let error = error as NSError? {
