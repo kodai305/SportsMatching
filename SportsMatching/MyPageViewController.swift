@@ -135,7 +135,7 @@ class MyPageViewController: BaseFormViewController,FUIAuthDelegate {
                 let providers: [FUIAuthProvider] = [
                     FUIGoogleAuth(),
                     FUIFacebookAuth(),
-                    //FUITwitterAuth(),
+                    FUITwitterAuth(),
                     FUIPhoneAuth(authUI:FUIAuth.defaultAuthUI()!),
                     ]
                 authUI.delegate = self
