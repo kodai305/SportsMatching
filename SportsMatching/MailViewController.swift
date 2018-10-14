@@ -47,6 +47,9 @@ class MailViewController: MessagesViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        // メッセージのload
+        self.loadMessages()
+        
         // 背景に画像を設定
         let BGUIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
         BGUIImageView.image = UIImage(named: "chatBG")
@@ -73,13 +76,17 @@ class MailViewController: MessagesViewController {
         }
         ShowDetailButton.action = #selector(self.ShowDetailButtonTapped(sender:))
         
-        // メッセージのload
-        self.loadMessages()
-        
+        // メッセージ入力時に一番下までスクロール
+        scrollsToBottomOnKeybordBeginsEditing = true // default false
+        maintainPositionOnKeyboardFrameChanged = true // default false
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        // 一番下までスクロールする
+        self.messagesCollectionView.scrollToBottom()
+        print("scroll to bottom called")
         
         //　募集履歴から遷移してきた場合
         if fromRecruiteFlag == 1 && fromSearchFlag == 0 {
