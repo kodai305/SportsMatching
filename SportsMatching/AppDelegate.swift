@@ -47,8 +47,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if let _ = Auth.auth().currentUser {
             // ログイン中
             let storyboard:UIStoryboard =  UIStoryboard(name: "Main",bundle:nil)
-            window?.rootViewController
-                = storyboard.instantiateViewController(withIdentifier: "toMain")
+            let rootView = storyboard.instantiateViewController(withIdentifier: "toMain") as! UITabBarController
+            let budgeCount = Budge().getTotalUnreadCount()
+            UIApplication.shared.applicationIconBadgeNumber = budgeCount
+            if (budgeCount > 0) {
+                rootView.viewControllers?[3].tabBarItem.badgeValue = String(budgeCount)
+            } else {
+                rootView.viewControllers?[3].tabBarItem.badgeValue = nil
+            }
+            window?.rootViewController = rootView
         }
         
         // For Notification

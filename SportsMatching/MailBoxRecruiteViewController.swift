@@ -46,7 +46,6 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
             self.StubRecruiteHistory = defaults.value(forKey: "RecruiteHistory") as! [String]
         }
         self.tableView.reloadData()
-        
     }
     
     override func didReceiveMemoryWarning() {
