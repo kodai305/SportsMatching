@@ -104,19 +104,21 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
         cell.PartnerNameLabel.text = userName
         cell.PartnerNameLabel.font = UIFont.boldSystemFont(ofSize: 25)
         cell.PartnerNameLabel.sizeToFit()
-        cell.PartnerNameLabel.frame.origin = CGPoint(x: 120, y: 30)
+        cell.PartnerNameLabel.frame.origin.x = 120
+        cell.PartnerNameLabel.center.y = cell.center.y
         
         cell.LatestMessage.text = lastMessage
         cell.LatestMessage.font = UIFont.systemFont(ofSize: 15)
         cell.LatestMessage.textColor = UIColor.gray
         cell.LatestMessage.sizeToFit()
-        cell.LatestMessage.frame.origin = CGPoint(x: 120, y: 70)
+        cell.LatestMessage.frame.size.width = cell.frame.width - 180
+        cell.LatestMessage.frame.origin = CGPoint(x: 120, y: cell.PartnerNameLabel.frame.origin.y + 40)
         
         cell.LatestExchangeTime.text = lastMsgTime
         cell.LatestExchangeTime.font = UIFont.systemFont(ofSize: 12)
         cell.LatestExchangeTime.textColor = UIColor.gray
         cell.LatestExchangeTime.sizeToFit()
-        cell.LatestExchangeTime.frame.origin = CGPoint(x: self.view.frame.width - (cell.LatestExchangeTime.frame.width + 10), y: 15)
+        cell.LatestExchangeTime.frame.origin = CGPoint(x: self.view.frame.width - (cell.LatestExchangeTime.frame.width + 10), y: cell.PartnerNameLabel.frame.origin.y - 25)
         
         cell.PartnerImageView.image = UIImage(named: "defaulticon")
         cell.PartnerImageView.frame = CGRect(x: 20, y: 10, width: 80, height: 80)
