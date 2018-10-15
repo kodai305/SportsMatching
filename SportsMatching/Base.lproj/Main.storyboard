@@ -134,20 +134,50 @@
                         <outletCollection property="EditProfileButton" destination="Mlc-9l-RyQ" id="8S1-QI-5bu"/>
                         <segue destination="RdO-09-FdY" kind="show" identifier="toProfileDetail" id="5gc-2v-1je"/>
                         <segue destination="032-AK-Olg" kind="show" identifier="toTermsofUse" id="RV5-6U-Zj7"/>
+                        <segue destination="5Dg-EI-CkZ" kind="show" identifier="toTutorial" id="PJP-Lg-mDG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pxp-1T-StY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3268" y="716"/>
         </scene>
-        <!--Terms Of Service View Controller-->
-        <scene sceneID="CYf-io-swm">
+        <!--Tutorial View Controller-->
+        <scene sceneID="fYK-qi-nL0">
             <objects>
-                <viewController id="032-AK-Olg" customClass="TermsOfServiceViewController" customModule="SportsMatching" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="6UK-3c-cdh">
+                <viewController id="5Dg-EI-CkZ" customClass="TutorialViewController" customModule="SportsMatching" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uoC-RX-oF1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="9Ot-wE-SSP"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X7P-XF-CRT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4075" y="-690"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="CYf-io-swm">
+            <objects>
+                <viewController id="032-AK-Olg" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6UK-3c-cdh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="12" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gp-41-OyI">
+                                <rect key="frame" x="20" y="84" width="335" height="101.5"/>
+                                <string key="text">ここに利用規約を書く レイアウトはStoryboardで</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="4gp-41-OyI" firstAttribute="top" secondItem="Qyl-1N-tqt" secondAttribute="top" constant="20" id="Ebf-Hg-o9m"/>
+                            <constraint firstItem="4gp-41-OyI" firstAttribute="leading" secondItem="Qyl-1N-tqt" secondAttribute="leading" constant="20" id="T5c-5P-dEU"/>
+                            <constraint firstItem="Qyl-1N-tqt" firstAttribute="trailing" secondItem="4gp-41-OyI" secondAttribute="trailing" constant="20" id="dea-gE-GnL"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Qyl-1N-tqt"/>
                     </view>
                 </viewController>

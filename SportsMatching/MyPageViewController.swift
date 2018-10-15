@@ -13,7 +13,9 @@ import FirebaseFirestore
 import FirebaseAuth
 import FirebaseUI
 
-class MyPageViewController: BaseFormViewController,FUIAuthDelegate {
+import MessageUI
+
+class MyPageViewController: BaseFormViewController,FUIAuthDelegate,MFMailComposeViewControllerDelegate {
     
     let HeaderImageView = UIImageView()
     let HeaderUIView = UIView()
@@ -21,7 +23,7 @@ class MyPageViewController: BaseFormViewController,FUIAuthDelegate {
     @IBOutlet weak var EditProfileButton: UIButton!
     
     var CurrentUser:User!
-
+    
     //ログアウトボタン(開発用、本番では消す)
     @IBOutlet weak var LogOutButton: UIButton!
     
@@ -93,26 +95,53 @@ class MyPageViewController: BaseFormViewController,FUIAuthDelegate {
                 $0.title = "性別"
                 $0.value = savedProfile.Gender
                 $0.baseCell.isUserInteractionEnabled = false
-                }
+            }
             <<< TextRow("Age") {
                 $0.title = "年代"
                 $0.value = savedProfile.Age
                 $0.baseCell.isUserInteractionEnabled = false
-                }
+            }
             <<< TextRow("Level") {
                 $0.title = "バスケットの経験"
                 $0.value = savedProfile.Level
                 $0.baseCell.isUserInteractionEnabled = false
         }
+        // チュートリアルに遷移するセル
+        self.form +++ Section(header: "チュートリアル", footer: "")
+            <<< ButtonRow() { (row: ButtonRow) -> Void in
+                row.title = "チュートリアルを見る"
+                }
+                .onCellSelection { cell, row in
+                    self.performSegue(withIdentifier: "toTutorial", sender: self)
+        }
+        // 問い合わせ先を表示するセル
+        self.form +++ Section(header: "問い合わせ", footer: "")
+            <<< ButtonRow() { (row: ButtonRow) -> Void in
+                row.title = "問い合わせをする"
+                }
+                .onCellSelection { cell, row in
+                    // メールアプリを起動し、問い合わせる
+                    // メールが送信可能な状態かチェック
+                    if MFMailComposeViewController.canSendMail() {
+                        let mail = MFMailComposeViewController()
+                        mail.mailComposeDelegate = self
+                        mail.setToRecipients(["xxx@xxx.xxx"]) // 宛先アドレス
+                        mail.setSubject("問い合わせ") // 件名
+                        mail.setMessageBody("お問い合わせ内容をご入力ください。", isHTML: false) // 本文
+                        self.present(mail, animated: true, completion: nil)
+                    } else {
+                        print("送信できません")
+                    }
+        }
         // 利用規約ページに遷移するセル
         self.form +++ Section(header: "利用規約", footer: "")
-            <<< LabelRow () {
-                $0.title = "利用規約"
-                $0.value = "利用規約を読む"
+            <<< ButtonRow() { (row: ButtonRow) -> Void in
+                row.title = "利用規約を読む"
                 }
                 .onCellSelection { cell, row in
                     self.performSegue(withIdentifier: "toTermsofUse", sender: self)
-            }
+        }
+        
         // Do any additional setup after loading the view.
     }
     
@@ -184,14 +213,28 @@ class MyPageViewController: BaseFormViewController,FUIAuthDelegate {
         }
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        switch result {
+        case .cancelled:
+            print("キャンセル")
+        case .saved:
+            print("下書き保存")
+        case .sent:
+            print("送信成功")
+        default:
+            print("送信失敗")
+        }
+        dismiss(animated: true, completion: nil)
     }
-    */
-
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
