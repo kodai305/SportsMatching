@@ -23,24 +23,13 @@ class RecruiteTopPageViewController: BaseViewController,FUIAuthDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.NewPostButton.backgroundColor = UIColor(hex: "76D7C4")
-        self.NewPostButton.frame.size = CGSize(width: 220, height: 100)
-        self.NewPostButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.height / 2 - 150)
-        self.NewPostButton.layer.cornerRadius = 20
+        self.NewPostButton.layer.cornerRadius = 10
         self.NewPostButton.addTarget(self,action: #selector(self.NewPostButtonTapped(sender:)),for: .touchUpInside)
         
-        
-        self.EditPostButton.backgroundColor = UIColor(hex: "7FB3D5")
-        self.EditPostButton.frame.size = CGSize(width: 220, height: 100)
-        self.EditPostButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.height / 2)
-        self.EditPostButton.layer.cornerRadius = 20
+        self.EditPostButton.layer.cornerRadius = 10
         self.EditPostButton.addTarget(self,action: #selector(self.EditPostButtonTapped(sender:)),for: .touchUpInside)
         
-        self.DeletePostButton.backgroundColor = UIColor(hex: "D98880")
-        self.DeletePostButton.frame.size = CGSize(width: 220, height: 100)
-        self.DeletePostButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.height / 2 + 150)
-        self.DeletePostButton.layer.cornerRadius = 20
+        self.DeletePostButton.layer.cornerRadius = 10
         self.DeletePostButton.addTarget(self,action: #selector(self.DeletePostButtonTapped(sender:)),for: .touchUpInside)
 
         // Do any additional setup after loading the view.
@@ -53,7 +42,7 @@ class RecruiteTopPageViewController: BaseViewController,FUIAuthDelegate {
         self.CurrentUser = Auth.auth().currentUser
         // 匿名認証の場合、アラートを出す
         if self.CurrentUser!.isAnonymous {
-            let alert: UIAlertController = UIAlertController(title: "メンバーの募集を行うには認証が必要です", message: "認証を行いますか？", preferredStyle:  UIAlertControllerStyle.alert)
+            let alert: UIAlertController = UIAlertController(title: "メンバーの募集を行うにはアカウントが必要です", message: "アカウントを作成しますか？", preferredStyle:  UIAlertControllerStyle.alert)
             // OKボタン
             let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
                 (action: UIAlertAction!) -> Void in

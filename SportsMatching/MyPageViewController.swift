@@ -56,12 +56,11 @@ class MyPageViewController: BaseFormViewController,FUIAuthDelegate,MFMailCompose
         HeaderImageView.contentMode = UIViewContentMode.scaleAspectFit
         HeaderUIView.addSubview(HeaderImageView)
         // プロフィール編集ボタンの設定、画像の下に配置
-        EditProfileButton.frame.size = CGSize(width: 250, height: 40)
-        EditProfileButton.frame.origin.y = 210
+        EditProfileButton.frame.size = CGSize(width: 250, height: 45)
+        EditProfileButton.frame.origin.y = 220
         EditProfileButton.center.x = HeaderUIView.center.x
-        EditProfileButton.backgroundColor = UIColor(hex: "E59866")
-        EditProfileButton.layer.cornerRadius = 5
-        EditProfileButton.setTitleColor(UIColor.black, for: .normal)
+        EditProfileButton.backgroundColor = UIColor(hex: "17A589")
+        EditProfileButton.layer.cornerRadius = 10
         EditProfileButton.addTarget(self,action: #selector(self.editProfileButtonTapped(sender:)),for: .touchUpInside)
         HeaderUIView.addSubview(EditProfileButton)
         
@@ -73,13 +72,15 @@ class MyPageViewController: BaseFormViewController,FUIAuthDelegate,MFMailCompose
         LogOutButton.addTarget(self,action: #selector(self.LogOutButtonTapped(sender:)),for: .touchUpInside)
         HeaderUIView.addSubview(LogOutButton)
         
+        print(self.HeaderUIView.frame.height + self.EditProfileButton.frame.height + 20)
+        
         // 上部に画像とボタンを設定
         form +++ Section(){ section in
             section.header = {
                 var header = HeaderFooterView<UIView>(.callback({
                     return self.HeaderUIView
                 }))
-                header.height = { 250 }
+                header.height = { self.HeaderImageView.frame.height + self.EditProfileButton.frame.height + 20 }
                 return header
             }()
         }
@@ -155,7 +156,7 @@ class MyPageViewController: BaseFormViewController,FUIAuthDelegate,MFMailCompose
         self.CurrentUser = Auth.auth().currentUser
         // 匿名認証の場合、アラートを出す
         if self.CurrentUser!.isAnonymous {
-            let alert: UIAlertController = UIAlertController(title: "プロフィールを作成するには認証が必要です", message: "認証を行いますか？", preferredStyle:  UIAlertControllerStyle.alert)
+            let alert: UIAlertController = UIAlertController(title: "プロフィールを作成するにはアカウントが必要です", message: "アカウントを作成しますか？", preferredStyle:  UIAlertControllerStyle.alert)
             // OKボタン
             let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
                 (action: UIAlertAction!) -> Void in

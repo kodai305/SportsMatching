@@ -34,6 +34,7 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
         
         super.viewDidLoad()
         self.tableView.rowHeight = self.view.frame.height / 3
+        self.tableView.backgroundColor = UIColor(hex: "EBEDEF")
         
         // テーブルのサイズを画面サイズに合わせる
         self.tableView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
@@ -200,7 +201,7 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
         self.CurrentUser = Auth.auth().currentUser
         // 匿名認証の場合、アラートを出す
         if self.CurrentUser!.isAnonymous {
-            let alert: UIAlertController = UIAlertController(title: "投稿の詳細を見るには認証が必要です", message: "認証を行いますか？", preferredStyle:  UIAlertControllerStyle.alert)
+            let alert: UIAlertController = UIAlertController(title: "投稿の詳細を見るにはアカウントが必要です", message: "アカウントを作成しますか？", preferredStyle:  UIAlertControllerStyle.alert)
             // OKボタン
             let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
                 (action: UIAlertAction!) -> Void in

@@ -38,18 +38,14 @@ class TopViewController: UIViewController,FUIAuthDelegate {
                     "toMain"))!,animated: true,completion: nil)
             } else {
                 //サインインしていない
-                self.view.backgroundColor = UIColor(hex: "FAD7A0", alpha: 2.0)
                 // 認証ボタン、匿名認証ボタンの設定
-                self.AuthenticationButton.backgroundColor = UIColor(hex: "76D7C4")
-                self.AuthenticationButton.frame.size = CGSize(width: 220, height: 100)
-                self.AuthenticationButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.height / 3)
-                self.AuthenticationButton.layer.cornerRadius = 20
-                self.AuthenticationButton.addTarget(self,action: #selector(self.authenticationButtonTapped(sender:)),for: .touchUpInside)
 
-                self.GuestUserButton.backgroundColor = UIColor(hex: "7FB3D5")
-                self.GuestUserButton.frame.size = CGSize(width: 220, height: 100)
-                self.GuestUserButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.height * 2 / 3)
-                self.GuestUserButton.layer.cornerRadius = 20
+                self.AuthenticationButton.layer.cornerRadius = 10
+                self.AuthenticationButton.addTarget(self,action: #selector(self.authenticationButtonTapped(sender:)),for: .touchUpInside)
+                
+                self.GuestUserButton.layer.borderColor = UIColor.white.cgColor
+                self.GuestUserButton.layer.borderWidth = 2
+                self.GuestUserButton.layer.cornerRadius = 10
                 self.GuestUserButton.addTarget(self,action: #selector(self.guestUserButtonTapped(sender:)),for: .touchUpInside)
             }
         }
@@ -81,11 +77,31 @@ class TopViewController: UIViewController,FUIAuthDelegate {
     
     // 匿名認証を行う（ゲストユーザー）
     @objc func guestUserButtonTapped(sender : AnyObject) {
-        Auth.auth().signInAnonymously() { (user, error) in
-            self.present((self.storyboard?.instantiateViewController(withIdentifier:
-                "toMain"))!,animated: true,completion: nil)
-        }
         
+        //  投稿がある場合、確認のアラートを出す
+        //  UIAlertControllerクラスのインスタンスを生成
+        let alert: UIAlertController = UIAlertController(title: "ゲストアカウントはいくつかの機能が制限されます", message: "ゲストアカウントで始めますか？", preferredStyle:  UIAlertControllerStyle.alert)
+        
+        // OKボタン
+        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+            (action: UIAlertAction!) -> Void in
+            Auth.auth().signInAnonymously() { (user, error) in
+                self.present((self.storyboard?.instantiateViewController(withIdentifier:
+                    "toMain"))!,animated: true,completion: nil)
+            }
+        })
+        // キャンセルボタン
+        let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{
+            (action: UIAlertAction!) -> Void in
+            //　アラートを閉じる
+            alert.dismiss(animated: true, completion: nil)
+        })
+        
+        // UIAlertControllerにActionを追加
+        alert.addAction(cancelAction)
+        alert.addAction(defaultAction)
+        // Alertを表示
+        present(alert, animated: true, completion: nil)
     }
     
     
