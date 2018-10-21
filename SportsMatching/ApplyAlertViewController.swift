@@ -73,18 +73,18 @@ class ApplyAlertViewController: BaseViewController {
             defaults.set(data ,forKey: roomID)
             
             // 募集者のプロフィールを取得->保存
-            var postUserName = "no name"
+            var postUserName = "NO NAME"
             let db = Firestore.firestore()
             let docRef = db.collection("users").document(self.postID)
             docRef.getDocument { (document, error) in
-                guard let document = document, document.exists else {
-                    SVProgressHUD.showError(withStatus: "ユーザー情報取得失敗")
-                    return
+                if let document = document, document.exists {
+                    if let tmp = document.data()!["userName"] {
+                        postUserName = tmp as! String
+                    }
+                } else {
+                    print("ユーザー情報取得失敗")
                 }
                 
-                if let tmp = document.data()!["userName"] {
-                    postUserName = tmp as! String
-                }
                 defaults.set(postUserName, forKey: "user_"+self.postID)
                 // キーボードをしまう
                 self.MessageTextView.resignFirstResponder()
@@ -102,7 +102,6 @@ class ApplyAlertViewController: BaseViewController {
                 nextViewController.fromSendButtonFlag = 1
                 //　アラートビューを消す
                 self.dismiss(animated: false, completion: nil)
-                
             }
         }
     }
