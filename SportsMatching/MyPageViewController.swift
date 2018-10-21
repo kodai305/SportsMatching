@@ -86,7 +86,7 @@ class MyPageViewController: BaseFormViewController,FUIAuthDelegate,MFMailCompose
         }
         
         // プロフィールを表示
-        self.form +++ Section(header: "ユーザー情報", footer: "")
+        self.form +++ Section("ユーザー情報")
             <<< TextRow("UserName") {
                 $0.title = "ユーザー名"
                 $0.value = savedProfile.UserName
@@ -108,7 +108,7 @@ class MyPageViewController: BaseFormViewController,FUIAuthDelegate,MFMailCompose
                 $0.baseCell.isUserInteractionEnabled = false
         }
         // チュートリアルに遷移するセル
-        self.form +++ Section(header: "チュートリアル", footer: "")
+        self.form +++ Section("チュートリアル")
             <<< ButtonRow() { (row: ButtonRow) -> Void in
                 row.title = "チュートリアルを見る"
                 }
@@ -116,7 +116,7 @@ class MyPageViewController: BaseFormViewController,FUIAuthDelegate,MFMailCompose
                     self.performSegue(withIdentifier: "toTutorial", sender: self)
         }
         // 問い合わせ先を表示するセル
-        self.form +++ Section(header: "問い合わせ", footer: "")
+        self.form +++ Section("問い合わせ")
             <<< ButtonRow() { (row: ButtonRow) -> Void in
                 row.title = "問い合わせをする"
                 }
@@ -135,7 +135,7 @@ class MyPageViewController: BaseFormViewController,FUIAuthDelegate,MFMailCompose
                     }
         }
         // 利用規約ページに遷移するセル
-        self.form +++ Section(header: "利用規約", footer: "")
+        self.form +++ Section("利用規約")
             <<< ButtonRow() { (row: ButtonRow) -> Void in
                 row.title = "利用規約を読む"
                 }
