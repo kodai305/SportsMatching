@@ -244,7 +244,7 @@ extension MailViewController: MessagesDataSource {
     // 自分の情報を設定
     func currentSender() -> Sender {
         let myUID: String = UserDefaults.standard.string(forKey: "UID")!
-        return Sender(id: myUID, displayName: "自分")
+        return Sender(id: myUID, displayName: "")
     }
     
     // 表示するメッセージの数
@@ -290,51 +290,73 @@ extension MailViewController: MessagesLayoutDelegate {
 extension MailViewController: MessageInputBarDelegate {
     // メッセージ送信ボタンをタップした時の挙動
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
+        // セマフォを0で初期化
+        let semaphore = DispatchSemaphore(value: 0)
         
         // Each NSTextAttachment that contains an image will count as one empty character in the text: String
         for component in inputBar.inputTextView.components {
             if let image = component as? UIImage {
-                
                 let imageMessage = MockMessage(image: image, sender: currentSender(), messageId: UUID().uuidString, date: Date())
                 messageList.append(imageMessage)
                 messagesCollectionView.insertSections([messageList.count - 1])
-                
             } else if let text = component as? String {
                 let attributedText = NSAttributedString(string: text, attributes: [.font: UIFont.systemFont(ofSize: 15), .foregroundColor: UIColor.black])
                 
                 let message = MockMessage(attributedText: attributedText, sender: currentSender(), messageId: UUID().uuidString, date: Date())
                 
-                self.messageList.append(message)
-                messagesCollectionView.insertSections([self.messageList.count - 1])
-                
-                saveMessages(text: text, mocMessage: message)
-                
-                sendNewMessageNotification(text: text)
+                if sendNewMessageNotification(text: text) == true {
+                    print("true")
+                    // messageの追加
+                    self.messageList.append(message)
+                    messagesCollectionView.insertSections([self.messageList.count - 1])
+                    saveMessages(text: text, mocMessage: message)
+                } else {
+                    print("false")
+                }
             }
+            semaphore.signal()
         }
+        // セマフォをデクリメント（-1）、ただしセマフォが0の場合はsignal()の実行を待つ
+        semaphore.wait()
         
         inputBar.inputTextView.text = String()
         messagesCollectionView.scrollToBottom()
     }
     
-    func sendNewMessageNotification(text: String) {
+    func sendNewMessageNotification(text: String) -> Bool {
+        print("function is called")
+        SVProgressHUD.show(withStatus: "送信中")
+        var ret = false
         self.functions.httpsCallable("sendNewMessageNotification").call(["partnerUID": self.partnerUID, "message": text, "roomID": self.roomID, "senderType": self.senderType]) { (result, error) in
-            print(self.senderType)
-            print(result?.data as Any)
-            print("function is called")
-            if let error = error as NSError? {
-                SVProgressHUD.showError(withStatus: "失敗")
+            var returnMsg = ""
+            if result?.data is NSDictionary {
+                let resultData = result?.data as! NSDictionary
+                returnMsg  = resultData["returnMsg"] as! String
+            }
+            // result -> nil = ネットワークに繋がってない
+            if result == nil {
+                ret = false
+                SVProgressHUD.showError(withStatus: "ネットワークに繋がっているか確認してください")
+            } else if returnMsg == "error" { // returnMsg = error -> cloud functionでerrorを返してきた場合
+                ret = false
+                SVProgressHUD.showError(withStatus: "送信失敗\nお問い合わせください")
+                print("returnMsg:")
+                print(returnMsg)
+            } else if let error = error as NSError? {
+                SVProgressHUD.showError(withStatus: "送信失敗\nお問い合わせください")
+                ret = false
                 if error.domain == FunctionsErrorDomain {
                     let code = FunctionsErrorCode(rawValue: error.code)
                     let message = error.localizedDescription
                     let details = error.userInfo[FunctionsErrorDetailsKey]
                 }
             } else {
-                SVProgressHUD.showSuccess(withStatus: "成功")
+                SVProgressHUD.showSuccess(withStatus: "送信成功")
+                ret = true
             }
         }
+        return ret
     }
-    
 }
 
 // MARK: - MessagesDisplayDelegate
