@@ -155,6 +155,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     //  fcmのjsonに"content_available" : true が必要
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        
+        // 通知がFirebaseAuthで取り扱えるかを判定（電話番号認証に必要）
+        if Auth.auth().canHandleNotification(userInfo) {
+            completionHandler(.noData)
+            return
+        }
+        
         var msgType:String  = ""
         var sender:String   = ""
         var message:String  = ""
@@ -328,15 +335,19 @@ extension AppDelegate: MessagingDelegate {
 }
 
 extension AppDelegate {
-    //facebook&Google認証用
+    //facebook&Google&電話番号認証用
     func application(_ app: UIApplication, open url: URL,
                      options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
         
         let sourceApplication = options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String?
+        // GoogleもしくはFacebook認証の場合、trueをけ返す
         if FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication) ?? false {
             return true
         }
-        // other URL handling goes here.
+        // 電話番号認証の場合
+        if Auth.auth().canHandle(url) {
+            return true
+        }
         return false
     }
 }
