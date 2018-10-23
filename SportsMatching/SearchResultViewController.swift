@@ -213,10 +213,11 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
                     FUITwitterAuth(),
                     FUIPhoneAuth(authUI:FUIAuth.defaultAuthUI()!),
                     ]
+                //　認証ページに遷移
                 authUI.delegate = self
                 authUI.providers = providers
-                //　認証ページに遷移
-                let authViewController = authUI.authViewController()
+                authUI.isSignInWithEmailHidden = true
+                let authViewController = self.authPickerViewController(forAuthUI: authUI)
                 self.present(authViewController, animated: true, completion: nil)
             })
             // キャンセルボタン
@@ -268,6 +269,13 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
                 // エラーが出た時の処理を書かないといけない
             }
         }
+    }
+    
+    // カスタムした認証画面を返す
+    func authPickerViewController(forAuthUI authUI: FUIAuth) -> FUIAuthPickerViewController {
+        let CustomAuthView = FUIAuthPickerViewController(authUI: authUI)
+        CustomAuthView.view.backgroundColor = UIColor(hex: "D45000")
+        return CustomAuthView
     }
     
     

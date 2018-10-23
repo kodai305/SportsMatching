@@ -59,7 +59,8 @@
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
                                         <fragment>
-                                            <string key="content">投稿の編集</string>
+                                            <string key="content">投稿の編集
+</string>
                                             <attributes>
                                                 <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <font key="NSFont" size="21" name="HiraginoSans-W3"/>
@@ -248,7 +249,7 @@ DQ
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JyF-OV-upT">
                                 <rect key="frame" x="10" y="84" width="355" height="534"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <mutableString key="text">利用規約
+                                <string key="text">利用規約
 
 この利用規約（以下，「本規約」といいます。）は，本アプリ開発者（以下，「開発者」といいます。）が提供するサービス（以下，「本サービス」といいます。）の利用条件を定めるものです。登録ユーザーの皆さま（以下，「ユーザー」といいます。）には，本規約に従って，本サービスをご利用いただきます。
 
@@ -262,11 +263,13 @@ DQ
 （1）利用登録の申請に際して虚偽の事項を届け出た場合
 （2）本規約に違反したことがある者からの申請である場合
 （3）反社会的勢力等（暴力団，暴力団員，右翼団体，反社会的勢力，その他これに準ずる者を意味します。）である，または資金提供その他を通じて反社会的勢力等の維持，運営もしくは経営に協力もしくは関与する等反社会的勢力との何らかの交流もしくは関与を行っている開発者が判断した場合
-（4）その他開発者が利用登録を相当でないと判断した場合
+（4）その他開発者が利用登録を相当でないと判断した場合
+
 第3条（ユーザーIDおよびパスワードの管理）
 
 ユーザーは，自己の責任において，本サービスのアカウント情報を管理するものとします。
-ユーザーは，いかなる場合にも，アカウント情報を第三者に譲渡または貸与することはできません。開発者は，アカウント情報が登録情報と一致してログインされた場合には，そのアカウント情報を登録しているユーザー自身による利用とみなします。
+ユーザーは，いかなる場合にも，アカウント情報を第三者に譲渡または貸与することはできません。開発者は，アカウント情報が登録情報と一致してログインされた場合には，そのアカウント情報を登録しているユーザー自身による利用とみなします。
+
 第4条（禁止事項）
 
 ユーザーは，本サービスの利用にあたり，以下の行為をしてはなりません。
@@ -282,19 +285,24 @@ DQ
 （9）過度に暴力的な表現，露骨な性的表現，人種，国籍，信条，性別，社会的身分，門地等による差別につながる表現，自殺，自傷行為，薬物乱用を誘引または助長する表現，その他反社会的な内容を含み他人に不快感を与える表現を，投稿または送信する行為
 （10）営業，宣伝，広告，勧誘，その他営利を目的とする行為（開発者の認めたものを除きます。），性行為やわいせつな行為を目的とする行為，面識のない異性との出会いや交際を目的とする行為，他のお客様に対する嫌がらせや誹謗中傷を目的とする行為，その他本サービスが予定している利用目的と異なる目的で本サービスを利用する行為
 （11）宗教活動または宗教団体への勧誘行為
-（12）その他開発者が不適切と判断する行為
-第5条（本サービスの提供の停止等）
+（12）その他開発者が不適切と判断する行為
+
+第5条（本サービスの提供の停止等）
+
 開発者は，以下のいずれかの事由があると判断した場合，ユーザーに事前に通知することなく本サービスの全部または一部の提供を停止または中断することができるものとします。
 （1）本サービスにかかるコンピュータシステムの保守点検または更新を行う場合
 （2）地震，落雷，火災，停電または天災などの不可抗力により，本サービスの提供が困難となった場合
 （3）コンピュータまたは通信回線等が事故により停止した場合
-（4）その他開発者が本サービスの提供が困難と判断した場合開発者は，本サービスの提供の停止または中断により，ユーザーまたは第三者が被ったいかなる不利益または損害について，理由を問わず一切の責任を負わないものとします。
+（4）その他開発者が本サービスの提供が困難と判断した場合開発者は，本サービスの提供の停止または中断により，ユーザーまたは第三者が被ったいかなる不利益または損害について，理由を問わず一切の責任を負わないものとします。
+
 第6条（著作権）
 
 ユーザーは，自ら著作権等の必要な知的財産権を有するか，または必要な権利者の許諾を得た文章，画像や映像等の情報のみ，本サービスを利用し，投稿または編集することができるものとします。
 ユーザーが本サービスを利用して投稿または編集した文章，画像，映像等の著作権については，当該ユーザーその他既存の権利者に留保されるものとします。ただし開発者は，本サービスを利用して投稿または編集された文章，画像，映像等を利用できるものとし，ユーザーは，この利用に関して，著作者人格権を行使しないものとします。
-前項本文の定めるものを除き，本サービスおよび本サービスに関連する一切の情報についての著作権およびその他知的財産権はすべ開発者また開発者にその利用を許諾した権利者に帰属し，ユーザーは無断で複製，譲渡，貸与，翻訳，改変，転載，公衆送信（送信可能化を含みます。），伝送，配布，出版，営業使用等をしてはならないものとします。
-第7条（利用制限および登録抹消）
+前項本文の定めるものを除き，本サービスおよび本サービスに関連する一切の情報についての著作権およびその他知的財産権はすべ開発者また開発者にその利用を許諾した権利者に帰属し，ユーザーは無断で複製，譲渡，貸与，翻訳，改変，転載，公衆送信（送信可能化を含みます。），伝送，配布，出版，営業使用等をしてはならないものとします。
+
+第7条（利用制限および登録抹消）
+
 開発者は，以下の場合には，事前の通知なく，投稿データを削除し，ユーザーに対して本サービスの全部もしくは一部の利用を制限しまたはユーザーとしての登録を抹消することができるものとします。
 （1）本規約のいずれかの条項に違反した場合
 （2）登録事項に虚偽の事実があることが判明した場合
@@ -303,14 +311,19 @@ DQ
 （5）開発者からの問い合わせその他の回答を求める連絡に対して30日間以上応答がない場合
 （6）第2条第2項各号に該当する場合
 （7）その他開発者が本サービスの利用を適当でないと判断した場合
-前項各号のいずれかに該当した場合，ユーザーは，当然開発者に対する一切の債務について期限の利益を失い，その時点において負担する一切の債務を直ちに一括して弁済しなければなりません。開発者は，本条に基づ開発者が行った行為によりユーザーに生じた損害について，一切の責任を負いません。
-第8条（保証の否認および免責事項）
+前項各号のいずれかに該当した場合，ユーザーは，当然開発者に対する一切の債務について期限の利益を失い，その時点において負担する一切の債務を直ちに一括して弁済しなければなりません。開発者は，本条に基づ開発者が行った行為によりユーザーに生じた損害について，一切の責任を負いません。
+
+第8条（保証の否認および免責事項）
+
 開発者は，本サービスに事実上または法律上の瑕疵（安全性，信頼性，正確性，完全性，有効性，特定の目的への適合性，セキュリティなどに関する欠陥，エラーやバグ，権利侵害などを含みます。）がないことを明示的にも黙示的にも保証しておりません。開発者は，本サービスに起因してユーザーに生じたあらゆる損害について一切の責任を負いません。ただし，本サービスに関す開発者とユーザーとの間の契約（本規約を含みます。）が消費者契約法に定める消費者契約となる場合，この免責規定は適用されません。
-前項ただし書に定める場合であっても開発者は開発者の過失（重過失を除きます。）による債務不履行または不法行為によりユーザーに生じた損害のうち特別な事情から生じた損害（開発者またはユーザーが損害発生につき予見し，または予見し得た場合を含みます。）について一切の責任を負いません。また開発者の過失（重過失を除きます。）による債務不履行または不法行為によりユーザーに生じた損害の賠償は，ユーザーから当該損害が発生した月に受領した利用料の額を上限とします。開発者は，本サービスに関して，ユーザーと他のユーザーまたは第三者との間において生じた取引，連絡または紛争等について一切責任を負いません。
-第9条（サービス内容の変更等）
+前項ただし書に定める場合であっても開発者は開発者の過失（重過失を除きます。）による債務不履行または不法行為によりユーザーに生じた損害のうち特別な事情から生じた損害（開発者またはユーザーが損害発生につき予見し，または予見し得た場合を含みます。）について一切の責任を負いません。また開発者の過失（重過失を除きます。）による債務不履行または不法行為によりユーザーに生じた損害の賠償は，ユーザーから当該損害が発生した月に受領した利用料の額を上限とします。開発者は，本サービスに関して，ユーザーと他のユーザーまたは第三者との間において生じた取引，連絡または紛争等について一切責任を負いません。
+
+第9条（サービス内容の変更等）
+
 開発者は，ユーザーに通知することなく，本サービスの内容を変更しまたは本サービスの提供を中止することができるものとし，これによってユーザーに生じた損害について一切の責任を負いません。
 
-第10条（利用規約の変更）
+第10条（利用規約の変更）
+
 開発者は，必要と判断した場合には，ユーザーに通知することなくいつでも本規約を変更することができるものとします。
 
 第11条（通知または連絡）
@@ -325,7 +338,7 @@ DQ
 
 本規約の解釈にあたっては，日本法を準拠法とします。
 本サービスに関して紛争が生じた場合には開発者の本店所在地を管轄する裁判所を専属的合意管轄とします。
-以上</mutableString>
+以上</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -535,62 +548,32 @@ DQ
         <!--Top View Controller-->
         <scene sceneID="xAo-RM-wK9">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HjI-0U-8uJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="5Y7-M5-uDw" customClass="TopViewController" customModule="SportsMatching" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fw8-8O-DwC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="KtO-YE-CzR">
-                                <rect key="frame" x="62.5" y="455" width="250" height="45"/>
-                                <color key="backgroundColor" red="0.83137254901960778" green="0.31372549019607843" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon" translatesAutoresizingMaskIntoConstraints="NO" id="CKP-yg-56n">
+                                <rect key="frame" x="87.5" y="163.5" width="200" height="200"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="S1f-Bh-YQ9"/>
-                                    <constraint firstAttribute="width" constant="250" id="WtW-H2-1Sn"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="21"/>
-                                <state key="normal" title="ゲストアカウント">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon" translatesAutoresizingMaskIntoConstraints="NO" id="hmk-DD-ghW">
-                                <rect key="frame" x="0.0" y="70" width="375" height="300"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="XSR-KI-vKg"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="KYU-MM-Yfb"/>
+                                    <constraint firstAttribute="width" constant="200" id="Pjc-uD-2dM"/>
+                                    <constraint firstAttribute="height" constant="200" id="aTj-pE-Oyi"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="m3q-OA-sAm"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="JFN-mJ-x2Y">
-                                <rect key="frame" x="62.5" y="385" width="250" height="45"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="pJl-er-8ga"/>
-                                    <constraint firstAttribute="height" constant="45" id="rwn-sT-llH"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="21"/>
-                                <state key="normal" title="アカウント作成">
-                                    <color key="titleColor" red="0.83137254901960778" green="0.31372549019607843" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.83137254900000002" green="0.31372549020000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="KtO-YE-CzR" firstAttribute="centerX" secondItem="fw8-8O-DwC" secondAttribute="centerX" id="Npa-uV-mfa"/>
-                            <constraint firstItem="KtO-YE-CzR" firstAttribute="top" secondItem="JFN-mJ-x2Y" secondAttribute="bottom" constant="25" id="UEo-MG-WDM"/>
-                            <constraint firstAttribute="trailing" secondItem="hmk-DD-ghW" secondAttribute="trailing" id="Wqf-h3-pvF"/>
-                            <constraint firstItem="hmk-DD-ghW" firstAttribute="leading" secondItem="fw8-8O-DwC" secondAttribute="leading" id="X0H-bT-SJj"/>
-                            <constraint firstItem="hmk-DD-ghW" firstAttribute="top" secondItem="LIj-Sf-X13" secondAttribute="top" constant="50" id="cLo-Ee-rcY"/>
-                            <constraint firstItem="JFN-mJ-x2Y" firstAttribute="centerX" secondItem="fw8-8O-DwC" secondAttribute="centerX" id="cqE-tR-FSt"/>
-                            <constraint firstItem="JFN-mJ-x2Y" firstAttribute="top" secondItem="hmk-DD-ghW" secondAttribute="bottom" constant="15" id="w4G-vL-COB"/>
+                            <constraint firstItem="CKP-yg-56n" firstAttribute="centerY" secondItem="fw8-8O-DwC" secondAttribute="centerY" constant="-70" id="C0t-HI-oYD"/>
+                            <constraint firstItem="CKP-yg-56n" firstAttribute="centerX" secondItem="fw8-8O-DwC" secondAttribute="centerX" id="OS6-ai-DGi"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LIj-Sf-X13"/>
                     </view>
-                    <connections>
-                        <outlet property="AuthenticationButton" destination="JFN-mJ-x2Y" id="lrb-8i-8pf"/>
-                        <outlet property="GuestUserButton" destination="KtO-YE-CzR" id="y5A-GR-Os4"/>
-                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HjI-0U-8uJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-201" y="1522"/>
+            <point key="canvasLocation" x="194" y="1522"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="zAB-gR-d4m">
@@ -1008,11 +991,11 @@ DQ
         </scene>
     </scenes>
     <resources>
-        <image name="Icon" width="1024" height="1024"/>
-        <image name="chat" width="20" height="20"/>
-        <image name="mypage" width="20" height="20"/>
-        <image name="recruite" width="20" height="20"/>
-        <image name="search" width="20" height="20"/>
+        <image name="Icon" width="768" height="768"/>
+        <image name="chat" width="30" height="30"/>
+        <image name="mypage" width="30" height="30"/>
+        <image name="recruite" width="30" height="30"/>
+        <image name="search" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Lbe-8n-gZh"/>

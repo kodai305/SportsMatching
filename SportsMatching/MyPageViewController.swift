@@ -170,8 +170,9 @@ class MyPageViewController: BaseFormViewController,FUIAuthDelegate,MFMailCompose
                     ]
                 authUI.delegate = self
                 authUI.providers = providers
+                authUI.isSignInWithEmailHidden = true
                 //　認証ページに遷移
-                let authViewController = authUI.authViewController()
+                let authViewController = self.authPickerViewController(forAuthUI: authUI)
                 self.present(authViewController, animated: true, completion: nil)
             })
             // キャンセルボタン
@@ -212,6 +213,13 @@ class MyPageViewController: BaseFormViewController,FUIAuthDelegate,MFMailCompose
                 // エラーが出た時の処理を書かないといけない
             }
         }
+    }
+    
+    // カスタムした認証画面を返す
+    func authPickerViewController(forAuthUI authUI: FUIAuth) -> FUIAuthPickerViewController {
+        let CustomAuthView = FUIAuthPickerViewController(authUI: authUI)
+        CustomAuthView.view.backgroundColor = UIColor(hex: "D45000")
+        return CustomAuthView
     }
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {

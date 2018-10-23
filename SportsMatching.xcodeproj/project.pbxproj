@@ -40,6 +40,7 @@
 		CEC5D7AE2174919E003F700C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC5D7AD2174919E003F700C /* MessageUI.framework */; };
 		CEC5D7B02174926D003F700C /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC5D7AF2174926D003F700C /* TutorialViewController.swift */; };
 		CEDCC4F8211BD3AA001DC758 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDCC4F7211BD3AA001DC758 /* SearchViewController.swift */; };
+		CEF8DD97217DE21900A31CBB /* EditedAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8DD96217DE21900A31CBB /* EditedAuthViewController.swift */; };
 		D2C61647D4E97C7C67121FD8 /* Pods_SportsMatching.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFD345A2028EF0EB4BC8B892 /* Pods_SportsMatching.framework */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +83,7 @@
 		CEC5D7AD2174919E003F700C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		CEC5D7AF2174926D003F700C /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		CEDCC4F7211BD3AA001DC758 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		CEF8DD96217DE21900A31CBB /* EditedAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditedAuthViewController.swift; sourceTree = "<group>"; };
 		FC10B0D844CAB53F454EF6DA /* Pods-SportsMatching.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsMatching.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SportsMatching/Pods-SportsMatching.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -134,6 +136,7 @@
 				CEA8C6D1213D7FE80020D2F1 /* EditRecruiteViewController.swift */,
 				CEAEE8BB214B090B00323B12 /* PostDetail.swift */,
 				CEC5D79E217416D0003F700C /* Budge.swift */,
+				CEF8DD96217DE21900A31CBB /* EditedAuthViewController.swift */,
 				4735B0C52115DBC6009D1323 /* Main.storyboard */,
 				CEDCC4F7211BD3AA001DC758 /* SearchViewController.swift */,
 				4735B0DC211896FB009D1323 /* SearchResultViewController.swift */,
@@ -398,6 +401,7 @@
 				CEBB289A211A9FBD00C7FFFE /* SerachResultCell.swift in Sources */,
 				4735B0C22115DBC6009D1323 /* AppDelegate.swift in Sources */,
 				CEC5D7B02174926D003F700C /* TutorialViewController.swift in Sources */,
+				CEF8DD97217DE21900A31CBB /* EditedAuthViewController.swift in Sources */,
 				4735B10B211DCD63009D1323 /* MailViewController.swift in Sources */,
 				CEAEE8BC214B090B00323B12 /* PostDetail.swift in Sources */,
 				CEBB28A0211AC05C00C7FFFE /* SearchResultDetailViewController.swift in Sources */,

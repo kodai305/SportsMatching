@@ -340,7 +340,7 @@ extension AppDelegate {
                      options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
         
         let sourceApplication = options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String?
-        // GoogleもしくはFacebook認証の場合、trueをけ返す
+        // GoogleもしくはFacebook認証の場合、trueを返す
         if FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication) ?? false {
             return true
         }
