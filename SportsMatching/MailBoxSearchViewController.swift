@@ -114,7 +114,7 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
         cell.LatestExchangeTime.frame.origin = CGPoint(x: self.view.frame.width - (cell.LatestExchangeTime.frame.width + 10), y: cell.PartnerNameLabel.frame.origin.y - 25)
         
         cell.PartnerImageView.image = UIImage(named: "defaulticon")
-        cell.PartnerImageView.frame = CGRect(x: 20, y: 10, width: 80, height: 80)
+        cell.PartnerImageView.frame = CGRect(x: 20, y: 20, width: 60, height: 60)
         
         // 未読数をLINE風に表示
         let unreadCount = Budge().getUnreadCount(_roomID: roomID)

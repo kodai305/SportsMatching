@@ -19,11 +19,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pwb-4d-Mo9">
-                                <rect key="frame" x="62.5" y="193.5" width="250" height="60"/>
+                                <rect key="frame" x="42.5" y="193.5" width="290" height="60"/>
                                 <color key="backgroundColor" red="0.090196078431372548" green="0.6470588235294118" blue="0.53725490196078429" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="H2E-wo-XRH"/>
-                                    <constraint firstAttribute="width" constant="250" id="ycw-sW-dgl"/>
+                                    <constraint firstAttribute="width" constant="290" id="ycw-sW-dgl"/>
                                 </constraints>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
@@ -50,11 +50,11 @@
                                 </variation>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GuR-lX-MWa">
-                                <rect key="frame" x="62.5" y="303.5" width="250" height="60"/>
+                                <rect key="frame" x="42.5" y="303.5" width="290" height="60"/>
                                 <color key="backgroundColor" red="0.090196078431372548" green="0.6470588235294118" blue="0.53725490196078429" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="Tee-DP-idZ"/>
-                                    <constraint firstAttribute="width" constant="250" id="uKL-Pw-ZgB"/>
+                                    <constraint firstAttribute="width" constant="290" id="uKL-Pw-ZgB"/>
                                 </constraints>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
@@ -78,10 +78,10 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R7d-XS-vhQ">
-                                <rect key="frame" x="62.5" y="413.5" width="250" height="60"/>
+                                <rect key="frame" x="42.5" y="413.5" width="290" height="60"/>
                                 <color key="backgroundColor" red="0.090196078431372548" green="0.6470588235294118" blue="0.53725490196078429" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="CwC-ml-V9q"/>
+                                    <constraint firstAttribute="width" constant="290" id="CwC-ml-V9q"/>
                                     <constraint firstAttribute="height" constant="60" id="mVj-bN-I6n"/>
                                 </constraints>
                                 <state key="normal">
