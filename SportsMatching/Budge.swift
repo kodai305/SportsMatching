@@ -11,9 +11,11 @@ import Foundation
 class Budge {
     func getTotalUnreadCount() -> (Int) {
         var unreadTotalCount = 0
-        var myUID = ""
         let defaults = UserDefaults.standard
-        myUID = defaults.string(forKey: "UID")!
+        var myUID = ""
+        if UserDefaults.standard.string(forKey: "UID") != nil {
+            myUID = defaults.string(forKey: "UID")!
+        }
         
         // 募集履歴を取得
         var _tmpRecruiteHistory:[String] = []
