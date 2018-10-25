@@ -17,6 +17,8 @@ class BaseFormViewController: FormViewController {
         super.viewDidLoad()
         // 背景色を設定
         self.tableView.backgroundColor = UIColor(hex: "EBEDEF")
+        // Tabbar非選択時のアイコンの色を設定
+        self.tabBarController?.tabBar.unselectedItemTintColor = UIColor(hex: "16A085")
 
         // Do any additional setup after loading the view.
     }
