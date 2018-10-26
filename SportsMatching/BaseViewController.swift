@@ -15,7 +15,7 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(hex: "EBEDEF")
         // Tabbar非選択時のアイコンの色を設定
-        self.tabBarController?.tabBar.unselectedItemTintColor = UIColor(hex: "16A085")
+        self.tabBarController?.tabBar.unselectedItemTintColor = UIColor(hex: "515A5A")
         // Do any additional setup after loading the view, typically from a nib.
     }
 
