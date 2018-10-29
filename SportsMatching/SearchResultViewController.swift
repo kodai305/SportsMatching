@@ -20,9 +20,11 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
     // firestoreから読み込んだDocumentを格納する配列
     var LoadedDocumentArray:[QueryDocumentSnapshot] = []
     var LoadedImageArray:[UIImage] = []
-    // 検索フォームから種目名と都道県名を受け取る変数
+    // 検索フォームから検索条件を受け取る変数
     var category:String!
     var prefecture:String!
+    var applyGender:String!
+    var day:Array<String>!
     // 詳細画面に渡すdocument
     var sendDocument:QueryDocumentSnapshot!
     
@@ -43,10 +45,12 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
         
         let db = Firestore.firestore()
         
-        //postsコレクションから条件に一致するドキュメントを取得
+        // postsコレクションから検索条件に一致するドキュメントを取得
+        // 選択肢が複数ある活動曜日に関してはここでは絞り込まない
         db.collection("posts")
             .whereField("category", isEqualTo: self.category)
             .whereField("prefecture", isEqualTo: self.prefecture)
+            .whereField("applyGender", isEqualTo: self.applyGender)
             //.limit(to: 5)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
@@ -55,7 +59,14 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
                     for document in querySnapshot!.documents {
                         print("\(document.documentID) => \(document.data())")
                         print(String(describing: type(of: document.data())))
-                        self.LoadedDocumentArray.append(document)
+                        // 取得した投稿の内、活動曜日に検索条件の曜日が含まれる場合、検索結果の配列に追加
+                        let activeDays = document.data()["day"] as! Array<String>
+                        for i in 0 ..< activeDays.count {
+                            if self.day.contains(activeDays[i]){
+                                self.LoadedDocumentArray.append(document)
+                                break
+                            }
+                        }
                     }
                     print("loadcount :")
                     print(self.LoadedDocumentArray.count)

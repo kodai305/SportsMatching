@@ -268,12 +268,6 @@ class EditRecruiteViewController: BaseFormViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    //複数選択するための関数
-    @objc func multipleSelectorDone(_ item:UIBarButtonItem) {
-        _ = navigationController?.popViewController(animated: true)
-    }
-    
-    
     /*
      // MARK: - Navigation
      

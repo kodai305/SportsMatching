@@ -113,7 +113,11 @@ class BaseFormViewController: FormViewController {
         return false
     }
     
-    
+    //　複数選択可能な項目で表示されるViewにおいて
+    // 右上の「Done」ボタンをタップした時の処理
+    @objc func multipleSelectorDone(_ item:UIBarButtonItem) {
+        _ = navigationController?.popViewController(animated: true)
+    }
     
 
     /*

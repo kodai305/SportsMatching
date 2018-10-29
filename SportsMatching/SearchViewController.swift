@@ -18,7 +18,7 @@ class SearchViewController: BaseFormViewController {
         super.viewDidLoad()
         
         form +++ Section(header: "必須項目", footer: "すべての項目を入力してください")
-            <<< ActionSheetRow<String>("category") {
+            <<< ActionSheetRow<String>("Category") {
                 $0.title = "カテゴリ"
                 $0.selectorTitle = "チームのカテゴリーを選択"
                 $0.options = ["ミニバス", "ジュニア", "社会人", "クラブチーム"]
@@ -26,7 +26,7 @@ class SearchViewController: BaseFormViewController {
                 .onPresent { from, to in
                     to.popoverPresentationController?.permittedArrowDirections = .up
             }
-            <<< PushRow<String>("prefecture") {
+            <<< PushRow<String>("Prefecture") {
                 $0.title = "都道府県"
                 $0.options = ["北海道", "青森県", "岩手県", "宮城県", "秋田県",
                               "山形県", "福島県", "茨城県", "栃木県", "群馬県",
@@ -54,6 +54,22 @@ class SearchViewController: BaseFormViewController {
                         default: return ""
                         }
                     }
+            }
+            <<< ActionSheetRow<String>("ApplyGender") {
+                $0.title = "募集している性別"
+                $0.selectorTitle = "チームが募集している性別を選択"
+                $0.options = ["不問", "男性", "女性"]
+                }
+                .onPresent { from, to in
+                    to.popoverPresentationController?.permittedArrowDirections = .up
+            }
+            <<< MultipleSelectorRow<String>("Day") {
+                $0.title = "参加希望曜日"
+                $0.selectorTitle = "参加したい曜日を選択"
+                $0.options = ["いつでも","月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日", "日曜日"]
+                }
+                .onPresent { from, to in
+                    to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.daySelectorDone(_:)))
         }
 
         // Do any additional setup after loading the view.
@@ -71,8 +87,15 @@ class SearchViewController: BaseFormViewController {
             // タグ設定済みの全てのRowの値を取得
             let values = form.values()
             // Rowの値を取得して遷移先の変数に設定
-            nextView.category = values["category"] as? String
-            nextView.prefecture = values["prefecture"] as? String
+            nextView.category = values["Category"] as? String
+            nextView.prefecture = values["Prefecture"] as? String
+            nextView.applyGender = values["ApplyGender"] as? String
+            // 「いつでも」が選択されている場合、全ての曜日を検索条件として渡す
+            if Array(values["Day"] as! Set<String>).contains("いつでも"){
+                nextView.day = ["月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日", "日曜日"]
+            } else {
+                nextView.day = Array(values["Day"] as! Set<String>)
+            }
         }
     }
     
@@ -80,17 +103,48 @@ class SearchViewController: BaseFormViewController {
         if identifier == "toResultViewController" {
             // タグ設定済みの全てのRowの値を取得
             let values = form.values()
-            if values["category"].unsafelyUnwrapped == nil {
+            // 選択されていない項目がある場合、遷移しないでアラートを出す
+            if values["Category"].unsafelyUnwrapped == nil {
                 SVProgressHUD.showError(withStatus: "種目名を選択して下さい")
                 return false
-            }
-            if values["prefecture"].unsafelyUnwrapped == nil {
+            } else if values["Prefecture"].unsafelyUnwrapped == nil {
                 SVProgressHUD.showError(withStatus: "都道府県を選択して下さい")
+                return false
+            } else if values["ApplyGender"].unsafelyUnwrapped == nil {
+                SVProgressHUD.showError(withStatus: "募集している性別を選択して下さい")
+                return false
+            } else if values["Day"].unsafelyUnwrapped == nil {
+                SVProgressHUD.showError(withStatus: "参加希望曜日を選択して下さい")
                 return false
             }
             return true
         }
         return false
+    }
+    
+    //　曜日選択Viewの右上のボタンの処理
+    @objc func daySelectorDone(_ item:UIBarButtonItem) {
+        // 選択された曜日を取得
+        let selectedDays = Array(form.values()["Day"] as! Set<String>)
+        // 「いつでも」といずれかの曜日が同時に選択されたいる場合アラートを出す
+        if selectedDays.contains("いつでも"){
+            // いずれかの曜日が選ばれた場合にtrue(条件文が汚い…)
+            if selectedDays.contains("月曜日") || selectedDays.contains("火曜日") || selectedDays.contains("水曜日") || selectedDays.contains("木曜日") || selectedDays.contains("金曜日") || selectedDays.contains("土曜日") || selectedDays.contains("日曜日") {
+                let alert: UIAlertController = UIAlertController(title: "「いつでも」は単独で使用して下さい", message: "", preferredStyle:  UIAlertControllerStyle.alert)
+                // OKボタン
+                let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+                    (action: UIAlertAction!) -> Void in
+                    //　アラートを閉じる
+                    alert.dismiss(animated: true, completion: nil)
+                    return
+                })
+                // UIAlertControllerにActionを追加
+                alert.addAction(defaultAction)
+                // Alertを表示
+                present(alert, animated: true, completion: nil)
+            }
+        }
+        _ = navigationController?.popViewController(animated: true)
     }
 
     /*
