@@ -74,14 +74,14 @@ class BaseFormViewController: FormViewController {
         postDetail.Prefecture = values["Prefecture"] as? String
         postDetail.Place = values["Place"] as? String
         postDetail.ApplyGender = values["ApplyGender"] as? String
-        postDetail.Timezone = Array(values["Timezone"] as! Set<String>)
+        postDetail.Day = Array(values["Day"] as! Set<String>)
         postDetail.Image = UIImageJPEGRepresentation(selectedImgae, 0.1)!
         postDetail.Position = values["Position"].unsafelyUnwrapped == nil ? Array() : Array(values["Position"] as! Set<String>)
         postDetail.ApplyLevel = values["ApplyLevel"].unsafelyUnwrapped == nil ? Array() : Array(values["ApplyLevel"] as! Set<String>)
         postDetail.GenderRatio = values["GenderRatio"].unsafelyUnwrapped == nil ? "" : values["GenderRatio"] as! String
         postDetail.TeamLevel = values["TeamLevel"].unsafelyUnwrapped == nil ? "" : values["TeamLevel"] as! String
         postDetail.NumMembers = values["NumMembers"].unsafelyUnwrapped == nil ? 0 : values["NumMembers"] as! Int
-        postDetail.Day = values["Day"].unsafelyUnwrapped == nil ? Array() : Array(values["Day"] as! Set<String>)
+        postDetail.Timezone = values["Timezone"].unsafelyUnwrapped == nil ? Array() : Array(values["Timezone"] as! Set<String>)
         postDetail.MainAge = values["MainAge"].unsafelyUnwrapped == nil ? Array() : Array(values["MainAge"] as! Set<String>)
         postDetail.Comments = values["Comments"].unsafelyUnwrapped == nil ? "" : values["Comments"] as! String
         let data = try? JSONEncoder().encode(postDetail)

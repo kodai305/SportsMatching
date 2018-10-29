@@ -71,8 +71,8 @@ class SearchViewController: BaseFormViewController {
             // タグ設定済みの全てのRowの値を取得
             let values = form.values()
             // Rowの値を取得して遷移先の変数に設定
-            nextView.category = values["category"] as! String
-            nextView.prefecture = values["prefecture"] as! String
+            nextView.category = values["category"] as? String
+            nextView.prefecture = values["prefecture"] as? String
         }
     }
     

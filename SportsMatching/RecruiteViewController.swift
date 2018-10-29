@@ -72,10 +72,10 @@ class RecruiteViewController: BaseFormViewController {
                 .onPresent { from, to in
                     to.popoverPresentationController?.permittedArrowDirections = .up
             }
-            <<< MultipleSelectorRow<String>("Timezone") {
-                $0.title = "活動時間帯"
-                $0.selectorTitle = "活動時間帯(複数選択可)"
-                $0.options = ["午前", "午後", "夜"]
+            <<< MultipleSelectorRow<String>("Day") {
+                $0.title = "開催曜日"
+                $0.selectorTitle = "主に開催している曜日を選択"
+                $0.options = ["月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日", "日曜日"]
                 }
                 .onPresent { from, to in
                     to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
@@ -124,11 +124,10 @@ class RecruiteViewController: BaseFormViewController {
                 $0.title = "チームの人数"
                 $0.placeholder = "1回あたりの目安"
             }
-                
-            <<< MultipleSelectorRow<String>("Day") {
-                $0.title = "開催曜日"
-                $0.selectorTitle = "主に開催している曜日を選択"
-                $0.options = ["月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日", "日曜日"]
+            <<< MultipleSelectorRow<String>("Timezone") {
+                $0.title = "活動時間帯"
+                $0.selectorTitle = "活動時間帯(複数選択可)"
+                $0.options = ["午前", "午後", "夜"]
                 }
                 .onPresent { from, to in
                     to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
@@ -171,8 +170,8 @@ class RecruiteViewController: BaseFormViewController {
         } else if Values["ApplyGender"].unsafelyUnwrapped == nil {
             SVProgressHUD.showError(withStatus: "性別を選択して下さい")
             return
-        } else if Values["Timezone"].unsafelyUnwrapped == nil {
-            SVProgressHUD.showError(withStatus: "活動時間帯を選択して下さい")
+        } else if Values["Day"].unsafelyUnwrapped == nil {
+            SVProgressHUD.showError(withStatus: "活動曜日を選択して下さい")
             return
         } else if Values["Image"].unsafelyUnwrapped == nil {
             SVProgressHUD.showError(withStatus: "活動画像を選択して下さい")
@@ -209,14 +208,14 @@ class RecruiteViewController: BaseFormViewController {
             "prefecture"  : Values["Prefecture"] as! String,
             "place"       : Values["Place"] as! String,
             "applyGender" : Values["ApplyGender"] as! String,
-            "timezone"    : Array(Values["Timezone"] as! Set<String>),
+            "day"         : Array(Values["Day"] as! Set<String>),
             //ここまでは必須項目、ここから下はnilチェックが必要
             "position"    : Values["Position"].unsafelyUnwrapped == nil ? Array() : Array(Values["Position"] as! Set<String>),
             "applyLevel"  : Values["ApplyLevel"].unsafelyUnwrapped == nil ? Array() : Array(Values["ApplyLevel"] as! Set<String>),
             "genderRatio" : Values["GenderRatio"].unsafelyUnwrapped == nil ? "" : Values["GenderRatio"] as! String,
             "teamLevel"   : Values["TeamLevel"].unsafelyUnwrapped == nil ? "" : Values["TeamLevel"] as! String,
             "numMembers"  : Values["NumMembers"].unsafelyUnwrapped == nil ? 0 : Values["NumMembers"] as! Int,
-            "day"         : Values["Day"].unsafelyUnwrapped == nil ? Array() : Array(Values["Day"] as! Set<String>),
+            "timezone"    : Values["Timezone"].unsafelyUnwrapped == nil ? Array() : Array(Values["Timezone"] as! Set<String>),
             "mainAge"     : Values["MainAge"].unsafelyUnwrapped == nil ? Array() : Array(Values["MainAge"] as! Set<String>),
             "comments"    : Values["Comments"].unsafelyUnwrapped == nil ? "" : Values["Comments"] as! String
         ]) { err in

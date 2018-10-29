@@ -82,9 +82,9 @@ class SearchResultDetailViewController: BaseFormViewController{
                 $0.value = self.postDoc.data()["applyGender"] as? String
                 $0.baseCell.isUserInteractionEnabled = false
             }
-            <<< TextRow("Timezone") {
-                $0.title = "活動時間帯"
-                $0.value = self.ArraytoSting(array: postDoc.data()["timezone"] as! Array<String>)
+            <<< TextRow("Day") {
+                $0.title = "開催曜日"
+                $0.value = self.ArraytoSting(array: postDoc.data()["day"] as! Array<String>)
                 $0.baseCell.isUserInteractionEnabled = false
             }
             <<< TextRow("Position") {
@@ -112,10 +112,9 @@ class SearchResultDetailViewController: BaseFormViewController{
                 $0.value = String(self.postDoc.data()["numMembers"] as! Int)
                 $0.baseCell.isUserInteractionEnabled = false
             }
-            
-            <<< TextRow("Day") {
-                $0.title = "開催曜日"
-                $0.value = self.ArraytoSting(array: postDoc.data()["day"] as! Array<String>)
+            <<< TextRow("Timezone") {
+                $0.title = "活動時間帯"
+                $0.value = self.ArraytoSting(array: postDoc.data()["timezone"] as! Array<String>)
                 $0.baseCell.isUserInteractionEnabled = false
             }
             <<< TextRow("MainAge") {

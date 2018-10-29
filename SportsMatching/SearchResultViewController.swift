@@ -169,17 +169,17 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
         cell.GenderLabel.sizeToFit()
         cell.GenderLabel.frame.size.width = cell.ImageView.frame.origin.x - (cell.GenderLabel.frame.origin.x + 5)
         
-        let timezone = LoadedDocumentArray[indexPath.row].data()["timezone"] as! Array<String>
+        let days = LoadedDocumentArray[indexPath.row].data()["day"] as! Array<String>
         var string:String!
-        for i in 0 ..< timezone.count {
-            string = i == 0 ? timezone[i] : timezone[i] + "," + string
+        for i in 0 ..< days.count {
+            string = i == 0 ? days[i] : string + "," + days[i]
         }
-        cell.TimezoneLabel.text = "活動時間帯　: " + string
-        cell.TimezoneLabel.font = UIFont.systemFont(ofSize: UIFont.systemFontSize)
-        cell.TimezoneLabel.frame.origin.x = 30
-        cell.TimezoneLabel.center.y = self.view.frame.height / 21 * 5
-        cell.TimezoneLabel.sizeToFit()
-        cell.TimezoneLabel.frame.size.width = cell.ImageView.frame.origin.x - (cell.TimezoneLabel.frame.origin.x + 5)
+        cell.DayLabel.text = "活動曜日　　: " + string
+        cell.DayLabel.font = UIFont.systemFont(ofSize: UIFont.systemFontSize)
+        cell.DayLabel.frame.origin.x = 30
+        cell.DayLabel.center.y = self.view.frame.height / 21 * 5
+        cell.DayLabel.sizeToFit()
+        cell.DayLabel.frame.size.width = cell.ImageView.frame.origin.x - (cell.DayLabel.frame.origin.x + 5)
         
         let updatedtime = LoadedDocumentArray[indexPath.row].data()["updateTime"] as! String
         cell.UpdatedTimeLabel.text = updatedtime
