@@ -181,7 +181,6 @@ class SearchResultDetailViewController: BaseFormViewController{
         } else { // 二重応募の場合
             //  UIAlertControllerクラスのインスタンスを生成
             let alert: UIAlertController = UIAlertController(title: "このチームには応募済みです", message: "", preferredStyle:  UIAlertControllerStyle.alert)
-            
             // OKボタン
             let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
                 (action: UIAlertAction!) -> Void in
@@ -193,7 +192,6 @@ class SearchResultDetailViewController: BaseFormViewController{
             alert.addAction(defaultAction)
             // Alertを表示
             present(alert, animated: true, completion: nil)
-            //return
         }
     }
 

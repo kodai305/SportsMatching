@@ -117,6 +117,8 @@ class SearchViewController: BaseFormViewController {
                 SVProgressHUD.showError(withStatus: "参加希望曜日を選択して下さい")
                 return false
             }
+            // 検索条件が全て選択されている時、遷移
+            SVProgressHUD.show(withStatus: "検索中")
             return true
         }
         return false

@@ -15,7 +15,6 @@ import FirebaseMessaging
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
-import SVProgressHUD
 
 import FirebaseUI
 import TwitterKit

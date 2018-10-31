@@ -9,7 +9,6 @@
 import UIKit
 import Firebase
 import FirebaseAuth
-import SVProgressHUD
 import FirebaseUI
 
 class TopViewController: UIViewController,FUIAuthDelegate {

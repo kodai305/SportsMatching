@@ -41,10 +41,7 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
         // テーブルのサイズを画面サイズに合わせる
         self.tableView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         
-        SVProgressHUD.show(withStatus: "検索中")
-        
         let db = Firestore.firestore()
-        
         // postsコレクションから検索条件に一致するドキュメントを取得
         // 選択肢が複数ある活動曜日に関してはここでは絞り込まない
         db.collection("posts")
