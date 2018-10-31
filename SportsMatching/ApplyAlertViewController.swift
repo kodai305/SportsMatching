@@ -119,6 +119,7 @@ class ApplyAlertViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.edgesForExtendedLayout = []
+        self.view.backgroundColor = UIColor(hex: "FFFFFF", alpha: 0.4)
         //　アラートのレイアウト
         self.AlertUIView.frame =
             CGRect(x: self.view.frame.width * 1 / 20, y: self.view.frame.height / 20, width: self.view.frame.width * 9 / 10, height: self.view.frame.height * 9 / 20)
@@ -167,8 +168,6 @@ class ApplyAlertViewController: BaseViewController {
     func addApplyHistoryArray(postID: String) {
         var StubApplyHistory:[String] = []
         let defaults = UserDefaults.standard
-        // XXX: 2回応募できないようにする必要がある？
-        
         // 今までの応募履歴を取得
         if defaults.value(forKey: "ApplyHistory") != nil {
             StubApplyHistory = defaults.value(forKey: "ApplyHistory") as! [String]

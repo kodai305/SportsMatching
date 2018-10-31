@@ -89,6 +89,7 @@ class CreateProfileViewController: FormViewController {
     
     
     @IBAction func saveUserProfileButtonPushed(_ sender: Any) {
+        SVProgressHUD.show(withStatus: "登録中")
         // タグ設定済みの全てのRowの値を取得
         let values = form.values()
         // 入力値の確認
@@ -158,7 +159,7 @@ class CreateProfileViewController: FormViewController {
         // UIImageJPEGRepresentationでUIImageをNSDataに変換して格納
         if var data = UIImageJPEGRepresentation(UIImgae, ImageShrinkRatio){
             //画像のファイルサイズが1024*1024/2bytes以下になるまで縮小係数を調整
-            while data.count > 1024 * 1024 / 2{
+            while data.count > 1024 * 1024 {
                 ImageShrinkRatio = ImageShrinkRatio - 0.1
                 data = UIImageJPEGRepresentation(UIImgae, ImageShrinkRatio)!
             }

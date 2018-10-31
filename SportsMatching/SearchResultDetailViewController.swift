@@ -12,7 +12,6 @@ import Eureka
 import FirebaseCore
 import FirebaseFunctions
 import FirebaseFirestore
-import SVProgressHUD
 
 class SearchResultDetailViewController: BaseFormViewController{
     //検索結果一覧からデータを受け取る変数
@@ -136,44 +135,84 @@ class SearchResultDetailViewController: BaseFormViewController{
         //プロフィールのUserdefaultsの有無で判断
         let defaults = UserDefaults.standard
         guard defaults.data(forKey: "profile") != nil else {
-            //プロフィールが存在しない場合
-            SVProgressHUD.showError(withStatus: "応募にはプロフィールの作成が必要です")
-            // マイページタブのViewControllerを取得する
-            let viewController = self.tabBarController?.viewControllers![0] as! UINavigationController
-            // マイページタブを選択済みにする
-            self.tabBarController?.selectedViewController = viewController
+            // プロフィールが存在しない場合
+            // UIAlertControllerクラスのインスタンスを生成
+            let alert: UIAlertController = UIAlertController(title: "応募するにはプロフィールの作成が必要です", message: "マイページに移動しますか？", preferredStyle:  UIAlertControllerStyle.alert)
+            // OKボタン
+            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+                (action: UIAlertAction!) -> Void in
+                // マイページタブのViewControllerを取得する
+                let viewController = self.tabBarController?.viewControllers![0] as! UINavigationController
+                // マイページタブを選択済みにする
+                self.tabBarController?.selectedViewController = viewController
+                return
+            })
+            // キャンセルボタン
+            let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{
+                (action: UIAlertAction!) -> Void in
+                //　アラートを閉じる
+                alert.dismiss(animated: true, completion: nil)
+                return
+            })
+            // UIAlertControllerにActionを追加
+            alert.addAction(cancelAction)
+            alert.addAction(defaultAction)
+            // Alertを表示
+            present(alert, animated: true, completion: nil)
             return
         }
         //プロフィールが作成済みの場合
         print("Profile exists")
-        // アラートを出す前にtabbarを非表示にする
-        self.tabBarController?.tabBar.isHidden = true
-        // ポップアップを出して応募メッセージ入力フォーマットを出す
-        // 次のビューのインスタンスを生成し値を渡す。
         let postID = self.postDoc.data()["postUser"] as! String
-        let secondView = ApplyAlertViewController()
-        secondView.postID = postID
-        
-        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let next = storyboard.instantiateViewController(withIdentifier: "ApplyAlert") as! ApplyAlertViewController
-        next.postID = postID
-        self.present(next,animated: true, completion: nil)
-        
+        // 二重応募になっていないかチェック
+        if checkApplyHistoryArray(postID: postID) {
+            // 二重応募でない場合
+            // アラートを出す前にtabbarを非表示にする
+            self.tabBarController?.tabBar.isHidden = true
+            // ポップアップを出して応募メッセージ入力フォーマットを出す
+            // 次のビューのインスタンスを生成し値を渡す。
+            let secondView = ApplyAlertViewController()
+            secondView.postID = postID
+            
+            let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let next = storyboard.instantiateViewController(withIdentifier: "ApplyAlert") as! ApplyAlertViewController
+            next.postID = postID
+            self.present(next,animated: true, completion: nil)
+        } else { // 二重応募の場合
+            //  UIAlertControllerクラスのインスタンスを生成
+            let alert: UIAlertController = UIAlertController(title: "このチームには応募済みです", message: "", preferredStyle:  UIAlertControllerStyle.alert)
+            
+            // OKボタン
+            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+                (action: UIAlertAction!) -> Void in
+                //　アラートを閉じる
+                alert.dismiss(animated: true, completion: nil)
+                return
+            })
+            // UIAlertControllerにActionを追加
+            alert.addAction(defaultAction)
+            // Alertを表示
+            present(alert, animated: true, completion: nil)
+            //return
+        }
     }
 
-    func addApplyHistoryArray(postID: String) {
+    // 二重応募になっていないかチェック
+    // 二重応募の場合はfalseを返す
+    func checkApplyHistoryArray(postID: String) -> Bool{
         var StubApplyHistory:[String] = []
         let defaults = UserDefaults.standard
-        // XXX: 2回応募できないようにする必要がある？
-        
         // 今までの応募履歴を取得
         if defaults.value(forKey: "ApplyHistory") != nil {
             StubApplyHistory = defaults.value(forKey: "ApplyHistory") as! [String]
-            StubApplyHistory.insert(postID, at: 0)
-            defaults.set(StubApplyHistory, forKey: "ApplyHistory")
+            // 応募履歴に応募しようとしている投稿者IDが含まれる場合
+            if StubApplyHistory.contains(postID) {
+                return false
+            } else { //　応募履歴に応募しようとしている投稿者IDが含まれない場合
+                return true
+            }
         } else { //応募履歴がない場合
-            StubApplyHistory.append(postID)
-            defaults.set(StubApplyHistory, forKey: "ApplyHistory")
+            return true
         }
     }
     
@@ -181,7 +220,7 @@ class SearchResultDetailViewController: BaseFormViewController{
     func ArraytoSting(array: Array<String>) -> String?{
         if array.isEmpty{
             return nil
-        }else{
+        } else {
             var string:String!
             for i in 0 ..< array.count {
                 string = i == 0 ? array[i] : array[i] + "," + string
