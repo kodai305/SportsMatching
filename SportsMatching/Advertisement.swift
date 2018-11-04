@@ -2,10 +2,11 @@
 //  Advertisement.swift
 //  
 //
-//  Created by 高木広大 on 2018/11/04.
+//  Created by 高木広大 on 2018/11/05.
 //
 
 import Foundation
+
 import GoogleMobileAds
 
 class Advertisement: UIViewController, GADBannerViewDelegate {
@@ -13,7 +14,7 @@ class Advertisement: UIViewController, GADBannerViewDelegate {
     
     //let admob_id = "XXX" // 本番用
     let admob_id = "ca-app-pub-3940256099942544/2934735716" // 練習用
-
+    
     func addBannerViewToView(_ bannerView: GADBannerView) {
         bannerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(bannerView)
