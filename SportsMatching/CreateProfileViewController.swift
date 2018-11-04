@@ -13,7 +13,7 @@ import FirebaseFirestore
 import FirebaseStorage
 import SVProgressHUD
 
-class CreateProfileViewController: FormViewController {
+class CreateProfileViewController: BaseFormViewController {
     // UIDの読み取り
     let myUID: String = UserDefaults.standard.string(forKey: "UID")!
     // fcmTokenの読み取り
