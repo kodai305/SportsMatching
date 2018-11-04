@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SerachResultCell: UITableViewCell {
+class SearchResultCell: UITableViewCell {
 
     @IBOutlet weak var ImageView: UIImageView!
     

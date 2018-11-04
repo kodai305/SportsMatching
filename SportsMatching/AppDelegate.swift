@@ -28,10 +28,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         super.init()
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        // setup for admob
+        GADMobileAds.configure(withApplicationID: "ca-app-pub-1379462117325805~1477458463")
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
         
         // setup firestore
         // Tell Cloud Firestore to use the new Timestamp object

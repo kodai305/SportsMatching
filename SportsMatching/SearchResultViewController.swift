@@ -111,9 +111,9 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
     
     func tableView(_ table: UITableView,cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // 設定したIDでUITableViewCell のインスタンスを生成
-        let cell = table.dequeueReusableCell(withIdentifier: "SerachResultCell",
-                                             for: indexPath) as! SerachResultCell
-
+        let cell = table.dequeueReusableCell(withIdentifier: "SearchResultCell",
+                                             for: indexPath) as! SearchResultCell
+                                                                 
         //画像をfirestoreから取得
         // XXX: ファイルが有るかをチェックとかが必要？
         let storage   = Storage.storage()

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		470DDE782144A08600D774B9 /* MessageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470DDE772144A08600D774B9 /* MessageInfo.swift */; };
+		471A6311218EBC940090628E /* Advertisement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471A6310218EBC940090628E /* Advertisement.swift */; };
 		4735B0C22115DBC6009D1323 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B0C12115DBC6009D1323 /* AppDelegate.swift */; };
 		4735B0C42115DBC6009D1323 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B0C32115DBC6009D1323 /* BaseViewController.swift */; };
 		4735B0C72115DBC6009D1323 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4735B0C52115DBC6009D1323 /* Main.storyboard */; };
@@ -34,7 +35,7 @@
 		CEA8C6D2213D7FE80020D2F1 /* EditRecruiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8C6D1213D7FE80020D2F1 /* EditRecruiteViewController.swift */; };
 		CEAEE8BC214B090B00323B12 /* PostDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAEE8BB214B090B00323B12 /* PostDetail.swift */; };
 		CEAEE8BE214B71B400323B12 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAEE8BD214B71B400323B12 /* PostDetailViewController.swift */; };
-		CEBB289A211A9FBD00C7FFFE /* SerachResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB2899211A9FBD00C7FFFE /* SerachResultCell.swift */; };
+		CEBB289A211A9FBD00C7FFFE /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB2899211A9FBD00C7FFFE /* SearchResultCell.swift */; };
 		CEBB28A0211AC05C00C7FFFE /* SearchResultDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB289F211AC05C00C7FFFE /* SearchResultDetailViewController.swift */; };
 		CEC5D79F217416D1003F700C /* Budge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC5D79E217416D0003F700C /* Budge.swift */; };
 		CEC5D7AE2174919E003F700C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC5D7AD2174919E003F700C /* MessageUI.framework */; };
@@ -47,6 +48,7 @@
 /* Begin PBXFileReference section */
 		381F59A744A15CBC3C4439CC /* Pods-SportsMatching.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsMatching.release.xcconfig"; path = "Pods/Target Support Files/Pods-SportsMatching/Pods-SportsMatching.release.xcconfig"; sourceTree = "<group>"; };
 		470DDE772144A08600D774B9 /* MessageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInfo.swift; sourceTree = "<group>"; };
+		471A6310218EBC940090628E /* Advertisement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Advertisement.swift; path = /Users/kodai/SportsMatching_2/SportsMatching/Advertisement.swift; sourceTree = "<absolute>"; };
 		4735B0BE2115DBC6009D1323 /* SportsMatching.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportsMatching.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4735B0C12115DBC6009D1323 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4735B0C32115DBC6009D1323 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -77,7 +79,7 @@
 		CEA8C6D1213D7FE80020D2F1 /* EditRecruiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecruiteViewController.swift; sourceTree = "<group>"; };
 		CEAEE8BB214B090B00323B12 /* PostDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetail.swift; sourceTree = "<group>"; };
 		CEAEE8BD214B71B400323B12 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
-		CEBB2899211A9FBD00C7FFFE /* SerachResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerachResultCell.swift; sourceTree = "<group>"; };
+		CEBB2899211A9FBD00C7FFFE /* SearchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		CEBB289F211AC05C00C7FFFE /* SearchResultDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultDetailViewController.swift; sourceTree = "<group>"; };
 		CEC5D79E217416D0003F700C /* Budge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Budge.swift; sourceTree = "<group>"; };
 		CEC5D7AD2174919E003F700C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -123,9 +125,11 @@
 			children = (
 				4735B10E21231B6D009D1323 /* SportsMatching.entitlements */,
 				4735B0C12115DBC6009D1323 /* AppDelegate.swift */,
+				471A6310218EBC940090628E /* Advertisement.swift */,
 				4735B0C32115DBC6009D1323 /* BaseViewController.swift */,
 				4735B11E21295CA3009D1323 /* BaseFormViewController.swift */,
 				CE9A3E29215B7A0E001400C4 /* TopViewController.swift */,
+				CEF8DD96217DE21900A31CBB /* EditedAuthViewController.swift */,
 				47F038C02143A43800A02366 /* TopTabBarViewController.swift */,
 				CEA5CF942123BAFE00DE1FEE /* MyPageViewController.swift */,
 				CEC5D7AF2174926D003F700C /* TutorialViewController.swift */,
@@ -136,13 +140,12 @@
 				CEA8C6D1213D7FE80020D2F1 /* EditRecruiteViewController.swift */,
 				CEAEE8BB214B090B00323B12 /* PostDetail.swift */,
 				CEC5D79E217416D0003F700C /* Budge.swift */,
-				CEF8DD96217DE21900A31CBB /* EditedAuthViewController.swift */,
 				4735B0C52115DBC6009D1323 /* Main.storyboard */,
 				CEDCC4F7211BD3AA001DC758 /* SearchViewController.swift */,
 				4735B0DC211896FB009D1323 /* SearchResultViewController.swift */,
 				CEBB289F211AC05C00C7FFFE /* SearchResultDetailViewController.swift */,
 				4783696A214F78E5000B13AD /* ApplyAlertViewController.swift */,
-				CEBB2899211A9FBD00C7FFFE /* SerachResultCell.swift */,
+				CEBB2899211A9FBD00C7FFFE /* SearchResultCell.swift */,
 				4735B100211AEF2C009D1323 /* MailBoxViewController.swift */,
 				4735B102211AF1C4009D1323 /* MailBoxRecruiteViewController.swift */,
 				4735B104211AF34A009D1323 /* MailBoxSearchViewController.swift */,
@@ -263,7 +266,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SportsMatching/Pods-SportsMatching-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-SportsMatching/Pods-SportsMatching-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
@@ -320,7 +323,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SportsMatching/Pods-SportsMatching-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SportsMatching/Pods-SportsMatching-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6A80389C1D0DD6BD8E6E64BA /* [CP] Copy Pods Resources */ = {
@@ -329,7 +332,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SportsMatching/Pods-SportsMatching-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-SportsMatching/Pods-SportsMatching-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAuthUI.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseFacebookAuthUI.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseGoogleAuthUI.bundle",
@@ -350,7 +353,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SportsMatching/Pods-SportsMatching-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SportsMatching/Pods-SportsMatching-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		88BAC94E23D729A02B0761E4 /* [CP] Check Pods Manifest.lock */ = {
@@ -395,10 +398,11 @@
 				4735B103211AF1C4009D1323 /* MailBoxRecruiteViewController.swift in Sources */,
 				4735B105211AF34A009D1323 /* MailBoxSearchViewController.swift in Sources */,
 				CEC5D79F217416D1003F700C /* Budge.swift in Sources */,
+				471A6311218EBC940090628E /* Advertisement.swift in Sources */,
 				4735B0C42115DBC6009D1323 /* BaseViewController.swift in Sources */,
 				CEAEE8BE214B71B400323B12 /* PostDetailViewController.swift in Sources */,
 				CE9A3E2A215B7A0E001400C4 /* TopViewController.swift in Sources */,
-				CEBB289A211A9FBD00C7FFFE /* SerachResultCell.swift in Sources */,
+				CEBB289A211A9FBD00C7FFFE /* SearchResultCell.swift in Sources */,
 				4735B0C22115DBC6009D1323 /* AppDelegate.swift in Sources */,
 				CEC5D7B02174926D003F700C /* TutorialViewController.swift in Sources */,
 				CEF8DD97217DE21900A31CBB /* EditedAuthViewController.swift in Sources */,
