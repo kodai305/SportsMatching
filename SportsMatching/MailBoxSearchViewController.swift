@@ -27,7 +27,7 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
         self.tableView.emptyDataSetDelegate = self
         //セルの高さを設定
         self.tableView.rowHeight = 100
-        
+
         // Do any additional setup after loading the view.
     }
     

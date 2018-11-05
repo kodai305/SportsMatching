@@ -12,8 +12,9 @@ import FirebaseFunctions
 import FirebaseFirestore
 import FirebaseStorage
 import SVProgressHUD
+import GoogleMobileAds
 
-class MailViewController: MessagesViewController {
+class MailViewController: MessagesViewController, GADBannerViewDelegate {
     lazy var functions = Functions.functions()
     // メッセージ一覧画面から受け取る値
     var partnerUID = ""
@@ -79,6 +80,8 @@ class MailViewController: MessagesViewController {
         // メッセージ入力時に一番下までスクロール
         scrollsToBottomOnKeybordBeginsEditing = true // default false
         maintainPositionOnKeyboardFrameChanged = true // default false
+
+        displayAdvertisement()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -223,6 +226,62 @@ class MailViewController: MessagesViewController {
         }
     }
 
+    //let admob_id = "XXX" // 本番用
+    let admob_id = "ca-app-pub-3940256099942544/2934735716" // 練習用
+
+    /// Tells the delegate an ad request loaded an ad.
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        print("adViewDidReceiveAd")
+    }
+    
+    /// Tells the delegate an ad request failed.
+    func adView(_ bannerView: GADBannerView,
+                didFailToReceiveAdWithError error: GADRequestError) {
+        print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
+    }
+    
+    /// Tells the delegate that a full-screen view will be presented in response
+    /// to the user clicking on an ad.
+    func adViewWillPresentScreen(_ bannerView: GADBannerView) {
+        print("adViewWillPresentScreen")
+    }
+    
+    /// Tells the delegate that the full-screen view will be dismissed.
+    func adViewWillDismissScreen(_ bannerView: GADBannerView) {
+        print("adViewWillDismissScreen")
+    }
+    
+    /// Tells the delegate that the full-screen view has been dismissed.
+    func adViewDidDismissScreen(_ bannerView: GADBannerView) {
+        print("adViewDidDismissScreen")
+    }
+    
+    
+    /// Tells the delegate that a user click will open another app (such as
+    /// the App Store), backgrounding the current app.
+    func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
+        print("adViewWillLeaveApplication")
+    }
+    
+    // 広告の表示
+    func displayAdvertisement() {
+        print("display Advertisement is called")
+        var bannerView = GADBannerView()
+        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        bannerView.adUnitID = admob_id
+
+        let navigationController: UINavigationController = UINavigationController()
+        let navigationHeight = navigationController.navigationBar.frame.size.height
+        bannerView.frame.origin = CGPoint(x:0, y: bannerView.frame.height)
+        bannerView.frame.size = CGSize(width:self.view.frame.width, height:navigationHeight + bannerView.frame.height + 20)
+
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+        bannerView.delegate = self
+        
+        self.view.addSubview(bannerView)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

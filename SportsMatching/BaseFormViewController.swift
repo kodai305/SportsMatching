@@ -10,8 +10,9 @@ import UIKit
 import FirebaseAuth
 import FirebaseStorage
 import Eureka
+import GoogleMobileAds
 
-class BaseFormViewController: FormViewController {
+class BaseFormViewController: FormViewController, GADBannerViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,7 @@ class BaseFormViewController: FormViewController {
         // Tabbar非選択時のアイコンの色を設定
         self.tabBarController?.tabBar.unselectedItemTintColor = UIColor(hex: "515A5A")
 
+        displayAdvertisement()
         // Do any additional setup after loading the view.
     }
 
@@ -119,6 +121,61 @@ class BaseFormViewController: FormViewController {
         _ = navigationController?.popViewController(animated: true)
     }
     
+    //let admob_id = "XXX" // 本番用
+    let admob_id = "ca-app-pub-3940256099942544/2934735716" // 練習用
+
+    /// Tells the delegate an ad request loaded an ad.
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        print("adViewDidReceiveAd")
+    }
+    
+    /// Tells the delegate an ad request failed.
+    func adView(_ bannerView: GADBannerView,
+                didFailToReceiveAdWithError error: GADRequestError) {
+        print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
+    }
+    
+    /// Tells the delegate that a full-screen view will be presented in response
+    /// to the user clicking on an ad.
+    func adViewWillPresentScreen(_ bannerView: GADBannerView) {
+        print("adViewWillPresentScreen")
+    }
+    
+    /// Tells the delegate that the full-screen view will be dismissed.
+    func adViewWillDismissScreen(_ bannerView: GADBannerView) {
+        print("adViewWillDismissScreen")
+    }
+    
+    /// Tells the delegate that the full-screen view has been dismissed.
+    func adViewDidDismissScreen(_ bannerView: GADBannerView) {
+        print("adViewDidDismissScreen")
+    }
+    
+    
+    /// Tells the delegate that a user click will open another app (such as
+    /// the App Store), backgrounding the current app.
+    func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
+        print("adViewWillLeaveApplication")
+    }
+    
+    // 広告の表示
+    func displayAdvertisement() {
+        print("display Advertisement is called")
+        var bannerView = GADBannerView()
+        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        bannerView.adUnitID = admob_id
+        
+        let tabBarController: UITabBarController = UITabBarController()
+        let tabBarHeight = tabBarController.tabBar.frame.size.height
+        bannerView.frame.origin = CGPoint(x:0, y:self.view.frame.size.height - tabBarHeight - bannerView.frame.height)
+        bannerView.frame.size = CGSize(width:self.view.frame.width, height:bannerView.frame.height)
+        
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+        bannerView.delegate = self
+        
+        self.view.addSubview(bannerView)
+    }
 
     /*
     // MARK: - Navigation
