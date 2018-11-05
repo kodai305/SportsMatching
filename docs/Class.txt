@@ -1,0 +1,80 @@
+@startuml
+
+'SportsMatching(仮)のクラス図
+
+UIView       <|-- BaseView
+UIView       <|-- TopView
+BaseView     <|-- TopTabBarView
+BaseView     <|-- TutorialView
+BaseView     <|-- RecruiteTopPageView
+BaseView     <|-- ApplyAlertView
+BaseView     <|-- MailBoxRecruiteView
+MailBoxRecruiteView --> Budge
+BaseView     <|-- MailBoxSearchView
+MailBoxSearchView --> Budge
+
+UIView       <|-- FormView
+FormView     <|-- BaseFormView
+BaseFormView --> PostDetail
+BaseFormView <|-- MyPageView
+MyPageView --> Profile
+BaseFormView <|-- CreateProfileView
+CreateProfileView --> Profile
+
+BaseFormView <|-- RecruiteView
+BaseFormView <|-- EditRecruiteView
+EditRecruiteView --> PostDetail
+BaseFormView <|-- SearchView
+BaseFormView <|-- SearchResultView
+BaseFormView <|-- SearchResultDetailView
+BaseFormView <|-- PostDetailView
+
+UIView       <|-- MessagesView
+MessagesView <|-- MailView
+
+UIView       <|-- ButtonBarPagerTabStripView 
+ButtonBarPagerTabStripView <|-- MailBoxView
+MailBoxView --> Budge
+FUIAuthPickerView <|-- EditedAuthView
+
+enum SearchResultCell {
+}
+enum PostDetail {
+}
+enum Profile {
+}
+enum Budge {
+}
+Interface UIView {
+}
+Interface FormView {
+}
+Interface FUIAuthPickerView {
+}
+class BaseView {
+}
+class BaseFormView {
+}
+class TopView {
+}
+class TopTabBarView {
+}
+class MyPageView {
+}
+class TutorialView {
+}
+class CreateProfileView {
+}
+class RecruiteTopPageView {
+}
+class RecruiteView {
+}
+class EditRecruiteView {
+}
+class SearchView {
+}
+class SearchResultView {
+}
+class SearchResultDetailView {
+}
+@enduml
