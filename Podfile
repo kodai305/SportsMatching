@@ -3,7 +3,7 @@ platform :ios, '11.0'
 target 'SportsMatching' do
   use_frameworks!
   pod 'Google-Mobile-Ads-SDK'
-  pod 'MessageKit'
+  pod 'MessageKit', '~> 1.0.0' 
   pod 'Firebase'
   pod 'Firebase/Auth'
   pod 'Firebase/Core'
