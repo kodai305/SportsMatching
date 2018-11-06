@@ -9,15 +9,17 @@
 import UIKit
 
 class SearchResultCell: UITableViewCell {
-
-    @IBOutlet weak var ImageView: UIImageView!
     
-
+    @IBOutlet weak var ImageView: UIImageView!
     @IBOutlet weak var TeamNameLabel: UILabel!
     @IBOutlet weak var CategoryLabel: UILabel!
+    
     @IBOutlet weak var PlaceLabel: UILabel!
+    
     @IBOutlet weak var GenderLabel: UILabel!
+    
     @IBOutlet weak var DayLabel: UILabel!
+    
     @IBOutlet weak var UpdatedTimeLabel: UILabel!
     
     override func awakeFromNib() {

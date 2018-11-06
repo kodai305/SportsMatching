@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		470DDE782144A08600D774B9 /* MessageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470DDE772144A08600D774B9 /* MessageInfo.swift */; };
-		471A6311218EBC940090628E /* Advertisement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471A6310218EBC940090628E /* Advertisement.swift */; };
 		4735B0C22115DBC6009D1323 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B0C12115DBC6009D1323 /* AppDelegate.swift */; };
 		4735B0C42115DBC6009D1323 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735B0C32115DBC6009D1323 /* BaseViewController.swift */; };
 		4735B0C72115DBC6009D1323 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4735B0C52115DBC6009D1323 /* Main.storyboard */; };
@@ -27,6 +26,7 @@
 		4783696B214F78E5000B13AD /* ApplyAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4783696A214F78E5000B13AD /* ApplyAlertViewController.swift */; };
 		47F038C12143A43800A02366 /* TopTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F038C02143A43800A02366 /* TopTabBarViewController.swift */; };
 		CE0A4543215734DB00FD5979 /* RecruiteTopPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0A4542215734DB00FD5979 /* RecruiteTopPageViewController.swift */; };
+		CE39E12C2191D94300FDD2F9 /* Advertisement.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE39E12B2191D94300FDD2F9 /* Advertisement.swift */; };
 		CE9A3E2A215B7A0E001400C4 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9A3E29215B7A0E001400C4 /* TopViewController.swift */; };
 		CEA5CF952123BAFE00DE1FEE /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA5CF942123BAFE00DE1FEE /* MyPageViewController.swift */; };
 		CEA6552C212EE89100C4B94A /* MailBoxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA6552B212EE89100C4B94A /* MailBoxCell.swift */; };
@@ -48,7 +48,6 @@
 /* Begin PBXFileReference section */
 		381F59A744A15CBC3C4439CC /* Pods-SportsMatching.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsMatching.release.xcconfig"; path = "Pods/Target Support Files/Pods-SportsMatching/Pods-SportsMatching.release.xcconfig"; sourceTree = "<group>"; };
 		470DDE772144A08600D774B9 /* MessageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInfo.swift; sourceTree = "<group>"; };
-		471A6310218EBC940090628E /* Advertisement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Advertisement.swift; path = /Users/kodai/SportsMatching_2/SportsMatching/Advertisement.swift; sourceTree = "<absolute>"; };
 		4735B0BE2115DBC6009D1323 /* SportsMatching.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportsMatching.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4735B0C12115DBC6009D1323 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4735B0C32115DBC6009D1323 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +70,7 @@
 		47F038C02143A43800A02366 /* TopTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTabBarViewController.swift; sourceTree = "<group>"; };
 		BFD345A2028EF0EB4BC8B892 /* Pods_SportsMatching.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SportsMatching.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE0A4542215734DB00FD5979 /* RecruiteTopPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruiteTopPageViewController.swift; sourceTree = "<group>"; };
+		CE39E12B2191D94300FDD2F9 /* Advertisement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Advertisement.swift; sourceTree = "<group>"; };
 		CE9A3E29215B7A0E001400C4 /* TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
 		CEA5CF942123BAFE00DE1FEE /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		CEA6552B212EE89100C4B94A /* MailBoxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailBoxCell.swift; sourceTree = "<group>"; };
@@ -125,7 +125,7 @@
 			children = (
 				4735B10E21231B6D009D1323 /* SportsMatching.entitlements */,
 				4735B0C12115DBC6009D1323 /* AppDelegate.swift */,
-				471A6310218EBC940090628E /* Advertisement.swift */,
+				CE39E12B2191D94300FDD2F9 /* Advertisement.swift */,
 				4735B0C32115DBC6009D1323 /* BaseViewController.swift */,
 				4735B11E21295CA3009D1323 /* BaseFormViewController.swift */,
 				CE9A3E29215B7A0E001400C4 /* TopViewController.swift */,
@@ -266,7 +266,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SportsMatching/Pods-SportsMatching-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-SportsMatching/Pods-SportsMatching-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
@@ -323,7 +323,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SportsMatching/Pods-SportsMatching-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SportsMatching/Pods-SportsMatching-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6A80389C1D0DD6BD8E6E64BA /* [CP] Copy Pods Resources */ = {
@@ -332,7 +332,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SportsMatching/Pods-SportsMatching-resources.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-SportsMatching/Pods-SportsMatching-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAuthUI.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseFacebookAuthUI.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseGoogleAuthUI.bundle",
@@ -353,7 +353,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SportsMatching/Pods-SportsMatching-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SportsMatching/Pods-SportsMatching-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		88BAC94E23D729A02B0761E4 /* [CP] Check Pods Manifest.lock */ = {
@@ -385,6 +385,7 @@
 				CEA6F7C1214509BD00271AA4 /* Profile.swift in Sources */,
 				4735B0CA2115DBC6009D1323 /* SportsMatching.xcdatamodeld in Sources */,
 				CEDCC4F8211BD3AA001DC758 /* SearchViewController.swift in Sources */,
+				CE39E12C2191D94300FDD2F9 /* Advertisement.swift in Sources */,
 				4783696B214F78E5000B13AD /* ApplyAlertViewController.swift in Sources */,
 				4735B101211AEF2C009D1323 /* MailBoxViewController.swift in Sources */,
 				CE0A4543215734DB00FD5979 /* RecruiteTopPageViewController.swift in Sources */,
@@ -398,7 +399,6 @@
 				4735B103211AF1C4009D1323 /* MailBoxRecruiteViewController.swift in Sources */,
 				4735B105211AF34A009D1323 /* MailBoxSearchViewController.swift in Sources */,
 				CEC5D79F217416D1003F700C /* Budge.swift in Sources */,
-				471A6311218EBC940090628E /* Advertisement.swift in Sources */,
 				4735B0C42115DBC6009D1323 /* BaseViewController.swift in Sources */,
 				CEAEE8BE214B71B400323B12 /* PostDetailViewController.swift in Sources */,
 				CE9A3E2A215B7A0E001400C4 /* TopViewController.swift in Sources */,
