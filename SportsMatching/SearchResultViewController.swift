@@ -47,7 +47,6 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
         db.collection("posts")
             .whereField("category", isEqualTo: self.category)
             .whereField("prefecture", isEqualTo: self.prefecture)
-            .whereField("applyGender", isEqualTo: self.applyGender)
             //.limit(to: 5)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
@@ -56,12 +55,17 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
                     for document in querySnapshot!.documents {
                         print("\(document.documentID) => \(document.data())")
                         print(String(describing: type(of: document.data())))
-                        // 取得した投稿の内、活動曜日に検索条件の曜日が含まれる場合、検索結果の配列に追加
+                        // 取得した投稿の内、活動曜日に検索条件の曜日が含まれるかつ
+                        // 募集している性別が不問、もしくはユーザーの性別と一致する投稿を検索結果の配列に追加
                         let activeDays = document.data()["day"] as! Array<String>
+                        let teamGender = document.data()["applyGender"] as! String
+                        print(teamGender)
                         for i in 0 ..< activeDays.count {
                             if self.day.contains(activeDays[i]){
-                                self.LoadedDocumentArray.append(document)
-                                break
+                                if teamGender == "不問" || teamGender == self.applyGender {
+                                    self.LoadedDocumentArray.append(document)
+                                    break
+                                }
                             }
                         }
                     }

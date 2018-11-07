@@ -26,7 +26,7 @@ class RecruiteViewController: BaseFormViewController {
             <<< ActionSheetRow<String>("Category") {
                 $0.title = "カテゴリ"
                 $0.selectorTitle = "チームのカテゴリーを選択"
-                $0.options = ["ミニバス", "ジュニア", "社会人", "クラブチーム"]
+                $0.options = ["ミニバス", "ジュニア", "社会人サークル", "クラブチーム"]
                 }
                 .onPresent { from, to in
                     to.popoverPresentationController?.permittedArrowDirections = .up
@@ -133,12 +133,18 @@ class RecruiteViewController: BaseFormViewController {
                     to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
             }
             <<< MultipleSelectorRow<String>("MainAge") {
-                $0.title = "メンバー年齢"
-                $0.selectorTitle = "メンバーの主な年代を選択(複数可)"
+                $0.title = "メンバーの年齢層"
+                $0.selectorTitle = "メンバーの主な年齢層を選択"
                 $0.options = ["10代", "20代", "30代", "40代", "50代", "60代以上"]
                 }
                 .onPresent { from, to in
                     to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
+                    to.sectionKeyForValue = { option in
+                        switch option {
+                        case "10代", "20代", "30代", "40代", "50代", "60代以上": return "複数選択可能"
+                        default: return ""
+                        }
+                    }
             }
         
         form +++ Section(header: "募集内容/連絡事項", footer: "不特定多数の方が見るため連絡先の掲載はお控えください")

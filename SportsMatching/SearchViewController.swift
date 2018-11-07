@@ -21,7 +21,7 @@ class SearchViewController: BaseFormViewController {
             <<< ActionSheetRow<String>("Category") {
                 $0.title = "カテゴリ"
                 $0.selectorTitle = "チームのカテゴリーを選択"
-                $0.options = ["ミニバス", "ジュニア", "社会人", "クラブチーム"]
+                $0.options = ["ミニバス", "ジュニア", "社会人サークル", "クラブチーム"]
                 }
                 .onPresent { from, to in
                     to.popoverPresentationController?.permittedArrowDirections = .up
@@ -56,9 +56,9 @@ class SearchViewController: BaseFormViewController {
                     }
             }
             <<< ActionSheetRow<String>("ApplyGender") {
-                $0.title = "募集している性別"
-                $0.selectorTitle = "チームが募集している性別を選択"
-                $0.options = ["不問", "男性", "女性"]
+                $0.title = "あなたの性別"
+                $0.selectorTitle = "あなたの性別を選択"
+                $0.options = ["男性", "女性"]
                 }
                 .onPresent { from, to in
                     to.popoverPresentationController?.permittedArrowDirections = .up
@@ -105,7 +105,7 @@ class SearchViewController: BaseFormViewController {
             let values = form.values()
             // 選択されていない項目がある場合、遷移しないでアラートを出す
             if values["Category"].unsafelyUnwrapped == nil {
-                SVProgressHUD.showError(withStatus: "種目名を選択して下さい")
+                SVProgressHUD.showError(withStatus: "カテゴリを選択して下さい")
                 return false
             } else if values["Prefecture"].unsafelyUnwrapped == nil {
                 SVProgressHUD.showError(withStatus: "都道府県を選択して下さい")

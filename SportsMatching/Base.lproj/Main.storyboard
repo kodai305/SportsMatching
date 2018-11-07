@@ -31,14 +31,14 @@
                                             <string key="content">新規投稿
 </string>
                                             <attributes>
-                                                <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <font key="NSFont" size="21" name="HiraginoSans-W3"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="6" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
-                                        <fragment content="新たらしい募集はこちら">
+                                        <fragment content="新らしい募集">
                                             <attributes>
-                                                <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <font key="NSFont" size="17" name="HiraginoSans-W3"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
@@ -62,14 +62,14 @@
                                             <string key="content">投稿の編集
 </string>
                                             <attributes>
-                                                <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <font key="NSFont" size="21" name="HiraginoSans-W3"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="7" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
-                                        <fragment content="投稿した募集の編集はこちら">
+                                        <fragment content="投稿した募集の編集">
                                             <attributes>
-                                                <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <font key="NSFont" size="16" name="HiraginoSans-W3"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="10" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
@@ -103,7 +103,7 @@ DQ
                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="7" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
-                                        <fragment content="投稿した募集の削除はこちら">
+                                        <fragment content="投稿した募集の削除">
                                             <attributes>
                                                 <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <font key="NSFont" size="16" name="HiraginoSans-W3"/>
@@ -554,18 +554,16 @@ DQ
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon" translatesAutoresizingMaskIntoConstraints="NO" id="CKP-yg-56n">
-                                <rect key="frame" x="87.5" y="163.5" width="200" height="200"/>
+                                <rect key="frame" x="117.5" y="263.5" width="140" height="140"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="KYU-MM-Yfb"/>
-                                    <constraint firstAttribute="width" constant="200" id="Pjc-uD-2dM"/>
-                                    <constraint firstAttribute="height" constant="200" id="aTj-pE-Oyi"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="m3q-OA-sAm"/>
+                                    <constraint firstAttribute="width" constant="140" id="Pjc-uD-2dM"/>
+                                    <constraint firstAttribute="height" constant="140" id="aTj-pE-Oyi"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.83137254900000002" green="0.31372549020000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="CKP-yg-56n" firstAttribute="centerY" secondItem="fw8-8O-DwC" secondAttribute="centerY" constant="-70" id="C0t-HI-oYD"/>
+                            <constraint firstItem="CKP-yg-56n" firstAttribute="centerY" secondItem="fw8-8O-DwC" secondAttribute="centerY" id="C0t-HI-oYD"/>
                             <constraint firstItem="CKP-yg-56n" firstAttribute="centerX" secondItem="fw8-8O-DwC" secondAttribute="centerX" id="OS6-ai-DGi"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LIj-Sf-X13"/>

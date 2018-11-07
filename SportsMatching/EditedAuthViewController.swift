@@ -41,8 +41,8 @@ class EditedAuthViewController: FUIAuthPickerViewController{
         
         // 画面中央のアイコン画像
         self.iconImageView.contentMode = UIViewContentMode.scaleAspectFit
-        self.iconImageView.frame.size = CGSize(width: 200, height: 200)
-        self.iconImageView.center = CGPoint(x: scrennSize.width / 2, y: scrennSize.height / 2 - 70)
+        self.iconImageView.frame.size = CGSize(width: 140, height: 140)
+        self.iconImageView.center = CGPoint(x: scrennSize.width / 2, y: scrennSize.height / 2)
         
         // レイアウトを設定
         googleAuthButton.frame.origin.y = self.iconImageView.frame.origin.y + self.iconImageView.frame.height

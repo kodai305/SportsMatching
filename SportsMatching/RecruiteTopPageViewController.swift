@@ -109,7 +109,7 @@ class RecruiteTopPageViewController: BaseViewController,FUIAuthDelegate {
         //　投稿がない場合、 確認のアラートを出す
         if defaults.data(forKey: "recruite") == nil {
             //  UIAlertControllerクラスのインスタンスを生成
-            let alert: UIAlertController = UIAlertController(title: "募集の履歴がありません", message: "新規投稿から募集してください", preferredStyle:  UIAlertControllerStyle.alert)
+            let alert: UIAlertController = UIAlertController(title: "メンバー募集の投稿がありません", message: "新規投稿から募集してください", preferredStyle:  UIAlertControllerStyle.alert)
             
             // OKボタン
             let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
@@ -135,7 +135,7 @@ class RecruiteTopPageViewController: BaseViewController,FUIAuthDelegate {
         //　投稿がない場合、 確認のアラートを出す
         if defaults.data(forKey: "recruite") == nil {
             //  UIAlertControllerクラスのインスタンスを生成
-            let alert: UIAlertController = UIAlertController(title: "募集の履歴がありません", message: "新規投稿から募集してください", preferredStyle:  UIAlertControllerStyle.alert)
+            let alert: UIAlertController = UIAlertController(title: "メンバー募集の投稿がありません", message: "新規投稿から募集してください", preferredStyle:  UIAlertControllerStyle.alert)
             
             // OKボタン
             let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{

@@ -86,7 +86,7 @@ class MyPageViewController: BaseFormViewController,FUIAuthDelegate,MFMailCompose
         }
         
         // プロフィールを表示
-        self.form +++ Section("ユーザー情報")
+        self.form +++ Section("プロフィール")
             <<< TextRow("UserName") {
                 $0.title = "ユーザー名"
                 $0.value = savedProfile.UserName
@@ -106,6 +106,12 @@ class MyPageViewController: BaseFormViewController,FUIAuthDelegate,MFMailCompose
                 $0.title = "バスケットの経験"
                 $0.value = savedProfile.Level
                 $0.baseCell.isUserInteractionEnabled = false
+        }
+        self.form +++ Section("自由記述")
+            <<< TextAreaRow("Comments") {
+                $0.value = savedProfile.Comments == nil ? "": savedProfile.Comments
+                $0.baseCell.isUserInteractionEnabled = false
+                $0.textAreaHeight = .dynamic(initialTextViewHeight: 110)
         }
         // チュートリアルに遷移するセル
         self.form +++ Section("チュートリアル")
