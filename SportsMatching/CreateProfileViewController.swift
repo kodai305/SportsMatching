@@ -50,8 +50,8 @@ class CreateProfileViewController: BaseFormViewController {
                     to.popoverPresentationController?.permittedArrowDirections = .up
             }
             <<< ActionSheetRow<String>("Age") {
-                $0.title = "年代"
-                $0.selectorTitle = "あなたの年代を選択"
+                $0.title = "年齢"
+                $0.selectorTitle = "あなたの年齢を選択"
                 $0.options = ["10代", "20代", "30代", "40代", "50代", "60代以上"]
                 $0.value = savedProfile.Age
                 }
@@ -83,6 +83,16 @@ class CreateProfileViewController: BaseFormViewController {
                 $0.textAreaHeight = .dynamic(initialTextViewHeight: 110)
                 $0.value = savedProfile.Comments
             }
+        
+        form +++ Section(){ section in
+            section.footer = {
+                var footer = HeaderFooterView<UIView>(.callback({
+                    return self.FooterUIView
+                }))
+                footer.height = { 100 }
+                return footer
+            }()
+        }
         // Do any additional setup after loading the view.
     }
 
@@ -100,7 +110,7 @@ class CreateProfileViewController: BaseFormViewController {
             SVProgressHUD.showError(withStatus: "性別を入力して下さい")
             return
         }else if values["Age"].unsafelyUnwrapped == nil {
-            SVProgressHUD.showError(withStatus: "年代を入力して下さい")
+            SVProgressHUD.showError(withStatus: "年齢を入力して下さい")
             return
         }else if values["Level"].unsafelyUnwrapped == nil {
             SVProgressHUD.showError(withStatus: "競技レベルを入力して下さい")

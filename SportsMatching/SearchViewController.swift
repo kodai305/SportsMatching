@@ -17,10 +17,10 @@ class SearchViewController: BaseFormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        form +++ Section(header: "必須項目", footer: "すべての項目を入力してください")
+        form +++ Section(header: "検索条件", footer: "すべての項目を入力してください")
             <<< ActionSheetRow<String>("Category") {
                 $0.title = "カテゴリ"
-                $0.selectorTitle = "チームのカテゴリーを選択"
+                $0.selectorTitle = "チームのカテゴリー"
                 $0.options = ["ミニバス", "ジュニア", "社会人サークル", "クラブチーム"]
                 }
                 .onPresent { from, to in
@@ -65,11 +65,17 @@ class SearchViewController: BaseFormViewController {
             }
             <<< MultipleSelectorRow<String>("Day") {
                 $0.title = "参加希望曜日"
-                $0.selectorTitle = "参加したい曜日を選択"
+                $0.selectorTitle = "参加したい曜日"
                 $0.options = ["いつでも","月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日", "日曜日"]
                 }
                 .onPresent { from, to in
-                    to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.daySelectorDone(_:)))
+                    to.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "選択完了", style: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
+                    to.sectionKeyForValue = { option in
+                        switch option {
+                        case "いつでも","月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日", "日曜日": return "複数選択可能"
+                        default: return ""
+                        }
+                    }
         }
 
         // Do any additional setup after loading the view.

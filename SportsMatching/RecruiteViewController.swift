@@ -25,7 +25,7 @@ class RecruiteViewController: BaseFormViewController {
             }
             <<< ActionSheetRow<String>("Category") {
                 $0.title = "カテゴリ"
-                $0.selectorTitle = "チームのカテゴリーを選択"
+                $0.selectorTitle = "チームのカテゴリー"
                 $0.options = ["ミニバス", "ジュニア", "社会人サークル", "クラブチーム"]
                 }
                 .onPresent { from, to in
@@ -66,7 +66,7 @@ class RecruiteViewController: BaseFormViewController {
             }
             <<< ActionSheetRow<String>("ApplyGender") {
                 $0.title = "募集性別"
-                $0.selectorTitle = "募集する性別を選択"
+                $0.selectorTitle = "募集する性別"
                 $0.options = ["不問", "男性", "女性"]
                 }
                 .onPresent { from, to in
@@ -74,11 +74,17 @@ class RecruiteViewController: BaseFormViewController {
             }
             <<< MultipleSelectorRow<String>("Day") {
                 $0.title = "開催曜日"
-                $0.selectorTitle = "主に開催している曜日を選択"
+                $0.selectorTitle = "主に開催している曜日"
                 $0.options = ["月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日", "日曜日"]
                 }
                 .onPresent { from, to in
-                    to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
+                    to.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "選択完了", style: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
+                    to.sectionKeyForValue = { option in
+                        switch option {
+                        case "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日", "日曜日": return "複数選択可能"
+                        default: return ""
+                        }
+                    }
             }
             <<< ImageRow("Image") {
                 $0.title = "活動風景画像"
@@ -90,23 +96,35 @@ class RecruiteViewController: BaseFormViewController {
         form +++ Section(header: "任意項目", footer: "応募者が参考にするため、なるべく入力してください")
             <<< MultipleSelectorRow<String>("Position") {
                 $0.title = "募集ポジション"
-                $0.selectorTitle = "募集するポジションを選択"
+                $0.selectorTitle = "募集するポジション"
                 $0.options = ["どこでも","ガード", "フォワード", "センター", "マネジャー"]
                 }
                 .onPresent { from, to in
-                    to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
+                    to.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "選択完了", style: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
+                    to.sectionKeyForValue = { option in
+                        switch option {
+                        case "どこでも","ガード", "フォワード", "センター", "マネジャー": return "複数選択可能"
+                        default: return ""
+                        }
+                    }
             }
             <<< MultipleSelectorRow<String>("ApplyLevel") {
                 $0.title = "参加可能なレベル"
-                $0.selectorTitle = "参加可能なレベルを選択"
+                $0.selectorTitle = "参加可能なレベル"
                 $0.options = ["未経験", "初心者", "上級者"]
                 }
                 .onPresent { from, to in
-                    to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
+                    to.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "選択完了", style: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
+                    to.sectionKeyForValue = { option in
+                        switch option {
+                        case "未経験", "初心者", "上級者": return "複数選択可能"
+                        default: return ""
+                        }
+                    }
             }
             <<< ActionSheetRow<String>("GenderRatio") {
                 $0.title = "チーム構成"
-                $0.selectorTitle = "一番近い男女比を選択"
+                $0.selectorTitle = "一番近い男女比"
                 $0.options = ["ミックス", "男性のみ", "女性のみ"]
                 }
                 .onPresent { from, to in
@@ -114,7 +132,7 @@ class RecruiteViewController: BaseFormViewController {
             }
             <<< ActionSheetRow<String>("TeamLevel") {
                 $0.title = "チームのレベル"
-                $0.selectorTitle = "一番近いチームレベルを選択"
+                $0.selectorTitle = "一番近いチームレベル"
                 $0.options = ["未経験中心", "初心者中心", "上級者中心"]
                 }
                 .onPresent { from, to in
@@ -126,19 +144,25 @@ class RecruiteViewController: BaseFormViewController {
             }
             <<< MultipleSelectorRow<String>("Timezone") {
                 $0.title = "活動時間帯"
-                $0.selectorTitle = "活動時間帯(複数選択可)"
+                $0.selectorTitle = "活動時間帯"
                 $0.options = ["午前", "午後", "夜"]
                 }
                 .onPresent { from, to in
-                    to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
+                    to.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "選択完了", style: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
+                    to.sectionKeyForValue = { option in
+                        switch option {
+                        case "午前", "午後", "夜": return "複数選択可能"
+                        default: return ""
+                        }
+                    }
             }
             <<< MultipleSelectorRow<String>("MainAge") {
                 $0.title = "メンバーの年齢層"
-                $0.selectorTitle = "メンバーの主な年齢層を選択"
+                $0.selectorTitle = "メンバーの主な年齢層"
                 $0.options = ["10代", "20代", "30代", "40代", "50代", "60代以上"]
                 }
                 .onPresent { from, to in
-                    to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
+                    to.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "選択完了", style: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
                     to.sectionKeyForValue = { option in
                         switch option {
                         case "10代", "20代", "30代", "40代", "50代", "60代以上": return "複数選択可能"
@@ -152,6 +176,16 @@ class RecruiteViewController: BaseFormViewController {
                 $0.placeholder = "自由記述"
                 $0.textAreaHeight = .dynamic(initialTextViewHeight: 110)
             }
+        
+        form +++ Section(){ section in
+            section.footer = {
+                var footer = HeaderFooterView<UIView>(.callback({
+                    return self.FooterUIView
+                }))
+                footer.height = { 100 }
+                return footer
+            }()
+        }
         
         // Do any additional setup after loading the view.
     }
@@ -186,7 +220,7 @@ class RecruiteViewController: BaseFormViewController {
         
         //時刻を取得(年月日、時分)
         let f = DateFormatter()
-        f.timeStyle = .long
+        f.timeStyle = .medium
         f.dateStyle = .short
         f.locale = Locale(identifier: "ja_JP")
         let now = Date()

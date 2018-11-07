@@ -126,6 +126,16 @@ class SearchResultDetailViewController: BaseFormViewController{
                 $0.baseCell.isUserInteractionEnabled = false
                 $0.textAreaHeight = .dynamic(initialTextViewHeight: 110)
         }
+        
+        form +++ Section(){ section in
+            section.footer = {
+                var footer = HeaderFooterView<UIView>(.callback({
+                    return self.FooterUIView
+                }))
+                footer.height = { 100 }
+                return footer
+            }()
+        }
     }
     
     // 応募ボタンを押して募集者にメッセージを送る

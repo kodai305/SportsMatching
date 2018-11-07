@@ -13,6 +13,9 @@ import Eureka
 import GoogleMobileAds
 
 class BaseFormViewController: FormViewController, GADBannerViewDelegate {
+    
+    // 広告の上までスクロール出来るようにViewを広げる様の空のUIView
+    let FooterUIView = UIView()
 
     override func viewDidLoad() {
         super.viewDidLoad()

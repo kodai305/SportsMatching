@@ -98,7 +98,7 @@ class MyPageViewController: BaseFormViewController,FUIAuthDelegate,MFMailCompose
                 $0.baseCell.isUserInteractionEnabled = false
             }
             <<< TextRow("Age") {
-                $0.title = "年代"
+                $0.title = "年齢"
                 $0.value = savedProfile.Age
                 $0.baseCell.isUserInteractionEnabled = false
             }
@@ -147,6 +147,16 @@ class MyPageViewController: BaseFormViewController,FUIAuthDelegate,MFMailCompose
                 }
                 .onCellSelection { cell, row in
                     self.performSegue(withIdentifier: "toTermsofUse", sender: self)
+        }
+        
+        form +++ Section(){ section in
+            section.footer = {
+                var footer = HeaderFooterView<UIView>(.callback({
+                    return self.FooterUIView
+                }))
+                footer.height = { 100 }
+                return footer
+            }()
         }
         
         // Do any additional setup after loading the view.

@@ -83,6 +83,15 @@ class PostDetailViewController: BaseFormViewController {
                     $0.baseCell.isUserInteractionEnabled = false
                     $0.textAreaHeight = .dynamic(initialTextViewHeight: 110)
             }
+            form +++ Section(){ section in
+                section.footer = {
+                    var footer = HeaderFooterView<UIView>(.callback({
+                        return self.FooterUIView
+                    }))
+                    footer.height = { 100 }
+                    return footer
+                }()
+            }
         } else if fromRecruiteFlag == 0 && fromSearchFlag == 1 {
             //　応募履歴から遷移してきた場合
             //　応募した投稿の内容を表示
@@ -157,6 +166,15 @@ class PostDetailViewController: BaseFormViewController {
                     $0.value = GottenDoc["comments"] as? String
                     $0.baseCell.isUserInteractionEnabled = false
                     $0.textAreaHeight = .dynamic(initialTextViewHeight: 110)
+            }
+            form +++ Section(){ section in
+                section.footer = {
+                    var footer = HeaderFooterView<UIView>(.callback({
+                        return self.FooterUIView
+                    }))
+                    footer.height = { 100 }
+                    return footer
+                }()
             }
         }
         
