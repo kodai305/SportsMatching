@@ -55,14 +55,6 @@ class SearchViewController: BaseFormViewController {
                         }
                     }
             }
-            <<< ActionSheetRow<String>("ApplyGender") {
-                $0.title = "あなたの性別"
-                $0.selectorTitle = "あなたの性別を選択"
-                $0.options = ["男性", "女性"]
-                }
-                .onPresent { from, to in
-                    to.popoverPresentationController?.permittedArrowDirections = .up
-            }
             <<< MultipleSelectorRow<String>("Day") {
                 $0.title = "参加希望曜日"
                 $0.selectorTitle = "参加したい曜日"
@@ -95,7 +87,6 @@ class SearchViewController: BaseFormViewController {
             // Rowの値を取得して遷移先の変数に設定
             nextView.category = values["Category"] as? String
             nextView.prefecture = values["Prefecture"] as? String
-            nextView.applyGender = values["ApplyGender"] as? String
             // 「いつでも」が選択されている場合、全ての曜日を検索条件として渡す
             if Array(values["Day"] as! Set<String>).contains("いつでも"){
                 nextView.day = ["月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日", "日曜日"]
@@ -115,9 +106,6 @@ class SearchViewController: BaseFormViewController {
                 return false
             } else if values["Prefecture"].unsafelyUnwrapped == nil {
                 SVProgressHUD.showError(withStatus: "都道府県を選択して下さい")
-                return false
-            } else if values["ApplyGender"].unsafelyUnwrapped == nil {
-                SVProgressHUD.showError(withStatus: "募集している性別を選択して下さい")
                 return false
             } else if values["Day"].unsafelyUnwrapped == nil {
                 SVProgressHUD.showError(withStatus: "参加希望曜日を選択して下さい")

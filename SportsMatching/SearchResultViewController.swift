@@ -23,7 +23,6 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
     // 検索フォームから検索条件を受け取る変数
     var category:String!
     var prefecture:String!
-    var applyGender:String!
     var day:Array<String>!
     // 詳細画面に渡すdocument
     var sendDocument:QueryDocumentSnapshot!
@@ -58,14 +57,10 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
                         // 取得した投稿の内、活動曜日に検索条件の曜日が含まれるかつ
                         // 募集している性別が不問、もしくはユーザーの性別と一致する投稿を検索結果の配列に追加
                         let activeDays = document.data()["day"] as! Array<String>
-                        let teamGender = document.data()["applyGender"] as! String
-                        print(teamGender)
                         for i in 0 ..< activeDays.count {
                             if self.day.contains(activeDays[i]){
-                                if teamGender == "不問" || teamGender == self.applyGender {
-                                    self.LoadedDocumentArray.append(document)
-                                    break
-                                }
+                                self.LoadedDocumentArray.append(document)
+                                break
                             }
                         }
                     }
