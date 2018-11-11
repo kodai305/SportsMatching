@@ -114,9 +114,9 @@ class MyPageViewController: BaseFormViewController,FUIAuthDelegate,MFMailCompose
                 $0.textAreaHeight = .dynamic(initialTextViewHeight: 110)
         }
         // チュートリアルに遷移するセル
-        self.form +++ Section("チュートリアル")
+        self.form +++ Section("アプリの使い方")
             <<< ButtonRow() { (row: ButtonRow) -> Void in
-                row.title = "チュートリアルを見る"
+                row.title = "アプリの使い方を見る"
                 }
                 .onCellSelection { cell, row in
                     self.performSegue(withIdentifier: "toTutorial", sender: self)

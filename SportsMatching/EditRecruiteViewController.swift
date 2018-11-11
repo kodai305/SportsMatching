@@ -67,7 +67,7 @@ class EditRecruiteViewController: BaseFormViewController {
                 $0.value = savedPostDetail.Prefecture
                 }.onPresent { from, to in
                     to.dismissOnSelection = false
-                    to.dismissOnChange = false
+                    to.dismissOnChange = true
                     to.sectionKeyForValue = { option in
                         switch option {
                         case "北海道", "青森県", "岩手県", "宮城県", "秋田県","山形県", "福島県": return "1. 北海道・東北"

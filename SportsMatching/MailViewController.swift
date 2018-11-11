@@ -81,7 +81,7 @@ class MailViewController: MessagesViewController, GADBannerViewDelegate {
         scrollsToBottomOnKeybordBeginsEditing = true // default false
         maintainPositionOnKeyboardFrameChanged = true // default false
 
-        displayAdvertisement()
+        //displayAdvertisement()
     }
     
     override func viewDidAppear(_ animated: Bool) {

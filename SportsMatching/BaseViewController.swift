@@ -18,7 +18,7 @@ class BaseViewController: UIViewController, GADBannerViewDelegate {
         // Tabbar非選択時のアイコンの色を設定
         self.tabBarController?.tabBar.unselectedItemTintColor = UIColor(hex: "515A5A")
         // Do any additional setup after loading the view, typically from a nib.
-        displayAdvertisement()
+        //displayAdvertisement()
     }
 
     var handle: AuthStateDidChangeListenerHandle?

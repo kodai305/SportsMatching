@@ -24,7 +24,7 @@ class BaseFormViewController: FormViewController, GADBannerViewDelegate {
         // Tabbar非選択時のアイコンの色を設定
         self.tabBarController?.tabBar.unselectedItemTintColor = UIColor(hex: "515A5A")
 
-        displayAdvertisement()
+        //displayAdvertisement()
         // Do any additional setup after loading the view.
     }
 

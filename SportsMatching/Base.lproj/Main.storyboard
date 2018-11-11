@@ -223,20 +223,134 @@ DQ
             </objects>
             <point key="canvasLocation" x="3268" y="715.59220389805103"/>
         </scene>
-        <!--Tutorial View Controller-->
+        <!--使い方-->
         <scene sceneID="fYK-qi-nL0">
             <objects>
-                <viewController id="5Dg-EI-CkZ" customClass="TutorialViewController" customModule="SportsMatching" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="5Dg-EI-CkZ" customClass="TutorialTopViewController" customModule="SportsMatching" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uoC-RX-oF1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UVW-Pp-hQs">
+                                <rect key="frame" x="42.5" y="248.5" width="290" height="60"/>
+                                <color key="backgroundColor" red="0.090196078430000007" green="0.64705882349999999" blue="0.53725490200000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="290" id="cs0-RC-eZw"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="g0b-9b-jEA"/>
+                                    <constraint firstAttribute="height" constant="60" id="trj-Op-7Rz"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="290" id="zQx-cE-rlU"/>
+                                </constraints>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="メンバーを募集する">
+                                            <attributes>
+                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="21" name="HiraginoSans-W3"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="6" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <variation key="heightClass=compact-widthClass=compact">
+                                    <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="20"/>
+                                </variation>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Znf-Bf-Z5t">
+                                <rect key="frame" x="42.5" y="358.5" width="290" height="60"/>
+                                <color key="backgroundColor" red="0.090196078430000007" green="0.64705882349999999" blue="0.53725490200000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="hSH-UX-DR6"/>
+                                    <constraint firstAttribute="width" constant="290" id="tPq-nc-VaV"/>
+                                </constraints>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="チームを探す">
+                                            <attributes>
+                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="21" name="HiraginoSans-W3"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="7" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9H3-NU-yW3">
+                                <rect key="frame" x="69.5" y="150.5" width="236" height="68"/>
+                                <string key="text">ここではアプリの使い方を
+見ることが出来ます
+使用用途に合わせて
+下のボタンをタップして下さい</string>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="UVW-Pp-hQs" firstAttribute="centerX" secondItem="uoC-RX-oF1" secondAttribute="centerX" id="BbO-07-5uO"/>
+                            <constraint firstItem="9H3-NU-yW3" firstAttribute="centerX" secondItem="uoC-RX-oF1" secondAttribute="centerX" id="CJn-MB-wlU"/>
+                            <constraint firstItem="Znf-Bf-Z5t" firstAttribute="centerX" secondItem="uoC-RX-oF1" secondAttribute="centerX" id="EQD-OR-wi3"/>
+                            <constraint firstItem="UVW-Pp-hQs" firstAttribute="top" secondItem="9H3-NU-yW3" secondAttribute="bottom" constant="30" id="Qwh-YS-I4h"/>
+                            <constraint firstItem="Znf-Bf-Z5t" firstAttribute="top" secondItem="UVW-Pp-hQs" secondAttribute="bottom" constant="50" id="Re9-cB-akQ"/>
+                            <constraint firstItem="UVW-Pp-hQs" firstAttribute="centerY" secondItem="uoC-RX-oF1" secondAttribute="centerY" constant="-55" id="xFt-Lf-8d7"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="9Ot-wE-SSP"/>
                     </view>
+                    <navigationItem key="navigationItem" title="使い方" id="BbM-KT-sQZ"/>
+                    <connections>
+                        <outlet property="recruiteTutorialButton" destination="UVW-Pp-hQs" id="B09-L2-Sqb"/>
+                        <outlet property="searchTutorialButton" destination="Znf-Bf-Z5t" id="xgc-0C-dCC"/>
+                        <segue destination="c1T-DC-j67" kind="show" identifier="toRecruiteTutorialView" id="Kac-MU-bKq"/>
+                        <segue destination="ixu-mG-pCs" kind="show" identifier="toSearchTutorialView" id="a1e-Rb-sao"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X7P-XF-CRT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4075" y="-690"/>
+        </scene>
+        <!--メンバー募集-->
+        <scene sceneID="pXt-7w-aUQ">
+            <objects>
+                <viewController id="c1T-DC-j67" customClass="RecruiteTutorialViewController" customModule="SportsMatching" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZLl-h8-8dZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nrF-Kt-dil">
+                                <rect key="frame" x="10" y="64" width="355" height="489"/>
+                            </scrollView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="W4G-JZ-AHo">
+                                <rect key="frame" x="87.5" y="568" width="200" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="ZWj-CZ-PIn"/>
+                                    <constraint firstAttribute="height" constant="40" id="jAq-Cc-5L0"/>
+                                </constraints>
+                                <color key="pageIndicatorTintColor" red="0.31764705879999999" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="currentPageIndicatorTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </pageControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="W4G-JZ-AHo" firstAttribute="top" secondItem="nrF-Kt-dil" secondAttribute="bottom" constant="15" id="0ri-Ls-Za4"/>
+                            <constraint firstItem="7KI-Gv-Jcu" firstAttribute="trailing" secondItem="nrF-Kt-dil" secondAttribute="trailing" constant="10" id="8ID-b7-rX6"/>
+                            <constraint firstItem="nrF-Kt-dil" firstAttribute="top" secondItem="7KI-Gv-Jcu" secondAttribute="top" id="HRV-dJ-OZp"/>
+                            <constraint firstItem="7KI-Gv-Jcu" firstAttribute="bottom" secondItem="W4G-JZ-AHo" secondAttribute="bottom" constant="10" id="SeB-ob-HQp"/>
+                            <constraint firstItem="nrF-Kt-dil" firstAttribute="leading" secondItem="7KI-Gv-Jcu" secondAttribute="leading" constant="10" id="SzI-u4-Tkt"/>
+                            <constraint firstItem="W4G-JZ-AHo" firstAttribute="centerX" secondItem="ZLl-h8-8dZ" secondAttribute="centerX" id="scl-PA-xA9"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="7KI-Gv-Jcu"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="メンバー募集" id="Cqy-Ah-bS0">
+                        <barButtonItem key="backBarButtonItem" title="戻る" id="aKE-WM-sEx"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="pageControl" destination="W4G-JZ-AHo" id="pAY-Hq-lVs"/>
+                        <outlet property="scrollView" destination="nrF-Kt-dil" id="wRF-yh-sOq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dWz-X5-e2p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4884" y="-1366"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="CYf-io-swm">
@@ -987,6 +1101,50 @@ DQ
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fdC-Wy-rA5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4884" y="3597"/>
+        </scene>
+        <!--チーム検索の方法-->
+        <scene sceneID="cU4-3D-moR">
+            <objects>
+                <viewController id="ixu-mG-pCs" customClass="SearchTutorialViewController" customModule="SportsMatching" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2gn-P2-1W8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="01Y-uz-UCZ">
+                                <rect key="frame" x="10" y="64" width="360" height="494"/>
+                            </scrollView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="uzA-ps-nIe">
+                                <rect key="frame" x="87.5" y="573" width="200" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="7hk-gT-5QG"/>
+                                    <constraint firstAttribute="height" constant="40" id="rzi-SD-hHF"/>
+                                </constraints>
+                                <color key="pageIndicatorTintColor" red="0.31764705882352939" green="0.3529411764705882" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="currentPageIndicatorTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </pageControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="uzA-ps-nIe" firstAttribute="centerX" secondItem="2gn-P2-1W8" secondAttribute="centerX" id="7qz-WZ-m4y"/>
+                            <constraint firstItem="uzA-ps-nIe" firstAttribute="top" secondItem="01Y-uz-UCZ" secondAttribute="bottom" constant="15" id="EeC-PS-chb"/>
+                            <constraint firstItem="01Y-uz-UCZ" firstAttribute="leading" secondItem="bIX-Ca-W3E" secondAttribute="leading" constant="10" id="J9P-gO-5Do"/>
+                            <constraint firstItem="bIX-Ca-W3E" firstAttribute="bottom" secondItem="uzA-ps-nIe" secondAttribute="bottom" constant="5" id="V95-3e-4Iy"/>
+                            <constraint firstItem="01Y-uz-UCZ" firstAttribute="top" secondItem="bIX-Ca-W3E" secondAttribute="top" id="di8-d6-Rxz"/>
+                            <constraint firstItem="bIX-Ca-W3E" firstAttribute="trailing" secondItem="01Y-uz-UCZ" secondAttribute="trailing" constant="5" id="ofW-Rn-XDU"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="bIX-Ca-W3E"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="チーム検索の方法" id="HIB-XR-hUz">
+                        <barButtonItem key="backBarButtonItem" title="戻る" id="CCs-Pr-DnH"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="pageControl" destination="uzA-ps-nIe" id="3pm-wC-B5X"/>
+                        <outlet property="scrollView" destination="01Y-uz-UCZ" id="jkU-Nq-way"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="grL-ft-mwc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4884" y="-690"/>
         </scene>
     </scenes>
     <resources>
