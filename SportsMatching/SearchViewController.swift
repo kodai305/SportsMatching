@@ -20,7 +20,7 @@ class SearchViewController: BaseFormViewController {
         form +++ Section(header: "検索条件", footer: "すべての項目を入力してください")
             <<< ActionSheetRow<String>("Category") {
                 $0.title = "カテゴリ"
-                $0.selectorTitle = "チームのカテゴリー"
+                $0.selectorTitle = "チームのカテゴリ"
                 $0.options = ["ミニバス", "ジュニア", "社会人サークル", "クラブチーム"]
                 }
                 .onPresent { from, to in

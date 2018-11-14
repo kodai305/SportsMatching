@@ -25,7 +25,7 @@ class RecruiteViewController: BaseFormViewController {
             }
             <<< ActionSheetRow<String>("Category") {
                 $0.title = "カテゴリ"
-                $0.selectorTitle = "チームのカテゴリー"
+                $0.selectorTitle = "チームのカテゴリ"
                 $0.options = ["ミニバス", "ジュニア", "社会人サークル", "クラブチーム"]
                 }
                 .onPresent { from, to in
@@ -199,7 +199,7 @@ class RecruiteViewController: BaseFormViewController {
             SVProgressHUD.showError(withStatus: "チーム名を入力して下さい")
             return
         } else if Values["Category"].unsafelyUnwrapped == nil {
-            SVProgressHUD.showError(withStatus: "カテゴリーを選択して下さい")
+            SVProgressHUD.showError(withStatus: "カテゴリを選択して下さい")
             return
         } else if Values["Prefecture"].unsafelyUnwrapped == nil {
             SVProgressHUD.showError(withStatus: "都道府県を選択して下さい")

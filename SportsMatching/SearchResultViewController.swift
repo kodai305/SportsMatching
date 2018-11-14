@@ -141,49 +141,50 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
         //FireStorageから画像がロード出来ていないのでSampleをセット
         self.LoadedImageArray.append(UIImage(named: "sample")!)
         cell.ImageView.image = UIImage(named: "sample")
-        cell.ImageView.frame.size = CGSize(width: 130, height: 130)
-        cell.ImageView.center = CGPoint(x: self.view.frame.width - 85, y: self.view.frame.height / 6.5)
+        cell.ImageView.frame.size = CGSize(width: 100, height: 100)
+        cell.ImageView.center = CGPoint(x: self.view.frame.width - 65, y: self.view.frame.height / 6.5)
         
         //　各ラベルの幅は写真に被らないように設定
         let teamName:String = LoadedDocumentArray[indexPath.row].data()["teamName"] as! String
         cell.TeamNameLabel.text = teamName //XXX: null check
         cell.TeamNameLabel.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
-        cell.TeamNameLabel.frame.origin.x = 20
+        cell.TeamNameLabel.frame.origin.x = 17
         cell.TeamNameLabel.center.y = self.view.frame.height / 21 * 1
         cell.TeamNameLabel.sizeToFit()
         
         let category:String = LoadedDocumentArray[indexPath.row].data()["category"] as! String
-        cell.CategoryLabel.text = "カテゴリー　: " + category //XXX: null check
+        cell.CategoryLabel.text = "カテゴリ : " + category //XXX: null check
         cell.CategoryLabel.font = UIFont.systemFont(ofSize: UIFont.systemFontSize)
-        cell.CategoryLabel.frame.origin.x = 30
+        cell.CategoryLabel.frame.origin.x = 20
         cell.CategoryLabel.center.y = self.view.frame.height / 21 * 2
         cell.CategoryLabel.sizeToFit()
         cell.CategoryLabel.frame.size.width = cell.ImageView.frame.origin.x - (cell.CategoryLabel.frame.origin.x + 5)
 
         let place:String = LoadedDocumentArray[indexPath.row].data()["place"] as! String
-        cell.PlaceLabel.text = "活動場所　　: " + place
+        cell.PlaceLabel.text = "活動場所 : " + place
         cell.PlaceLabel.font = UIFont.systemFont(ofSize: UIFont.systemFontSize)
-        cell.PlaceLabel.frame.origin.x = 30
+        cell.PlaceLabel.frame.origin.x = 20
         cell.PlaceLabel.center.y = self.view.frame.height / 21 * 3
         cell.PlaceLabel.sizeToFit()
         cell.PlaceLabel.frame.size.width = cell.ImageView.frame.origin.x - (cell.PlaceLabel.frame.origin.x + 5)
         
         let gender:String = LoadedDocumentArray[indexPath.row].data()["applyGender"] as! String
-        cell.GenderLabel.text = "募集性別　　: " + gender
+        cell.GenderLabel.text = "募集性別 : " + gender
         cell.GenderLabel.font = UIFont.systemFont(ofSize: UIFont.systemFontSize)
-        cell.GenderLabel.frame.origin.x = 30
+        cell.GenderLabel.frame.origin.x = 20
         cell.GenderLabel.center.y = self.view.frame.height / 21 * 4
         cell.GenderLabel.sizeToFit()
         cell.GenderLabel.frame.size.width = cell.ImageView.frame.origin.x - (cell.GenderLabel.frame.origin.x + 5)
         
-        let days = LoadedDocumentArray[indexPath.row].data()["day"] as! Array<String>
-        var string:String!
+        var days = LoadedDocumentArray[indexPath.row].data()["day"] as! Array<String>
+        var day:String!
+        days = alignmentDays(days: days)
         for i in 0 ..< days.count {
-            string = i == 0 ? days[i] : string + "," + days[i]
+            day = i == 0 ? String(days[i].prefix(1)) : day + " " + String(days[i].prefix(1))
         }
-        cell.DayLabel.text = "活動曜日　　: " + string
+        cell.DayLabel.text = "活動曜日 : " + day
         cell.DayLabel.font = UIFont.systemFont(ofSize: UIFont.systemFontSize)
-        cell.DayLabel.frame.origin.x = 30
+        cell.DayLabel.frame.origin.x = 20
         cell.DayLabel.center.y = self.view.frame.height / 21 * 5
         cell.DayLabel.sizeToFit()
         cell.DayLabel.frame.size.width = cell.ImageView.frame.origin.x - (cell.DayLabel.frame.origin.x + 5)
@@ -283,6 +284,19 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
         let CustomAuthView = FUIAuthPickerViewController(authUI: authUI)
         CustomAuthView.view.backgroundColor = UIColor(hex: "D45000")
         return CustomAuthView
+    }
+    
+    func alignmentDays(days : Array<String>) -> Array<String> {
+        var returnDays = Array<String>()
+        let formatter: DateFormatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ja_JP")
+        for i in 0 ..< formatter.weekdaySymbols.count {
+            if days.contains(formatter.weekdaySymbols[i]) {
+                returnDays.append(formatter.weekdaySymbols[i])
+            }
+        }
+        return returnDays
+        //print(formatter.weekdaySymbols[weekdaySymbolIndex]) // -> 日曜日
     }
     
     
