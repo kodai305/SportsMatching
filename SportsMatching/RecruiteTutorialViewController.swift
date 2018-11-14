@@ -75,7 +75,7 @@ class RecruiteTutorialViewController: BaseViewController,UIScrollViewDelegate {
         thirdImage.contentMode = UIViewContentMode.scaleAspectFit
         
         let thirdLable = UILabel()
-        thirdLable.text = "必須条件を入力したら \n 右上の「投稿」をタップして下さい"
+        thirdLable.text = "必須条件と任意条件を入力したら \n 右上の「投稿」をタップして下さい"
         thirdLable.numberOfLines = 3
         thirdLable.font = UIFont.systemFont(ofSize: 16.0)
         thirdLable.sizeToFit()
