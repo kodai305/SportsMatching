@@ -141,8 +141,9 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
         //FireStorageから画像がロード出来ていないのでSampleをセット
         self.LoadedImageArray.append(UIImage(named: "sample")!)
         cell.ImageView.image = UIImage(named: "sample")
-        cell.ImageView.frame.size = CGSize(width: 100, height: 100)
-        cell.ImageView.center = CGPoint(x: self.view.frame.width - 65, y: self.view.frame.height / 6.5)
+        // 機種によって画像サイズを変える
+        cell.ImageView.frame.size = CGSize(width: self.view.frame.width / 3.5, height: self.view.frame.width / 3.5)
+        cell.ImageView.center = CGPoint(x: self.view.frame.width - (cell.ImageView.frame.width / 2 + 20), y: self.view.frame.height / 6.5)
         
         //　各ラベルの幅は写真に被らないように設定
         let teamName:String = LoadedDocumentArray[indexPath.row].data()["teamName"] as! String
