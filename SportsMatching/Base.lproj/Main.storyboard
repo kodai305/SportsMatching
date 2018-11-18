@@ -672,16 +672,16 @@ DQ
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon" translatesAutoresizingMaskIntoConstraints="NO" id="CKP-yg-56n">
-                                <rect key="frame" x="117.5" y="263.5" width="140" height="140"/>
+                                <rect key="frame" x="127.5" y="253.5" width="120" height="120"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="140" id="Pjc-uD-2dM"/>
-                                    <constraint firstAttribute="height" constant="140" id="aTj-pE-Oyi"/>
+                                    <constraint firstAttribute="width" constant="120" id="Pjc-uD-2dM"/>
+                                    <constraint firstAttribute="height" constant="120" id="aTj-pE-Oyi"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.83137254900000002" green="0.31372549020000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="CKP-yg-56n" firstAttribute="centerY" secondItem="fw8-8O-DwC" secondAttribute="centerY" id="C0t-HI-oYD"/>
+                            <constraint firstItem="CKP-yg-56n" firstAttribute="centerY" secondItem="fw8-8O-DwC" secondAttribute="centerY" constant="-20" id="C0t-HI-oYD"/>
                             <constraint firstItem="CKP-yg-56n" firstAttribute="centerX" secondItem="fw8-8O-DwC" secondAttribute="centerX" id="OS6-ai-DGi"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LIj-Sf-X13"/>
