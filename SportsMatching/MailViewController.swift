@@ -363,15 +363,7 @@ extension MailViewController: MessageInputBarDelegate {
                 
                 let message = MockMessage(attributedText: attributedText, sender: currentSender(), messageId: UUID().uuidString, date: Date())
                 
-                if sendNewMessageNotification(text: text) == true {
-                    print("true")
-                    // messageの追加
-                    self.messageList.append(message)
-                    messagesCollectionView.insertSections([self.messageList.count - 1])
-                    saveMessages(text: text, mocMessage: message)
-                } else {
-                    print("false")
-                }
+                let ret = sendNewMessageNotification(text: text, message: message)
             }
             semaphore.signal()
         }
@@ -382,10 +374,11 @@ extension MailViewController: MessageInputBarDelegate {
         messagesCollectionView.scrollToBottom()
     }
     
-    func sendNewMessageNotification(text: String) -> Bool {
+    func sendNewMessageNotification(text: String, message: MockMessage) -> Bool {
         print("function is called")
         SVProgressHUD.show(withStatus: "送信中")
         var ret = false
+
         self.functions.httpsCallable("sendNewMessageNotification").call(["partnerUID": self.partnerUID, "message": text, "roomID": self.roomID, "senderType": self.senderType]) { (result, error) in
             var returnMsg = ""
             if result?.data is NSDictionary {
@@ -411,6 +404,13 @@ extension MailViewController: MessageInputBarDelegate {
                 }
             } else {
                 SVProgressHUD.showSuccess(withStatus: "送信成功")
+                // messageの追加
+                self.messageList.append(message)
+                self.messagesCollectionView.insertSections([self.messageList.count - 1])
+                print("call save message")
+                self.saveMessages(text: text, mocMessage: message)
+
+                self.messagesCollectionView.scrollToBottom()
                 ret = true
             }
         }
