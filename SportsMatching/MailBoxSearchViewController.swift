@@ -76,6 +76,7 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
         let defaults = UserDefaults.standard
         myUID = defaults.string(forKey: "UID")!
         let postID = StubApplyHistory[indexPath.row]
+        //roomID = "投稿者UID" + "-" + "応募者UID"
         let roomID = postID+"-"+myUID
         
         // 募集者の名前を取得
@@ -98,7 +99,7 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
         cell.PartnerNameLabel.font = UIFont.boldSystemFont(ofSize: 25)
         cell.PartnerNameLabel.sizeToFit()
         cell.PartnerNameLabel.frame.origin.x = 120
-        cell.PartnerNameLabel.center.y = cell.center.y
+        cell.PartnerNameLabel.center.y = cell.frame.height / 2
         
         cell.LatestMessage.text = lastMessage
         cell.LatestMessage.font = UIFont.systemFont(ofSize: 15)

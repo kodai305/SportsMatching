@@ -204,6 +204,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             // roomIDをつくる
             var myUID = ""
             myUID = defaults.string(forKey: "UID")!
+            //roomID = "投稿者UID" + "-" + "応募者UID"
             let roomID = myUID+"-"+sender
             
             // message構造体をつくる

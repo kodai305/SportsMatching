@@ -60,7 +60,8 @@ class ApplyAlertViewController: BaseViewController {
             var myUID = ""
             let defaults = UserDefaults.standard
             myUID = defaults.string(forKey: "UID")!
-            let roomID = myUID+"-"+self.postID
+            //roomID = "投稿者UID" + "-" + "応募者UID"
+            let roomID = self.postID+"-"+myUID
             var stubMessageInfo = MessageInfo()
             stubMessageInfo.message  = message!
             stubMessageInfo.senderID = myUID

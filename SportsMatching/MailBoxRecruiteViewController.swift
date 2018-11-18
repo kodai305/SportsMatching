@@ -83,6 +83,7 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
         let defaults = UserDefaults.standard
         myUID = defaults.string(forKey: "UID")!
         let partnerID = StubRecruiteHistory[indexPath.row]
+        //roomID = "投稿者UID" + "-" + "応募者UID"
         let roomID = myUID+"-"+partnerID
         
         // 募集者の名前を取得
@@ -105,7 +106,7 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
         cell.PartnerNameLabel.font = UIFont.boldSystemFont(ofSize: 25)
         cell.PartnerNameLabel.sizeToFit()
         cell.PartnerNameLabel.frame.origin.x = 120
-        cell.PartnerNameLabel.center.y = cell.center.y
+        cell.PartnerNameLabel.center.y = cell.frame.height / 2
         
         cell.LatestMessage.text = lastMessage
         cell.LatestMessage.font = UIFont.systemFont(ofSize: 15)

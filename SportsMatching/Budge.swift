@@ -23,6 +23,7 @@ class Budge {
             _tmpRecruiteHistory = UserDefaults.standard.value(forKey: "RecruiteHistory") as! [String]
         }
         for partnerID in _tmpRecruiteHistory {
+            //roomID = "投稿者UID" + "-" + "応募者UID"
             let roomID = myUID+"-"+partnerID
             let unreadCount = getUnreadCount(_roomID: roomID)
             if unreadCount > 0 {

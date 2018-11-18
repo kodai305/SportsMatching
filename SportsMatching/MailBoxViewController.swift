@@ -80,12 +80,11 @@ class MailBoxViewController: ButtonBarPagerTabStripViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print(fromSendButtonFlag)
         //fromSendButtonFlagの値が1の場合応募ボタンからの遷移
         if fromSendButtonFlag == 1 {
         //応募ボタンからの遷移の場合、応募履歴タブをアクティブにする
-            print(currentIndex)
             moveToViewController(at: 1, animated: true)
+            fromSendButtonFlag = 0
         }
 
     }
@@ -97,8 +96,8 @@ class MailBoxViewController: ButtonBarPagerTabStripViewController {
     
     func setViewController() {
         // Mainを変えようとするとなぜか上手くいかない <- このMainの意味はMain.storyboardのMain. 変えるならxx.storyboardを作ってxxを設定する
-        firstVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RecruiteHistory") as! MailBoxRecruiteViewController
-        secondVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchHistory") as! MailBoxSearchViewController
+        firstVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RecruiteHistory") as? MailBoxRecruiteViewController
+        secondVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchHistory") as? MailBoxSearchViewController
     }
         
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
