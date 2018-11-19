@@ -11,6 +11,7 @@ import FirebaseAuth
 import FirebaseStorage
 import Eureka
 import GoogleMobileAds
+import SVProgressHUD
 
 class BaseFormViewController: FormViewController, GADBannerViewDelegate {
     
@@ -95,7 +96,7 @@ class BaseFormViewController: FormViewController, GADBannerViewDelegate {
 
     
     // ImageCellで選択された画像をFirebaseStorageに保存
-    func saveImagetoFirebaseStorage(directory: String, myUID: String, selectedImgae: UIImage) -> Bool{
+    func saveImagetoFirebaseStorage(directory: String, myUID: String, selectedImgae: UIImage) {
         //Firebase Storageの準備
         let storage = Storage.storage()
         let storageRef = storage.reference()
@@ -110,12 +111,17 @@ class BaseFormViewController: FormViewController, GADBannerViewDelegate {
             //とりあえずUIDのディレクトリを作成し、その下に画像を保存
             let reference = storageRef.child(myUID + "/" + directory + "/image.jpg")
             reference.putData(data, metadata: nil, completion: { metaData, error in
-                print(metaData as Any)
-                print(error as Any)
+                if metaData != nil {
+                    SVProgressHUD.showSuccess(withStatus: "投稿成功")
+                    // 新規投稿と投稿編集のボタンがある画面に戻る
+                    self.navigationController?.popViewController(animated: false)
+                    return
+                } else {
+                    SVProgressHUD.showError(withStatus: "投稿失敗")
+                    return
+                }
             })
-            return true
         }
-        return false
     }
     
     //　複数選択可能な項目で表示されるViewにおいて

@@ -294,11 +294,7 @@ class EditRecruiteViewController: BaseFormViewController {
         
         // FirebaseStorageに画像を保存
         // 保存が成功するとtrueが返ってくる
-        if saveImagetoFirebaseStorage(directory: "post", myUID: MyUID, selectedImgae: SelectedImgae) {
-        SVProgressHUD.showSuccess(withStatus: "投稿成功")
-        // 新規投稿と投稿編集のボタンがある画面に戻る
-        self.navigationController?.popViewController(animated: false)
-        }
+        saveImagetoFirebaseStorage(directory: "post", myUID: MyUID, selectedImgae: SelectedImgae)
         
     }
     
