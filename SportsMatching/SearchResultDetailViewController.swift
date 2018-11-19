@@ -175,7 +175,7 @@ class SearchResultDetailViewController: BaseFormViewController{
         print("Profile exists")
         let postID = self.postDoc.data()["postUser"] as! String
         // 二重応募になっていないかチェック
-//        if checkApplyHistoryArray(postID: postID) {
+        if checkApplyHistoryArray(postID: postID) {
             // 二重応募でない場合
             // アラートを出す前にtabbarを非表示にする
             self.tabBarController?.tabBar.isHidden = true
@@ -188,21 +188,21 @@ class SearchResultDetailViewController: BaseFormViewController{
             let next = storyboard.instantiateViewController(withIdentifier: "ApplyAlert") as! ApplyAlertViewController
             next.postID = postID
             self.present(next,animated: true, completion: nil)
-//        } else { // 二重応募の場合
-//            //  UIAlertControllerクラスのインスタンスを生成
-//            let alert: UIAlertController = UIAlertController(title: "このチームには応募済みです", message: "", preferredStyle:  UIAlertControllerStyle.alert)
-//            // OKボタン
-//            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
-//                (action: UIAlertAction!) -> Void in
-//                //　アラートを閉じる
-//                alert.dismiss(animated: true, completion: nil)
-//                return
-//            })
-//            // UIAlertControllerにActionを追加
-//            alert.addAction(defaultAction)
-//            // Alertを表示
-//            present(alert, animated: true, completion: nil)
-//        }
+        } else { // 二重応募の場合
+            //  UIAlertControllerクラスのインスタンスを生成
+            let alert: UIAlertController = UIAlertController(title: "このチームには応募済みです", message: "", preferredStyle:  UIAlertControllerStyle.alert)
+            // OKボタン
+            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+                (action: UIAlertAction!) -> Void in
+                //　アラートを閉じる
+                alert.dismiss(animated: true, completion: nil)
+                return
+            })
+            // UIAlertControllerにActionを追加
+            alert.addAction(defaultAction)
+            // Alertを表示
+            present(alert, animated: true, completion: nil)
+        }
     }
 
     // 二重応募になっていないかチェック
