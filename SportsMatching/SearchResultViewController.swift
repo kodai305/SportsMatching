@@ -132,10 +132,6 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
             SVProgressHUD.showSuccess(withStatus: String(self.LoadedDocumentArray.count) + "件の投稿があります")
             SVProgressHUD.dismiss(withDelay: 2)
         }
-
-        
-        //        let ratio:CGFloat = ResizedImageView.frame.size.height / 100
-        //        ResizedImageView.frame.size = CGSize(width: ResizedImageView.frame.size.width / ratio, height: ResizedImageView.frame.size.height / ratio)
         
         //Cellに画像と文章をセット
         //FireStorageから画像がロード出来ていないのでSampleをセット
@@ -178,11 +174,9 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
         cell.GenderLabel.frame.size.width = cell.ImageView.frame.origin.x - (cell.GenderLabel.frame.origin.x + 5)
         
         var days = LoadedDocumentArray[indexPath.row].data()["day"] as! Array<String>
+        // 表示する曜日をまとめるString
         var day:String!
-        days = alignmentDays(days: days)
-        for i in 0 ..< days.count {
-            day = i == 0 ? String(days[i].prefix(1)) : day + " " + String(days[i].prefix(1))
-        }
+        day = alignmentDays(days: days)
         cell.DayLabel.text = "活動曜日 : " + day
         cell.DayLabel.font = UIFont.systemFont(ofSize: UIFont.systemFontSize)
         cell.DayLabel.frame.origin.x = 20
@@ -266,6 +260,26 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
         return NSAttributedString(string: str, attributes: attrs)
     }
     
+    // 曜日順に配列を整理
+    func alignmentDays(days : Array<String>) -> String {
+        var returnDays = Array<String>()
+        var day = String()
+        
+        let formatter: DateFormatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ja_JP")
+        for i in 0 ..< formatter.weekdaySymbols.count {
+            if days.contains(formatter.weekdaySymbols[i]) {
+                returnDays.append(formatter.weekdaySymbols[i])
+            }
+        }
+        // 全曜日を選択しても表示できるように、金曜日→金のように1文字目を抜き出す
+        for i in 0 ..< returnDays.count {
+            day = i == 0 ? String(returnDays[i].prefix(1)) : day + " " + String(returnDays[i].prefix(1))
+        }
+        return day
+    }
+    
+    
     //　認証画面から離れたときに呼ばれる（キャンセルボタン押下含む）
     public func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?){
         // 認証に成功した場合
@@ -285,19 +299,6 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
         let CustomAuthView = FUIAuthPickerViewController(authUI: authUI)
         CustomAuthView.view.backgroundColor = UIColor(hex: "D45000")
         return CustomAuthView
-    }
-    
-    func alignmentDays(days : Array<String>) -> Array<String> {
-        var returnDays = Array<String>()
-        let formatter: DateFormatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ja_JP")
-        for i in 0 ..< formatter.weekdaySymbols.count {
-            if days.contains(formatter.weekdaySymbols[i]) {
-                returnDays.append(formatter.weekdaySymbols[i])
-            }
-        }
-        return returnDays
-        //print(formatter.weekdaySymbols[weekdaySymbolIndex]) // -> 日曜日
     }
     
     

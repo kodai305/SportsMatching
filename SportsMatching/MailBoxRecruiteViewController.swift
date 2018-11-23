@@ -15,7 +15,8 @@ import FirebaseFirestore
 
 class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UITableViewDataSource, IndicatorInfoProvider, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
-    var StubRecruiteHistory:[String] = []
+    var StubRecruiteHistory:[String] = ["0","0","0","0","0","0","0","0","0"]
+    let cellHeight:CGFloat = 100
     
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
@@ -28,7 +29,7 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
         self.tableView.emptyDataSetSource = self
         self.tableView.emptyDataSetDelegate = self
         //セルの高さを設定（100に設定）
-        self.tableView.rowHeight = 100
+        self.tableView.rowHeight = self.cellHeight
         
         // Do any additional setup after loading the view.
     }
@@ -106,7 +107,7 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
         cell.PartnerNameLabel.font = UIFont.boldSystemFont(ofSize: 25)
         cell.PartnerNameLabel.sizeToFit()
         cell.PartnerNameLabel.frame.origin.x = 120
-        cell.PartnerNameLabel.center.y = cell.frame.height / 2
+        cell.PartnerNameLabel.center.y = self.cellHeight / 2
         
         cell.LatestMessage.text = lastMessage
         cell.LatestMessage.font = UIFont.systemFont(ofSize: 15)
