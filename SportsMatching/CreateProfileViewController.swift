@@ -99,7 +99,11 @@ class CreateProfileViewController: BaseFormViewController {
     
     
     @IBAction func saveUserProfileButtonPushed(_ sender: Any) {
-        SVProgressHUD.show(withStatus: "登録中")
+        SVProgressHUD.show(withStatus: "通信中")
+        // 10秒経ったら消して、ネットワーク確認のアラートを出す
+        self.prepareNetworkAlert()
+        isConnecting = true
+        SVProgressHUD.dismiss(withDelay: 10)
         // タグ設定済みの全てのRowの値を取得
         let values = form.values()
         // 入力値の確認
@@ -123,20 +127,6 @@ class CreateProfileViewController: BaseFormViewController {
         //画像セルから画像を取得
         let UIImgae = values["Image"] as! UIImage
         
-        // profile構造体をつくってUser-defaultに保存
-        var MyProfile = Profile()
-        MyProfile.UserName = values["UserName"] as? String
-        MyProfile.Gender = values["Gender"] as? String
-        MyProfile.Age = values["Age"] as? String
-        MyProfile.Level = values["Level"] as? String
-        // サイズを半分(0.5倍)してNSDataに変換
-        MyProfile.Image =  UIImageJPEGRepresentation(UIImgae, 0.5)!
-        // コメントは未入力の可能性があるのでnilチェック
-        MyProfile.Comments = values["Comments"].unsafelyUnwrapped == nil ? "" : values["Comments"] as! String
-        let data = try? JSONEncoder().encode(MyProfile)
-        let defaults = UserDefaults.standard
-        defaults.set(data ,forKey: "profile")
-        
         //時刻を取得(年月日、時分)
         let f = DateFormatter()
         f.timeStyle = .long
@@ -159,6 +149,19 @@ class CreateProfileViewController: BaseFormViewController {
                 print("Error writing document: \(err)")
             } else {
                 print("Document successfully written!")
+                // profile構造体をつくってUser-defaultに保存
+                var MyProfile = Profile()
+                MyProfile.UserName = values["UserName"] as? String
+                MyProfile.Gender = values["Gender"] as? String
+                MyProfile.Age = values["Age"] as? String
+                MyProfile.Level = values["Level"] as? String
+                // サイズを半分(0.5倍)してNSDataに変換
+                MyProfile.Image =  UIImageJPEGRepresentation(UIImgae, 0.5)!
+                // コメントは未入力の可能性があるのでnilチェック
+                MyProfile.Comments = values["Comments"].unsafelyUnwrapped == nil ? "" : values["Comments"] as! String
+                let data = try? JSONEncoder().encode(MyProfile)
+                let defaults = UserDefaults.standard
+                defaults.set(data ,forKey: "profile")
             }
         }
         
@@ -176,13 +179,14 @@ class CreateProfileViewController: BaseFormViewController {
             //とりあえずUIDのディレクトリを作成し、その下に画像を保存
             let reference = storageRef.child(myUID + "/profile" + "/image" + ".jpg")
             reference.putData(data, metadata: nil, completion: { metaData, error in
-                print(metaData as Any)
-                print(error as Any)
+                if metaData != nil {
+                    SVProgressHUD.showSuccess(withStatus: "登録成功")
+                    self.isConnecting = false
+                    // TODO: 1秒待ったほうがいいかも？
+                    // MyPageへ遷移する
+                    self.show((self.storyboard?.instantiateViewController(withIdentifier: "MyPage"))!,sender: true)
+                }
             })
-            SVProgressHUD.showSuccess(withStatus: "登録成功")
-            // TODO: 1秒待ったほうがいいかも？
-            // MyPageへ遷移する
-            self.show((self.storyboard?.instantiateViewController(withIdentifier: "MyPage"))!,sender: true)
         }
     }
     

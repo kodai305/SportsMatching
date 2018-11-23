@@ -15,6 +15,9 @@ import SVProgressHUD
 
 class BaseFormViewController: FormViewController, GADBannerViewDelegate {
     
+    
+    // FireStoreと通信中かを判断するためのFlag
+    var isConnecting:Bool = false
     // 広告の上までスクロール出来るようにViewを広げる様の空のUIView
     let FooterUIView = UIView()
 
@@ -113,11 +116,13 @@ class BaseFormViewController: FormViewController, GADBannerViewDelegate {
             reference.putData(data, metadata: nil, completion: { metaData, error in
                 if metaData != nil {
                     SVProgressHUD.showSuccess(withStatus: "投稿成功")
+                    self.isConnecting = false
                     // 新規投稿と投稿編集のボタンがある画面に戻る
                     self.navigationController?.popViewController(animated: false)
                     return
                 } else {
                     SVProgressHUD.showError(withStatus: "投稿失敗")
+                    self.isConnecting = false
                     return
                 }
             })
@@ -129,6 +134,23 @@ class BaseFormViewController: FormViewController, GADBannerViewDelegate {
     @objc func multipleSelectorDone(_ item:UIBarButtonItem) {
         _ = navigationController?.popViewController(animated: true)
     }
+    
+    // Firestoreアクセス時に10秒レスポンスがなければ、ネットワークの確認のアラートを出す
+    func prepareNetworkAlert() {
+        // SVProgressHUDのNotificationを使って通信中のアラートがけ消えるタイミングで処理
+        let center = NotificationCenter.default
+        var token: NSObjectProtocol!
+        token = center.addObserver(forName: .SVProgressHUDDidDisappear,
+                                   object: nil,
+                                   queue: nil) { notification in
+                                    // 通信中のアラートが消えたことで呼ばれる場合
+                                    if self.isConnecting {
+                                        SVProgressHUD.showInfo(withStatus: "ネットワークを確認して下さい")
+                                        SVProgressHUD.dismiss(withDelay: 2)
+                                    }
+                                    center.removeObserver(token)
+                                }
+        }
     
     //let admob_id = "XXX" // 本番用
     let admob_id = "ca-app-pub-3940256099942544/2934735716" // 練習用

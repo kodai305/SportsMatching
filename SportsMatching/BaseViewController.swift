@@ -9,8 +9,12 @@
 import UIKit
 import FirebaseAuth
 import GoogleMobileAds
+import SVProgressHUD
 
 class BaseViewController: UIViewController, GADBannerViewDelegate {
+    
+    // FireStoreと通信中かを判断するためのFlag
+    var isConnecting:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +56,23 @@ class BaseViewController: UIViewController, GADBannerViewDelegate {
             // TODO: 保存してあるUIDと違ったら警告を出したほうがいいかもしれない
             let defaults = UserDefaults.standard
             defaults.set(uid ,forKey: "UID")
+        }
+    }
+    
+    // Firestoreアクセス時に10秒レスポンスがなければ、ネットワークの確認のアラートを出す
+    func prepareNetworkAlert() {
+        // SVProgressHUDのNotificationを使って通信中のアラートがけ消えるタイミングで処理
+        let center = NotificationCenter.default
+        var token: NSObjectProtocol!
+        token = center.addObserver(forName: .SVProgressHUDDidDisappear,
+                                   object: nil,
+                                   queue: nil) { notification in
+                                    // 通信中のアラートが消えたことで呼ばれる場合
+                                    if self.isConnecting {
+                                        SVProgressHUD.showInfo(withStatus: "ネットワークを確認して下さい")
+                                        SVProgressHUD.dismiss(withDelay: 2)
+                                    }
+                                    center.removeObserver(token)
         }
     }
 

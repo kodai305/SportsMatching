@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Tell Cloud Firestore to use the new Timestamp object
         let db = Firestore.firestore()
         let settings = db.settings
-        settings.areTimestampsInSnapshotsEnabled = true
+        settings.areTimestampsInSnapshotsEnabled = false
         db.settings = settings
         //Twitter認証用のイニシャライズ
         TWTRTwitter.sharedInstance().start(withConsumerKey:"P11c3I8G4LnDgirnY4tS8qu2Q",consumerSecret:"q3M6Pc2m46Pl4agvDyKR5PdrLvFUqVg7aJ4Ctkw87pdO7JrI6a")

@@ -173,7 +173,7 @@ class SearchResultViewController: BaseViewController,UITableViewDelegate, UITabl
         cell.GenderLabel.sizeToFit()
         cell.GenderLabel.frame.size.width = cell.ImageView.frame.origin.x - (cell.GenderLabel.frame.origin.x + 5)
         
-        var days = LoadedDocumentArray[indexPath.row].data()["day"] as! Array<String>
+        let days = LoadedDocumentArray[indexPath.row].data()["day"] as! Array<String>
         // 表示する曜日をまとめるString
         var day:String!
         day = alignmentDays(days: days)

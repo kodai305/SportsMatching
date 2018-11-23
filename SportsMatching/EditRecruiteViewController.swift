@@ -223,7 +223,11 @@ class EditRecruiteViewController: BaseFormViewController {
     }
     
     @IBAction func completeButton(_ sender: Any) {
-        SVProgressHUD.show(withStatus: "投稿中")
+        SVProgressHUD.show(withStatus: "通信中")
+        // 10秒経ったら消して、ネットワーク確認のアラートを出す
+        self.prepareNetworkAlert()
+        isConnecting = true
+        SVProgressHUD.dismiss(withDelay: 10)
         // タグ設定済みの全てのRowの値を取得
         let Values = form.values()
         //必須項目が入力済みか確認
@@ -260,9 +264,6 @@ class EditRecruiteViewController: BaseFormViewController {
         //画像セルから画像を取得
         let SelectedImgae = Values["Image"] as! UIImage
         
-        //Userdefaultsに保存
-        savePostDetailtoUserdefautls(postedTime: InitialPostedTime, updateTime: f.string(from: now), myUID: MyUID, values: Values, selectedImgae: SelectedImgae)
-        
         //FireStoreに投稿データを保存
         //複数選択可能な項目はSetからArrayへの変換を行う
         let db = Firestore.firestore()
@@ -289,6 +290,9 @@ class EditRecruiteViewController: BaseFormViewController {
                 print("Error writing document: \(err)")
             } else {
                 print("Document successfully written!")
+                //Userdefaultsに保存
+                self.savePostDetailtoUserdefautls(postedTime: self.InitialPostedTime, updateTime: f.string(from: now), myUID: self.MyUID, values: Values, selectedImgae: SelectedImgae)
+                
             }
         }
         
