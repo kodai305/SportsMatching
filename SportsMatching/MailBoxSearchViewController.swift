@@ -15,6 +15,7 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
     @IBOutlet weak var tableView: UITableView!
     
     var StubApplyHistory:[String] = []
+    let cellHight:CGFloat = 100
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +27,7 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
         self.tableView.emptyDataSetSource = self
         self.tableView.emptyDataSetDelegate = self
         //セルの高さを設定
-        self.tableView.rowHeight = 100
+        self.tableView.rowHeight = self.cellHight
 
         // Do any additional setup after loading the view.
     }
@@ -99,7 +100,7 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
         cell.PartnerNameLabel.font = UIFont.boldSystemFont(ofSize: 25)
         cell.PartnerNameLabel.sizeToFit()
         cell.PartnerNameLabel.frame.origin.x = 120
-        cell.PartnerNameLabel.center.y = cell.frame.height / 2
+        cell.PartnerNameLabel.center.y = self.cellHight / 2
         
         cell.LatestMessage.text = lastMessage
         cell.LatestMessage.font = UIFont.systemFont(ofSize: 15)

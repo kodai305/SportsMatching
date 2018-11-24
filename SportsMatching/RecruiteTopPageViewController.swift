@@ -157,7 +157,12 @@ class RecruiteTopPageViewController: BaseViewController,FUIAuthDelegate {
             // OKボタン
             let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
                 (action: UIAlertAction!) -> Void in
-                SVProgressHUD.show(withStatus: "削除中")
+                SVProgressHUD.show(withStatus: "通信中")
+                // 10秒経ったら消して、ネットワーク確認のアラートを出す
+                self.prepareNetworkAlert()
+                self.isConnecting = true
+                SVProgressHUD.dismiss(withDelay: 10)
+                
                 // UIDを取得
                 var MyUID = ""
                 MyUID = defaults.string(forKey: "UID")!
@@ -170,6 +175,7 @@ class RecruiteTopPageViewController: BaseViewController,FUIAuthDelegate {
                         // 投稿のUserdefalutsを削除
                         defaults.removeObject(forKey: "recruite")
                         SVProgressHUD.showSuccess(withStatus: "削除成功")
+                        self.isConnecting = false
                     }
                 }
             })

@@ -83,7 +83,7 @@ class SearchResultDetailViewController: BaseFormViewController{
             }
             <<< TextRow("Day") {
                 $0.title = "開催曜日"
-                $0.value = self.ArraytoSting(array: postDoc.data()["day"] as! Array<String>)
+                $0.value = self.alignmentDays(days: postDoc.data()["day"] as! Array<String>)
                 $0.baseCell.isUserInteractionEnabled = false
             }
             <<< TextRow("Position") {
@@ -235,6 +235,25 @@ class SearchResultDetailViewController: BaseFormViewController{
             }
             return string
         }
+    }
+    
+    // 曜日順に配列を整理
+    func alignmentDays(days : Array<String>) -> String {
+        var returnDays = Array<String>()
+        var day = String()
+        
+        let formatter: DateFormatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ja_JP")
+        for i in 0 ..< formatter.weekdaySymbols.count {
+            if days.contains(formatter.weekdaySymbols[i]) {
+                returnDays.append(formatter.weekdaySymbols[i])
+            }
+        }
+        // 全曜日を選択しても表示できるように、金曜日→金のように1文字目を抜き出す
+        for i in 0 ..< returnDays.count {
+            day = i == 0 ? String(returnDays[i].prefix(1)) : day + " " + String(returnDays[i].prefix(1))
+        }
+        return day
     }
 
     override func didReceiveMemoryWarning() {
