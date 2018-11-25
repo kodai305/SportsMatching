@@ -290,16 +290,16 @@ class EditRecruiteViewController: BaseFormViewController {
                 print("Error writing document: \(err)")
             } else {
                 print("Document successfully written!")
-                //Userdefaultsに保存
-                self.savePostDetailtoUserdefautls(postedTime: self.InitialPostedTime, updateTime: f.string(from: now), myUID: self.MyUID, values: Values, selectedImgae: SelectedImgae)
-                
+                // FirebaseStorageに画像を保存
+                // クロージャー内の処理は書き込み成功時に実行される
+                self.saveImagetoFirebaseStorage(directory: "post", myUID: self.MyUID, selectedImgae: SelectedImgae, completion: {
+                    //Userdefaultsに保存
+                    self.savePostDetailtoUserdefautls(postedTime: self.InitialPostedTime, updateTime: f.string(from: now), myUID: self.MyUID, values: Values, selectedImgae: SelectedImgae)
+                    // 新規投稿と投稿編集のボタンがある画面に戻る
+                    self.navigationController?.popViewController(animated: false)
+                })
             }
         }
-        
-        // FirebaseStorageに画像を保存
-        // 保存が成功するとtrueが返ってくる
-        saveImagetoFirebaseStorage(directory: "post", myUID: MyUID, selectedImgae: SelectedImgae)
-        
     }
     
     override func didReceiveMemoryWarning() {

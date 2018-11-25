@@ -99,7 +99,7 @@ class BaseFormViewController: FormViewController, GADBannerViewDelegate {
 
     
     // ImageCellで選択された画像をFirebaseStorageに保存
-    func saveImagetoFirebaseStorage(directory: String, myUID: String, selectedImgae: UIImage) {
+    func saveImagetoFirebaseStorage(directory: String, myUID: String, selectedImgae: UIImage, completion: (() -> ())?) {
         //Firebase Storageの準備
         let storage = Storage.storage()
         let storageRef = storage.reference()
@@ -115,13 +115,13 @@ class BaseFormViewController: FormViewController, GADBannerViewDelegate {
             let reference = storageRef.child(myUID + "/" + directory + "/image.jpg")
             reference.putData(data, metadata: nil, completion: { metaData, error in
                 if metaData != nil {
-                    SVProgressHUD.showSuccess(withStatus: "投稿成功")
                     self.isConnecting = false
-                    // 新規投稿と投稿編集のボタンがある画面に戻る
-                    self.navigationController?.popViewController(animated: false)
+                    SVProgressHUD.showSuccess(withStatus: "成功")
+                    completion?()
                     return
                 } else {
-                    SVProgressHUD.showError(withStatus: "投稿失敗")
+                    print("in")
+                    SVProgressHUD.showError(withStatus: "失敗")
                     self.isConnecting = false
                     return
                 }
@@ -145,6 +145,7 @@ class BaseFormViewController: FormViewController, GADBannerViewDelegate {
                                    queue: nil) { notification in
                                     // 通信中のアラートが消えたことで呼ばれる場合
                                     if self.isConnecting {
+                                        self.isConnecting = false
                                         SVProgressHUD.showInfo(withStatus: "ネットワークを確認して下さい")
                                         SVProgressHUD.dismiss(withDelay: 2)
                                     }

@@ -125,7 +125,7 @@ class CreateProfileViewController: BaseFormViewController {
         }
         
         //画像セルから画像を取得
-        let UIImgae = values["Image"] as! UIImage
+        let SelectedImgae = values["Image"] as! UIImage
         
         //時刻を取得(年月日、時分)
         let f = DateFormatter()
@@ -149,44 +149,26 @@ class CreateProfileViewController: BaseFormViewController {
                 print("Error writing document: \(err)")
             } else {
                 print("Document successfully written!")
-                // profile構造体をつくってUser-defaultに保存
-                var MyProfile = Profile()
-                MyProfile.UserName = values["UserName"] as? String
-                MyProfile.Gender = values["Gender"] as? String
-                MyProfile.Age = values["Age"] as? String
-                MyProfile.Level = values["Level"] as? String
-                // サイズを半分(0.5倍)してNSDataに変換
-                MyProfile.Image =  UIImageJPEGRepresentation(UIImgae, 0.5)!
-                // コメントは未入力の可能性があるのでnilチェック
-                MyProfile.Comments = values["Comments"].unsafelyUnwrapped == nil ? "" : values["Comments"] as! String
-                let data = try? JSONEncoder().encode(MyProfile)
-                let defaults = UserDefaults.standard
-                defaults.set(data ,forKey: "profile")
+                // FirebaseStorageに画像を保存
+                // クロージャー内の処理は書き込み成功時に実行される
+                self.saveImagetoFirebaseStorage(directory: "profile", myUID: self.myUID, selectedImgae: SelectedImgae, completion: {
+                    // profile構造体をつくってUser-defaultに保存
+                    var MyProfile = Profile()
+                    MyProfile.UserName = values["UserName"] as? String
+                    MyProfile.Gender = values["Gender"] as? String
+                    MyProfile.Age = values["Age"] as? String
+                    MyProfile.Level = values["Level"] as? String
+                    // サイズを半分(0.5倍)してNSDataに変換
+                    MyProfile.Image =  UIImageJPEGRepresentation(SelectedImgae, 0.5)!
+                    // コメントは未入力の可能性があるのでnilチェック
+                    MyProfile.Comments = values["Comments"].unsafelyUnwrapped == nil ? "" : values["Comments"] as! String
+                    let data = try? JSONEncoder().encode(MyProfile)
+                    let defaults = UserDefaults.standard
+                    defaults.set(data ,forKey: "profile")
+                    // MyPageへ戻る
+                    self.navigationController?.popViewController(animated: false)
+                })
             }
-        }
-        
-        var ImageShrinkRatio:CGFloat = 1.0
-        //Firebase Storageの準備
-        let storage = Storage.storage()
-        let storageRef = storage.reference()
-        // UIImageJPEGRepresentationでUIImageをNSDataに変換して格納
-        if var data = UIImageJPEGRepresentation(UIImgae, ImageShrinkRatio){
-            //画像のファイルサイズが1024*1024/2bytes以下になるまで縮小係数を調整
-            while data.count > 1024 * 1024 {
-                ImageShrinkRatio = ImageShrinkRatio - 0.1
-                data = UIImageJPEGRepresentation(UIImgae, ImageShrinkRatio)!
-            }
-            //とりあえずUIDのディレクトリを作成し、その下に画像を保存
-            let reference = storageRef.child(myUID + "/profile" + "/image" + ".jpg")
-            reference.putData(data, metadata: nil, completion: { metaData, error in
-                if metaData != nil {
-                    SVProgressHUD.showSuccess(withStatus: "登録成功")
-                    self.isConnecting = false
-                    // TODO: 1秒待ったほうがいいかも？
-                    // MyPageへ遷移する
-                    self.show((self.storyboard?.instantiateViewController(withIdentifier: "MyPage"))!,sender: true)
-                }
-            })
         }
     }
     
