@@ -11,6 +11,7 @@ import UIKit
 class MailBoxCell: UITableViewCell {
 
     var PartnerNameLabel:UILabel!
+    var TeamNameLabel:UILabel!
     var LatestMessage:UILabel!
     var LatestExchangeTime:UILabel!
     var PartnerImageView:UIImageView!
@@ -24,6 +25,9 @@ class MailBoxCell: UITableViewCell {
         PartnerNameLabel = UILabel(frame: CGRect.zero)
         PartnerNameLabel.textAlignment = .left
         self.contentView.addSubview(PartnerNameLabel)
+        TeamNameLabel = UILabel(frame: CGRect.zero)
+        TeamNameLabel.textAlignment = .left
+        self.contentView.addSubview(TeamNameLabel)
         LatestMessage = UILabel(frame: CGRect.zero)
         LatestMessage.textAlignment = .left
         self.contentView.addSubview(LatestMessage)

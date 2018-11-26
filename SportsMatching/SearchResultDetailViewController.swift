@@ -181,12 +181,15 @@ class SearchResultDetailViewController: BaseFormViewController{
             self.tabBarController?.tabBar.isHidden = true
             // ポップアップを出して応募メッセージ入力フォーマットを出す
             // 次のビューのインスタンスを生成し値を渡す。
+            // この3よ行は意味ない？
             let secondView = ApplyAlertViewController()
-            secondView.postID = postID
+            secondView.postUserID = postID
+            secondView.postTeamName = self.postDoc.data()["teamName"] as? String
             
             let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let next = storyboard.instantiateViewController(withIdentifier: "ApplyAlert") as! ApplyAlertViewController
-            next.postID = postID
+            next.postUserID = postID
+            next.postTeamName = self.postDoc.data()["teamName"] as? String
             self.present(next,animated: true, completion: nil)
         } else { // 二重応募の場合
             //  UIAlertControllerクラスのインスタンスを生成

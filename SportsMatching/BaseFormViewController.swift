@@ -116,7 +116,7 @@ class BaseFormViewController: FormViewController, GADBannerViewDelegate {
             reference.putData(data, metadata: nil, completion: { metaData, error in
                 if metaData != nil {
                     self.isConnecting = false
-                    SVProgressHUD.showSuccess(withStatus: "成功")
+                     SVProgressHUD.showSuccess(withStatus: "成功")
                     completion?()
                     return
                 } else {
@@ -135,7 +135,7 @@ class BaseFormViewController: FormViewController, GADBannerViewDelegate {
         _ = navigationController?.popViewController(animated: true)
     }
     
-    // Firestoreアクセス時に10秒レスポンスがなければ、ネットワークの確認のアラートを出す
+    // Firestoreアクセス時に7秒レスポンスがなければ、ネットワークの確認のアラートを出す
     func prepareNetworkAlert() {
         // SVProgressHUDのNotificationを使って通信中のアラートがけ消えるタイミングで処理
         let center = NotificationCenter.default

@@ -59,7 +59,7 @@ class BaseViewController: UIViewController, GADBannerViewDelegate {
         }
     }
     
-    // Firestoreアクセス時に10秒レスポンスがなければ、ネットワークの確認のアラートを出す
+    // Firestoreアクセス時に7秒レスポンスがなければ、ネットワークの確認のアラートを出す
     func prepareNetworkAlert() {
         // SVProgressHUDのNotificationを使って通信中のアラートがけ消えるタイミングで処理
         let center = NotificationCenter.default

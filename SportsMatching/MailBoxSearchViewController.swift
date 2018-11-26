@@ -15,7 +15,7 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
     @IBOutlet weak var tableView: UITableView!
     
     var StubApplyHistory:[String] = []
-    let cellHight:CGFloat = 100
+    let cellHeight:CGFloat = 100
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +27,7 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
         self.tableView.emptyDataSetSource = self
         self.tableView.emptyDataSetDelegate = self
         //セルの高さを設定
-        self.tableView.rowHeight = self.cellHight
+        self.tableView.rowHeight = self.cellHeight
 
         // Do any additional setup after loading the view.
     }
@@ -80,10 +80,16 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
         //roomID = "投稿者UID" + "-" + "応募者UID"
         let roomID = postID+"-"+myUID
         
-        // 募集者の名前を取得
+        // 投稿者の名前を取得
         var userName = "NoName"
-        if let tmpName = defaults.string(forKey: "user_"+postID) {
+        if let tmpName = defaults.string(forKey: "user_" + postID) {
             userName = tmpName
+        }
+        
+        // 投稿者の名前を取得
+        var teamName = "NoName"
+        if let tmpName = defaults.string(forKey: "team_" + postID) {
+            teamName = tmpName
         }
         
         // トーク履歴を取得
@@ -97,23 +103,29 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
         
         //チャット相手の情報をセルに表示
         cell.PartnerNameLabel.text = userName
-        cell.PartnerNameLabel.font = UIFont.boldSystemFont(ofSize: 25)
+        cell.PartnerNameLabel.font = UIFont.boldSystemFont(ofSize: 20)
         cell.PartnerNameLabel.sizeToFit()
         cell.PartnerNameLabel.frame.origin.x = 120
-        cell.PartnerNameLabel.center.y = self.cellHight / 2
+        cell.PartnerNameLabel.center.y = self.cellHeight / 4
+        
+        cell.TeamNameLabel.text = teamName
+        cell.TeamNameLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        cell.TeamNameLabel.sizeToFit()
+        cell.TeamNameLabel.frame.origin.x = 120
+        cell.TeamNameLabel.center.y = self.cellHeight / 2
         
         cell.LatestMessage.text = lastMessage
         cell.LatestMessage.font = UIFont.systemFont(ofSize: 15)
         cell.LatestMessage.textColor = UIColor.gray
         cell.LatestMessage.sizeToFit()
         cell.LatestMessage.frame.size.width = cell.frame.width - 180
-        cell.LatestMessage.frame.origin = CGPoint(x: 120, y: cell.PartnerNameLabel.frame.origin.y + 40)
+        cell.LatestMessage.frame.origin = CGPoint(x: 120, y: self.cellHeight * 3 / 4)
         
         cell.LatestExchangeTime.text = lastMsgTime
         cell.LatestExchangeTime.font = UIFont.systemFont(ofSize: 12)
         cell.LatestExchangeTime.textColor = UIColor.gray
         cell.LatestExchangeTime.sizeToFit()
-        cell.LatestExchangeTime.frame.origin = CGPoint(x: self.view.frame.width - (cell.LatestExchangeTime.frame.width + 10), y: cell.PartnerNameLabel.frame.origin.y - 25)
+        cell.LatestExchangeTime.frame.origin = CGPoint(x: self.view.frame.width - (cell.LatestExchangeTime.frame.width + 10), y: 10)
         
         cell.PartnerImageView.image = UIImage(named: "defaulticon")
         cell.PartnerImageView.frame = CGRect(x: 20, y: 20, width: 60, height: 60)

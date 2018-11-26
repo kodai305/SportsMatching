@@ -223,11 +223,6 @@ class EditRecruiteViewController: BaseFormViewController {
     }
     
     @IBAction func completeButton(_ sender: Any) {
-        SVProgressHUD.show(withStatus: "通信中")
-        // 10秒経ったら消して、ネットワーク確認のアラートを出す
-        self.prepareNetworkAlert()
-        isConnecting = true
-        SVProgressHUD.dismiss(withDelay: 10)
         // タグ設定済みの全てのRowの値を取得
         let Values = form.values()
         //必須項目が入力済みか確認
@@ -253,6 +248,11 @@ class EditRecruiteViewController: BaseFormViewController {
             SVProgressHUD.showError(withStatus: "活動画像を選択して下さい")
             return
         }
+        SVProgressHUD.show(withStatus: "通信中")
+        // 7秒経ったら消して、ネットワーク確認のアラートを出す
+        self.prepareNetworkAlert()
+        isConnecting = true
+        SVProgressHUD.dismiss(withDelay: 7)
         
         //時刻を取得(年月日、時分)
         let f = DateFormatter()

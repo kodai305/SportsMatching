@@ -158,10 +158,10 @@ class RecruiteTopPageViewController: BaseViewController,FUIAuthDelegate {
             let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
                 (action: UIAlertAction!) -> Void in
                 SVProgressHUD.show(withStatus: "通信中")
-                // 10秒経ったら消して、ネットワーク確認のアラートを出す
+                // 7秒経ったら消して、ネットワーク確認のアラートを出す
                 self.prepareNetworkAlert()
                 self.isConnecting = true
-                SVProgressHUD.dismiss(withDelay: 10)
+                SVProgressHUD.dismiss(withDelay: 7)
                 
                 // UIDを取得
                 var MyUID = ""

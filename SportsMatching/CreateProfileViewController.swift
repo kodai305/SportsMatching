@@ -99,11 +99,6 @@ class CreateProfileViewController: BaseFormViewController {
     
     
     @IBAction func saveUserProfileButtonPushed(_ sender: Any) {
-        SVProgressHUD.show(withStatus: "通信中")
-        // 10秒経ったら消して、ネットワーク確認のアラートを出す
-        self.prepareNetworkAlert()
-        isConnecting = true
-        SVProgressHUD.dismiss(withDelay: 10)
         // タグ設定済みの全てのRowの値を取得
         let values = form.values()
         // 入力値の確認
@@ -123,6 +118,12 @@ class CreateProfileViewController: BaseFormViewController {
             SVProgressHUD.showError(withStatus: "画像を入力して下さい")
             return
         }
+        
+        SVProgressHUD.show(withStatus: "通信中")
+        // 7秒経ったら消して、ネットワーク確認のアラートを出す
+        self.prepareNetworkAlert()
+        isConnecting = true
+        SVProgressHUD.dismiss(withDelay: 7)
         
         //画像セルから画像を取得
         let SelectedImgae = values["Image"] as! UIImage

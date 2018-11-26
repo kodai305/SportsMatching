@@ -15,7 +15,7 @@ import FirebaseFirestore
 
 class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UITableViewDataSource, IndicatorInfoProvider, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
-    var StubRecruiteHistory:[String] = ["0","0","0","0","0","0","0","0","0"]
+    var StubRecruiteHistory:[String] = []
     let cellHeight:CGFloat = 100
     
     @IBOutlet weak var tableView: UITableView!
@@ -104,7 +104,7 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
         
         //チャット相手の情報をセルに表示
         cell.PartnerNameLabel.text = userName
-        cell.PartnerNameLabel.font = UIFont.boldSystemFont(ofSize: 25)
+        cell.PartnerNameLabel.font = UIFont.boldSystemFont(ofSize: 20)
         cell.PartnerNameLabel.sizeToFit()
         cell.PartnerNameLabel.frame.origin.x = 120
         cell.PartnerNameLabel.center.y = self.cellHeight / 2
@@ -114,13 +114,13 @@ class MailBoxRecruiteViewController: BaseViewController,UITableViewDelegate, UIT
         cell.LatestMessage.textColor = UIColor.gray
         cell.LatestMessage.sizeToFit()
         cell.LatestMessage.frame.size.width = cell.frame.width - 180
-        cell.LatestMessage.frame.origin = CGPoint(x: 120, y: cell.PartnerNameLabel.frame.origin.y + 40)
+        cell.LatestMessage.frame.origin = CGPoint(x: 120, y: self.cellHeight * 3 / 4)
         
         cell.LatestExchangeTime.text = lastMsgTime
         cell.LatestExchangeTime.font = UIFont.systemFont(ofSize: 12)
         cell.LatestExchangeTime.textColor = UIColor.gray
         cell.LatestExchangeTime.sizeToFit()
-        cell.LatestExchangeTime.frame.origin = CGPoint(x: self.view.frame.width - (cell.LatestExchangeTime.frame.width + 10), y: cell.PartnerNameLabel.frame.origin.y - 25)
+        cell.LatestExchangeTime.frame.origin = CGPoint(x: self.view.frame.width - (cell.LatestExchangeTime.frame.width + 10), y: 10)
         
         cell.PartnerImageView.image = UIImage(named: "defaulticon")
         cell.PartnerImageView.frame = CGRect(x: 20, y: 20, width: 60, height: 60)

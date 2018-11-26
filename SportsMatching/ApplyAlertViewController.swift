@@ -13,7 +13,8 @@ import FirebaseFirestore
 
 class ApplyAlertViewController: BaseViewController {
     
-    var postID:String!
+    var postUserID:String!
+    var postTeamName:String!
     
     @IBOutlet weak var AlertTitleLabel: UILabel!
     @IBOutlet weak var AlertSubscriptionLabel: UILabel!
@@ -40,7 +41,7 @@ class ApplyAlertViewController: BaseViewController {
         }
         
         // メッセージの送信
-        self.functions.httpsCallable("sendNewApplyNotification").call(["postID": self.postID, "message": message, "userName": myName]) { (result, error) in
+        self.functions.httpsCallable("sendNewApplyNotification").call(["postID": self.postUserID, "message": message, "userName": myName]) { (result, error) in
             print(result?.data as Any)
             print("function is called")
             if let error = error as NSError? {
@@ -54,14 +55,14 @@ class ApplyAlertViewController: BaseViewController {
             }
             SVProgressHUD.showSuccess(withStatus: "成功")
             // 応募履歴にデータを追加
-            self.addApplyHistoryArray(postID: self.postID)
+            self.addApplyHistoryArray(postID: self.postUserID)
             
             // 投稿内容をUserDefaultに保存(トーク履歴)
             var myUID = ""
             let defaults = UserDefaults.standard
             myUID = defaults.string(forKey: "UID")!
             //roomID = "投稿者UID" + "-" + "応募者UID"
-            let roomID = self.postID+"-"+myUID
+            let roomID = self.postUserID+"-"+myUID
             var stubMessageInfo = MessageInfo()
             stubMessageInfo.message  = message!
             stubMessageInfo.senderID = myUID
@@ -72,11 +73,13 @@ class ApplyAlertViewController: BaseViewController {
             messageArray.append(stubMessageInfo)
             let data = try? JSONEncoder().encode(messageArray)
             defaults.set(data ,forKey: roomID)
+            // 応募したチームのチーム名を保存
+            defaults.set(self.postTeamName, forKey: "team_" + self.postUserID)
             
             // 募集者のプロフィールを取得->保存
             var postUserName = "NO NAME"
             let db = Firestore.firestore()
-            let docRef = db.collection("users").document(self.postID)
+            let docRef = db.collection("users").document(self.postUserID)
             docRef.getDocument { (document, error) in
                 if let document = document, document.exists {
                     if let tmp = document.data()!["userName"] {
@@ -86,7 +89,7 @@ class ApplyAlertViewController: BaseViewController {
                     print("ユーザー情報取得失敗")
                 }
                 
-                defaults.set(postUserName, forKey: "user_"+self.postID)
+                defaults.set(postUserName, forKey: "user_"+self.postUserID)
                 // キーボードをしまう
                 self.MessageTextView.resignFirstResponder()
                 // このアラートビューを表示しているビューコントローラー
@@ -182,8 +185,8 @@ class ApplyAlertViewController: BaseViewController {
  
     //前のビューから値を受け取る
     func setPostID(_ str:String){
-        postID = str
-        print("postID:"+self.postID)
+        postUserID = str
+        print("postID:"+self.postUserID)
     }
     
     override func didReceiveMemoryWarning() {
