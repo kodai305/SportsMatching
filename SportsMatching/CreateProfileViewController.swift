@@ -167,7 +167,7 @@ class CreateProfileViewController: BaseFormViewController {
                     let defaults = UserDefaults.standard
                     defaults.set(data ,forKey: "profile")
                     // MyPageへ戻る
-                    self.navigationController?.popViewController(animated: false)
+                    self.show((self.storyboard?.instantiateViewController(withIdentifier: "MyPage"))!,sender: true)
                 })
             }
         }

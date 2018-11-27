@@ -10,12 +10,11 @@ import UIKit
 
 class RecruiteTutorialViewController: BaseViewController,UIScrollViewDelegate {
     
-    
+    // チュートリアルを表示するScrollView
     @IBOutlet weak var scrollView: UIScrollView!
     let numberOfPages = 4
     //UIPageControlのインスタンス作成
     @IBOutlet weak var pageControl: UIPageControl!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()

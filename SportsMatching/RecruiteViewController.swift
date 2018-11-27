@@ -16,6 +16,24 @@ class RecruiteViewController: BaseFormViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //プロフィールが作成済みかをチェックして、登録なしの場合はアラートを出す
+        //プロフィールの有無はUserdefaultsで判断
+        let defaults = UserDefaults.standard
+        if defaults.data(forKey: "profile") == nil {
+            // プロフィールが存在しない場合
+            // UIAlertControllerクラスのインスタンスを生成
+            let alert: UIAlertController = UIAlertController(title: "投稿するにはプロフィールの作成が必要です", message: "プロフィールはマイページで作成出来ます", preferredStyle:  UIAlertControllerStyle.alert)
+            // OKボタン
+            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+                (action: UIAlertAction!) -> Void in
+                // 検索条件を見れるように、ここでは何もしない
+                return
+            })
+            alert.addAction(defaultAction)
+            // Alertを表示
+            present(alert, animated: true, completion: nil)
+        }
 
         form +++
             Section(header: "必須項目", footer: "すべての項目を入力してください")
@@ -191,6 +209,24 @@ class RecruiteViewController: BaseFormViewController {
     }
 
     @IBAction func postButton(_ sender: Any) {
+        //プロフィールが作成済みかをチェックして、登録なしの場合はアラートを出す
+        //プロフィールの有無はUserdefaultsで判断
+        let defaults = UserDefaults.standard
+        if defaults.data(forKey: "profile") == nil {
+            // プロフィールが存在しない場合
+            // UIAlertControllerクラスのインスタンスを生成
+            let alert: UIAlertController = UIAlertController(title: "投稿するにはプロフィールの作成が必要です", message: "プロフィールはマイページで作成出来ます", preferredStyle:  UIAlertControllerStyle.alert)
+            // OKボタン
+            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+                (action: UIAlertAction!) -> Void in
+                // 検索条件を見れるように、ここでは何もしない
+                return
+            })
+            alert.addAction(defaultAction)
+            // Alertを表示
+            present(alert, animated: true, completion: nil)
+            return
+        }
         // タグ設定済みの全てのRowの値を取得
         let Values = form.values()
         //必須項目が入力済みか確認
@@ -231,7 +267,6 @@ class RecruiteViewController: BaseFormViewController {
         
         // UIDを取得
         var MyUID = ""
-        let defaults = UserDefaults.standard
         MyUID = defaults.string(forKey: "UID")!
         
         //画像セルから画像を取得
