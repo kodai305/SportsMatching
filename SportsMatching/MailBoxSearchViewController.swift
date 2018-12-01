@@ -28,6 +28,9 @@ class MailBoxSearchViewController: BaseViewController,UITableViewDelegate, UITab
         self.tableView.emptyDataSetDelegate = self
         //セルの高さを設定
         self.tableView.rowHeight = self.cellHeight
+        
+        // 広告は非表示にしておく
+        self.hideAdvertisement()
 
         // Do any additional setup after loading the view.
     }

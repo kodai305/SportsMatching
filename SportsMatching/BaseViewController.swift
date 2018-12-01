@@ -15,6 +15,7 @@ class BaseViewController: UIViewController, GADBannerViewDelegate {
     
     // FireStoreと通信中かを判断するためのFlag
     var isConnecting:Bool = false
+    var bannerView = GADBannerView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +23,7 @@ class BaseViewController: UIViewController, GADBannerViewDelegate {
         // Tabbar非選択時のアイコンの色を設定
         self.tabBarController?.tabBar.unselectedItemTintColor = UIColor(hex: "515A5A")
         // Do any additional setup after loading the view, typically from a nib.
-        //displayAdvertisement()
+        displayAdvertisement()
     }
 
     var handle: AuthStateDidChangeListenerHandle?
@@ -116,7 +117,6 @@ class BaseViewController: UIViewController, GADBannerViewDelegate {
     // 広告の表示
     func displayAdvertisement() {
         print("display Advertisement is called")
-        var bannerView = GADBannerView()
         bannerView = GADBannerView(adSize: kGADAdSizeBanner)
         bannerView.adUnitID = admob_id
         
@@ -130,6 +130,10 @@ class BaseViewController: UIViewController, GADBannerViewDelegate {
         bannerView.delegate = self
         
         self.view.addSubview(bannerView)
+    }
+    
+    func hideAdvertisement() {
+        self.bannerView.isHidden = true
     }
     
     override func didReceiveMemoryWarning() {

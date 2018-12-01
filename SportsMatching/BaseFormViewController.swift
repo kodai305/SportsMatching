@@ -20,6 +20,7 @@ class BaseFormViewController: FormViewController, GADBannerViewDelegate {
     var isConnecting:Bool = false
     // 広告の上までスクロール出来るようにViewを広げる様の空のUIView
     let FooterUIView = UIView()
+    var bannerView = GADBannerView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +28,7 @@ class BaseFormViewController: FormViewController, GADBannerViewDelegate {
         self.tableView.backgroundColor = UIColor(hex: "EBEDEF")
         // Tabbar非選択時のアイコンの色を設定
         self.tabBarController?.tabBar.unselectedItemTintColor = UIColor(hex: "515A5A")
-
-        //displayAdvertisement()
+        displayAdvertisement()
         // Do any additional setup after loading the view.
     }
 
@@ -193,7 +193,6 @@ class BaseFormViewController: FormViewController, GADBannerViewDelegate {
     // 広告の表示
     func displayAdvertisement() {
         print("display Advertisement is called")
-        var bannerView = GADBannerView()
         bannerView = GADBannerView(adSize: kGADAdSizeBanner)
         bannerView.adUnitID = admob_id
         
@@ -207,6 +206,10 @@ class BaseFormViewController: FormViewController, GADBannerViewDelegate {
         bannerView.delegate = self
         
         self.view.addSubview(bannerView)
+    }
+    
+    func hideAdvertisement() {
+        self.bannerView.isHidden = true
     }
 
     /*
