@@ -13,7 +13,8 @@ class Advertisement: UIViewController, GADBannerViewDelegate {
     var bannerView: GADBannerView!
     
     //let admob_id = "XXX" // 本番用
-    let admob_id = "ca-app-pub-3940256099942544/2934735716" // 練習用
+    let admob_id = "ca-app-pub-1379462117325805/4295815612"
+    //let admob_id = "ca-app-pub-3940256099942544/2934735716" // 練習用
     
     func addBannerViewToView(_ bannerView: GADBannerView) {
         bannerView.translatesAutoresizingMaskIntoConstraints = false
