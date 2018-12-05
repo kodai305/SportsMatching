@@ -24,8 +24,8 @@ class MyPageViewController: BaseFormViewController,FUIAuthDelegate,MFMailCompose
     
     var CurrentUser:User!
     
-    //ログアウトボタン(開発用、本番では消す)
-    @IBOutlet weak var LogOutButton: UIButton!
+//    //ログアウトボタン(開発用、本番では消す)
+//    @IBOutlet weak var LogOutButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,14 +65,12 @@ class MyPageViewController: BaseFormViewController,FUIAuthDelegate,MFMailCompose
         HeaderUIView.addSubview(EditProfileButton)
         
         //ログアウトボタンの設定、本番では消す
-        LogOutButton.frame.size = CGSize(width: 200, height: 30)
-        LogOutButton.frame.origin.y = 10
-        LogOutButton.center.x = HeaderUIView.center.x
-        LogOutButton.backgroundColor = UIColor.brown
-        LogOutButton.addTarget(self,action: #selector(self.LogOutButtonTapped(sender:)),for: .touchUpInside)
-        HeaderUIView.addSubview(LogOutButton)
-        
-        print(self.HeaderUIView.frame.height + self.EditProfileButton.frame.height + 20)
+//        LogOutButton.frame.size = CGSize(width: 200, height: 30)
+//        LogOutButton.frame.origin.y = 10
+//        LogOutButton.center.x = HeaderUIView.center.x
+//        LogOutButton.backgroundColor = UIColor.brown
+//        LogOutButton.addTarget(self,action: #selector(self.LogOutButtonTapped(sender:)),for: .touchUpInside)
+//        HeaderUIView.addSubview(LogOutButton)
         
         // 上部に画像とボタンを設定
         form +++ Section(){ section in

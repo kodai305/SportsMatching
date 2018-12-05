@@ -190,12 +190,6 @@ DQ
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CgD-Tg-2zT">
-                                <rect key="frame" x="126" y="83" width="122" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <state key="normal" title=" ログアウト"/>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mlc-9l-RyQ">
                                 <rect key="frame" x="96" y="164" width="182" height="95"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -212,7 +206,6 @@ DQ
                     <navigationItem key="navigationItem" title="マイページ" id="ohL-JJ-tX5"/>
                     <connections>
                         <outlet property="EditProfileButton" destination="Mlc-9l-RyQ" id="G1x-8G-wP1"/>
-                        <outlet property="LogOutButton" destination="CgD-Tg-2zT" id="3kk-22-At8"/>
                         <outletCollection property="EditProfileButton" destination="Mlc-9l-RyQ" id="8S1-QI-5bu"/>
                         <segue destination="RdO-09-FdY" kind="show" identifier="toProfileDetail" id="5gc-2v-1je"/>
                         <segue destination="032-AK-Olg" kind="show" identifier="toTermsofUse" id="RV5-6U-Zj7"/>
