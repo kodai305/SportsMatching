@@ -29,7 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Override point for customization after application launch.
         FirebaseApp.configure()
         // setup for admob
-        GADMobileAds.configure(withApplicationID: "ca-app-pub-1379462117325805~1477458463")
+//        GADMobileAds.configure(withApplicationID: "ca-app-pub-1379462117325805~1477458463")
+          GADMobileAds.configure(withApplicationID: "ca-app-pub-2697023179323634~6626092723")
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {

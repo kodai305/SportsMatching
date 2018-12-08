@@ -154,7 +154,8 @@ class BaseFormViewController: FormViewController, GADBannerViewDelegate {
         }
     
     //let admob_id = "XXX" // 本番用
-    let admob_id = "ca-app-pub-3940256099942544/2934735716" // 練習用
+    let admob_id = "ca-app-pub-2697023179323634/2830904679"
+//    let admob_id = "ca-app-pub-3940256099942544/2934735716" // 練習用
 
     /// Tells the delegate an ad request loaded an ad.
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
